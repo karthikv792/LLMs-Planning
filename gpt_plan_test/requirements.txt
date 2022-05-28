@@ -1,0 +1,4 @@
+numpy==1.19.5
+openai==0.6.4
+PyYAML==6.0
+tarski==0.6.0

@@ -1,0 +1,5 @@
+Domain=BLOCKSWORLD-4OPS
+Problem=BW-RAND-5
+Preprocessing=0.00378
+Fluents=42
+Operators=62

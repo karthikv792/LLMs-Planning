@@ -1,0 +1,37 @@
+---
+domain: generated_basic
+domain_file: generated_domain.pddl
+n_instances: 500
+instances_template: instance-{}.pddl
+
+actions:
+  {pick-up: "pick up the {}",
+   put-down: "put down the {}",
+   stack: "stack the {} on top of the {}",
+   unstack: "unstack the {} from on top of the {}"}
+objects:
+- red block
+- blue block
+- orange block
+- yellow block
+- white block
+- magenta block
+- black block
+- cyan block
+- green block
+- violet block
+- silver block
+predicates:
+  {ontable: "the {} is on the table",
+   clear: "the {} is clear",
+   handempty: "the hand is empty",
+   holding: "the hand is currently holding {}",
+   "on": "the {} is on top of the {}"}
+
+translations:
+  {ontable: "on the table"}
+
+encoded_objects:
+  {"a": "red block", "b": "blue block", "c": "orange block", "d": "yellow block",
+   "e": "white block", "f": "magenta block", "g": "black block", "h": "cyan block",
+   "i": "green block", "j": "violet block", "k": "silver block", "l": "gold block" }

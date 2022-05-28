@@ -1,0 +1,27 @@
+(define (problem BW-basic-4)
+(:domain blocksworld-4ops)
+(:objects b1 b2 b4 b6 b8 b10)
+(:init
+(handempty)
+(ontable b1)
+(ontable b2)
+(ontable b4)
+(ontable b6)
+(ontable b8)
+(ontable b10)
+(clear b1)
+(clear b2)
+(clear b4)
+(clear b6)
+(clear b8)
+(clear b10))
+
+(:goal
+(and
+(on b2 b1)
+(on b4 b2)
+(on b6 b4)
+(on b8 b6)
+(on b10 b8)
+))
+)
