@@ -10,7 +10,7 @@ import argparse
 np.random.seed(42)
 
 INTRO = """
-I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do 
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
 
 Pick up a block
 Unstack a block from on top of another block
@@ -18,25 +18,27 @@ Stack a block on top of another block
 
 I have the following restrictions on my actions.
 I can only pick up or unstack one block at a time.
-I can only pick up a block if the block is on the table and there are no other blocks on top of it.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
 I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
-I can only unstack a block from on top of another block if the block I am unstacking had no other block on top of it.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
 I can only stack a block on top of another block if I had previously picked up or unstacked the block being stacked.
-I can only stack a block on top of another block if the block onto which I am stacking the block has no other blocks on top of it.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
 """
 
 INTRO_COST = """
-I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do: 
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do:
+
 Pick up a block. It takes 1 minute to pick up a block.
-Unstack a block from on top of another block. It takes 1 minute to unstack a block from on top of another block. 
+Unstack a block from on top of another block. It takes 1 minute to unstack a block from on top of another block.
 Stack a block on top of another block. It takes 1 minute to stack a block on top of another block.
+
 I have the following restrictions on my actions.
 I can only pick up or unstack one block at a time.
-I can only pick up a block if the block is on the table and there are no other blocks on top of it.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
 I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
-I can only unstack a block from on top of another block if the block I am unstacking had no other block on top of it.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
 I can only stack a block on top of another block if I had previously picked up or unstacked the block being stacked.
-I can only stack a block on top of another block if the block onto which I am stacking the block has no other blocks on top of it.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
 """
 
 
@@ -97,10 +99,11 @@ class ReasoningTasks():
         domain_pddl = f'./instances/{self.data["domain_file"]}'
         instance_folder = f'./instances/{domain_name}/'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder))) + 2
+        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
+
         final_output = ""
         correct_plans = 0
-        for start in range(1, n_files - self.n_examples):
+        for start in range(1, n_files + 2 - self.n_examples):
             query = INTRO
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -135,6 +138,7 @@ class ReasoningTasks():
             # Apply VAL
             correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
             correct_plans += correct
+            break
         # --------------- Add to final output --------------- #
         final_output += f"[+]: The number of correct plans is " + \
                         f"{correct_plans}/{n_files - self.n_examples}={correct_plans / (n_files - self.n_examples) * 100}%"
@@ -180,11 +184,11 @@ class ReasoningTasks():
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
 
-        n = self.data['n_instances'] + 2
+        n = self.data['n_instances']
         skipped = 0
         corrects = {"Random": 0, "Full->Specific": 0, "Specific->Full": 0}
         final_output = ""
-        for i in range(1, n):
+        for i in range(1, n+1):
             cur_instance = instance.format(i)
             final_output += f"\n Instance {cur_instance}\n"
             exec = self.get_executor(cur_instance, domain)
@@ -217,7 +221,11 @@ class ReasoningTasks():
             query += fill_template(init_specific_shuffled, goal_specific_shuffled, "")
 
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-            _ = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+
+            final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
+                            f"--------- Extracted plan ---------\n{gpt3_plan}" + \
+                            f"\n-------- GT plan ---------\n{gt_plan}"
 
             corrects["Random"] += int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
 
@@ -254,16 +262,19 @@ class ReasoningTasks():
             os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
             with open(f"outputs/{self.engine}/task2_paraphrase.txt", 'w+') as f:
                 f.write(final_output)
+            break
+
 
     def t3_plan_subset(self, config_file):
         self.read_config(config_file)
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances'] + 2
+        n = self.data['n_instances']
         final_output = ""
         correct_plans = 0
-        for i in range(1, n):
+        list1 = [1,2,3,500]
+        for i in list1:
             cur_instance = instance.format(i)
             exec = executor(domain, cur_instance)
             problem = self.get_problem(cur_instance, domain)
@@ -288,7 +299,8 @@ class ReasoningTasks():
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       # f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- GT plan ---------\n{plan_subset}")
-                # print(valid_or_not)
+                # print(valid_or_no
+            break
 
         exec_plans = n
         final_output += "\nResults:\n"
@@ -303,15 +315,16 @@ class ReasoningTasks():
         with open(f"outputs/{self.engine}/task3_plan_subset.txt", 'w+') as f:
             f.write(final_output)
 
+
     def t5_optimality(self, config_file):
         self.read_config(config_file)
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances'] + 2
+        n = self.data['n_instances']
         final_output = ""
         correct_plans = 0
-        for start in range(1, n - self.n_examples):
+        for start in range(500, n+2 - self.n_examples):
             query = INTRO_COST
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -350,6 +363,7 @@ class ReasoningTasks():
                 print("COST OF GPT_3 PLAN", cost)
                 if cost == exec.cost:
                     correct_plans += 1
+            break
         exec_plans = n
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
         print(f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%")
@@ -362,17 +376,18 @@ class ReasoningTasks():
         with open(f"outputs/{self.engine}/task5_optimality.txt", 'w+') as f:
             f.write(final_output)
 
+
     def t6_replanning(self, config_file, harder):
         self.read_config(config_file)
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances'] + 2
+        n = self.data['n_instances']
         final_output = ""
 
         correct_plans = 0
         no_possible_plans = 0
-        for i in range(1, n):
+        for i in range(1, n+1):
             cur_instance = instance.format(i)
             exec = executor(domain, cur_instance)
             problem = self.get_problem(cur_instance, domain)
@@ -405,6 +420,7 @@ class ReasoningTasks():
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- GT plan ---------\n{plan}")
                 print(valid_or_not)
+            break
 
         exec_plans = n - no_possible_plans
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
@@ -422,15 +438,16 @@ class ReasoningTasks():
         with open(f"outputs/{self.engine}/task6_replanning"+hard_or_easy+".txt", 'w+') as f:
             f.write(final_output)
 
+
     def t7_plan_execution(self, config_file):
         self.read_config(config_file)
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances'] + 2
+        n = self.data['n_instances']
         final_output = ""
         correct_answers = 0
-        for start in range(1, n - self.n_examples):
+        for start in range(500, n+2 - self.n_examples):
             query = INTRO
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -460,6 +477,7 @@ class ReasoningTasks():
             correct = gpt3_response.strip() == answer
             correct_answers += correct
             print(correct)
+            break
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_answers}/{exec_plans} = {round(correct_answers / exec_plans * 100, 2)}%"
@@ -471,6 +489,7 @@ class ReasoningTasks():
         os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
         with open(f"outputs/{self.engine}/task7_plan_execution.txt", 'w+') as f:
             f.write(final_output)
+
 
 
 if __name__ == '__main__':
