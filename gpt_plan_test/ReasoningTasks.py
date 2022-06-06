@@ -9,6 +9,8 @@ import argparse
 
 np.random.seed(42)
 
+
+
 INTRO = """
 I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
 
@@ -27,11 +29,9 @@ I can only stack a block on top of another block if the block onto which I am st
 
 INTRO_COST = """
 I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do:
-
 Pick up a block. It takes 1 minute to pick up a block.
 Unstack a block from on top of another block. It takes 1 minute to unstack a block from on top of another block.
 Stack a block on top of another block. It takes 1 minute to stack a block on top of another block.
-
 I have the following restrictions on my actions.
 I can only pick up or unstack one block at a time.
 I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
@@ -118,6 +118,7 @@ class ReasoningTasks():
                 # --------------------------------------------- #
                 # ------------ Put plan and instance into text ------------ #
                 gt_plan = self.compute_plan(domain_pddl, cur_instance)
+                gt_plan_text = get_plan_as_text(self.data)
                 query += fill_template(*instance_to_text_blocksworld(problem, get_plan, self.data))
                 # --------------------------------------------------------- #
 
@@ -125,15 +126,15 @@ class ReasoningTasks():
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
 
             # Do text_to_plan procedure
-            gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            _,gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # --------------- Add to final output --------------- #
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                            f"\n-------- GT plan ---------\n{gt_plan}"
+                            f"\n-------- GT plan ---------\n{gt_plan_text}"
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
-                      f"\n-------- GT plan ---------\n{gt_plan}")
+                      f"\n-------- GT plan ---------\n{gt_plan_text}")
 
             # Apply VAL
             correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
@@ -202,6 +203,8 @@ class ReasoningTasks():
                 print(std_out)
                 skipped += 1
                 continue
+            gt_plan_text = get_plan_as_text(self.data)
+
 
             goal_random, goal_full = paraphrase_goal(exec)
             try:
@@ -221,11 +224,11 @@ class ReasoningTasks():
             query += fill_template(init_specific_shuffled, goal_specific_shuffled, "")
 
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-            gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            _,gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
 
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                            f"\n-------- GT plan ---------\n{gt_plan}"
+                            f"\n-------- GT plan ---------\n{gt_plan_text}"
 
             corrects["Random"] += int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
 
@@ -237,17 +240,17 @@ class ReasoningTasks():
                 query += fill_template(init_specific_shuffled, goal_2, "")
 
                 gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-                gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+                _,gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
 
                 corrects[descr] += int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
 
                 final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                                 f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                                f"\n-------- GT plan ---------\n{gt_plan}"
+                                f"\n-------- GT plan ---------\n{gt_plan_text}"
                 if self.verbose:
                     print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                           f"--------- Extracted plan ---------\n{gpt3_plan}"
-                          f"\n-------- GT plan ---------\n{gt_plan}")
+                          f"\n-------- GT plan ---------\n{gt_plan_text}")
 
             os.remove(self.plan_file)
             os.remove(self.gpt3_plan_file)
@@ -273,8 +276,8 @@ class ReasoningTasks():
         n = self.data['n_instances']
         final_output = ""
         correct_plans = 0
-        list1 = [1,2,3,500]
-        for i in list1:
+
+        for i in range(1,n):
             cur_instance = instance.format(i)
             exec = executor(domain, cur_instance)
             problem = self.get_problem(cur_instance, domain)
@@ -289,7 +292,7 @@ class ReasoningTasks():
             # --------------------------------------------------------- #
 
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-            gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data, True)
+            _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data, True)
             exec.get_new_instance(change_goal=True, change_init=False)
             valid_or_not = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
             correct_plans += valid_or_not
@@ -324,7 +327,7 @@ class ReasoningTasks():
         n = self.data['n_instances']
         final_output = ""
         correct_plans = 0
-        for start in range(500, n+2 - self.n_examples):
+        for start in range(1, n+2 - self.n_examples):
             query = INTRO_COST
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -338,6 +341,7 @@ class ReasoningTasks():
                 # --------------------------------------------- #
                 # ------------ Put plan and instance into text ------------ #
                 gt_plan = self.compute_plan(domain, cur_instance)
+                gt_plan_text = get_plan_as_text(self.data)
                 inst, plan = optimality(exec, self.data, get_plan)
                 query += inst
                 # --------------------------------------------------------- #
@@ -346,14 +350,14 @@ class ReasoningTasks():
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
 
             # Do text_to_plan procedure
-            gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            _,gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" +\
                       f"--------- Extracted plan ---------\n{gpt3_plan}" +\
-                      f"\n-------- GT plan ---------\n{gt_plan}"
+                      f"\n-------- GT plan ---------\n{plan}"
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
-                      f"\n-------- GT plan ---------\n{gt_plan}")
+                      f"\n-------- GT plan ---------\n{plan}")
 
             # Apply VAL
             correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
@@ -405,20 +409,21 @@ class ReasoningTasks():
             if plan == 'No plan found':
                 no_possible_plans += 1
                 continue
+            gt_plan_text = get_plan_as_text(self.data, plan)
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-            gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data, True)
+            _,gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data, True)
 
             valid_or_not = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
 
             correct_plans += valid_or_not
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" +\
                       f"--------- Extracted plan ---------\n{gpt3_plan}" +\
-                      f"\n-------- GT plan ---------\n{plan}"
+                      f"\n-------- GT plan ---------\n{gt_plan_text}"
             final_output += "\n"+str(valid_or_not)+"\n"
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
-                      f"\n-------- GT plan ---------\n{plan}")
+                      f"\n-------- GT plan ---------\n{gt_plan_text}")
                 print(valid_or_not)
             break
 
@@ -447,7 +452,7 @@ class ReasoningTasks():
         n = self.data['n_instances']
         final_output = ""
         correct_answers = 0
-        for start in range(500, n+2 - self.n_examples):
+        for start in range(1, n+2 - self.n_examples):
             query = INTRO
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -493,6 +498,7 @@ class ReasoningTasks():
 
 
 if __name__ == '__main__':
+    random.seed(10)
     parser = argparse.ArgumentParser()
     parser.add_argument('--task', type=str, default='t1', help='Task to run')
     parser.add_argument('--engine', type=str, default='davinci', help='Engine to use')

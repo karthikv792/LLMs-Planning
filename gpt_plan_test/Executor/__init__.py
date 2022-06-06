@@ -11,6 +11,7 @@ import os
 import random
 import re
 from copy import deepcopy
+random.seed(10)
 
 
 class executor():
@@ -23,6 +24,7 @@ class executor():
         self.goal_state = self.get_sets(self.model[INSTANCE][GOAL])
         self.final_state, self.all_preds, self.not_true_preds, self.prefix, self.replanning_init = [None] * 5
         self.final_state_dict = {}
+
 
     def replanning(self, harder=0):
         """
@@ -40,6 +42,7 @@ class executor():
             to_remove = set(random.choices(list(regress_state), k=this_much_harder))
             self.replanning_init = self.final_state.difference(to_remove)
         else:
+            print("-----------------",self.final_state, regress_state)
             this_much_easier = random.choice(range(1, len(regress_state) + 1))
             to_add = set(random.choices(list(regress_state), k=this_much_easier))
             self.replanning_init = self.final_state.union(to_add)
@@ -123,7 +126,7 @@ class executor():
         :return:
         """
         fd_path = os.getenv("FAST_DOWNWARD")
-        CMD_FD = f"{fd_path}/fast-downward.py {domain} {problem} --search \"astar(lmcut())\" >/dev/null 2>&1"
+        CMD_FD = f"{fd_path}/fast-downward.py {domain} {problem} --search \"astar(lmcut())\""
         os.system(CMD_FD)
         # USE SAS PLAN to get actions
         plan = []
@@ -141,7 +144,7 @@ class executor():
                 cost = len(plan)
         except:
             return 'No plan found', 0
-        os.remove('sas_plan')
+        # os.remove('sas_plan')
         return plan, cost
 
     def get_sets(self, list_of_preds):
@@ -180,6 +183,7 @@ class executor():
             for i in self.replanning_init:
                 init.append([i, []])
             new_model = deepcopy(self.model)
+            print(new_model[INSTANCE][INIT][PREDICATES], init)
             new_model[INSTANCE][INIT][PREDICATES] = init
             writer = ModelWriter(new_model)
             writer.write_files('pr-new-domain.pddl', 'pr-new-problem.pddl')
@@ -190,7 +194,7 @@ if __name__ == "__main__":
     problem = 'instances/instance-2.pddl'
     exec = executor(domain, problem)
     print("\n")
-    exec.replanning(1)
+    exec.replanning(0)
     print("PLAN: ", exec.plan)
     print("INITIAL STATE: ", exec.init_state)
     print("After Plan Execution (A.P.E.) STATE: ", exec.final_state)
