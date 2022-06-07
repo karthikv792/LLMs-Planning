@@ -11,10 +11,11 @@ import os
 import random
 import re
 from copy import deepcopy
+
 random.seed(10)
 
 
-class executor():
+class Executor:
     def __init__(self, domain, problem):
         self.pr_domain, self.pr_problem = self.ground_domain(domain, problem)
         # self.pr_domain, self.pr_problem = domain, problem
@@ -24,7 +25,6 @@ class executor():
         self.goal_state = self.get_sets(self.model[INSTANCE][GOAL])
         self.final_state, self.all_preds, self.not_true_preds, self.prefix, self.replanning_init = [None] * 5
         self.final_state_dict = {}
-
 
     def replanning(self, harder=0):
         """
@@ -42,7 +42,7 @@ class executor():
             to_remove = set(random.choices(list(regress_state), k=this_much_harder))
             self.replanning_init = self.final_state.difference(to_remove)
         else:
-            print("-----------------",self.final_state, regress_state)
+            print("-----------------", self.final_state, regress_state)
             this_much_easier = random.choice(range(1, len(regress_state) + 1))
             to_add = set(random.choices(list(regress_state), k=this_much_easier))
             self.replanning_init = self.final_state.union(to_add)
@@ -59,7 +59,7 @@ class executor():
                 act_pos_precs = self.get_sets(self.model[DOMAIN][act][POS_PREC])
                 try:
                     act_neg_precs = self.get_sets(self.model[DOMAIN][act][NEG_PREC])
-                except:
+                except Exception as e:
                     act_neg_precs = set([])
                 curr_state = curr_state.difference(act_adds.union(act_dels))
                 curr_state = curr_state.union(act_neg_precs.union(act_pos_precs))
@@ -72,7 +72,7 @@ class executor():
                 act_pos_precs = self.get_sets(self.model[DOMAIN][act][POS_PREC])
                 try:
                     act_neg_precs = self.get_sets(self.model[DOMAIN][act][NEG_PREC])
-                except:
+                except Exception as e:
                     act_neg_precs = set([])
                 curr_state = curr_state.difference(act_adds.union(act_dels))
                 curr_state = curr_state.union(act_neg_precs.union(act_pos_precs))
@@ -87,7 +87,8 @@ class executor():
         return regress_state
 
     def random_prefix_execution(self):
-        self.prefix = random.choice(list(range(len(self.plan))))
+        self.prefix = random.choice(range(1, len(self.plan)))
+        print("PREFIX", self.prefix)
         self.final_state = self.get_final_state(self.init_state, 0, self.prefix)
         self.all_preds = self.get_sets(self.model[PREDICATES])
         self.not_true_preds = self.all_preds.difference(self.final_state)
@@ -126,7 +127,8 @@ class executor():
         :return:
         """
         fd_path = os.getenv("FAST_DOWNWARD")
-        CMD_FD = f"{fd_path}/fast-downward.py {domain} {problem} --search \"astar(lmcut())\""
+        # Remove > /dev/null to see the output of fast-downward
+        CMD_FD = f"{fd_path}/fast-downward.py {domain} {problem} --search \"astar(lmcut())\" >/dev/null 2>&1"
         os.system(CMD_FD)
         # USE SAS PLAN to get actions
         plan = []
@@ -142,7 +144,7 @@ class executor():
                             cost = int(cost_group.group())
             if cost == 0:
                 cost = len(plan)
-        except:
+        except FileNotFoundError:
             return 'No plan found', 0
         # os.remove('sas_plan')
         return plan, cost
@@ -152,6 +154,7 @@ class executor():
 
     def ground_domain(self, domain, problem):
         pr2_path = os.getenv("PR2")
+        # Remove > /dev/null to see the output of PR2
         CMD_PR2 = f"{pr2_path}/pr2plan -d {domain}  -i {problem} -o blank_obs.dat >/dev/null 2>&1"
         os.system(CMD_PR2)
         pr_domain = 'pr-domain.pddl'
@@ -165,7 +168,7 @@ class executor():
             os.system(cmd)
             cmd = 'cat {0} | grep -v "EXPLAIN" > pr-domain.pddl.tmp && mv pr-domain.pddl.tmp {0}'.format(domain)
             os.system(cmd)
-        except:
+        except FileNotFoundError:
             raise Exception('[ERROR] Removing "EXPLAIN" from pr-domain and pr-problem files.')
 
     def get_new_instance(self, change_goal, change_init):

@@ -9,6 +9,7 @@ from tarski.syntax.formulas import *
 openai.api_key = os.environ["OPENAI_API_KEY"]
 random.seed(10)
 
+
 class Callbacks():
     def __init__(self, data):
         self.data = data
@@ -33,17 +34,14 @@ class Callbacks():
 
     def add_existing_files_to_hash_set(self):
         for i in os.listdir(f"./instances/{self.data['domain']}/"):
-            f = open(f"./instances/{self.data['domain']}/"+i,"r")
+            f = open(f"./instances/{self.data['domain']}/" + i, "r")
             pddl = f.read()
             self.hashset.add(hashlib.md5(pddl.encode('utf-8')).hexdigest())
         return len(self.hashset)
 
-
-
-
-    def t1_gen_goal_directed_instances(self, n_objs=[3, 4, 5, 6]):
+    def t1_gen_goal_directed_instances(self):
         n = self.data['n_instances'] + 2
-        n_objs = range(4, len(self.data["encoded_objects"])+1)
+        n_objs = range(4, len(self.data["encoded_objects"]) + 1)
         ORIG = os.getcwd()
         CMD = "./blocksworld 4 {}"
         start = self.add_existing_files_to_hash_set()
@@ -76,7 +74,6 @@ class Callbacks():
                     break
             if c == n:
                 break
-
 
         print(f"[+]: A total of {c} instances have been generated")
         os.chdir(ORIG)
@@ -148,6 +145,8 @@ def treat_on(letters_dict, atom):
     terms = atom.subterms
     return f"the {letters_dict[terms[0].name]} block on top of the {letters_dict[terms[1].name]} block"
 
+def get_sorted(init_atoms):
+    return sorted(init_atoms, key=lambda x: x.symbol.name+" "+" ".join([subterm.name for subterm in x.subterms]))
 
 def parse_problem(problem, data, shuffle):
     def parse(init_goal_preds, OBJS):
@@ -160,22 +159,25 @@ def parse_problem(problem, data, shuffle):
             for subterm in atom.subterms:
                 objs.append(OBJS[subterm.name])
             predicates.append(data['predicates'][atom.symbol.name].format(*objs))
-
         if len(predicates) > 1:
             TEXT += ", ".join(predicates[:-1]) + f" and {predicates[-1]}"
         else:
             TEXT += predicates[0]
         return TEXT
 
+
+
+
     OBJS = data['encoded_objects']
 
-    init_atoms = problem.init.as_atoms()
-    goal_preds = problem.goal.subformulas if hasattr(problem.goal, 'subformulas') else [problem.goal]
+    init_atoms = get_sorted(problem.init.as_atoms())
+    goal_preds = get_sorted(problem.goal.subformulas) if hasattr(problem.goal, 'subformulas') else [problem.goal]
 
     if shuffle:
         random.shuffle(init_atoms)
         random.shuffle(goal_preds)
-
+    print(shuffle,init_atoms)
+    print(goal_preds)
     # ----------- INIT STATE TO TEXT ----------- #
     INIT = parse(init_atoms, OBJS)
 
@@ -208,7 +210,7 @@ def fill_template(INIT, GOAL, PLAN):
     text = ""
     if INIT != "":
         text += "\n[STATEMENT]\n"
-        text += f"As initial conditions I have that, {INIT.strip()}"
+        text += f"As initial conditions I have that, {INIT.strip()}."
     if GOAL != "":
         text += f"\nMy goal is to have that {GOAL}."
     text += f"\n\nMy plan is as follows:\n\n[PLAN]{PLAN}"
@@ -245,7 +247,8 @@ def instance_to_text_blocksworld(problem, get_plan, data, shuffle=False):
 
     return INIT, GOAL, PLAN
 
-def get_plan_as_text(data, given_plan = None):
+
+def get_plan_as_text(data, given_plan=None):
     OBJS = data['encoded_objects']
     PLAN = ""
     print(given_plan)
@@ -253,20 +256,21 @@ def get_plan_as_text(data, given_plan = None):
         for action in given_plan:
             act_name, objs = action.split("_")[0], action.split("_")[1:]
             objs = [OBJS[obj] for obj in objs]
-            PLAN += data['actions'][act_name].format(*objs) + "\n"
+            PLAN += "(" + act_name + " " + " ".join(objs) + ")\n"
         return PLAN
 
     plan_file = "sas_plan"
-    PLAN = "\n"
+    PLAN = ""
     with open(plan_file) as f:
         plan = [line.rstrip() for line in f][:-1]
 
     for action in plan:
         action = action.strip("(").strip(")")
         act_name, objs = action.split(" ")[0], action.split(" ")[1:]
-        objs = [OBJS[obj] for obj in objs]
-        PLAN += data['actions'][act_name].format(*objs) + "\n"
+        objs = [OBJS[obj].replace(" block", "") for obj in objs]
+        PLAN += "(" + act_name + " " + " ".join(objs) + ")\n"
     return PLAN
+
 
 def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=False):
     """
@@ -305,14 +309,16 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
             break
         # Extracting actions
         action_list = [action in line.split() for action in raw_actions]
-        if sum(action_list) == 0: continue
+        if sum(action_list) == 0:
+            continue
         action = raw_actions[np.where(action_list)[0][0]]
         # TODO: Handle GPT-3 text that can't be parsed as an action
         # Extracting Objects
         n_objs = len(actions_params_dict[action].parameters.vars())
         objs = get_ordered_objects(object_names, line)
-        if len(objs) != n_objs: continue
-        readable_objs = [obj.replace(' block','') for obj in objs]
+        if len(objs) != n_objs:
+            continue
+        readable_objs = [obj.replace(' block', '') for obj in objs]
         objs = [BD[x] for x in objs]
         readable_action = "({} {})".format(action, " ".join(readable_objs[:n_objs + 1]))
         if not ground_flag:
@@ -332,7 +338,7 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
 
 
 ################################################################
-#### Generate 2 instances each time
+# Generate 2 instances each time
 # for c in range(1, n, 2):
 #     n_objs = random.randint(3, len(data))
 #     random.shuffle(encoded_objs)
@@ -349,7 +355,61 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
 #         fd.write(i2)
 
 ################################################################
-def generate_plan_subset(planexecutor, DATA, give_response):
+
+
+def parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data):
+    DATA = data
+    INIT = ""
+    init_text = []
+    for i in sorted(initial_state):
+        pred = i.split('_')
+        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
+        init_text.append(DATA['predicates'][pred[0]].format(*objs))
+    init_text = init_text
+    if len(init_text) > 1:
+        INIT += ", ".join(init_text[:-1]) + f" and {init_text[-1]}"
+    else:
+        INIT += init_text[0]
+    INIT += "."
+    PLAN = ""
+    plan_text = "\n"
+    for i in plan:
+        pred = i.split('_')
+        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
+        plan_text += DATA['actions'][pred[0]].format(*objs)
+        plan_text += "\n"
+    PLAN += plan_text
+
+    GOAL = ""
+    goal_text = []
+    for i in sorted(goal_state):
+        pred = i.split('_')
+        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
+        goal_text.append(DATA['predicates'][pred[0]].format(*objs))
+    goal_text = goal_text
+    if len(goal_text) > 1:
+        GOAL += ", ".join(goal_text[:-1]) + f" and {goal_text[-1]}"
+    elif len(goal_text) == 1:
+        GOAL += goal_text[0]
+
+    return INIT, PLAN, GOAL
+
+
+def get_cost_gpt_3(gpt3_response):
+    lines = [line.strip() for line in gpt3_response.split("\n")]
+    flag = True
+    for i in range(len(lines)):
+        if 'time to execute' in lines[i]:
+            flag = False
+        if flag:
+            continue
+        res = [int(i) for i in lines[i].split() if i.isdigit()]
+        if len(res) > 0:
+            return res[0]
+    return 0
+
+
+def generate_plan_subset(planexecutor, data, give_response):
     """
     We need
         i. Initial State
@@ -365,57 +425,117 @@ def generate_plan_subset(planexecutor, DATA, give_response):
     planexecutor.random_prefix_execution()
     goal_state = planexecutor.goal_state
     resulting_state = planexecutor.final_state
-    INIT = ""
-    init_text = []
-    for i in initial_state:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        init_text.append(DATA['predicates'][pred[0]].format(*objs))
-    if len(init_text) > 1:
-        INIT += ", ".join(init_text[:-1]) + f" and {init_text[-1]}"
-    else:
-        INIT += init_text[0]
-    PLAN = "[PLAN]"
     if give_response:
-        plan_text = "\n"
-        for i in planexecutor.plan:
-            pred = i.split('_')
-            objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-            plan_text += DATA['actions'][pred[0]].format(*objs)
-            plan_text += "\n"
-        PLAN += plan_text
+        INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, planexecutor.plan, goal_state, data)
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]{PLAN} "
+        return text, PLAN
     else:
-        plan_text = ""
-        for i in planexecutor.plan[:planexecutor.prefix]:
-            pred = i.split('_')
-            objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-            plan_text += DATA['actions'][pred[0]].format(*objs)
-            plan_text += "\n"
-        # PLAN+=plan_text
+        INIT, PLAN_PREFIX, GOAL = parsed_instance_to_text_blocksworld(initial_state,
+                                                                      planexecutor.plan[:planexecutor.prefix],
+                                                                      resulting_state, data)
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
+        return text, PLAN_PREFIX
 
-    GOAL = ""
-    goal_text = []
+
+def optimality(planexecutor, data, give_response=True):
+    """
+    We need
+        i. Initial State
+        ii. Goal
+        iii. Plan
+        iv. Cost for plan
+    :param exec:
+    :param data:
+    :param give_response:
+    :return:
+    """
+    initial_state = planexecutor.init_state
+    goal_state = planexecutor.goal_state
+    plan = planexecutor.plan
+    cost = planexecutor.cost
+    COST = ""
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data)
+    COST += f"The total time to execute the plan is {cost} minute"
+    if cost > 1:
+        COST += "s.\n"
+    else:
+        COST += ".\n"
     if give_response:
-        for i in goal_state:
-            pred = i.split('_')
-            objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-            goal_text.append(DATA['predicates'][pred[0]].format(*objs))
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}.\nMy goal is to have that {GOAL}. I want to minimize the time taken to achieve my goal.\nMy plan is as follows:\n\n[PLAN]{PLAN}{COST}"
     else:
-        for i in resulting_state:
-            pred = i.split('_')
-            objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-            goal_text.append(DATA['predicates'][pred[0]].format(*objs))
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}.\nMy goal is to have that {GOAL}. I want to minimize the time taken to achieve my goal.\nMy plan is as follows:\n\n[PLAN] "
+    return text, PLAN + COST
 
-    if len(goal_text) > 1:
-        GOAL += ", ".join(goal_text[:-1]) + f" and {goal_text[-1]}"
+
+def replanning(planexecutor, data, give_response, is_harder=random.choice(([0, 1]))):
+    """
+
+    :return:
+    """
+    if is_harder:
+        hard = "Problem was made harder\n"
     else:
-        GOAL += goal_text[0]
+        hard = "Problem was made easier\n"
 
-    text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n{PLAN}"
-    return text, plan_text
+    initial_state = planexecutor.init_state
+    plan_prefix = planexecutor.plan[:planexecutor.prefix]
+    goal_state = planexecutor.goal_state
+    if give_response:
+        INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan_prefix, goal_state, data)
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]{PLAN}"
+    else:
+        planexecutor.replanning(is_harder)
+        replanning_state = planexecutor.replanning_init
+        INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(replanning_state, plan_prefix, goal_state, data)
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
+
+    return text, PLAN
 
 
-def get_state_translation(state, DATA):
+def plan_execution(planexecutor, data, give_response):
+    """
+    We need
+        i. Initial State
+       ii. Plan subset
+      iii. Resulting state
+    If prompt:
+        Give Initial State, Plan Subset, a question regarding a pred in the resulting state and the answer
+    else:
+        Give Initial State, Plan Subset, a question regarding a pred in the resulting state
+    :return:
+    """
+    initial_state = planexecutor.init_state
+    planexecutor.random_prefix_execution()
+    plan_prefix = planexecutor.plan[:planexecutor.prefix]
+    resulting_state_dict = planexecutor.final_state_dict
+
+    rand_pred = random.choice(list(resulting_state_dict.keys())).split('_')
+    objs = [data["encoded_objects"][j] for j in rand_pred[1:]]
+    FIN = f'[QUESTION]\nIs the statement \'{data["predicates"][rand_pred[0]].format(*objs)}\' true?\n[ANSWER]'
+    answer = "\n" + resulting_state_dict['_'.join(rand_pred)]
+
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan_prefix, [], data)
+    if give_response:
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following plan:\n\n[PLAN]{PLAN}{FIN}{answer}"
+    else:
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following plan:\n\n[PLAN]{PLAN}{FIN}"
+
+    # Get a random object
+    # Create the corresponding question
+    # Get the answer
+    # If the answer is correct, add the question to the plan
+    # If the answer is incorrect, add the question to the plan and the answer to the plan
+
+    # rand_obj = objs[random.randint(0, len(objs)-1)]
+    # FIN = f'[QUESTION]\n What is the current state of {rand_obj}?\n [ANSWER]'
+    # if give_response:
+
+    return text, answer
+
+
+# --------------- CHAIN OF THOUGHT (not implemented completely) ----------------- #
+def get_state_translation(state, data):
+    DATA = data
     INIT = ""
     init_text = []
     for i in state:
@@ -427,9 +547,7 @@ def get_state_translation(state, DATA):
     else:
         INIT += init_text[0]
     return INIT
-
-
-def generate_plan_subset_cot(planexecutor, DATA, give_response):
+def generate_plan_subset_cot(planexecutor, data, give_response):
     """
     We need
         i. Initial State
@@ -445,6 +563,7 @@ def generate_plan_subset_cot(planexecutor, DATA, give_response):
     planexecutor.random_prefix_execution()
     goal_state = planexecutor.goal_state
     resulting_state = planexecutor.final_state
+    DATA = data
     INIT = ""
     init_text = []
     for i in initial_state:
@@ -462,7 +581,7 @@ def generate_plan_subset_cot(planexecutor, DATA, give_response):
         state = initial_state
         for index, i in enumerate(planexecutor.plan):
             start = end
-            end = index+1
+            end = index + 1
             state = planexecutor.get_final_state(state, start, end)
 
             pred = i.split('_')
@@ -470,7 +589,7 @@ def generate_plan_subset_cot(planexecutor, DATA, give_response):
 
             plan_text += "I " + DATA['actions'][pred[0]].format(*objs)
             plan_text += "\n"
-            plan_text += "I have that, " + get_state_translation(state, DATA) +"."
+            plan_text += "I have that, " + get_state_translation(state, DATA) + "."
             plan_text += "\n"
 
         plan_text += "My goal is present in the current state.\n"
@@ -504,186 +623,3 @@ def generate_plan_subset_cot(planexecutor, DATA, give_response):
 
     text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n{PLAN}"
     return text, plan_text
-
-
-def optimality(planexecutor, DATA, give_response=True):
-    """
-    We need
-        i. Initial State
-        ii. Goal
-        iii. Plan
-        iv. Cost for plan
-    :param exec:
-    :param DATA:
-    :param give_response:
-    :return:
-    """
-    initial_state = planexecutor.init_state
-    goal_state = planexecutor.goal_state
-    plan = planexecutor.plan
-    cost = planexecutor.cost
-    # ---------------INIT-----------------------
-    INIT = ""
-    init_text = []
-    for i in initial_state:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        init_text.append(DATA['predicates'][pred[0]].format(*objs))
-    if len(init_text) > 1:
-        INIT += ", ".join(init_text[:-1]) + f" and {init_text[-1]}"
-    else:
-        INIT += init_text[0]
-    # ---------------PLAN-----------------------
-    PLAN = "[PLAN]"
-    plan_text = "\n"
-    for i in plan:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        plan_text += DATA['actions'][pred[0]].format(*objs)
-        plan_text += "\n"
-    COST = ""
-    if give_response:
-        PLAN += plan_text
-        COST += f"\nThe total time to execute the plan is {cost} minute"
-        if cost > 1:
-            COST += "s.\n"
-        else:
-            COST += ".\n"
-
-    # ---------------GOAL-----------------------
-    GOAL = ""
-    goal_text = []
-    for i in goal_state:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        goal_text.append(DATA['predicates'][pred[0]].format(*objs))
-
-    if len(goal_text) > 1:
-        GOAL += ", ".join(goal_text[:-1]) + f" and {goal_text[-1]}"
-    else:
-        GOAL += goal_text[0]
-
-    text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}.\nMy goal is to have that {GOAL}. I want to minimize the time taken to achieve my goal.\nMy plan is as follows:\n\n{PLAN}{COST}"
-    return text, plan_text+f"\nThe total time to execute the plan is {cost} minute"
-
-
-def get_cost_gpt_3(gpt3_response):
-    lines = [line.strip() for line in gpt3_response.split("\n")]
-    flag = True
-    for i in range(len(lines)):
-        if 'time to execute' in lines[i]:
-            flag = False
-        if flag == True:
-            continue
-        res = [int(i) for i in lines[i].split() if i.isdigit()]
-        if len(res) > 0:
-            return res[0]
-    return 0
-
-
-def replanning(planexecutor, DATA, give_response, is_harder=random.choice(([0, 1]))):
-    """
-
-    :return:
-    """
-    if is_harder:
-        hard = "Problem was made harder\n"
-    else:
-        hard = "Problem was made easier\n"
-
-    initial_state = planexecutor.init_state
-    plan_prefix = planexecutor.plan[:planexecutor.prefix]
-    goal_state = planexecutor.goal_state
-    INIT = ""
-    if give_response:
-        init_text = []
-        for i in initial_state:
-            pred = i.split('_')
-            objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-            init_text.append(DATA['predicates'][pred[0]].format(*objs))
-        if len(init_text) > 1:
-            INIT += ", ".join(init_text[:-1]) + f" and {init_text[-1]}"
-        else:
-            INIT += init_text[0]
-    else:
-        planexecutor.replanning(is_harder)
-        replanning_state = planexecutor.replanning_init
-        init_text = []
-        for i in replanning_state:
-            pred = i.split('_')
-            objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-            init_text.append(DATA['predicates'][pred[0]].format(*objs))
-        if len(init_text) > 1:
-            INIT += ", ".join(init_text[:-1]) + f" and {init_text[-1]}"
-        else:
-            INIT += init_text[0]
-
-    PLAN = "[PLAN]"
-    plan_text = "\n"
-    for i in plan_prefix:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        plan_text += DATA['actions'][pred[0]].format(*objs)
-        plan_text += "\n"
-    if give_response:
-        PLAN += plan_text
-
-    GOAL = ""
-    goal_text = []
-    for i in goal_state:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        goal_text.append(DATA['predicates'][pred[0]].format(*objs))
-
-    if len(goal_text) > 1:
-        GOAL += ", ".join(goal_text[:-1]) + f" and {goal_text[-1]}"
-    else:
-        GOAL += goal_text[0]
-
-    text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n{PLAN}"
-    return text, plan_text
-
-
-def plan_execution(planexecutor, DATA, give_response):
-    """
-    We need
-        i. Initial State
-       ii. Plan subset
-      iii. Resulting state
-    If prompt:
-        Give Initial State, Plan Subset, a question regarding a pred in the resulting state and the answer
-    else:
-        Give Initial State, Plan Subset, a question regarding a pred in the resulting state
-    :return:
-    """
-    initial_state = planexecutor.init_state
-    planexecutor.random_prefix_execution()
-    plan_prefix = planexecutor.plan[:planexecutor.prefix]
-    resulting_state_dict = planexecutor.final_state_dict
-    INIT = ""
-    init_text = []
-    for i in initial_state:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        init_text.append(DATA['predicates'][pred[0]].format(*objs))
-    if len(init_text) > 1:
-        INIT += ", ".join(init_text[:-1]) + f" and {init_text[-1]}"
-    else:
-        INIT += init_text[0]
-
-    PLAN = "[PLAN]\n"
-    for i in plan_prefix:
-        pred = i.split('_')
-        objs = [DATA["encoded_objects"][j] for j in pred[1:]]
-        PLAN += DATA['actions'][pred[0]].format(*objs)
-        PLAN += "\n"
-
-    rand_pred = random.choice(list(resulting_state_dict.keys())).split('_')
-    objs = [DATA["encoded_objects"][j] for j in rand_pred[1:]]
-    FIN = f'[QUESTION]\n Is the statement \'{DATA["predicates"][rand_pred[0]].format(*objs)}\' true?\n[ANSWER]'
-    if give_response:
-        answer = "\n"+resulting_state_dict['_'.join(rand_pred)]
-    else:
-        answer = ""
-    text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following plan:\n{PLAN}\n{FIN}{answer}"
-    return text, resulting_state_dict['_'.join(rand_pred)]

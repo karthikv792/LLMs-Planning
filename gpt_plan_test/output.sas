@@ -155,19 +155,18 @@ begin_mutex_group
 end_mutex_group
 begin_state
 0
-1
+0
 1
 0
 0
 4
 2
 4
-2
+4
 end_state
 begin_goal
-2
+1
 7 2
-8 1
 end_goal
 32
 begin_operator

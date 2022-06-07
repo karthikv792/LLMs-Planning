@@ -1,19 +1,19 @@
 (define
-	(problem grounded-BW-RAND-5)
+	(problem grounded-BW-RAND-4)
 	(:domain grounded-BLOCKSWORLD-4OPS)
 	(:init
 		(= (total-cost) 0)
 		( CLEAR_D )
-		( ON_E_B )
-		( ON_D_A )
+		( CLEAR_A )
+		( ON_D_C )
 		( ONTABLE_C )
-		( ON_B_C )
-		( ON_A_E )
+		( ONTABLE_B )
+		( ON_A_B )
 		( HANDEMPTY )
 	)
 	(:goal
 		(and 
-		( ON_D_E )
+		( ON_C_A )
 		)
 	)
 	(:metric minimize (total-cost))

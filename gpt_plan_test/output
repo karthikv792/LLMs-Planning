@@ -26,6 +26,16 @@ Atom on(b, d)
 Atom ontable(b)
 end_variable
 begin_variable
+var8
+-1
+5
+Atom holding(d)
+Atom on(d, a)
+Atom on(d, b)
+Atom on(d, c)
+Atom ontable(d)
+end_variable
+begin_variable
 var0
 -1
 2
@@ -40,18 +50,18 @@ Atom clear(b)
 NegatedAtom clear(b)
 end_variable
 begin_variable
-var2
--1
-2
-Atom clear(c)
-NegatedAtom clear(c)
-end_variable
-begin_variable
 var3
 -1
 2
 Atom clear(d)
 NegatedAtom clear(d)
+end_variable
+begin_variable
+var2
+-1
+2
+Atom clear(c)
+NegatedAtom clear(c)
 end_variable
 begin_variable
 var4
@@ -70,80 +80,69 @@ Atom on(c, b)
 Atom on(c, d)
 Atom ontable(c)
 end_variable
-begin_variable
-var8
--1
 5
-Atom holding(d)
-Atom on(d, a)
-Atom on(d, b)
-Atom on(d, c)
-Atom ontable(d)
-end_variable
-5
-begin_mutex_group
-5
-2 0
-0 0
-1 1
-7 1
-8 1
-end_mutex_group
 begin_mutex_group
 5
 3 0
-0 1
-1 0
-7 2
-8 2
+0 0
+1 1
+8 1
+2 1
 end_mutex_group
 begin_mutex_group
 5
 4 0
+0 1
+1 0
+8 2
+2 2
+end_mutex_group
+begin_mutex_group
+5
+6 0
 0 2
 1 2
-7 0
-8 3
+8 0
+2 3
 end_mutex_group
 begin_mutex_group
 5
 5 0
 0 3
 1 3
-7 3
-8 0
+8 3
+2 0
 end_mutex_group
 begin_mutex_group
 5
-6 0
+7 0
 0 0
 1 0
-7 0
 8 0
+2 0
 end_mutex_group
 begin_state
 4
 2
+4
+0
+0
 0
 1
-1
-0
 0
 4
-2
 end_state
 begin_goal
-2
-7 2
-8 1
+1
+8 2
 end_goal
 32
 begin_operator
 pick-up a
 0
 3
-0 2 0 1
-0 6 0 1
+0 3 0 1
+0 7 0 1
 0 0 4 0
 1
 end_operator
@@ -151,8 +150,8 @@ begin_operator
 pick-up b
 0
 3
-0 3 0 1
-0 6 0 1
+0 4 0 1
+0 7 0 1
 0 1 4 0
 1
 end_operator
@@ -160,9 +159,9 @@ begin_operator
 pick-up c
 0
 3
-0 4 0 1
 0 6 0 1
-0 7 4 0
+0 7 0 1
+0 8 4 0
 1
 end_operator
 begin_operator
@@ -170,16 +169,16 @@ pick-up d
 0
 3
 0 5 0 1
-0 6 0 1
-0 8 4 0
+0 7 0 1
+0 2 4 0
 1
 end_operator
 begin_operator
 put-down a
 0
 3
-0 2 -1 0
-0 6 -1 0
+0 3 -1 0
+0 7 -1 0
 0 0 0 4
 1
 end_operator
@@ -187,8 +186,8 @@ begin_operator
 put-down b
 0
 3
-0 3 -1 0
-0 6 -1 0
+0 4 -1 0
+0 7 -1 0
 0 1 0 4
 1
 end_operator
@@ -196,9 +195,9 @@ begin_operator
 put-down c
 0
 3
-0 4 -1 0
 0 6 -1 0
-0 7 0 4
+0 7 -1 0
+0 8 0 4
 1
 end_operator
 begin_operator
@@ -206,17 +205,17 @@ put-down d
 0
 3
 0 5 -1 0
-0 6 -1 0
-0 8 0 4
+0 7 -1 0
+0 2 0 4
 1
 end_operator
 begin_operator
 stack a b
 0
 4
-0 2 -1 0
-0 3 0 1
-0 6 -1 0
+0 3 -1 0
+0 4 0 1
+0 7 -1 0
 0 0 0 1
 1
 end_operator
@@ -224,9 +223,9 @@ begin_operator
 stack a c
 0
 4
-0 2 -1 0
-0 4 0 1
-0 6 -1 0
+0 3 -1 0
+0 6 0 1
+0 7 -1 0
 0 0 0 2
 1
 end_operator
@@ -234,9 +233,9 @@ begin_operator
 stack a d
 0
 4
-0 2 -1 0
+0 3 -1 0
 0 5 0 1
-0 6 -1 0
+0 7 -1 0
 0 0 0 3
 1
 end_operator
@@ -244,9 +243,9 @@ begin_operator
 stack b a
 0
 4
-0 2 0 1
-0 3 -1 0
-0 6 -1 0
+0 3 0 1
+0 4 -1 0
+0 7 -1 0
 0 1 0 1
 1
 end_operator
@@ -254,9 +253,9 @@ begin_operator
 stack b c
 0
 4
-0 3 -1 0
-0 4 0 1
-0 6 -1 0
+0 4 -1 0
+0 6 0 1
+0 7 -1 0
 0 1 0 2
 1
 end_operator
@@ -264,9 +263,9 @@ begin_operator
 stack b d
 0
 4
-0 3 -1 0
+0 4 -1 0
 0 5 0 1
-0 6 -1 0
+0 7 -1 0
 0 1 0 3
 1
 end_operator
@@ -274,69 +273,69 @@ begin_operator
 stack c a
 0
 4
-0 2 0 1
-0 4 -1 0
+0 3 0 1
 0 6 -1 0
-0 7 0 1
+0 7 -1 0
+0 8 0 1
 1
 end_operator
 begin_operator
 stack c b
 0
 4
-0 3 0 1
-0 4 -1 0
+0 4 0 1
 0 6 -1 0
-0 7 0 2
+0 7 -1 0
+0 8 0 2
 1
 end_operator
 begin_operator
 stack c d
 0
 4
-0 4 -1 0
-0 5 0 1
 0 6 -1 0
-0 7 0 3
+0 5 0 1
+0 7 -1 0
+0 8 0 3
 1
 end_operator
 begin_operator
 stack d a
 0
 4
-0 2 0 1
+0 3 0 1
 0 5 -1 0
-0 6 -1 0
-0 8 0 1
+0 7 -1 0
+0 2 0 1
 1
 end_operator
 begin_operator
 stack d b
 0
 4
-0 3 0 1
+0 4 0 1
 0 5 -1 0
-0 6 -1 0
-0 8 0 2
+0 7 -1 0
+0 2 0 2
 1
 end_operator
 begin_operator
 stack d c
 0
 4
-0 4 0 1
+0 6 0 1
 0 5 -1 0
-0 6 -1 0
-0 8 0 3
+0 7 -1 0
+0 2 0 3
 1
 end_operator
 begin_operator
 unstack a b
 0
 4
-0 2 0 1
-0 3 -1 0
-0 6 0 1
+0 3 0 1
+0 4 -1 0
+0 7 0 1
 0 0 1 0
 1
 end_operator
@@ -344,9 +343,9 @@ begin_operator
 unstack a c
 0
 4
-0 2 0 1
-0 4 -1 0
-0 6 0 1
+0 3 0 1
+0 6 -1 0
+0 7 0 1
 0 0 2 0
 1
 end_operator
@@ -354,9 +353,9 @@ begin_operator
 unstack a d
 0
 4
-0 2 0 1
+0 3 0 1
 0 5 -1 0
-0 6 0 1
+0 7 0 1
 0 0 3 0
 1
 end_operator
@@ -364,9 +363,9 @@ begin_operator
 unstack b a
 0
 4
-0 2 -1 0
-0 3 0 1
-0 6 0 1
+0 3 -1 0
+0 4 0 1
+0 7 0 1
 0 1 1 0
 1
 end_operator
@@ -374,9 +373,9 @@ begin_operator
 unstack b c
 0
 4
-0 3 0 1
-0 4 -1 0
-0 6 0 1
+0 4 0 1
+0 6 -1 0
+0 7 0 1
 0 1 2 0
 1
 end_operator
@@ -384,9 +383,9 @@ begin_operator
 unstack b d
 0
 4
-0 3 0 1
+0 4 0 1
 0 5 -1 0
-0 6 0 1
+0 7 0 1
 0 1 3 0
 1
 end_operator
@@ -394,67 +393,67 @@ begin_operator
 unstack c a
 0
 4
-0 2 -1 0
-0 4 0 1
+0 3 -1 0
 0 6 0 1
-0 7 1 0
+0 7 0 1
+0 8 1 0
 1
 end_operator
 begin_operator
 unstack c b
 0
 4
-0 3 -1 0
-0 4 0 1
+0 4 -1 0
 0 6 0 1
-0 7 2 0
+0 7 0 1
+0 8 2 0
 1
 end_operator
 begin_operator
 unstack c d
 0
 4
-0 4 0 1
-0 5 -1 0
 0 6 0 1
-0 7 3 0
+0 5 -1 0
+0 7 0 1
+0 8 3 0
 1
 end_operator
 begin_operator
 unstack d a
 0
 4
-0 2 -1 0
+0 3 -1 0
 0 5 0 1
-0 6 0 1
-0 8 1 0
+0 7 0 1
+0 2 1 0
 1
 end_operator
 begin_operator
 unstack d b
 0
 4
-0 3 -1 0
+0 4 -1 0
 0 5 0 1
-0 6 0 1
-0 8 2 0
+0 7 0 1
+0 2 2 0
 1
 end_operator
 begin_operator
 unstack d c
 0
 4
-0 4 -1 0
+0 6 -1 0
 0 5 0 1
-0 6 0 1
-0 8 3 0
+0 7 0 1
+0 2 3 0
 1
 end_operator
 0
 begin_SG
-switch 2
+switch 3
 check 0
-switch 6
+switch 7
 check 0
 switch 0
 check 0
@@ -477,7 +476,7 @@ check 0
 check 0
 check 0
 check 0
-switch 7
+switch 8
 check 0
 check 1
 14
@@ -485,7 +484,7 @@ check 0
 check 0
 check 0
 check 0
-switch 8
+switch 2
 check 0
 check 1
 17
@@ -495,9 +494,9 @@ check 0
 check 0
 check 0
 check 0
-switch 3
+switch 4
 check 0
-switch 6
+switch 7
 check 0
 switch 1
 check 0
@@ -520,7 +519,7 @@ check 0
 check 0
 check 0
 check 0
-switch 7
+switch 8
 check 0
 check 1
 15
@@ -528,7 +527,7 @@ check 0
 check 0
 check 0
 check 0
-switch 8
+switch 2
 check 0
 check 1
 18
@@ -538,11 +537,11 @@ check 0
 check 0
 check 0
 check 0
-switch 4
-check 0
 switch 6
 check 0
 switch 7
+check 0
+switch 8
 check 0
 check 0
 check 1
@@ -571,7 +570,7 @@ check 0
 check 0
 check 0
 check 0
-switch 8
+switch 2
 check 0
 check 1
 19
@@ -583,9 +582,9 @@ check 0
 check 0
 switch 5
 check 0
-switch 6
+switch 7
 check 0
-switch 8
+switch 2
 check 0
 check 0
 check 1
@@ -614,7 +613,7 @@ check 0
 check 0
 check 0
 check 0
-switch 7
+switch 8
 check 0
 check 1
 16
@@ -640,7 +639,7 @@ check 0
 check 0
 check 0
 check 0
-switch 7
+switch 8
 check 0
 check 1
 6
@@ -648,7 +647,7 @@ check 0
 check 0
 check 0
 check 0
-switch 8
+switch 2
 check 0
 check 1
 7
@@ -663,11 +662,11 @@ begin_DTG
 1
 8
 1
-3 0
+4 0
 2
 9
 1
-4 0
+6 0
 3
 10
 1
@@ -679,37 +678,37 @@ begin_DTG
 0
 20
 2
-2 0
-6 0
+3 0
+7 0
 1
 0
 21
 2
-2 0
-6 0
+3 0
+7 0
 1
 0
 22
 2
-2 0
-6 0
+3 0
+7 0
 1
 0
 0
 2
-2 0
-6 0
+3 0
+7 0
 end_DTG
 begin_DTG
 4
 1
 11
 1
-2 0
+3 0
 2
 12
 1
-4 0
+6 0
 3
 13
 1
@@ -721,26 +720,68 @@ begin_DTG
 0
 23
 2
-3 0
-6 0
+4 0
+7 0
 1
 0
 24
 2
-3 0
-6 0
+4 0
+7 0
 1
 0
 25
 2
-3 0
-6 0
+4 0
+7 0
 1
 0
 1
 2
+4 0
+7 0
+end_DTG
+begin_DTG
+4
+1
+17
+1
 3 0
+2
+18
+1
+4 0
+3
+19
+1
 6 0
+4
+7
+0
+1
+0
+29
+2
+5 0
+7 0
+1
+0
+30
+2
+5 0
+7 0
+1
+0
+31
+2
+5 0
+7 0
+1
+0
+3
+2
+5 0
+7 0
 end_DTG
 begin_DTG
 7
@@ -751,30 +792,30 @@ begin_DTG
 1
 14
 1
-7 0
+8 0
 1
 17
 1
-8 0
+2 0
 1
 0
 2
-6 0
+7 0
 0 4
 1
 20
 2
-6 0
+7 0
 0 1
 1
 21
 2
-6 0
+7 0
 0 2
 1
 22
 2
-6 0
+7 0
 0 3
 4
 0
@@ -784,21 +825,21 @@ begin_DTG
 0
 23
 3
-3 0
-6 0
+4 0
+7 0
 1 1
 0
 26
 3
-4 0
 6 0
-7 1
+7 0
+8 1
 0
 29
 3
 5 0
-6 0
-8 1
+7 0
+2 1
 end_DTG
 begin_DTG
 7
@@ -809,30 +850,30 @@ begin_DTG
 1
 15
 1
-7 0
+8 0
 1
 18
 1
-8 0
+2 0
 1
 1
 2
-6 0
+7 0
 1 4
 1
 23
 2
-6 0
+7 0
 1 1
 1
 24
 2
-6 0
+7 0
 1 2
 1
 25
 2
-6 0
+7 0
 1 3
 4
 0
@@ -842,79 +883,21 @@ begin_DTG
 0
 20
 3
-2 0
-6 0
+3 0
+7 0
 0 1
 0
 27
 3
-4 0
 6 0
-7 2
+7 0
+8 2
 0
 30
 3
 5 0
-6 0
-8 2
-end_DTG
-begin_DTG
-7
-1
-9
-1
-0 0
-1
-12
-1
-1 0
-1
-19
-1
-8 0
-1
-2
-2
-6 0
-7 4
-1
-26
-2
-6 0
-7 1
-1
-27
-2
-6 0
-7 2
-1
-28
-2
-6 0
-7 3
-4
-0
-6
-1
 7 0
-0
-21
-3
-2 0
-6 0
-0 2
-0
-24
-3
-3 0
-6 0
-1 2
-0
-31
-3
-5 0
-6 0
-8 3
+2 2
 end_DTG
 begin_DTG
 7
@@ -929,133 +912,191 @@ begin_DTG
 1
 16
 1
-7 0
+8 0
 1
 3
 2
-6 0
-8 4
+7 0
+2 4
 1
 29
 2
-6 0
-8 1
+7 0
+2 1
 1
 30
 2
-6 0
-8 2
+7 0
+2 2
 1
 31
 2
-6 0
-8 3
+7 0
+2 3
 4
 0
 7
 1
-8 0
+2 0
 0
 22
 3
-2 0
-6 0
+3 0
+7 0
 0 3
 0
 25
 3
-3 0
-6 0
+4 0
+7 0
 1 3
 0
 28
 3
-4 0
 6 0
-7 3
+7 0
+8 3
+end_DTG
+begin_DTG
+7
+1
+9
+1
+0 0
+1
+12
+1
+1 0
+1
+19
+1
+2 0
+1
+2
+2
+7 0
+8 4
+1
+26
+2
+7 0
+8 1
+1
+27
+2
+7 0
+8 2
+1
+28
+2
+7 0
+8 3
+4
+0
+6
+1
+8 0
+0
+21
+3
+3 0
+7 0
+0 2
+0
+24
+3
+4 0
+7 0
+1 2
+0
+31
+3
+5 0
+7 0
+2 3
 end_DTG
 begin_DTG
 16
 1
 0
 2
-2 0
+3 0
 0 4
 1
 1
 2
-3 0
+4 0
 1 4
 1
 2
 2
-4 0
-7 4
+6 0
+8 4
 1
 3
 2
 5 0
-8 4
+2 4
 1
 20
 2
-2 0
+3 0
 0 1
 1
 21
 2
-2 0
+3 0
 0 2
 1
 22
 2
-2 0
+3 0
 0 3
 1
 23
 2
-3 0
+4 0
 1 1
 1
 24
 2
-3 0
+4 0
 1 2
 1
 25
 2
-3 0
+4 0
 1 3
 1
 26
 2
-4 0
-7 1
+6 0
+8 1
 1
 27
 2
-4 0
-7 2
+6 0
+8 2
 1
 28
 2
-4 0
-7 3
+6 0
+8 3
 1
 29
 2
 5 0
-8 1
+2 1
 1
 30
 2
 5 0
-8 2
+2 2
 1
 31
 2
 5 0
-8 3
+2 3
 4
 0
 4
@@ -1068,22 +1109,22 @@ begin_DTG
 0
 6
 1
-7 0
+8 0
 0
 7
 1
-8 0
+2 0
 end_DTG
 begin_DTG
 4
 1
 14
 1
-2 0
+3 0
 2
 15
 1
-3 0
+4 0
 3
 16
 1
@@ -1095,137 +1136,95 @@ begin_DTG
 0
 26
 2
-4 0
 6 0
+7 0
 1
 0
 27
 2
-4 0
 6 0
+7 0
 1
 0
 28
 2
-4 0
 6 0
+7 0
 1
 0
 2
 2
-4 0
 6 0
-end_DTG
-begin_DTG
-4
-1
-17
-1
-2 0
-2
-18
-1
-3 0
-3
-19
-1
-4 0
-4
-7
-0
-1
-0
-29
-2
-5 0
-6 0
-1
-0
-30
-2
-5 0
-6 0
-1
-0
-31
-2
-5 0
-6 0
-1
-0
-3
-2
-5 0
-6 0
+7 0
 end_DTG
 begin_CG
 5
-2 8
-3 2
-4 2
-5 2
-6 8
-5
-2 2
 3 8
 4 2
+6 2
 5 2
-6 8
-8
+7 8
+5
+3 2
+4 8
+6 2
+5 2
+7 8
+5
 3 2
 4 2
+6 2
+5 8
+7 8
+8
+4 2
+6 2
 5 2
-6 7
+7 7
 0 4
 1 1
-7 1
 8 1
+2 1
 8
-2 2
-4 2
+3 2
+6 2
 5 2
-6 7
+7 7
 0 1
 1 4
-7 1
 8 1
+2 1
 8
-2 2
-3 2
-5 2
-6 7
-0 1
-1 1
-7 4
-8 1
-8
-2 2
 3 2
 4 2
-6 7
+6 2
+7 7
 0 1
 1 1
-7 1
-8 4
+8 1
+2 4
 8
-2 7
+3 2
+4 2
+5 2
+7 7
+0 1
+1 1
+8 4
+2 1
+8
 3 7
 4 7
+6 7
 5 7
 0 4
 1 4
-7 4
 8 4
+2 4
 5
-2 2
-3 2
-4 8
-5 2
-6 8
-5
-2 2
 3 2
 4 2
-5 8
 6 8
+5 2
+7 8
 end_CG
