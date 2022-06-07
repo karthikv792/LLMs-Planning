@@ -150,7 +150,7 @@ class ReasoningTasks():
 
             self.save_output("task" + t1_or_t4, final_output)
 
-            break
+
         # --------------- Add to final output --------------- #
         final_output += f"[+]: The number of correct plans is " + \
                         f"{correct_plans}/{n_files - self.n_examples}={correct_plans / (n_files - self.n_examples) * 100}%"
@@ -285,7 +285,7 @@ class ReasoningTasks():
             os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
             with open(f"outputs/{self.engine}/task2_paraphrase.txt", 'w+') as f:
                 f.write(final_output)
-            break
+
         print(single_goal_instances)
 
     def t3_plan_subset(self, config_file):
@@ -327,7 +327,7 @@ class ReasoningTasks():
                 # print(valid_or_no
             self.save_output("task3_plan_subset", final_output)
 
-            break
+
 
         exec_plans = n
         final_output += "\nResults:\n"
@@ -394,7 +394,7 @@ class ReasoningTasks():
                     final_output += '\n--------Sub-Optimal Plan-------\n'
             self.save_output("task5_optimality", final_output)
 
-            break
+
         exec_plans = n
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
         print(f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%")
@@ -451,7 +451,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(valid_or_not)
             self.save_output("task6_replanning", final_output)
-            break
+
 
         exec_plans = n - no_possible_plans
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
@@ -507,7 +507,7 @@ class ReasoningTasks():
             print(correct)
             self.save_output("task7_plan_execution", final_output)
 
-            break
+
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_answers}/{exec_plans} = {round(correct_answers / exec_plans * 100, 2)}%"
