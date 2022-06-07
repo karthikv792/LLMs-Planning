@@ -42,7 +42,7 @@ class Executor:
             to_remove = set(random.choices(list(regress_state), k=this_much_harder))
             self.replanning_init = self.final_state.difference(to_remove)
         else:
-            print("-----------------", self.final_state, regress_state)
+            # print("-----------------", self.final_state, regress_state)
             this_much_easier = random.choice(range(1, len(regress_state) + 1))
             to_add = set(random.choices(list(regress_state), k=this_much_easier))
             self.replanning_init = self.final_state.union(to_add)
@@ -88,7 +88,7 @@ class Executor:
 
     def random_prefix_execution(self):
         self.prefix = random.choice(range(1, len(self.plan)))
-        print("PREFIX", self.prefix)
+        # print("PREFIX", self.prefix)
         self.final_state = self.get_final_state(self.init_state, 0, self.prefix)
         self.all_preds = self.get_sets(self.model[PREDICATES])
         self.not_true_preds = self.all_preds.difference(self.final_state)
@@ -186,7 +186,7 @@ class Executor:
             for i in self.replanning_init:
                 init.append([i, []])
             new_model = deepcopy(self.model)
-            print(new_model[INSTANCE][INIT][PREDICATES], init)
+            # print(new_model[INSTANCE][INIT][PREDICATES], init)
             new_model[INSTANCE][INIT][PREDICATES] = init
             writer = ModelWriter(new_model)
             writer.write_files('pr-new-domain.pddl', 'pr-new-problem.pddl')

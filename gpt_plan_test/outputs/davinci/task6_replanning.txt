@@ -1,8 +1,6 @@
 
  Instance ./instances/generated_basic/instance-1.pddl
 
- Instance ./instances/generated_basic/instance-2.pddl
-
 ===================================FAILURE===================================
 
 I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
@@ -25,7 +23,6 @@ I can only stack a block on top of another block if the block onto which I am st
 [STATEMENT]
 As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
 My goal is to have that the orange block is on top of the blue block.
-
 My plan is as follows:
 
 [PLAN]
@@ -35,28 +32,23 @@ pick up the orange block
 stack the orange block on top of the blue block
 
 [STATEMENT]
-As initial conditions I have that, the red block is clear, the yellow block is clear, the hand is empty, the red block is on top of the blue block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
-My goal is to have that the orange block is on top of the red block.
-
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is currently holding orange block, the orange block is on top of the blue block, the red block is on the table, the blue block is on the table and the yellow block is on the table.
+My goal is to have that the orange block is on top of the blue block.
 My plan is as follows:
 
 [PLAN]
 --------- GPT3 response ---------
-unstack the red block from on top of the orange block
-put down the red block
+unstack the blue block from on top of the orange block
+put down the blue block
 pick up the orange block
-stack the orange block on top of the red block
+stack the orange block on top of the blue block
 --------- Extracted plan ---------
-(unstack red orange)
-(put-down red)
+(unstack blue orange)
+(put-down blue)
 (pick-up orange)
-(stack orange red)
+(stack orange blue)
 
 -------- Ground truth plan ---------
-(unstack yellow orange)
-(put-down yellow)
-(pick-up orange)
-(stack orange red)
 
 =============================================================================
-[+]: The number of correct plans is 0/499=0.0%
+No of correct plans, 0/500 = 0.0%

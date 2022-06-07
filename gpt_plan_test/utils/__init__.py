@@ -176,8 +176,8 @@ def parse_problem(problem, data, shuffle):
     if shuffle:
         random.shuffle(init_atoms)
         random.shuffle(goal_preds)
-    print(shuffle,init_atoms)
-    print(goal_preds)
+    # print(shuffle,init_atoms)
+    # print(goal_preds)
     # ----------- INIT STATE TO TEXT ----------- #
     INIT = parse(init_atoms, OBJS)
 
@@ -251,12 +251,13 @@ def instance_to_text_blocksworld(problem, get_plan, data, shuffle=False):
 def get_plan_as_text(data, given_plan=None):
     OBJS = data['encoded_objects']
     PLAN = ""
-    print(given_plan)
+    # print(given_plan)
     if given_plan:
         for action in given_plan:
             act_name, objs = action.split("_")[0], action.split("_")[1:]
-            objs = [OBJS[obj] for obj in objs]
+            objs = [OBJS[obj].replace(" block", "") for obj in objs]
             PLAN += "(" + act_name + " " + " ".join(objs) + ")\n"
+            # PLAN += data['actions'][act_name].format(*objs) + "\n"
         return PLAN
 
     plan_file = "sas_plan"
@@ -269,7 +270,9 @@ def get_plan_as_text(data, given_plan=None):
         act_name, objs = action.split(" ")[0], action.split(" ")[1:]
         objs = [OBJS[obj].replace(" block", "") for obj in objs]
         PLAN += "(" + act_name + " " + " ".join(objs) + ")\n"
+        # PLAN += data['actions'][act_name].format(*objs) + "\n"
     return PLAN
+
 
 
 def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=False):
@@ -430,9 +433,10 @@ def generate_plan_subset(planexecutor, data, give_response):
         text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]{PLAN} "
         return text, PLAN
     else:
-        INIT, PLAN_PREFIX, GOAL = parsed_instance_to_text_blocksworld(initial_state,
+        INIT, _, GOAL = parsed_instance_to_text_blocksworld(initial_state,
                                                                       planexecutor.plan[:planexecutor.prefix],
                                                                       resulting_state, data)
+        PLAN_PREFIX = planexecutor.plan[:planexecutor.prefix]
         text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
         return text, PLAN_PREFIX
 

@@ -2,36 +2,36 @@ begin_version
 3
 end_version
 begin_metric
-0
+1
 end_metric
 9
 begin_variable
 var0
 -1
 2
-Atom clear(a)
-NegatedAtom clear(a)
+Atom clear_a()
+NegatedAtom clear_a()
 end_variable
 begin_variable
 var1
 -1
 2
-Atom clear(b)
-NegatedAtom clear(b)
+Atom clear_b()
+NegatedAtom clear_b()
 end_variable
 begin_variable
 var2
 -1
 2
-Atom clear(c)
-NegatedAtom clear(c)
+Atom clear_c()
+NegatedAtom clear_c()
 end_variable
 begin_variable
 var3
 -1
 2
-Atom clear(d)
-NegatedAtom clear(d)
+Atom clear_d()
+NegatedAtom clear_d()
 end_variable
 begin_variable
 var4
@@ -44,41 +44,41 @@ begin_variable
 var5
 -1
 5
-Atom holding(a)
-Atom on(a, b)
-Atom on(a, c)
-Atom on(a, d)
-Atom ontable(a)
+Atom holding_a()
+Atom on_a_b()
+Atom on_a_c()
+Atom on_a_d()
+Atom ontable_a()
 end_variable
 begin_variable
 var6
 -1
 5
-Atom holding(b)
-Atom on(b, a)
-Atom on(b, c)
-Atom on(b, d)
-Atom ontable(b)
+Atom holding_b()
+Atom on_b_a()
+Atom on_b_c()
+Atom on_b_d()
+Atom ontable_b()
 end_variable
 begin_variable
 var7
 -1
 5
-Atom holding(c)
-Atom on(c, a)
-Atom on(c, b)
-Atom on(c, d)
-Atom ontable(c)
+Atom holding_c()
+Atom on_c_a()
+Atom on_c_b()
+Atom on_c_d()
+Atom ontable_c()
 end_variable
 begin_variable
 var8
 -1
 5
-Atom holding(d)
-Atom on(d, a)
-Atom on(d, b)
-Atom on(d, c)
-Atom ontable(d)
+Atom holding_d()
+Atom on_d_a()
+Atom on_d_b()
+Atom on_d_c()
+Atom ontable_d()
 end_variable
 9
 begin_mutex_group
@@ -170,7 +170,7 @@ begin_goal
 end_goal
 32
 begin_operator
-pick-up a
+pick-up_a 
 0
 3
 0 0 0 1
@@ -179,7 +179,7 @@ pick-up a
 1
 end_operator
 begin_operator
-pick-up b
+pick-up_b 
 0
 3
 0 1 0 1
@@ -188,7 +188,7 @@ pick-up b
 1
 end_operator
 begin_operator
-pick-up c
+pick-up_c 
 0
 3
 0 2 0 1
@@ -197,7 +197,7 @@ pick-up c
 1
 end_operator
 begin_operator
-pick-up d
+pick-up_d 
 0
 3
 0 3 0 1
@@ -206,7 +206,7 @@ pick-up d
 1
 end_operator
 begin_operator
-put-down a
+put-down_a 
 0
 3
 0 0 -1 0
@@ -215,7 +215,7 @@ put-down a
 1
 end_operator
 begin_operator
-put-down b
+put-down_b 
 0
 3
 0 1 -1 0
@@ -224,7 +224,7 @@ put-down b
 1
 end_operator
 begin_operator
-put-down c
+put-down_c 
 0
 3
 0 2 -1 0
@@ -233,7 +233,7 @@ put-down c
 1
 end_operator
 begin_operator
-put-down d
+put-down_d 
 0
 3
 0 3 -1 0
@@ -242,7 +242,7 @@ put-down d
 1
 end_operator
 begin_operator
-stack a b
+stack_a_b 
 0
 4
 0 0 -1 0
@@ -252,7 +252,7 @@ stack a b
 1
 end_operator
 begin_operator
-stack a c
+stack_a_c 
 0
 4
 0 0 -1 0
@@ -262,7 +262,7 @@ stack a c
 1
 end_operator
 begin_operator
-stack a d
+stack_a_d 
 0
 4
 0 0 -1 0
@@ -272,7 +272,7 @@ stack a d
 1
 end_operator
 begin_operator
-stack b a
+stack_b_a 
 0
 4
 0 0 0 1
@@ -282,7 +282,7 @@ stack b a
 1
 end_operator
 begin_operator
-stack b c
+stack_b_c 
 0
 4
 0 1 -1 0
@@ -292,7 +292,7 @@ stack b c
 1
 end_operator
 begin_operator
-stack b d
+stack_b_d 
 0
 4
 0 1 -1 0
@@ -302,7 +302,7 @@ stack b d
 1
 end_operator
 begin_operator
-stack c a
+stack_c_a 
 0
 4
 0 0 0 1
@@ -312,7 +312,7 @@ stack c a
 1
 end_operator
 begin_operator
-stack c b
+stack_c_b 
 0
 4
 0 1 0 1
@@ -322,7 +322,7 @@ stack c b
 1
 end_operator
 begin_operator
-stack c d
+stack_c_d 
 0
 4
 0 2 -1 0
@@ -332,7 +332,7 @@ stack c d
 1
 end_operator
 begin_operator
-stack d a
+stack_d_a 
 0
 4
 0 0 0 1
@@ -342,7 +342,7 @@ stack d a
 1
 end_operator
 begin_operator
-stack d b
+stack_d_b 
 0
 4
 0 1 0 1
@@ -352,7 +352,7 @@ stack d b
 1
 end_operator
 begin_operator
-stack d c
+stack_d_c 
 0
 4
 0 2 0 1
@@ -362,7 +362,7 @@ stack d c
 1
 end_operator
 begin_operator
-unstack a b
+unstack_a_b 
 0
 4
 0 0 0 1
@@ -372,7 +372,7 @@ unstack a b
 1
 end_operator
 begin_operator
-unstack a c
+unstack_a_c 
 0
 4
 0 0 0 1
@@ -382,7 +382,7 @@ unstack a c
 1
 end_operator
 begin_operator
-unstack a d
+unstack_a_d 
 0
 4
 0 0 0 1
@@ -392,7 +392,7 @@ unstack a d
 1
 end_operator
 begin_operator
-unstack b a
+unstack_b_a 
 0
 4
 0 0 -1 0
@@ -402,7 +402,7 @@ unstack b a
 1
 end_operator
 begin_operator
-unstack b c
+unstack_b_c 
 0
 4
 0 1 0 1
@@ -412,7 +412,7 @@ unstack b c
 1
 end_operator
 begin_operator
-unstack b d
+unstack_b_d 
 0
 4
 0 1 0 1
@@ -422,7 +422,7 @@ unstack b d
 1
 end_operator
 begin_operator
-unstack c a
+unstack_c_a 
 0
 4
 0 0 -1 0
@@ -432,7 +432,7 @@ unstack c a
 1
 end_operator
 begin_operator
-unstack c b
+unstack_c_b 
 0
 4
 0 1 -1 0
@@ -442,7 +442,7 @@ unstack c b
 1
 end_operator
 begin_operator
-unstack c d
+unstack_c_d 
 0
 4
 0 2 0 1
@@ -452,7 +452,7 @@ unstack c d
 1
 end_operator
 begin_operator
-unstack d a
+unstack_d_a 
 0
 4
 0 0 -1 0
@@ -462,7 +462,7 @@ unstack d a
 1
 end_operator
 begin_operator
-unstack d b
+unstack_d_b 
 0
 4
 0 1 -1 0
@@ -472,7 +472,7 @@ unstack d b
 1
 end_operator
 begin_operator
-unstack d c
+unstack_d_c 
 0
 4
 0 2 -1 0

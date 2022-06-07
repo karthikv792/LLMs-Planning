@@ -13,18 +13,18 @@
 
     (:init
         (= (total-cost ) 0)
-        (on_e_b )
-        (on_d_e )
-        (ontable_c )
-        (clear_e )
+        (clear_d )
+        (clear_b )
         (clear_a )
-        (holding_d )
-        (ontable_a )
+        (ontable_d )
+        (ontable_c )
         (on_b_c )
+        (ontable_a )
+        (handempty )
     )
 
     (:goal
-        (on_d_e )
+        (and (holding_b ) (clear_d ) (ontable_a ) (clear_a ) (ontable_d ) (ontable_c ) (clear_c ))
     )
 
     

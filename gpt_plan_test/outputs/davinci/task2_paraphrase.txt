@@ -1,6 +1,8 @@
 
  Instance ./instances/generated_basic/instance-1.pddl
 
+===================================SUCCESS===================================
+
 I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
 
 Pick up a block
@@ -38,8 +40,15 @@ My plan is as follows:
 
 [PLAN]
 --------- GPT3 response ---------
-
+unstack the blue block from on top of the orange block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
 --------- Extracted plan ---------
+(unstack blue orange)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
 
 -------- Ground truth plan ---------
 (unstack blue orange)
@@ -47,9 +56,9 @@ My plan is as follows:
 (pick-up orange)
 (stack orange blue)
 
---------FAILURE-------
+=============================================================================
 
---------FAILURE-------
+===================================FAILURE===================================
 
 I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
 
@@ -82,14 +91,27 @@ stack the orange block on top of the blue block
 
 [STATEMENT]
 As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
-My goal is to have that the blue block is on the table, the yellow block is on the table, the yellow block is clear, the red block is clear, the orange block is on top of the blue block, the hand is empty, the orange block is clear and the red block is on the table.
+My goal is to have that the orange block is clear, the yellow block is clear, the yellow block is on the table, the blue block is on the table, the hand is empty, the red block is on the table, the orange block is on top of the blue block and the red block is clear.
 
 My plan is as follows:
 
 [PLAN]
 --------- GPT3 response ---------
-
+unstack the blue block from on top of the orange block
+put down the blue block
+pick up the orange block
+unstack the orange block from on top of the red block
+put down the orange block
+pick up the red block
+stack the red block on top of the blue block
 --------- Extracted plan ---------
+(unstack blue orange)
+(put-down blue)
+(pick-up orange)
+(unstack orange red)
+(put-down orange)
+(pick-up red)
+(stack red blue)
 
 -------- Ground truth plan ---------
 (unstack blue orange)
@@ -97,7 +119,9 @@ My plan is as follows:
 (pick-up orange)
 (stack orange blue)
 
---------FAILURE-------
+=============================================================================
+
+===================================SUCCESS===================================
 
 I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
 
@@ -118,7 +142,7 @@ I can only stack a block on top of another block if the block onto which I am st
 
 [STATEMENT]
 As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
-My goal is to have that the blue block is on the table, the yellow block is on the table, the yellow block is clear, the red block is clear, the orange block is on top of the blue block, the hand is empty, the orange block is clear and the red block is on the table.
+My goal is to have that the orange block is clear, the yellow block is clear, the yellow block is on the table, the blue block is on the table, the hand is empty, the red block is on the table, the orange block is on top of the blue block and the red block is clear.
 
 My plan is as follows:
 
@@ -136,14 +160,26 @@ My plan is as follows:
 
 [PLAN]
 --------- GPT3 response ---------
-
+unstack the blue block from on top of the orange block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
 --------- Extracted plan ---------
+(unstack blue orange)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
 
 -------- Ground truth plan ---------
 (unstack blue orange)
 (put-down blue)
 (pick-up orange)
 (stack orange blue)
+
+=============================================================================
 
 Results:
-Random 0/1 = 0.0%Full->Specific 0/1 = 0.0%Specific->Full 0/1 = 0.0%
+Random 1/1 = 100.0%Full->Specific 1/1 = 100.0%Specific->Full 0/1 = 0.0%
+Single goal instances: 1
+
+Total time: 9.49s

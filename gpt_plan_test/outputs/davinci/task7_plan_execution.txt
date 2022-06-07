@@ -7,18 +7,21 @@ I am playing with a set of blocks where I need to arrange the blocks into stacks
 
 Pick up a block
 Unstack a block from on top of another block
+Put down a block
 Stack a block on top of another block
 
 I have the following restrictions on my actions.
 I can only pick up or unstack one block at a time.
+I can pick up or unstack a block only if my hand is empty.
 I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
 I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
 I can only unstack a block from on top of another block if the block I am unstacking is clear.
+I can only put down a block if I had previously picked up or unstacked the block being stacked.
 I can only stack a block on top of another block if I had previously picked up or unstacked the block being stacked.
 I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
 
 [STATEMENT]
-As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
  I have executed the following plan:
 
 [PLAN]
@@ -26,22 +29,26 @@ unstack the blue block from on top of the orange block
 put down the blue block
 pick up the orange block
 [QUESTION]
- Is the statement 'the yellow block is clear' true?
+Is the statement 'the red block is clear' true?
 [ANSWER]
 Yes
 [STATEMENT]
-As initial conditions I have that, the red block is clear, the yellow block is clear, the hand is empty, the red block is on top of the blue block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table
+As initial conditions I have that, the red block is clear, the yellow block is clear, the hand is empty, the red block is on top of the blue block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
  I have executed the following plan:
 
 [PLAN]
 unstack the yellow block from on top of the orange block
 put down the yellow block
 [QUESTION]
- Is the statement 'the red block is on top of the yellow block' true?
+Is the statement 'the hand is currently holding yellow block' true?
 [ANSWER]
 --------- GPT3 response ---------
+Yes
 
+-------- Ground truth answer ---------
 
--------- GT plan ---------
+No
+===================================FAILURE===================================
 
-NoNo of correct plans, 0/500 = 0.0%
+=============================================================================
+No of correct plans, 0/500 = 0.0%

@@ -15,24 +15,14 @@
     )
 
     (:predicates
-        (holding_d )
-        (clear_a )
-        (ontable_d )
-        (on_d_d )
         (holding_a )
-        (clear_e )
-        (holding_e )
-        (clear_b )
-        (ontable_a )
-        (ontable_e )
+        (holding_d )
         (on_a_a )
         (on_a_b )
         (on_a_d )
+        (on_d_a )
         (on_d_b )
-        (on_d_e )
-        (on_e_a )
-        (on_e_d )
-        (on_e_e )
+        (on_d_d )
         (holding_b )
         (clear_c )
         (holding_c )
@@ -41,21 +31,19 @@
         (on_b_a )
         (on_b_b )
         (on_b_d )
-        (on_b_e )
         (on_c_a )
         (on_c_b )
         (on_c_c )
         (on_c_d )
-        (on_c_e )
         (on_d_c )
-        (on_e_c )
+        (clear_b )
         (handempty )
         (clear_d )
+        (clear_a )
         (ontable_c )
         (on_b_c )
-        (on_e_b )
-        (on_a_e )
-        (on_d_a )
+        (ontable_d )
+        (ontable_a )
     )
 
     (:functions
@@ -77,19 +65,6 @@
     )
 
 
-    (:action UNSTACK_E_C
-     :parameters ()
-     :precondition (and (handempty ) (clear_e ) (on_e_c ))
-     :effect (and
-        (holding_e )
-        (clear_c )
-        (not (on_e_c ))
-        (not (clear_e ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
     (:action UNSTACK_D_C
      :parameters ()
      :precondition (and (handempty ) (clear_d ) (on_d_c ))
@@ -98,19 +73,6 @@
         (clear_c )
         (not (on_d_c ))
         (not (clear_d ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_C_E
-     :parameters ()
-     :precondition (and (handempty ) (clear_c ) (on_c_e ))
-     :effect (and
-        (holding_c )
-        (clear_e )
-        (not (on_c_e ))
-        (not (clear_c ))
         (not (handempty ))
         (increase (total-cost ) 1))
     )
@@ -166,19 +128,6 @@
     )
 
 
-    (:action UNSTACK_B_E
-     :parameters ()
-     :precondition (and (handempty ) (clear_b ) (on_b_e ))
-     :effect (and
-        (holding_b )
-        (clear_e )
-        (not (on_b_e ))
-        (not (clear_b ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
     (:action UNSTACK_B_D
      :parameters ()
      :precondition (and (handempty ) (clear_b ) (on_b_d ))
@@ -229,19 +178,6 @@
     )
 
 
-    (:action STACK_E_C
-     :parameters ()
-     :precondition (and (holding_e ) (clear_c ))
-     :effect (and
-        (handempty )
-        (clear_e )
-        (on_e_c )
-        (not (clear_c ))
-        (not (holding_e ))
-        (increase (total-cost ) 1))
-    )
-
-
     (:action STACK_D_C
      :parameters ()
      :precondition (and (holding_d ) (clear_c ))
@@ -251,19 +187,6 @@
         (on_d_c )
         (not (clear_c ))
         (not (holding_d ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_C_E
-     :parameters ()
-     :precondition (and (holding_c ) (clear_e ))
-     :effect (and
-        (handempty )
-        (clear_c )
-        (on_c_e )
-        (not (clear_e ))
-        (not (holding_c ))
         (increase (total-cost ) 1))
     )
 
@@ -314,19 +237,6 @@
         (on_c_a )
         (not (clear_a ))
         (not (holding_c ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_B_E
-     :parameters ()
-     :precondition (and (holding_b ) (clear_e ))
-     :effect (and
-        (handempty )
-        (clear_b )
-        (on_b_e )
-        (not (clear_e ))
-        (not (holding_b ))
         (increase (total-cost ) 1))
     )
 
@@ -418,18 +328,6 @@
     )
 
 
-    (:action PICK-UP_E
-     :parameters ()
-     :precondition (and (handempty ) (ontable_e ) (clear_e ))
-     :effect (and
-        (holding_e )
-        (not (clear_e ))
-        (not (ontable_e ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
     (:action PICK-UP_C
      :parameters ()
      :precondition (and (handempty ) (ontable_c ) (clear_c ))
@@ -442,63 +340,12 @@
     )
 
 
-    (:action PICK-UP_A
+    (:action UNSTACK_D_D
      :parameters ()
-     :precondition (and (handempty ) (ontable_a ) (clear_a ))
-     :effect (and
-        (holding_a )
-        (not (clear_a ))
-        (not (ontable_a ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_E_E
-     :parameters ()
-     :precondition (and (handempty ) (clear_e ) (on_e_e ))
-     :effect (and
-        (holding_e )
-        (not (on_e_e ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_E_D
-     :parameters ()
-     :precondition (and (handempty ) (clear_e ) (on_e_d ))
-     :effect (and
-        (holding_e )
-        (clear_d )
-        (not (on_e_d ))
-        (not (clear_e ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_E_A
-     :parameters ()
-     :precondition (and (handempty ) (clear_e ) (on_e_a ))
-     :effect (and
-        (holding_e )
-        (clear_a )
-        (not (on_e_a ))
-        (not (clear_e ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_D_E
-     :parameters ()
-     :precondition (and (handempty ) (clear_d ) (on_d_e ))
+     :precondition (and (handempty ) (clear_d ) (on_d_d ))
      :effect (and
         (holding_d )
-        (clear_e )
-        (not (on_d_e ))
-        (not (clear_d ))
+        (not (on_d_d ))
         (not (handempty ))
         (increase (total-cost ) 1))
     )
@@ -511,6 +358,19 @@
         (holding_d )
         (clear_b )
         (not (on_d_b ))
+        (not (clear_d ))
+        (not (handempty ))
+        (increase (total-cost ) 1))
+    )
+
+
+    (:action UNSTACK_D_A
+     :parameters ()
+     :precondition (and (handempty ) (clear_d ) (on_d_a ))
+     :effect (and
+        (holding_d )
+        (clear_a )
+        (not (on_d_a ))
         (not (clear_d ))
         (not (handempty ))
         (increase (total-cost ) 1))
@@ -567,64 +427,12 @@
     )
 
 
-    (:action STACK_E_E
+    (:action STACK_D_D
      :parameters ()
-     :precondition (and (holding_e ) (clear_e ))
+     :precondition (and (holding_d ) (clear_d ))
      :effect (and
         (handempty )
-        (on_e_e )
-        (not (holding_e ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_E_D
-     :parameters ()
-     :precondition (and (holding_e ) (clear_d ))
-     :effect (and
-        (handempty )
-        (clear_e )
-        (on_e_d )
-        (not (clear_d ))
-        (not (holding_e ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_E_B
-     :parameters ()
-     :precondition (and (holding_e ) (clear_b ))
-     :effect (and
-        (handempty )
-        (clear_e )
-        (on_e_b )
-        (not (clear_b ))
-        (not (holding_e ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_E_A
-     :parameters ()
-     :precondition (and (holding_e ) (clear_a ))
-     :effect (and
-        (handempty )
-        (clear_e )
-        (on_e_a )
-        (not (clear_a ))
-        (not (holding_e ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_D_E
-     :parameters ()
-     :precondition (and (holding_d ) (clear_e ))
-     :effect (and
-        (handempty )
-        (clear_d )
-        (on_d_e )
-        (not (clear_e ))
+        (on_d_d )
         (not (holding_d ))
         (increase (total-cost ) 1))
     )
@@ -643,15 +451,15 @@
     )
 
 
-    (:action STACK_A_E
+    (:action STACK_D_A
      :parameters ()
-     :precondition (and (holding_a ) (clear_e ))
+     :precondition (and (holding_d ) (clear_a ))
      :effect (and
         (handempty )
-        (clear_a )
-        (on_a_e )
-        (not (clear_e ))
-        (not (holding_a ))
+        (clear_d )
+        (on_d_a )
+        (not (clear_a ))
+        (not (holding_d ))
         (increase (total-cost ) 1))
     )
 
@@ -693,14 +501,14 @@
     )
 
 
-    (:action PUT-DOWN_E
+    (:action PUT-DOWN_D
      :parameters ()
-     :precondition (holding_e )
+     :precondition (holding_d )
      :effect (and
-        (clear_e )
+        (clear_d )
         (handempty )
-        (ontable_e )
-        (not (holding_e ))
+        (ontable_d )
+        (not (holding_d ))
         (increase (total-cost ) 1))
     )
 
@@ -729,87 +537,13 @@
     )
 
 
-    (:action UNSTACK_E_B
+    (:action PICK-UP_A
      :parameters ()
-     :precondition (and (handempty ) (clear_e ) (on_e_b ))
-     :effect (and
-        (holding_e )
-        (clear_b )
-        (not (on_e_b ))
-        (not (clear_e ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_D_D
-     :parameters ()
-     :precondition (and (handempty ) (clear_d ) (on_d_d ))
-     :effect (and
-        (holding_d )
-        (not (on_d_d ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_A_E
-     :parameters ()
-     :precondition (and (handempty ) (clear_a ) (on_a_e ))
+     :precondition (and (handempty ) (ontable_a ) (clear_a ))
      :effect (and
         (holding_a )
-        (clear_e )
-        (not (on_a_e ))
         (not (clear_a ))
-        (not (handempty ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_D_D
-     :parameters ()
-     :precondition (and (holding_d ) (clear_d ))
-     :effect (and
-        (handempty )
-        (on_d_d )
-        (not (holding_d ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action STACK_D_A
-     :parameters ()
-     :precondition (and (holding_d ) (clear_a ))
-     :effect (and
-        (handempty )
-        (clear_d )
-        (on_d_a )
-        (not (clear_a ))
-        (not (holding_d ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action PUT-DOWN_D
-     :parameters ()
-     :precondition (holding_d )
-     :effect (and
-        (clear_d )
-        (handempty )
-        (ontable_d )
-        (not (holding_d ))
-        (increase (total-cost ) 1))
-    )
-
-
-    (:action UNSTACK_D_A
-     :parameters ()
-     :precondition (and (handempty ) (clear_d ) (on_d_a ))
-     :effect (and
-        (holding_d )
-        (clear_a )
-        (not (on_d_a ))
-        (not (clear_d ))
+        (not (ontable_a ))
         (not (handempty ))
         (increase (total-cost ) 1))
     )
