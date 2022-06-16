@@ -7,6 +7,7 @@ from pathlib import Path
 from tarski.io import PDDLReader
 import argparse
 import time
+
 np.random.seed(42)
 
 INTRO = """
@@ -17,15 +18,17 @@ Unstack a block from on top of another block
 Put down a block
 Stack a block on top of another block
 
-I have the following restrictions on my actions.
+I have the following restrictions on my actions:
 I can only pick up or unstack one block at a time.
-I can pick up or unstack a block only if my hand is empty.
+I can only pick up or unstack a block if my hand is empty.
 I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
 I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
 I can only unstack a block from on top of another block if the block I am unstacking is clear.
-I can only put down a block if I had previously picked up or unstacked the block being stacked.
-I can only stack a block on top of another block if I had previously picked up or unstacked the block being stacked.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
 I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
 """
 
 INTRO_COST = """
@@ -36,14 +39,17 @@ Unstack a block from on top of another block. It takes 1 minute to unstack a blo
 Put down a block. It takes 1 minute to put down a block.
 Stack a block on top of another block. It takes 1 minute to stack a block on top of another block.
 
-I have the following restrictions on my actions.
+I have the following restrictions on my actions:
 I can only pick up or unstack one block at a time.
-I can pick up or unstack a block only if my hand is empty.
+I can only pick up or unstack a block if my hand is empty.
 I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
 I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
 I can only unstack a block from on top of another block if the block I am unstacking is clear.
-I can only stack a block on top of another block if I had previously picked up or unstacked the block being stacked.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
 I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
 """
 
 
@@ -149,11 +155,8 @@ class ReasoningTasks():
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
 
-
-
             self.save_output("task" + t1_or_t4, final_output)
-            # break
-
+            break
 
         # --------------- Add to final output --------------- #
         final_output += f"[+]: The number of correct plans is " + \
@@ -243,7 +246,6 @@ class ReasoningTasks():
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
 
-
             correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
             corrects["Random"] += correct
             final_output += "\n===================================(GOAL ORDERING CHANGE) SUCCESS===================================\n" if correct else "\n===================================(GOAL ORDERING CHANGE) FAILURE===================================\n"
@@ -268,7 +270,7 @@ class ReasoningTasks():
                 _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
                 correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
                 corrects[descr] += correct
-                final_output += "\n===================================("+descr+") SUCCESS===================================\n" if correct else "\n===================================("+descr+") FAILURE===================================\n"
+                final_output += "\n===================================(" + descr + ") SUCCESS===================================\n" if correct else "\n===================================(" + descr + ") FAILURE===================================\n"
 
                 final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                                 f"--------- Extracted plan ---------\n{gpt3_plan}" + \
@@ -295,7 +297,7 @@ class ReasoningTasks():
             os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
             with open(f"outputs/{self.engine}/task2_paraphrase.txt", 'w+') as f:
                 f.write(final_output)
-            # break
+            break
 
         print(single_goal_instances)
 
@@ -340,9 +342,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 # print(valid_or_no
             self.save_output("task3_plan_subset", final_output)
-            # # break
-
-
+            break
 
         exec_plans = n
         final_output += "\nResults:\n"
@@ -401,8 +401,6 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(correct)
 
-
-
             if correct:
                 cost = get_cost_gpt_3(gpt3_response)
                 print("COST OF GPT_3 PLAN", cost)
@@ -412,8 +410,7 @@ class ReasoningTasks():
                 else:
                     final_output += '\n--------Sub-Optimal Plan-------\n'
             self.save_output("task5_optimality", final_output)
-            # break
-
+            break
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
@@ -435,29 +432,25 @@ class ReasoningTasks():
 
         correct_plans = 0
         no_possible_plans = 0
-        for i in range(1, n + 1):
-            cur_instance = instance.format(i)
-            plan_executor = self.get_executor(cur_instance, domain)
-            problem = self.get_problem(cur_instance, domain)
-            final_output += f"\n Instance {cur_instance}\n"
-            print(f"Instance {cur_instance}")
-            # gt_plan = self.compute_plan(domain, cur_instance)
-            full_plan, plan_full = replanning(plan_executor, self.data, True, harder)
-            replan, plan_subset = replanning(plan_executor, self.data, False, harder)
-            query = INTRO
-            query += full_plan
-            query += replan
-            # --------------------------------------------------------- #
-            plan_executor.get_new_instance(change_goal=False, change_init=True)
-            plan, cost = plan_executor.get_plan('pr-new-domain.pddl', 'pr-new-problem.pddl')
-            if plan == 'No plan found':
-                no_possible_plans += 1
-                continue
-            gt_plan_text = get_plan_as_text(self.data, plan)
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-            _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data,
-                                                    True)
 
+        for start in range(1, n + 2 - self.n_examples):
+            query = INTRO
+            for i in range(start, start + self.n_examples + 1):
+                last_plan = True if i == start + self.n_examples else False
+                get_plan = not last_plan
+                cur_instance = instance.format(i)
+                plan_executor = self.get_executor(cur_instance, domain)
+                problem = self.get_problem(cur_instance, domain)
+                final_output += f"\n Instance {cur_instance}\n"
+                print(f"Instance {cur_instance}")
+                # gt_plan = self.compute_plan(domain, cur_instance)
+                text, gt_plan_text = replanning(plan_executor, self.data, get_plan, harder)
+                query += text
+            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+
+            # Do text_to_plan procedure
+            _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            # Apply VAL
             valid_or_not = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
 
             correct_plans += valid_or_not
@@ -473,7 +466,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(valid_or_not)
             self.save_output("task6_replanning", final_output)
-            # break
+            break
 
 
         exec_plans = n - no_possible_plans
@@ -518,23 +511,21 @@ class ReasoningTasks():
             # Do text_to_plan procedure
             # gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
 
-
             # Apply VAL
             correct = gpt3_response.strip() == answer.strip()
             correct_answers += correct
+            final_output += "\n===================================SUCCESS===================================\n" if correct else "\n===================================FAILURE===================================\n"
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"\n-------- Ground truth answer ---------\n{answer}"
-            final_output += "\n===================================SUCCESS===================================\n" if correct else "\n===================================FAILURE===================================\n"
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       # f"--------- Extracted plan ---------\n{gpt3_plan}"
-                      f"\n-------- Ground truth answer ---------\n{answer}")
+                      f"\n-------- Ground truth answer ---------{answer}")
                 print(correct)
             final_output += "\n=============================================================================\n"
 
             self.save_output("task7_plan_execution", final_output)
-            # break
-
+            break
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_answers}/{exec_plans} = {round(correct_answers / exec_plans * 100, 2)}%"

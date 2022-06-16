@@ -13,22 +13,22 @@
 
     (:init
         (= (total-cost ) 0)
-        (clear_d )
-        (clear_b )
-        (clear_a )
         (ontable_d )
-        (ontable_c )
-        (on_b_c )
-        (ontable_a )
+        (on_c_d )
+        (clear_c )
+        (on_a_b )
+        (ontable_b )
         (handempty )
+        (clear_a )
     )
 
     (:goal
-        (and (holding_b ) (clear_d ) (ontable_a ) (clear_a ) (ontable_d ) (ontable_c ) (clear_c ))
+        (on_c_a )
     )
 
     
-    
+    (:bounds
+        (number - int[-2147483647..2147483647]))
     (:metric minimize (total-cost ))
 )
 

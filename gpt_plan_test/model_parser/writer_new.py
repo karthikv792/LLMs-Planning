@@ -91,7 +91,7 @@ class ModelWriter(object):
         predicates = self.model_dict[INSTANCE][INIT][PREDICATES]
 
         for function in functions:
-            # print(function, type(self.functions[function[0]].__call__()))
+            # print(function, self.functions[function[0]], type(self.functions[function[0]].__call__()))
             self.fstrips_problem.init.set(self.functions[function[0]].__call__(), function[1][0], *[function[1][0]])
         for predicate in predicates:
             self.fstrips_problem.init.add(self.predicate_map[predicate[0]], *predicate[1])

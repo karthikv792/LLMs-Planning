@@ -4,17 +4,16 @@
 	(:init
 		(= (total-cost) 0)
 		( CLEAR_D )
-		( CLEAR_B )
 		( CLEAR_A )
-		( ONTABLE_D )
+		( ON_D_C )
 		( ONTABLE_C )
-		( ON_B_C )
-		( ONTABLE_A )
+		( ONTABLE_B )
+		( ON_A_B )
 		( HANDEMPTY )
 	)
 	(:goal
 		(and 
-		( ON_C_B )
+		( ON_C_A )
 		)
 	)
 	(:metric minimize (total-cost))

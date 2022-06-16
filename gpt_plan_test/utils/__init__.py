@@ -125,7 +125,7 @@ def send_query_gpt3(query, engine, max_tokens, stop="[STATEMENT]"):
     max_token_err_flag = False
     try:
         response = openai.Completion.create(
-            engine=engine,
+            model=engine,
             prompt=query,
             temperature=0,
             max_tokens=max_tokens,
@@ -244,6 +244,7 @@ def instance_to_text_blocksworld(problem, get_plan, data, shuffle=False):
             act_name, objs = action.split(" ")[0], action.split(" ")[1:]
             objs = [OBJS[obj] for obj in objs]
             PLAN += data['actions'][act_name].format(*objs) + "\n"
+        PLAN += "[PLAN END]\n"
 
     return INIT, GOAL, PLAN
 
@@ -314,8 +315,8 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
         action_list = [action in line.split() for action in raw_actions]
         if sum(action_list) == 0:
             continue
-        action = raw_actions[np.where(action_list)[0][0]]
         # TODO: Handle GPT-3 text that can't be parsed as an action
+        action = raw_actions[np.where(action_list)[0][0]]
         # Extracting Objects
         n_objs = len(actions_params_dict[action].parameters.vars())
         objs = get_ordered_objects(object_names, line)
@@ -381,6 +382,7 @@ def parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data):
         objs = [DATA["encoded_objects"][j] for j in pred[1:]]
         plan_text += DATA['actions'][pred[0]].format(*objs)
         plan_text += "\n"
+    plan_text += "[PLAN END]\n"
     PLAN += plan_text
 
     GOAL = ""
@@ -411,7 +413,23 @@ def get_cost_gpt_3(gpt3_response):
             return res[0]
     return 0
 
-
+def get_action_text(action, data):
+    pred = action.split('_')
+    objs = [data["encoded_objects"][j] for j in pred[1:]]
+    return data['actions'][pred[0]].format(*objs)
+def get_facts_text(facts, data):
+    FACTS = "\n"
+    print(facts, sorted(facts))
+    for ind, i in enumerate(sorted(facts)):
+        pred = i.split('_')
+        objs = [data["encoded_objects"][j] for j in pred[1:]]
+        FACTS+=data['predicates'][pred[0]].format(*objs)
+        if ind != len(facts) - 1:
+            FACTS += ","
+        else:
+            FACTS += "."
+        FACTS+="\n"
+    return FACTS
 def generate_plan_subset(planexecutor, data, give_response):
     """
     We need
@@ -482,17 +500,26 @@ def replanning(planexecutor, data, give_response, is_harder=random.choice(([0, 1
         hard = "Problem was made easier\n"
 
     initial_state = planexecutor.init_state
-    plan_prefix = planexecutor.plan[:planexecutor.prefix]
     goal_state = planexecutor.goal_state
-    if give_response:
-        INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan_prefix, goal_state, data)
-        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]{PLAN}"
+    to_add_or_remove = planexecutor.replanning_domain_specific(is_harder)
+    print("PREFIX:", planexecutor.prefix)
+    final_action = planexecutor.plan[:planexecutor.prefix][-1]
+    planexecutor.get_new_instance(change_goal=False, change_init=True)
+    plan, cost = planexecutor.get_plan('pr-new-domain.pddl', 'pr-new-problem.pddl')
+    replanning_state = planexecutor.replanning_init
+    if is_harder:
+        execution_text = f"During execution, an unexpected event has occurred.\nAfter executing the action \"{get_action_text(final_action,data)}\" in the plan, The following facts unexpectedly became false: {get_facts_text(to_add_or_remove,data)}"
     else:
-        planexecutor.replanning(is_harder)
-        replanning_state = planexecutor.replanning_init
-        INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(replanning_state, plan_prefix, goal_state, data)
-        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
-
+        execution_text = f"During execution, an unexpected event has occurred.\nAfter executing the action \"{get_action_text(final_action, data)}\" at step {planexecutor.prefix} in the plan, the following facts unexpectedly became true: {get_facts_text(to_add_or_remove['to_add'],data)}\nThe following facts became unexpectedly false: {get_facts_text(to_add_or_remove['to_remove'],data)}"
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, planexecutor.plan, goal_state, data)
+    text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]{PLAN}\n"
+    text += execution_text
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(replanning_state, plan, goal_state, data)
+    if give_response:
+        text += f"\nAfter re-planning from the new state, the plan is as follows:\n[PLAN]{PLAN}"
+    else:
+        text += f"\nAfter re-planning from the new state, the plan is as follows:\n[PLAN]"
+        # text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
     return text, PLAN
 
 

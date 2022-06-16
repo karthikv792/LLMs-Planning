@@ -1,16 +1,17 @@
 import hashlib
 import os
-os.chdir("instances/generated/")
-instances = os.listdir("./")
+os.chdir("instances/generated_basic/")
+instances = sorted(os.listdir("./"))
 hashset  = set()
 for i in instances:
+    print(i)
     f=open(i,"r")
     pddl = f.read()
     hash_inst = hashlib.md5(pddl.encode('utf-8')).hexdigest()
     if hash_inst in hashset:
         print("ALREADY THERE")
     hashset.add(hash_inst)
-
+print("DONE")
 # from tarski.io import PDDLReader
 # from tarski.syntax.formulas import *
 # from utils import *

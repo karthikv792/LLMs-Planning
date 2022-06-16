@@ -26,6 +26,40 @@ class Executor:
         self.final_state, self.all_preds, self.not_true_preds, self.prefix, self.replanning_init = [None] * 5
         self.final_state_dict = {}
 
+
+
+    def replanning_domain_specific(self, harder=0, domain='blocksworld'):
+        if domain == 'blocksworld':
+            self.random_prefix_execution()
+            while not any(['holding' in i for i in self.final_state]):
+                self.random_prefix_execution()
+            # make that block stack onto a random block
+            self.replanning_init = self.final_state.copy()
+            all_blocks = set()
+            to_remove = set()
+            for i in self.replanning_init:
+                if 'handempty' in i:
+                    continue
+                if 'clear' in i:
+                    all_blocks.add(i.split('_')[-1])
+                if 'holding' in i:
+                    current_block = i.split('_')[1]
+                    to_remove.add(i)
+            selected_block = random.choice(list(all_blocks))
+            to_remove.add('clear_' + selected_block)
+            to_add = {'on_' + current_block + '_' + selected_block, 'handempty', 'clear_' + current_block}
+            self.replanning_init = self.replanning_init.union(to_add)
+            self.replanning_init = self.replanning_init.difference(to_remove)
+            dict_to_send = {'to_add': to_add, 'to_remove': to_remove}
+            print("REPLANNING INIT", self.replanning_init)
+            print("REPLANNING DICT", dict_to_send)
+            return dict_to_send
+
+
+        else:
+            raise Exception("Domain not supported")
+
+
     def replanning(self, harder=0):
         """
         1. Execute a random prefix of a plan and get the resulting state
@@ -35,17 +69,19 @@ class Executor:
             ii. Make the problem easier by adding some of the preds in the suffix-state into the prefix-state
         :return:
         """
-        self.random_prefix_execution()
+        self.random_prefix_execution(replan=True)
         regress_state = self.regress(harder)
         if harder:
             this_much_harder = random.choice(range(1, len(regress_state) + 1))
             to_remove = set(random.choices(list(regress_state), k=this_much_harder))
             self.replanning_init = self.final_state.difference(to_remove)
+            return to_remove
         else:
-            # print("-----------------", self.final_state, regress_state)
             this_much_easier = random.choice(range(1, len(regress_state) + 1))
+            # print("-----------------", self.final_state, regress_state, this_much_easier, self.prefix)
             to_add = set(random.choices(list(regress_state), k=this_much_easier))
             self.replanning_init = self.final_state.union(to_add)
+            return to_add
 
     def regress(self, harder):
         curr_state = self.goal_state
@@ -65,6 +101,7 @@ class Executor:
                 curr_state = curr_state.union(act_neg_precs.union(act_pos_precs))
         else:
             rand_suff = random.choice(range(len(suffix)))
+            print("SUFFIX", rand_suff, len(suffix))
             for act in suffix[:rand_suff]:
                 act = act.upper()
                 act_adds = self.get_sets(self.model[DOMAIN][act][ADDS])
@@ -86,7 +123,8 @@ class Executor:
         # print(regress_state)
         return regress_state
 
-    def random_prefix_execution(self):
+    def random_prefix_execution(self, replan=False):
+        print("PLAN", self.plan)
         self.prefix = random.choice(range(1, len(self.plan)))
         # print("PREFIX", self.prefix)
         self.final_state = self.get_final_state(self.init_state, 0, self.prefix)
