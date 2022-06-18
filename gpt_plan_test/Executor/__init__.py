@@ -45,7 +45,7 @@ class Executor:
                 if 'holding' in i:
                     current_block = i.split('_')[1]
                     to_remove.add(i)
-            selected_block = random.choice(list(all_blocks))
+            selected_block = random.choice(sorted(list(all_blocks)))
             to_remove.add('clear_' + selected_block)
             to_add = {'on_' + current_block + '_' + selected_block, 'handempty', 'clear_' + current_block}
             self.replanning_init = self.replanning_init.union(to_add)
@@ -126,7 +126,6 @@ class Executor:
     def random_prefix_execution(self, replan=False):
         print("PLAN", self.plan)
         self.prefix = random.choice(range(1, len(self.plan)))
-        # print("PREFIX", self.prefix)
         self.final_state = self.get_final_state(self.init_state, 0, self.prefix)
         self.all_preds = self.get_sets(self.model[PREDICATES])
         self.not_true_preds = self.all_preds.difference(self.final_state)

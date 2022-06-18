@@ -361,7 +361,7 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
 ################################################################
 
 
-def parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data):
+def parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data, action_seq=False):
     DATA = data
     INIT = ""
     init_text = []
@@ -382,7 +382,10 @@ def parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data):
         objs = [DATA["encoded_objects"][j] for j in pred[1:]]
         plan_text += DATA['actions'][pred[0]].format(*objs)
         plan_text += "\n"
-    plan_text += "[PLAN END]\n"
+    if not action_seq:
+        plan_text += "[PLAN END]\n"
+    else:
+        plan_text += "[ACTION SEQUENCE END]\n"
     PLAN += plan_text
 
     GOAL = ""
@@ -520,7 +523,7 @@ def replanning(planexecutor, data, give_response, is_harder=random.choice(([0, 1
     else:
         text += f"\nAfter re-planning from the new state, the plan is as follows:\n[PLAN]"
         # text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
-    return text, PLAN
+    return text, plan
 
 
 def plan_execution(planexecutor, data, give_response):
@@ -539,17 +542,16 @@ def plan_execution(planexecutor, data, give_response):
     planexecutor.random_prefix_execution()
     plan_prefix = planexecutor.plan[:planexecutor.prefix]
     resulting_state_dict = planexecutor.final_state_dict
-
-    rand_pred = random.choice(list(resulting_state_dict.keys())).split('_')
+    rand_pred = random.choice(sorted(list(resulting_state_dict.keys()))).split('_')
     objs = [data["encoded_objects"][j] for j in rand_pred[1:]]
     FIN = f'[QUESTION]\nIs the statement \'{data["predicates"][rand_pred[0]].format(*objs)}\' true?\n[ANSWER]'
     answer = "\n" + resulting_state_dict['_'.join(rand_pred)]
 
-    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan_prefix, [], data)
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan_prefix, [], data, action_seq=True)
     if give_response:
-        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following plan:\n\n[PLAN]{PLAN}{FIN}{answer}"
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following action sequence:\n\n[ACTION SEQUENCE]{PLAN}{FIN}{answer}"
     else:
-        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following plan:\n\n[PLAN]{PLAN}{FIN}"
+        text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\n I have executed the following action sequence:\n\n[ACTION SEQUENCE]{PLAN}{FIN}"
 
     # Get a random object
     # Create the corresponding question

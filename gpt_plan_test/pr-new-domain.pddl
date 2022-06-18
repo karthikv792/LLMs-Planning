@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (domain test_domain)
-    (:requirements :equality :typing :action-costs)
+    (:requirements :typing :equality :action-costs)
     (:types
         number - int
     )

@@ -156,7 +156,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
 
             self.save_output("task" + t1_or_t4, final_output)
-            break
+
 
         # --------------- Add to final output --------------- #
         final_output += f"[+]: The number of correct plans is " + \
@@ -297,7 +297,7 @@ class ReasoningTasks():
             os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
             with open(f"outputs/{self.engine}/task2_paraphrase.txt", 'w+') as f:
                 f.write(final_output)
-            break
+
 
         print(single_goal_instances)
 
@@ -389,11 +389,12 @@ class ReasoningTasks():
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # Apply VAL
             correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
-            final_output += "\n===================================SUCCESS===================================\n" if correct else "\n===================================FAILURE===================================\n"
-            final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
-                            f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                            f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += "\n=============================================================================\n"
+            if not correct:
+                final_output += "\n===================================FAILURE===================================\n"
+                final_output += '\n--------Invalid Plan-------\n'
+
+
+
 
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
@@ -403,12 +404,22 @@ class ReasoningTasks():
 
             if correct:
                 cost = get_cost_gpt_3(gpt3_response)
+                plan_list = [len(pl) > 0 for pl in gpt3_plan.split('\n')]
+                actual_cost_gpt3 = sum(plan_list)
+                txt= "---------WRONG COST OUTPUT BY LLM---------" if cost != actual_cost_gpt3 else "---------CORRECT COST OUTPUT BY LLM---------"
                 print("COST OF GPT_3 PLAN", cost)
-                if cost == plan_executor.cost:
+                if actual_cost_gpt3 == plan_executor.cost:
                     correct_plans += 1
-                    final_output += '\n--------Optimal Plan-------\n'
+                    final_output += "\n===================================SUCCESS===================================\n"
+                    final_output += '\n----------------Optimal Plan----------------\n'
                 else:
-                    final_output += '\n--------Sub-Optimal Plan-------\n'
+                    final_output += "\n===================================FAILURE===================================\n"
+                    final_output += '\n----------------Sub-optimal Plan----------------\n'
+                final_output += txt
+            final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
+                            f"--------- Extracted plan ---------\n{gpt3_plan}" + \
+                            f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
+            final_output += "\n=============================================================================\n"
             self.save_output("task5_optimality", final_output)
             break
 
@@ -444,10 +455,10 @@ class ReasoningTasks():
                 final_output += f"\n Instance {cur_instance}\n"
                 print(f"Instance {cur_instance}")
                 # gt_plan = self.compute_plan(domain, cur_instance)
-                text, gt_plan_text = replanning(plan_executor, self.data, get_plan, harder)
+                text, plan = replanning(plan_executor, self.data, get_plan, harder)
                 query += text
             gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
-
+            gt_plan_text = get_plan_as_text(self.data, plan)
             # Do text_to_plan procedure
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # Apply VAL

@@ -13,13 +13,13 @@
 
     (:init
         (= (total-cost ) 0)
-        (ontable_d )
-        (on_c_d )
         (clear_c )
-        (on_a_b )
+        (on_c_a )
+        (ontable_d )
+        (clear_d )
         (ontable_b )
+        (on_a_b )
         (handempty )
-        (clear_a )
     )
 
     (:goal

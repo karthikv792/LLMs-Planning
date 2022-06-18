@@ -26,27 +26,27 @@ Once I put down or stack a block, my hand becomes empty.
 
 [STATEMENT]
 As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
- I have executed the following plan:
+ I have executed the following action sequence:
 
-[PLAN]
+[ACTION SEQUENCE]
 unstack the blue block from on top of the orange block
 put down the blue block
 pick up the orange block
-[PLAN END]
+[ACTION SEQUENCE END]
 [QUESTION]
 Is the statement 'the blue block is clear' true?
 [ANSWER]
 Yes
 [STATEMENT]
 As initial conditions I have that, the red block is clear, the yellow block is clear, the hand is empty, the red block is on top of the blue block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
- I have executed the following plan:
+ I have executed the following action sequence:
 
-[PLAN]
+[ACTION SEQUENCE]
 unstack the yellow block from on top of the orange block
 put down the yellow block
-[PLAN END]
+[ACTION SEQUENCE END]
 [QUESTION]
-Is the statement 'the yellow block is on top of the yellow block' true?
+Is the statement 'the blue block is on top of the orange block' true?
 [ANSWER]
 --------- GPT3 response ---------
 No
