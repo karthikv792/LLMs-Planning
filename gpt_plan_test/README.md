@@ -12,4 +12,26 @@
     2. Assign path of the folder to the environment variable VAL `VAL=/path/to/val`
 - LLM access - (currently GPT-3)
 
+## Running the experiments on GPT-3
+For Blocksworld:
+```
+python3 ReasoningTasks.py --task t1 --engine davinci --verbose False
+```
+The --task argument corresponds to the various tasks involved:
+- t1 = Goal Directed Reasoning
+- t2 = Goal Reformulation 
+- t3 = Plan Reuse 
+- t4 = Plan Generalization
+- t5 = Optimal Planning
+- t6 = Replanning 
+- t7 = Plan Execution 
 
+The --engine argument corresponds to the various GPT-3 engines
+
+## Running the experiments on a different domain
+1. Add a .yaml file containing the specifics of the domain (refer to the existing config file for blocksworld)
+2. In ReasoningTasks.py, replace the path to the config file for the task that you chose to run
+3. Use the same command as above to run the experiments.
+
+## Running the experiments on a different LLM
+1. To do so, replace the send_query_gpt3 function in utils/\_\_init__.py with the required LLM querying code.
