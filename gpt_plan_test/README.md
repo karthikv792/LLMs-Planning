@@ -5,10 +5,10 @@
 - Python 3.6+ 
   - Install required packages with `pip install -r requirements.txt`
 - Fast Downward 
-    1. Download from [here]() 
+    1. Download from [here](https://www.fast-downward.org/ObtainingAndRunningFastDownward) 
     2. Assign path of the folder to the environment variable FAST_DOWNWARD `FAST_DOWNWARD=/path/to/fast_downward`
 - Val 
-    1. Download from [here]() 
+    1. Download from [here](https://www.fast-downward.org/SettingUpVal) 
     2. Assign path of the folder to the environment variable VAL `VAL=/path/to/val`
 - LLM access - (currently GPT-3)
 
