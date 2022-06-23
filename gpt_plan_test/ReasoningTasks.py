@@ -78,7 +78,8 @@ class ReasoningTasks():
     def compute_plan(self, domain, instance, timeout=30):
         fast_downward_path = os.getenv("FAST_DOWNWARD")
         # Remove > /dev/null to see the output of fast-downward
-        cmd = f"timeout {timeout}s {fast_downward_path} {domain} {instance} --search \"astar(lmcut())\" > /dev/null 2>&1"
+        assert os.path.exists(f"{fast_downward_path}/fast-downward.py")
+        cmd = f"timeout {timeout}s {fast_downward_path}/fast-downward.py {domain} {instance} --search \"astar(lmcut())\" > /dev/null 2>&1"
         os.system(cmd)
 
         if not os.path.exists(self.plan_file):

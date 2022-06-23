@@ -201,7 +201,11 @@ def get_ordered_objects(object_names, line):
 
 def validate_plan(domain, instance, plan_file):
     val_path = os.getenv("VAL")
-    cmd = f"{val_path} {domain} {instance} {plan_file}"
+    val_bin = f"validate" if os.path.exists(f"{val_path}/validate") else "Validate"
+
+    assert os.path.exists(f"{val_path}/{val_bin}")
+
+    cmd = f"{val_path}/{val_bin} {domain} {instance} {plan_file}"
     response = os.popen(cmd).read()
     return True if "Plan valid" in response else False
 
