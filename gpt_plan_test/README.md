@@ -10,6 +10,9 @@
 - Val 
     1. Download from [here](https://www.fast-downward.org/SettingUpVal) 
     2. Assign path of the folder to the environment variable VAL `VAL=/path/to/val`
+- PR2Plan
+    1. Download and compile obs-compiler from [here](https://sites.google.com/site/prasplanning/file-cabinet)
+    2. Assign path of the folder to the environment variable PR2 `PR2=/path/to/pr2plan`
 - LLM access - (currently GPT-3)
 
 ## Running the experiments on GPT-3
