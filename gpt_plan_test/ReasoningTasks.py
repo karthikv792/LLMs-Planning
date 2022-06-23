@@ -78,7 +78,7 @@ class ReasoningTasks():
     def compute_plan(self, domain, instance, timeout=30):
         fast_downward_path = os.getenv("FAST_DOWNWARD")
         # Remove > /dev/null to see the output of fast-downward
-        cmd = f"timeout {timeout}s {fast_downward_path}/fast-downward.py {domain} {instance} --search \"astar(lmcut())\" > /dev/null 2>&1"
+        cmd = f"timeout {timeout}s {fast_downward_path} {domain} {instance} --search \"astar(lmcut())\" > /dev/null 2>&1"
         os.system(cmd)
 
         if not os.path.exists(self.plan_file):
@@ -142,13 +142,17 @@ class ReasoningTasks():
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # Apply VAL
             correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
-            final_output += "\n===================================SUCCESS===================================\n" if correct else "\n===================================FAILURE===================================\n"
+
+            task_name = ""
+            succ_fail = "SUCCESS" if correct else "FAILURE"
+            final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
+
             correct_plans += correct
             # --------------- Add to final output --------------- #
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += "\n=============================================================================\n"
+            final_output += f"\n{'='*77}\n"
 
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
@@ -248,12 +252,14 @@ class ReasoningTasks():
 
             correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
             corrects["Random"] += correct
-            final_output += "\n===================================(GOAL ORDERING CHANGE) SUCCESS===================================\n" if correct else "\n===================================(GOAL ORDERING CHANGE) FAILURE===================================\n"
 
+            task_name = "(GOAL ORDERING CHANGE)"
+            succ_fail = "SUCCESS" if correct else "FAILURE"
+            final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += "\n=============================================================================\n"
+            final_output += f"\n{'='*77}\n"
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
@@ -270,13 +276,15 @@ class ReasoningTasks():
                 _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
                 correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
                 corrects[descr] += correct
-                final_output += "\n===================================(" + descr + ") SUCCESS===================================\n" if correct else "\n===================================(" + descr + ") FAILURE===================================\n"
 
+                task_name = descr
+                succ_fail = "SUCCESS" if correct else "FAILURE"
+                final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
                 final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                                 f"--------- Extracted plan ---------\n{gpt3_plan}" + \
                                 f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
 
-                final_output += "\n=============================================================================\n"
+                final_output += f"\n{'='*77}\n"
                 if self.verbose:
                     print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                           f"--------- Extracted plan ---------\n{gpt3_plan}"
@@ -329,18 +337,19 @@ class ReasoningTasks():
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data,
                                                     True)
             plan_executor.get_new_instance(change_goal=True, change_init=False)
-            valid_or_not = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
-            final_output += "\n===================================SUCCESS===================================\n" if valid_or_not else "\n===================================FAILURE===================================\n"
-            correct_plans += valid_or_not
+            correct = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
+
+            task_name = ""
+            succ_fail = "SUCCESS" if correct else "FAILURE"
+            final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
+            correct_plans += correct
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += "\n=============================================================================\n"
+            final_output += f"\n{'='*77}\n"
 
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
-                      # f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
-                # print(valid_or_no
             self.save_output("task3_plan_subset", final_output)
             break
 
@@ -390,10 +399,8 @@ class ReasoningTasks():
             # Apply VAL
             correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
             if not correct:
-                final_output += "\n===================================FAILURE===================================\n"
+                final_output += f"{'='*35} FAILURE {'='*35}"
                 final_output += '\n--------Invalid Plan-------\n'
-
-
 
 
             if self.verbose:
@@ -410,16 +417,16 @@ class ReasoningTasks():
                 print("COST OF GPT_3 PLAN", cost)
                 if actual_cost_gpt3 == plan_executor.cost:
                     correct_plans += 1
-                    final_output += "\n===================================SUCCESS===================================\n"
+                    final_output += f"{'='*35} SUCCESS {'='*35}"
                     final_output += '\n----------------Optimal Plan----------------\n'
                 else:
-                    final_output += "\n===================================FAILURE===================================\n"
+                    final_output += f"{'='*35} FAILURE {'='*35}"
                     final_output += '\n----------------Sub-optimal Plan----------------\n'
                 final_output += txt
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += "\n=============================================================================\n"
+            final_output += f"\n{'='*77}\n"
             self.save_output("task5_optimality", final_output)
             break
 
@@ -462,20 +469,21 @@ class ReasoningTasks():
             # Do text_to_plan procedure
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # Apply VAL
-            valid_or_not = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
+            correct = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.gpt3_plan_file))
 
-            correct_plans += valid_or_not
-            final_output += "\n===================================SUCCESS===================================\n" if valid_or_not else "\n===================================FAILURE===================================\n"
+            correct_plans += correct
+            succ_fail = "SUCCESS" if correct else "FAILURE"
+            final_output += f"\n{'='*35} {succ_fail} {'='*35}\n"
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += "\n=============================================================================\n"
+            final_output += f"\n{'='*77}\n"
 
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
-                print(valid_or_not)
+                print(correct)
             self.save_output("task6_replanning", final_output)
             break
 
@@ -525,7 +533,8 @@ class ReasoningTasks():
             # Apply VAL
             correct = gpt3_response.strip() == answer.strip()
             correct_answers += correct
-            final_output += "\n===================================SUCCESS===================================\n" if correct else "\n===================================FAILURE===================================\n"
+            succ_fail = "SUCCESS" if correct else "FAILURE"
+            final_output += f"\n{'='*35} {succ_fail} {'='*35}\n"
             final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
                             f"\n-------- Ground truth answer ---------\n{answer}"
             if self.verbose:
@@ -533,7 +542,7 @@ class ReasoningTasks():
                       # f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- Ground truth answer ---------{answer}")
                 print(correct)
-            final_output += "\n=============================================================================\n"
+            final_output += f"\n{'='*77}\n"
 
             self.save_output("task7_plan_execution", final_output)
             break

@@ -201,7 +201,7 @@ def get_ordered_objects(object_names, line):
 
 def validate_plan(domain, instance, plan_file):
     val_path = os.getenv("VAL")
-    cmd = f"{val_path}/validate {domain} {instance} {plan_file}"
+    cmd = f"{val_path} {domain} {instance} {plan_file}"
     response = os.popen(cmd).read()
     return True if "Plan valid" in response else False
 
