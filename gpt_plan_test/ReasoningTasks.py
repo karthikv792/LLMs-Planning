@@ -52,6 +52,17 @@ I can only stack a block on top of another block if the block onto which I am st
 Once I put down or stack a block, my hand becomes empty.
 """
 
+success_template = "{} {} {} {}"
+verbose_template="""
+{}
+--------- GPT3 response ---------
+{}
+--------- Extracted plan ---------
+{}
+-------- Ground truth plan ---------
+{}
+{}
+"""
 
 class ReasoningTasks():
     """
@@ -99,6 +110,10 @@ class ReasoningTasks():
         plan_executor = Executor(domain, instance)
         return plan_executor
 
+    def save_output(self, output_file, final_output):
+        os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
+        with open(f"outputs/{self.engine}/" + output_file + ".txt", 'w+') as f:
+            f.write(final_output)
     # ========================================== TASKS ========================================== #
     def t1_t4(self, config_file, t1_or_t4="1_reasoning"):
         self.read_config(config_file)
@@ -117,7 +132,7 @@ class ReasoningTasks():
 
         final_output = ""
         correct_plans = 0
-        for start in range(1, n_files + 2 - self.n_examples):
+        for start in range(1, 3):#n_files + 2 - self.n_examples):
             query = INTRO
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -143,46 +158,21 @@ class ReasoningTasks():
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # Apply VAL
             correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
-
-            task_name = ""
-            succ_fail = "SUCCESS" if correct else "FAILURE"
-            final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
-
             correct_plans += correct
-            # --------------- Add to final output --------------- #
-            final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
-                            f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                            f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += f"\n{'='*77}\n"
 
-            if self.verbose:
-                print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
-                      f"--------- Extracted plan ---------\n{gpt3_plan}"
-                      f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
+            final_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
+            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77) if self.verbose else ""
+            if self.verbose: print(final_output)
 
             self.save_output("task" + t1_or_t4, final_output)
 
+        os.remove(self.plan_file)
+        os.remove(self.gpt3_plan_file)
 
         # --------------- Add to final output --------------- #
-        final_output += f"[+]: The number of correct plans is " + \
-                        f"{correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
-
-        print(f"[+]: The number of correct plans is "
-              f"{correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
-        try:
-            os.remove(self.plan_file)
-        except FileNotFoundError:
-            pass
-        try:
-            os.remove(self.gpt3_plan_file)
-        except FileNotFoundError:
-            pass
+        final_output += f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
+        print(f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
         self.save_output("task" + t1_or_t4, final_output)
-
-    def save_output(self, output_file, final_output):
-        os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
-        with open(f"outputs/{self.engine}/" + output_file + ".txt", 'w+') as f:
-            f.write(final_output)
 
     def t2_paraphrasing(self, config_file):
         def convert_state_to_text(state):
