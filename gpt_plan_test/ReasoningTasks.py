@@ -132,7 +132,7 @@ class ReasoningTasks():
 
         final_output = ""
         correct_plans = 0
-        for start in range(1, 3):#n_files + 2 - self.n_examples):
+        for start in range(1, n_files + 2 - self.n_examples):
             query = INTRO
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -245,16 +245,9 @@ class ReasoningTasks():
             corrects["Random"] += correct
 
             task_name = "(GOAL ORDERING CHANGE)"
-            succ_fail = "SUCCESS" if correct else "FAILURE"
-            final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
-            final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
-                            f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                            f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-            final_output += f"\n{'='*77}\n"
-            if self.verbose:
-                print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
-                      f"--------- Extracted plan ---------\n{gpt3_plan}"
-                      f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
+            final_output += success_template.format('='*35, task_name, "SUCCESS" if correct else "FAILURE", '='*35)
+            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77) if self.verbose else ""
+            if self.verbose: print(final_output)
 
             # =============== Full->Specific and Specific->Full =============== #
             descriptions = list(corrects.keys())[1:][::-1]
@@ -268,18 +261,9 @@ class ReasoningTasks():
                 correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
                 corrects[descr] += correct
 
-                task_name = descr
-                succ_fail = "SUCCESS" if correct else "FAILURE"
-                final_output += f"\n{'='*35} {task_name} {succ_fail} {'='*35}\n"
-                final_output += f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n" + \
-                                f"--------- Extracted plan ---------\n{gpt3_plan}" + \
-                                f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
-
-                final_output += f"\n{'='*77}\n"
-                if self.verbose:
-                    print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
-                          f"--------- Extracted plan ---------\n{gpt3_plan}"
-                          f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
+                final_output += success_template.format('='*35, descr, "SUCCESS" if correct else "FAILURE", '='*35)
+                final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77) if self.verbose else ""
+                if self.verbose: print(final_output)
 
             os.remove(self.plan_file)
             os.remove(self.gpt3_plan_file)
