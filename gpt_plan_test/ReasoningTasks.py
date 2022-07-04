@@ -87,9 +87,13 @@ class ReasoningTasks():
 
     # ========================================== UTILS ========================================== #
     def compute_plan(self, domain, instance, timeout=30):
-        fast_downward_path = os.getenv("FAST_DOWNWARD")
+        fast_downward_path = os.getenv("FAST_DOWNWARD") 
+        print(fast_downward_path)
         # Remove > /dev/null to see the output of fast-downward
-        assert os.path.exists(f"{fast_downward_path}/fast-downward.py")
+        if '~' in fast_downward_path:
+            assert os.path.exists(os.path.expanduser(fast_downward_path)+"fast-downward.py")
+        else:
+            assert os.path.exists(f"{fast_downward_path}/fast-downward.py")
         cmd = f"timeout {timeout}s {fast_downward_path}/fast-downward.py {domain} {instance} --search \"astar(lmcut())\" > /dev/null 2>&1"
         os.system(cmd)
 
@@ -293,7 +297,7 @@ class ReasoningTasks():
         final_output = ""
         correct_plans = 0
 
-        for i in range(1, n):
+        for i in range(494,495):
             cur_instance = instance.format(i)
             plan_executor = self.get_executor(cur_instance, domain)
             problem = self.get_problem(cur_instance, domain)
