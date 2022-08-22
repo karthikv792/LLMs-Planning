@@ -87,8 +87,7 @@ class ReasoningTasks():
 
     # ========================================== UTILS ========================================== #
     def compute_plan(self, domain, instance, timeout=30):
-        fast_downward_path = os.getenv("FAST_DOWNWARD") 
-        print(fast_downward_path)
+        fast_downward_path = os.getenv("FAST_DOWNWARD")
         # Remove > /dev/null to see the output of fast-downward
         if '~' in fast_downward_path:
             assert os.path.exists(os.path.expanduser(fast_downward_path)+"fast-downward.py")
@@ -297,7 +296,7 @@ class ReasoningTasks():
         final_output = ""
         correct_plans = 0
 
-        for i in range(494,495):
+        for i in range(1, n+1):
             cur_instance = instance.format(i)
             plan_executor = self.get_executor(cur_instance, domain)
             problem = self.get_problem(cur_instance, domain)
@@ -330,7 +329,7 @@ class ReasoningTasks():
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
             self.save_output("task3_plan_subset", final_output)
-            break
+            print(f"No of correct plans, {correct_plans}/{i} = {round(correct_plans / i * 100, 2)}%")
 
         exec_plans = n
         final_output += "\nResults:\n"
@@ -340,7 +339,7 @@ class ReasoningTasks():
             os.remove(self.plan_file)
         except:
             pass
-        os.remove(self.gpt3_plan_file)
+        # os.remove(self.gpt3_plan_file)
         self.save_output("task3_plan_subset", final_output)
 
     def t5_optimality(self, config_file):
@@ -464,6 +463,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(correct)
             self.save_output("task6_replanning", final_output)
+            print(f"No of correct plans, {correct_plans}/{i} = {round(correct_plans / i * 100, 2)}%")
             break
 
 

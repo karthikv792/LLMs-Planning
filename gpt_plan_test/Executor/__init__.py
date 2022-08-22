@@ -51,8 +51,8 @@ class Executor:
             self.replanning_init = self.replanning_init.union(to_add)
             self.replanning_init = self.replanning_init.difference(to_remove)
             dict_to_send = {'to_add': to_add, 'to_remove': to_remove}
-            print("REPLANNING INIT", self.replanning_init)
-            print("REPLANNING DICT", dict_to_send)
+            # print("REPLANNING INIT", self.replanning_init)
+            # print("REPLANNING DICT", dict_to_send)
             return dict_to_send
 
 
@@ -124,7 +124,7 @@ class Executor:
         return regress_state
 
     def random_prefix_execution(self, replan=False):
-        print("PLAN", self.plan)
+        # print("PLAN", self.plan)
         self.prefix = random.choice(range(1, len(self.plan)))
         self.final_state = self.get_final_state(self.init_state, 0, self.prefix)
         self.all_preds = self.get_sets(self.model[PREDICATES])

@@ -209,7 +209,9 @@ def validate_plan(domain, instance, plan_file):
 
     cmd = f"{val_path}/{val_bin} {domain} {instance} {plan_file}"
     response = os.popen(cmd).read()
-    print(response)`
+    if 'Problem in domain' in response:
+        raise Exception('Problem in domain: CHECK PDDL WRITER')
+
     return True if "Plan valid" in response else False
 
 
@@ -429,7 +431,7 @@ def get_action_text(action, data):
     return data['actions'][pred[0]].format(*objs)
 def get_facts_text(facts, data):
     FACTS = "\n"
-    print(facts, sorted(facts))
+    # print(facts, sorted(facts))
     for ind, i in enumerate(sorted(facts)):
         pred = i.split('_')
         objs = [data["encoded_objects"][j] for j in pred[1:]]
