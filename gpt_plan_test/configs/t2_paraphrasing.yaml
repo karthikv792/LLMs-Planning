@@ -3,44 +3,46 @@ domain: generated_basic
 domain_file: generated_domain.pddl
 n_instances: 500
 instances_template: instance-{}.pddl
-domain_intro: """I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+domain_intro: |
+   I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+   
+   Pick up a block
+   Unstack a block from on top of another block
+   Put down a block
+   Stack a block on top of another block
+   
+   I have the following restrictions on my actions:
+   I can only pick up or unstack one block at a time.
+   I can only pick up or unstack a block if my hand is empty.
+   I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+   I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+   I can only unstack a block from on top of another block if the block I am unstacking is clear.
+   Once I pick up or unstack a block, I am holding the block.
+   I can only put down a block that I am holding.
+   I can only stack a block on top of another block if I am holding the block being stacked.
+   I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+   Once I put down or stack a block, my hand becomes empty.
 
-Pick up a block
-Unstack a block from on top of another block
-Put down a block
-Stack a block on top of another block
+domain_intro_cost: |
+   I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do:
+   
+   Pick up a block. It takes 1 minute to pick up a block.
+   Unstack a block from on top of another block. It takes 1 minute to unstack a block from on top of another block.
+   Put down a block. It takes 1 minute to put down a block.
+   Stack a block on top of another block. It takes 1 minute to stack a block on top of another block.
+   
+   I have the following restrictions on my actions:
+   I can only pick up or unstack one block at a time.
+   I can only pick up or unstack a block if my hand is empty.
+   I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+   I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+   I can only unstack a block from on top of another block if the block I am unstacking is clear.
+   Once I pick up or unstack a block, I am holding the block.
+   I can only put down a block that I am holding.
+   I can only stack a block on top of another block if I am holding the block being stacked.
+   I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+   Once I put down or stack a block, my hand becomes empty.
 
-I have the following restrictions on my actions:
-I can only pick up or unstack one block at a time.
-I can only pick up or unstack a block if my hand is empty.
-I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
-I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
-I can only unstack a block from on top of another block if the block I am unstacking is clear.
-Once I pick up or unstack a block, I am holding the block.
-I can only put down a block that I am holding.
-I can only stack a block on top of another block if I am holding the block being stacked.
-I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
-Once I put down or stack a block, my hand becomes empty.
-"""
-domain_intro_cost: """I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do:
-
-Pick up a block. It takes 1 minute to pick up a block.
-Unstack a block from on top of another block. It takes 1 minute to unstack a block from on top of another block.
-Put down a block. It takes 1 minute to put down a block.
-Stack a block on top of another block. It takes 1 minute to stack a block on top of another block.
-
-I have the following restrictions on my actions:
-I can only pick up or unstack one block at a time.
-I can only pick up or unstack a block if my hand is empty.
-I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
-I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
-I can only unstack a block from on top of another block if the block I am unstacking is clear.
-Once I pick up or unstack a block, I am holding the block.
-I can only put down a block that I am holding.
-I can only stack a block on top of another block if I am holding the block being stacked.
-I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
-Once I put down or stack a block, my hand becomes empty.
-"""
 actions:
   {pick-up: "pick up the {}",
    put-down: "put down the {}",
