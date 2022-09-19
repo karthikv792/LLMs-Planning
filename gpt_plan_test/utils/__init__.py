@@ -141,7 +141,13 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
         if model:
             response = generate_from_bloom(model['model'], model['tokenizer'], query, max_tokens)
             response = response.replace(query, '')
-            return response
+            resp_string = ""
+            for line in response.split('\n'):
+                if '[PLAN END]' in line:
+                    break
+                else:
+                    resp_string+=f'{line}\n'
+            return resp_string
         else:
             assert model is not None
     else:
