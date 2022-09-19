@@ -1,0 +1,3271 @@
+
+ Instance ./instances/generated_basic/instance-1.pddl
+
+ Instance ./instances/generated_basic/instance-2.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the orange block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the blue block from on top of the orange block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the yellow block is clear, the hand is empty, the red block is on top of the blue block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
+My goal is to have that the orange block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+put down the blue block
+pick up the red block
+stack the red block on top of the orange block
+put down the red block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+put down the orange block
+pick up the red block
+stack the red block on top of the orange block
+put down the red block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+put down the orange block
+pick up the red block
+stack the red block on top of the orange block
+put down the red block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+put down the orange block
+pick up the red block
+stack the red block on top of the orange block
+put down the red block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+put down the orange block
+pick up the red block
+stack the red block on top of the orange block
+put down the red block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+put down the orange block
+pick up the red block
+stack the red block
+--------- Extracted plan ---------
+(pick-up blue)
+(pick-up orange)
+(stack orange blue)
+(put-down blue)
+(pick-up red)
+(stack red orange)
+(put-down red)
+(pick-up yellow)
+(stack yellow red)
+(put-down yellow)
+(pick-up blue)
+(stack blue yellow)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(put-down orange)
+(pick-up red)
+(stack red orange)
+(put-down red)
+(pick-up yellow)
+(stack yellow red)
+(put-down yellow)
+(pick-up blue)
+(stack blue yellow)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(put-down orange)
+(pick-up red)
+(stack red orange)
+(put-down red)
+(pick-up yellow)
+(stack yellow red)
+(put-down yellow)
+(pick-up blue)
+(stack blue yellow)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(put-down orange)
+(pick-up red)
+(stack red orange)
+(put-down red)
+(pick-up yellow)
+(stack yellow red)
+(put-down yellow)
+(pick-up blue)
+(stack blue yellow)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(put-down orange)
+(pick-up red)
+(stack red orange)
+(put-down red)
+(pick-up yellow)
+(stack yellow red)
+(put-down yellow)
+(pick-up blue)
+(stack blue yellow)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(put-down orange)
+(pick-up red)
+
+-------- Ground truth plan ---------
+(unstack yellow orange)
+(put-down yellow)
+(pick-up orange)
+(stack orange red)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-2.pddl
+
+ Instance ./instances/generated_basic/instance-3.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the yellow block is clear, the hand is empty, the red block is on top of the blue block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
+My goal is to have that the orange block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the yellow block from on top of the orange block
+put down the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the blue block is clear, the hand is empty, the blue block is on top of the orange block, the orange block is on top of the yellow block, the yellow block is on top of the red block and the red block is on the table.
+My goal is to have that the red block is on top of the orange block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+put down the blue block
+pick up the red block
+pick up the yellow block
+put down the yellow block
+put down the red
+--------- Extracted plan ---------
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+(put-down red)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(pick-up yellow)
+(put-down yellow)
+
+-------- Ground truth plan ---------
+(unstack blue orange)
+(put-down blue)
+(unstack orange yellow)
+(put-down orange)
+(unstack yellow red)
+(stack yellow blue)
+(pick-up red)
+(stack red orange)
+(unstack yellow blue)
+(stack yellow red)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-3.pddl
+
+ Instance ./instances/generated_basic/instance-4.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the blue block is clear, the hand is empty, the blue block is on top of the orange block, the orange block is on top of the yellow block, the yellow block is on top of the red block and the red block is on the table.
+My goal is to have that the red block is on top of the orange block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the blue block from on top of the orange block
+put down the blue block
+unstack the orange block from on top of the yellow block
+put down the orange block
+unstack the yellow block from on top of the red block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the orange block
+unstack the yellow block from on top of the blue block
+stack the yellow block on top of the red block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the yellow block is clear, the hand is empty, the red block is on top of the orange block, the orange block is on top of the blue block, the yellow block is on top of the red block and the blue block is on the table.
+My goal is to have that the red block is on top of the yellow block and the yellow block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+stack the orange
+--------- Extracted plan ---------
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(stack orange red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(stack orange red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(stack orange red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(stack orange red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(stack orange red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(stack orange red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+
+-------- Ground truth plan ---------
+(unstack yellow red)
+(put-down yellow)
+(unstack red orange)
+(put-down red)
+(unstack orange blue)
+(put-down orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-4.pddl
+
+ Instance ./instances/generated_basic/instance-5.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the yellow block is clear, the hand is empty, the red block is on top of the orange block, the orange block is on top of the blue block, the yellow block is on top of the red block and the blue block is on the table.
+My goal is to have that the red block is on top of the yellow block and the yellow block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the yellow block from on top of the red block
+put down the yellow block
+unstack the red block from on top of the orange block
+put down the red block
+unstack the orange block from on top of the blue block
+put down the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the orange block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the red block, the orange block is on top of the blue block, the red block is on the table and the yellow block is on the table.
+My goal is to have that the blue block is on top of the red block and the yellow block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put down the red block
+pick up the yellow block
+put down the yellow block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the red block
+put
+--------- Extracted plan ---------
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+(put-down red)
+(pick-up yellow)
+(put-down yellow)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up red)
+
+-------- Ground truth plan ---------
+(pick-up yellow)
+(stack yellow orange)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-5.pddl
+
+ Instance ./instances/generated_basic/instance-6.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the orange block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the red block, the orange block is on top of the blue block, the red block is on the table and the yellow block is on the table.
+My goal is to have that the blue block is on top of the red block and the yellow block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+pick up the yellow block
+stack the yellow block on top of the orange block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the yellow block is clear, the hand is empty, the red block is on top of the orange block, the orange block is on top of the blue block, the yellow block is on top of the red block and the blue block is on the table.
+My goal is to have that the red block is on top of the blue block and the yellow block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+
+--------- Extracted plan ---------
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+
+-------- Ground truth plan ---------
+(unstack yellow red)
+(put-down yellow)
+(unstack red orange)
+(stack red yellow)
+(unstack orange blue)
+(put-down orange)
+(unstack red yellow)
+(stack red blue)
+(pick-up yellow)
+(stack yellow orange)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-6.pddl
+
+ Instance ./instances/generated_basic/instance-7.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the yellow block is clear, the hand is empty, the red block is on top of the orange block, the orange block is on top of the blue block, the yellow block is on top of the red block and the blue block is on the table.
+My goal is to have that the red block is on top of the blue block and the yellow block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the yellow block from on top of the red block
+put down the yellow block
+unstack the red block from on top of the orange block
+stack the red block on top of the yellow block
+unstack the orange block from on top of the blue block
+put down the orange block
+unstack the red block from on top of the yellow block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the hand is empty, the red block is on top of the yellow block, the blue block is on top of the orange block, the yellow block is on top of the blue block and the orange block is on the table.
+My goal is to have that the red block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put down the orange block
+pick up the red block
+put down the red block
+pick up the orange block
+put
+--------- Extracted plan ---------
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+(put-down orange)
+(pick-up red)
+(put-down red)
+(pick-up orange)
+
+-------- Ground truth plan ---------
+(unstack red yellow)
+(put-down red)
+(unstack yellow blue)
+(put-down yellow)
+(unstack blue orange)
+(put-down blue)
+(pick-up red)
+(stack red orange)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-7.pddl
+
+ Instance ./instances/generated_basic/instance-8.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the hand is empty, the red block is on top of the yellow block, the blue block is on top of the orange block, the yellow block is on top of the blue block and the orange block is on the table.
+My goal is to have that the red block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the red block from on top of the yellow block
+put down the red block
+unstack the yellow block from on top of the blue block
+put down the yellow block
+unstack the blue block from on top of the orange block
+put down the blue block
+pick up the red block
+stack the red block on top of the orange block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the red block is on top of the blue block, the blue block is on top of the yellow block and the yellow block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+pick up the blue block
+pick up the yellow block
+stack the red block on top of the blue block
+stack the blue block on top of the yellow block
+
+--------- Extracted plan ---------
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+(stack yellow orange)
+(pick-up red)
+(pick-up blue)
+(pick-up yellow)
+(stack red blue)
+(stack blue yellow)
+
+-------- Ground truth plan ---------
+(unstack blue orange)
+(stack blue red)
+(pick-up yellow)
+(stack yellow orange)
+(unstack blue red)
+(stack blue yellow)
+(pick-up red)
+(stack red blue)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-8.pddl
+
+ Instance ./instances/generated_basic/instance-9.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the blue block is on top of the orange block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the red block is on top of the blue block, the blue block is on top of the yellow block and the yellow block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the blue block from on top of the orange block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the orange block
+unstack the blue block from on top of the red block
+stack the blue block on top of the yellow block
+pick up the red block
+stack the red block on top of the blue block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the blue block is clear, the orange block is clear, the hand is empty, the orange block is on top of the yellow block, the yellow block is on top of the red block, the red block is on the table and the blue block is on the table.
+My goal is to have that the red block is on top of the orange block, the blue block is on top of the red block and the yellow block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+stack the yellow block on top of the orange block
+pick up the blue block
+pick up the red block
+pick up the yellow block
+stack the blue block on top of the red block
+stack the red block on top of the yellow block
+
+--------- Extracted plan ---------
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+(stack yellow orange)
+(pick-up blue)
+(pick-up red)
+(pick-up yellow)
+(stack blue red)
+(stack red yellow)
+
+-------- Ground truth plan ---------
+(unstack orange yellow)
+(put-down orange)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red orange)
+(pick-up blue)
+(stack blue red)
+(pick-up yellow)
+(stack yellow blue)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-9.pddl
+
+ Instance ./instances/generated_basic/instance-10.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the blue block is clear, the orange block is clear, the hand is empty, the orange block is on top of the yellow block, the yellow block is on top of the red block, the red block is on the table and the blue block is on the table.
+My goal is to have that the red block is on top of the orange block, the blue block is on top of the red block and the yellow block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the orange block from on top of the yellow block
+put down the orange block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the orange block
+pick up the blue block
+stack the blue block on top of the red block
+pick up the yellow block
+stack the yellow block on top of the blue block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the orange block is clear, the yellow block is clear, the hand is empty, the orange block is on top of the blue block, the yellow block is on top of the red block, the red block is on the table and the blue block is on the table.
+My goal is to have that the red block is on top of the yellow block and the blue block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the orange block
+pick up the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+stack the orange block on top of the red block
+stack the blue block on top of the orange block
+pick up the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+pick up the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+stack the orange block on top of the red block
+stack the blue block on top of the orange block
+pick up the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+pick up the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+stack the orange block on top of the red block
+stack the blue block on top of the orange block
+pick up the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+pick up the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+stack the orange block on top of the red block
+stack the blue block on top of the orange block
+pick up the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the orange block
+pick up the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+stack the orange block on top of the red block
+stack the blue block on top of the orange block
+pick up the yellow block
+pick up the blue block
+stack the blue block on top of the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+
+--------- Extracted plan ---------
+(pick-up orange)
+(pick-up yellow)
+(pick-up red)
+(stack red yellow)
+(stack orange red)
+(stack blue orange)
+(pick-up yellow)
+(pick-up blue)
+(stack blue yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(pick-up yellow)
+(pick-up red)
+(stack red yellow)
+(stack orange red)
+(stack blue orange)
+(pick-up yellow)
+(pick-up blue)
+(stack blue yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(pick-up yellow)
+(pick-up red)
+(stack red yellow)
+(stack orange red)
+(stack blue orange)
+(pick-up yellow)
+(pick-up blue)
+(stack blue yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(pick-up yellow)
+(pick-up red)
+(stack red yellow)
+(stack orange red)
+(stack blue orange)
+(pick-up yellow)
+(pick-up blue)
+(stack blue yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red blue)
+(pick-up orange)
+(pick-up yellow)
+(pick-up red)
+(stack red yellow)
+(stack orange red)
+(stack blue orange)
+(pick-up yellow)
+(pick-up blue)
+(stack blue yellow)
+(stack yellow blue)
+(pick-up red)
+
+-------- Ground truth plan ---------
+(unstack orange blue)
+(put-down orange)
+(pick-up blue)
+(stack blue orange)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-10.pddl
+
+ Instance ./instances/generated_basic/instance-11.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the orange block is clear, the yellow block is clear, the hand is empty, the orange block is on top of the blue block, the yellow block is on top of the red block, the red block is on the table and the blue block is on the table.
+My goal is to have that the red block is on top of the yellow block and the blue block is on top of the orange block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the orange block from on top of the blue block
+put down the orange block
+pick up the blue block
+stack the blue block on top of the orange block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the hand is empty, the red block is on top of the yellow block, the blue block is on top of the orange block, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the blue block is on top of the yellow block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+unstack the blue block from on top of the orange block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the yellow block
+pick up
+--------- Extracted plan ---------
+(pick-up blue)
+(unstack blue orange)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red yellow)
+
+-------- Ground truth plan ---------
+(unstack red yellow)
+(put-down red)
+(pick-up yellow)
+(stack yellow red)
+(unstack blue orange)
+(stack blue yellow)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-11.pddl
+
+ Instance ./instances/generated_basic/instance-12.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the hand is empty, the red block is on top of the yellow block, the blue block is on top of the orange block, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the blue block is on top of the yellow block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the red block from on top of the yellow block
+put down the red block
+pick up the yellow block
+stack the yellow block on top of the red block
+unstack the blue block from on top of the orange block
+stack the blue block on top of the yellow block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the orange block is clear, the hand is empty, the blue block is on top of the yellow block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the blue block is on top of the orange block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the red block
+pick up the blue block
+put down the red block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+
+--------- Extracted plan ---------
+(pick-up red)
+(pick-up blue)
+(put-down red)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+
+-------- Ground truth plan ---------
+(unstack blue yellow)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-12.pddl
+
+ Instance ./instances/generated_basic/instance-13.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the orange block is clear, the hand is empty, the blue block is on top of the yellow block, the red block is on the table, the orange block is on the table and the yellow block is on the table.
+My goal is to have that the blue block is on top of the orange block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the blue block from on top of the yellow block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the orange block is clear, the yellow block is clear, the hand is empty, the orange block is on top of the blue block, the yellow block is on top of the red block, the red block is on the table and the blue block is on the table.
+My goal is to have that the red block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+
+--------- Extracted plan ---------
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+
+-------- Ground truth plan ---------
+(unstack orange blue)
+(put-down orange)
+(unstack yellow red)
+(put-down yellow)
+(pick-up red)
+(stack red blue)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-13.pddl
+
+ Instance ./instances/generated_basic/instance-14.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the orange block is clear, the yellow block is clear, the hand is empty, the orange block is on top of the blue block, the yellow block is on top of the red block, the red block is on the table and the blue block is on the table.
+My goal is to have that the red block is on top of the blue block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the orange block from on top of the blue block
+put down the orange block
+unstack the yellow block from on top of the red block
+put down the yellow block
+pick up the red block
+stack the red block on top of the blue block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the hand is empty, the red block is on top of the blue block, the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on the table.
+My goal is to have that the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the blue block
+put down the orange block
+put down the yellow block
+pick up the red block
+stack the red block on top of the blue block
+unique_ptr<stack>
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the hand is empty, the red block is on top of the blue block, the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on the table.
+My goal is to have that the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the blue block
+put down the orange block
+put down the yellow block
+pick up the red block
+stack the red block on top of the blue block
+unique_ptr<stack>
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the hand is empty, the red block is on top of the blue block, the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on the table.
+My goal is to have that the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+put down the blue block
+put down the orange block
+put down the yellow block
+pick up the red block
+stack the red block on top of the blue block
+unique_ptr<stack>
+
+[
+--------- Extracted plan ---------
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(put-down blue)
+(put-down orange)
+(put-down yellow)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(put-down blue)
+(put-down orange)
+(put-down yellow)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(put-down blue)
+(put-down orange)
+(put-down yellow)
+(pick-up red)
+(stack red blue)
+
+-------- Ground truth plan ---------
+(unstack red blue)
+(put-down red)
+(unstack blue orange)
+(put-down blue)
+(unstack orange yellow)
+(stack orange blue)
+(pick-up yellow)
+(stack yellow red)
+(unstack orange blue)
+(stack orange yellow)
+(pick-up blue)
+(stack blue orange)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-14.pddl
+
+ Instance ./instances/generated_basic/instance-15.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the hand is empty, the red block is on top of the blue block, the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on the table.
+My goal is to have that the blue block is on top of the orange block, the orange block is on top of the yellow block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the red block from on top of the blue block
+put down the red block
+unstack the blue block from on top of the orange block
+put down the blue block
+unstack the orange block from on top of the yellow block
+stack the orange block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+unstack the orange block from on top of the blue block
+stack the orange block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the orange block is clear, the hand is empty, the blue block is on top of the yellow block, the orange block is on top of the blue block, the red block is on the table and the yellow block is on the table.
+My goal is to have that the red block is on top of the orange block and the blue block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the red block
+put down the red block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put down the orange block
+pick up the yellow block
+put down the yellow block
+pick up the blue block
+put down the blue block
+pick up the orange block
+put
+--------- Extracted plan ---------
+(pick-up red)
+(put-down red)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+(put-down orange)
+(pick-up yellow)
+(put-down yellow)
+(pick-up blue)
+(put-down blue)
+(pick-up orange)
+
+-------- Ground truth plan ---------
+(unstack orange blue)
+(put-down orange)
+(pick-up red)
+(stack red orange)
+(unstack blue yellow)
+(stack blue red)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-15.pddl
+
+ Instance ./instances/generated_basic/instance-16.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the orange block is clear, the hand is empty, the blue block is on top of the yellow block, the orange block is on top of the blue block, the red block is on the table and the yellow block is on the table.
+My goal is to have that the red block is on top of the orange block and the blue block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the orange block from on top of the blue block
+put down the orange block
+pick up the red block
+stack the red block on top of the orange block
+unstack the blue block from on top of the yellow block
+stack the blue block on top of the red block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the yellow block is on top of the orange block, the red block is on the table, the blue block is on the table and the orange block is on the table.
+My goal is to have that the orange block is on top of the blue block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the orange block
+pick up the blue block
+put down the orange block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the red block on top of the blue block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the orange block
+put down the orange block
+pick up the blue block
+put down the blue block
+pick up the yellow block
+stack the yellow block on top of the orange block
+pick up the red block
+stack the
+--------- Extracted plan ---------
+(pick-up orange)
+(pick-up blue)
+(put-down orange)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+(stack red blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+(stack red blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+(stack red blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+(stack red blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+(stack red blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+(stack red blue)
+(pick-up yellow)
+(stack yellow red)
+(pick-up orange)
+(put-down orange)
+(pick-up blue)
+(put-down blue)
+(pick-up yellow)
+(stack yellow orange)
+(pick-up red)
+
+-------- Ground truth plan ---------
+(unstack yellow orange)
+(stack yellow red)
+(pick-up orange)
+(stack orange blue)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-16.pddl
+
+ Instance ./instances/generated_basic/instance-17.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the yellow block is clear, the hand is empty, the yellow block is on top of the orange block, the red block is on the table, the blue block is on the table and the orange block is on the table.
+My goal is to have that the orange block is on top of the blue block and the yellow block is on top of the red block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the yellow block from on top of the orange block
+stack the yellow block on top of the red block
+pick up the orange block
+stack the orange block on top of the blue block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the hand is empty, the red block is on top of the yellow block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
+My goal is to have that the blue block is on top of the orange block and the orange block is on top of the yellow block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the yellow block
+stack the yellow block on top of the red block
+pick up the red block
+stack the red block on top of the blue block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the orange block
+
+--------- Extracted plan ---------
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+(stack orange yellow)
+(pick-up yellow)
+(stack yellow red)
+(pick-up red)
+(stack red blue)
+(pick-up blue)
+(stack blue orange)
+(pick-up orange)
+
+-------- Ground truth plan ---------
+(unstack red yellow)
+(put-down red)
+(unstack yellow orange)
+(put-down yellow)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(stack blue orange)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-17.pddl
+
+ Instance ./instances/generated_basic/instance-18.pddl
+
+===================================FAILURE===================================
+I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
+
+Pick up a block
+Unstack a block from on top of another block
+Put down a block
+Stack a block on top of another block
+
+I have the following restrictions on my actions:
+I can only pick up or unstack one block at a time.
+I can only pick up or unstack a block if my hand is empty.
+I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
+I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
+I can only unstack a block from on top of another block if the block I am unstacking is clear.
+Once I pick up or unstack a block, I am holding the block.
+I can only put down a block that I am holding.
+I can only stack a block on top of another block if I am holding the block being stacked.
+I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
+Once I put down or stack a block, my hand becomes empty.
+
+[STATEMENT]
+As initial conditions I have that, the red block is clear, the blue block is clear, the hand is empty, the red block is on top of the yellow block, the yellow block is on top of the orange block, the blue block is on the table and the orange block is on the table.
+My goal is to have that the blue block is on top of the orange block and the orange block is on top of the yellow block.
+
+My plan is as follows:
+
+[PLAN]
+unstack the red block from on top of the yellow block
+put down the red block
+unstack the yellow block from on top of the orange block
+put down the yellow block
+pick up the orange block
+stack the orange block on top of the yellow block
+pick up the blue block
+stack the blue block on top of the orange block
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, the yellow block is clear, the hand is empty, the red block is on top of the orange block, the blue block is on top of the red block, the yellow block is on top of the blue block and the orange block is on the table.
+My goal is to have that the blue block is on top of the orange block and the orange block is on top of the yellow block.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+stack the yellow block on top of the blue block
+pick up the red block
+stack the red block on top of the yellow block
+pick up the orange block
+stack the orange block on top of the red block
+pick up the blue block
+stack the blue block on top of the orange block
+pick up the yellow block
+
+--------- Extracted plan ---------
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+(stack yellow blue)
+(pick-up red)
+(stack red yellow)
+(pick-up orange)
+(stack orange red)
+(pick-up blue)
+(stack blue orange)
+(pick-up yellow)
+
+-------- Ground truth plan ---------
+(unstack yellow blue)
+(put-down yellow)
+(unstack blue red)
+(put-down blue)
+(unstack red orange)
+(put-down red)
+(pick-up orange)
+(stack orange yellow)
+(pick-up blue)
+(stack blue orange)
+
+=============================================================================

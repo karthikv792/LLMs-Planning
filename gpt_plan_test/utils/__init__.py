@@ -140,7 +140,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
 
         if model:
             response = generate_from_bloom(model['model'], model['tokenizer'], query, max_tokens)
-            response.replace(query, '')
+            response = response.replace(query, '')
             return response
         else:
             assert model is not None
