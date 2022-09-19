@@ -62,9 +62,7 @@ class ReasoningTasks():
 
     def get_bloom(self):
         max_memory_mapping = {0: "40GB", 1: "40GB", 2: "40GB", 3: "40GB", 4: "40GB", 5: "40GB"}
-        tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom")
-        stop = tokenizer("[PLAN END]", return_tensors='pt')
-        stoplist = StoppingCriteriaList([stop])
+        tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom",eos_token='[PLAN END]')
         model = AutoModelForCausalLM.from_pretrained("bigscience/bloom", cache_dir='/data/karthik/LLM_models/bloom/',
                                                      local_files_only=False, load_in_8bit=True, device_map='auto',
                                                      max_memory=max_memory_mapping)

@@ -5,7 +5,7 @@ import numpy as np
 import hashlib
 from tarski.io import PDDLReader
 from tarski.syntax.formulas import *
-from transformers import StoppingCriteriaList
+from transformers import StoppingCriteriaList, StoppingCriteria
 
 
 
@@ -123,6 +123,9 @@ class Callbacks():
             with open(self.instances_template.format(c), "w+") as fd:
                 fd.write(instance)
 
+class new_criteria(StoppingCriteria):
+    def __call__(self, input_ids, scores) -> bool:
+        return input_ids.shape[-1] >= self.max_length
 
 def generate_from_bloom(model, tokenizer, query, max_tokens):
     encoded_input = tokenizer(query, return_tensors='pt')
@@ -137,6 +140,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
 
         if model:
             response = generate_from_bloom(model['model'], model['tokenizer'], query, max_tokens)
+            response.replace(query, '')
             return response
         else:
             assert model is not None
