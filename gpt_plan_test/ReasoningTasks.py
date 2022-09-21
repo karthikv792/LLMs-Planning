@@ -82,11 +82,12 @@ class ReasoningTasks():
         domain_pddl = f'./instances/{self.data["domain_file"]}'
         instance_folder = f'./instances/{domain_name}/'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
-
+        start = self.data['start']
+        end = self.data['end']
+        n_files = end-start+1#min(self.data['n_instances'], len(os.listdir(instance_folder)))
         final_output = ""
         correct_plans = 0
-        for start in range(1, n_files + 2 - self.n_examples):
+        for start in range(start, end + 2 - self.n_examples):
             query = self.data["domain_intro"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -175,11 +176,13 @@ class ReasoningTasks():
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
         single_goal_instances = 0
-        n = self.data['n_instances']
+        start = self.data['start']
+        end = self.data['end']
+        n = end-start+1
         skipped = 0
         corrects = {"Random": 0, "Full->Specific": 0, "Specific->Full": 0}
         final_output = ""
-        for i in range(1, n + 1):
+        for i in range(start, end + 1):
             cur_instance = instance.format(i)
             final_output += f"\n Instance {cur_instance}\n"
             plan_executor = self.get_executor(cur_instance, domain)
@@ -276,11 +279,13 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        start = self.data['start']
+        end = self.data['end']
+        n = end-start+1
         final_output = ""
         correct_plans = 0
 
-        for i in range(1, n):
+        for i in range(start, end+1):
             cur_instance = instance.format(i)
             plan_executor = self.get_executor(cur_instance, domain)
             problem = self.get_problem(cur_instance, domain)
@@ -330,10 +335,12 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        start = self.data['start']
+        end = self.data['end']
+        n = end-start+1
         final_output = ""
         correct_plans = 0
-        for start in range(1, n + 2 - self.n_examples):
+        for start in range(start, end + 2 - self.n_examples):
             query = self.data["domain_intro_cost"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -408,13 +415,15 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        start = self.data['start']
+        end = self.data['end']
+        n = end-start+1
         final_output = ""
 
         correct_plans = 0
         no_possible_plans = 0
 
-        for start in range(1, n + 2 - self.n_examples):
+        for start in range(start, end + 2 - self.n_examples):
             query = self.data["domain_intro"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
@@ -469,10 +478,12 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        start = self.data['start']
+        end = self.data['end']
+        n = end-start+1
         final_output = ""
         correct_answers = 0
-        for start in range(1, n + 2 - self.n_examples):
+        for start in range(start, end + 2 - self.n_examples):
             query = self.data["domain_intro"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
