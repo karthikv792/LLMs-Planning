@@ -61,7 +61,7 @@ class ReasoningTasks():
         return plan_executor
 
     def get_bloom(self):
-        max_memory_mapping = {0: "0GB", 1: "40GB", 2: "40GB", 3: "40GB", 4: "40GB", 5: "40GB"}
+        max_memory_mapping = {0: "0GB", 1: "43GB", 2: "43GB", 3: "43GB", 4: "43GB", 5: "43GB"}
         tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom")
         model = AutoModelForCausalLM.from_pretrained("bigscience/bloom", cache_dir='/data/karthik/LLM_models/bloom/',
                                                      local_files_only=False, load_in_8bit=True, device_map='auto',
@@ -317,7 +317,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 # print(valid_or_no
             self.save_output("task3_plan_subset", final_output)
-            break
+            
 
         exec_plans = n
         final_output += "\nResults:\n"
@@ -335,7 +335,7 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        start = self.data['start']
+        start = self.data['start']+1
         end = self.data['end']
         n = end-start+1
         final_output = ""
@@ -398,7 +398,7 @@ class ReasoningTasks():
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
             final_output += "\n=============================================================================\n"
             self.save_output("task5_optimality", final_output)
-            break
+            #break
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
@@ -456,7 +456,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(valid_or_not)
             self.save_output("task6_replanning", final_output)
-            break
+            #break
 
 
         exec_plans = n - no_possible_plans
@@ -517,7 +517,7 @@ class ReasoningTasks():
             final_output += "\n=============================================================================\n"
 
             self.save_output("task7_plan_execution", final_output)
-            break
+            #break
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_answers}/{exec_plans} = {round(correct_answers / exec_plans * 100, 2)}%"

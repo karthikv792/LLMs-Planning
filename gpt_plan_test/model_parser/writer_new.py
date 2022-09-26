@@ -4,7 +4,7 @@ from tarski import model
 from tarski.fstrips.problem import create_fstrips_problem
 from tarski.io.fstrips import print_init, print_goal, print_formula, print_atom
 from tarski.fstrips import language
-from tarski.syntax import land, top, VariableBinding
+from tarski.syntax import land, top, VariableBinding, Interval
 from tarski.syntax import sorts
 from tarski.io.fstrips import FstripsWriter
 from tarski.errors import UndefinedSort
@@ -36,13 +36,18 @@ class ModelWriter(object):
 
     def create_hierarchy(self):
         # print(self.fstrips_problem.language._sorts)
+        # print(self.fstrips_problem.language.ancestor_sorts)
         imm_parents = self.model_dict[HIERARCHY][IMM_PARENT]
         for obj in imm_parents:
             try:
                 sort = self.fstrips_problem.language.get_sort(obj[0])
             except UndefinedSort:
-                # print(obj)
-                if obj[2] == 1:
+                if obj[0]=='number': #Make number also a builtin sort
+                    parent = self.fstrips_problem.language.get_sort(obj[1])
+                    new_sort = Interval(obj[0], self.fstrips_problem.language, parent.encode, parent.lower_bound, parent.upper_bound,builtin=True)
+                    self.fstrips_problem.language.attach_sort(new_sort,parent)
+                    continue
+                elif obj[2] == 1:
                     parent = self.fstrips_problem.language.get_sort(obj[1])
                     # print(parent)
                     self.fstrips_problem.language.interval(obj[0], parent, parent.lower_bound, parent.upper_bound)

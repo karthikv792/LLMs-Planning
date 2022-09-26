@@ -1,7 +1,0 @@
-(pick-up b)
-(unstack b c)
-(put-down b)
-(pick-up c)
-(stack c d)
-(pick-up d)
-(stack d a)
