@@ -2,3 +2,4 @@ numpy==1.19.5
 openai==0.19.0
 PyYAML==6.0
 tarski==0.7.0
+transformers==4.22.2

@@ -7,50 +7,9 @@ from pathlib import Path
 from tarski.io import PDDLReader
 import argparse
 import time
+from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModel
 
 np.random.seed(42)
-
-INTRO = """
-I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
-
-Pick up a block
-Unstack a block from on top of another block
-Put down a block
-Stack a block on top of another block
-
-I have the following restrictions on my actions:
-I can only pick up or unstack one block at a time.
-I can only pick up or unstack a block if my hand is empty.
-I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
-I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
-I can only unstack a block from on top of another block if the block I am unstacking is clear.
-Once I pick up or unstack a block, I am holding the block.
-I can only put down a block that I am holding.
-I can only stack a block on top of another block if I am holding the block being stacked.
-I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
-Once I put down or stack a block, my hand becomes empty.
-"""
-
-INTRO_COST = """
-I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do:
-
-Pick up a block. It takes 1 minute to pick up a block.
-Unstack a block from on top of another block. It takes 1 minute to unstack a block from on top of another block.
-Put down a block. It takes 1 minute to put down a block.
-Stack a block on top of another block. It takes 1 minute to stack a block on top of another block.
-
-I have the following restrictions on my actions:
-I can only pick up or unstack one block at a time.
-I can only pick up or unstack a block if my hand is empty.
-I can only pick up a block if the block is on the table and the block is clear. A block is clear if the block has no other blocks on top of it and if the block is not picked up.
-I can only unstack a block from on top of another block if the block I am unstacking was really on top of the other block.
-I can only unstack a block from on top of another block if the block I am unstacking is clear.
-Once I pick up or unstack a block, I am holding the block.
-I can only put down a block that I am holding.
-I can only stack a block on top of another block if I am holding the block being stacked.
-I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
-Once I put down or stack a block, my hand becomes empty.
-"""
 
 success_template = "{} {} {} {}"
 verbose_template="""
@@ -84,6 +43,10 @@ class ReasoningTasks():
 
         self.plan_file = "sas_plan"
         self.gpt3_plan_file = "gpt_sas_plan"
+        if self.engine == 'bloom':
+            self.model = self.get_bloom()
+        else:
+            self.model = None
 
     # ========================================== UTILS ========================================== #
     def compute_plan(self, domain, instance, timeout=30):
@@ -110,6 +73,14 @@ class ReasoningTasks():
         plan_executor = Executor(domain, instance)
         return plan_executor
 
+    def get_bloom(self):
+        max_memory_mapping = {0: "0GB", 1: "43GB", 2: "43GB", 3: "43GB", 4: "43GB", 5: "43GB"}
+        tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom")
+        model = AutoModelForCausalLM.from_pretrained("bigscience/bloom", cache_dir='/data/karthik/LLM_models/bloom/',
+                                                     local_files_only=False, load_in_8bit=True, device_map='auto',
+                                                     max_memory=max_memory_mapping)
+        return {'model': model, 'tokenizer': tokenizer}
+
     def save_output(self, output_file, final_output):
         os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
         with open(f"outputs/{self.engine}/" + output_file + ".txt", 'w+') as f:
@@ -130,10 +101,13 @@ class ReasoningTasks():
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
         n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
 
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n_files = i_end - i_start + 1  # min(self.data['n_instances'], len(os.listdir(instance_folder)))
         final_output = ""
         correct_plans = 0
-        for start in range(1, n_files + 2 - self.n_examples):
-            query = INTRO
+        for start in range(i_start, i_end + 2 - self.n_examples):
+            query = self.data["domain_intro"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
                 get_plan = not last_plan
@@ -151,8 +125,8 @@ class ReasoningTasks():
                 query += fill_template(*instance_to_text_blocksworld(problem, get_plan, self.data))
                 # --------------------------------------------------------- #
 
-            # Querying GPT-3
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+            # Querying LLM
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
 
             # Do text_to_plan procedure
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
@@ -200,11 +174,13 @@ class ReasoningTasks():
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
         single_goal_instances = 0
-        n = self.data['n_instances']
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n = i_end - i_start + 1
         skipped = 0
         corrects = {"Random": 0, "Full->Specific": 0, "Specific->Full": 0}
         final_output = ""
-        for i in range(1, n + 1):
+        for i in range(i_start, i_end + 1):
             cur_instance = instance.format(i)
             final_output += f"\n Instance {cur_instance}\n"
             plan_executor = self.get_executor(cur_instance, domain)
@@ -234,11 +210,11 @@ class ReasoningTasks():
                 continue
             single_goal_instances += 1 if number_of_preds == 1 else 0
             # =============== Random =============== #
-            query = INTRO
+            query = self.data["domain_intro"]
             query += fill_template(init_specific, goal_specific, plan_specific)
             query += fill_template(init_specific, goal_specific_shuffled, "")
 
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
 
             correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
@@ -252,11 +228,11 @@ class ReasoningTasks():
             # =============== Full->Specific and Specific->Full =============== #
             descriptions = list(corrects.keys())[1:][::-1]
             for goal_1, goal_2, descr in zip([goal_specific, goal_full], [goal_full, goal_specific], descriptions):
-                query = INTRO
+                query = self.data["domain_intro"]
                 query += fill_template(init_specific, goal_1, plan_specific)
                 query += fill_template(init_specific, goal_2, "")
 
-                gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+                gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
                 _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
                 correct = int(validate_plan(domain, cur_instance, self.gpt3_plan_file))
                 corrects[descr] += correct
@@ -289,11 +265,13 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n = i_end - i_start + 1
         final_output = ""
         correct_plans = 0
 
-        for i in range(1, n):
+        for i in range(i_start, n):
             cur_instance = instance.format(i)
             plan_executor = self.get_executor(cur_instance, domain)
             problem = self.get_problem(cur_instance, domain)
@@ -303,12 +281,12 @@ class ReasoningTasks():
             full_plan, plan = generate_plan_subset(plan_executor, self.data, True)
             subset_plan, plan_subset = generate_plan_subset(plan_executor, self.data, False)
             gt_plan_text = get_plan_as_text(self.data, plan_subset)
-            query = INTRO
+            query = self.data["domain_intro"]
             query += full_plan
             query += subset_plan
             # --------------------------------------------------------- #
 
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data,
                                                     True)
             plan_executor.get_new_instance(change_goal=True, change_init=False)
@@ -344,11 +322,13 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        start = self.data['start'] + 1
+        end = self.data['end']
+        n = end - start + 1
         final_output = ""
         correct_plans = 0
-        for start in range(1, n + 2 - self.n_examples):
-            query = INTRO_COST
+        for start in range(start, n + 2 - self.n_examples):
+            query = self.data["domain_intro_cost"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
                 get_plan = not last_plan
@@ -367,7 +347,7 @@ class ReasoningTasks():
                 # --------------------------------------------------------- #
 
             # Querying GPT-3
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
 
             # Do text_to_plan procedure
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
@@ -420,14 +400,16 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n = i_end - i_start + 1
         final_output = ""
 
         correct_plans = 0
         no_possible_plans = 0
 
-        for start in range(1, n + 2 - self.n_examples):
-            query = INTRO
+        for start in range(i_start, i_end + 2 - self.n_examples):
+            query = self.data["domain_intro"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
                 get_plan = not last_plan
@@ -439,7 +421,7 @@ class ReasoningTasks():
                 # gt_plan = self.compute_plan(domain, cur_instance)
                 text, plan = replanning(plan_executor, self.data, get_plan, harder)
                 query += text
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
             gt_plan_text = get_plan_as_text(self.data, plan)
             # Do text_to_plan procedure
             _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
@@ -482,11 +464,13 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        n = self.data['n_instances']
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n = i_end - i_start + 1
         final_output = ""
         correct_answers = 0
-        for start in range(1, n + 2 - self.n_examples):
-            query = INTRO
+        for start in range(i_start, i_end + 2 - self.n_examples):
+            query = self.data["domain_intro"]
             for i in range(start, start + self.n_examples + 1):
                 last_plan = True if i == start + self.n_examples else False
                 get_plan = not last_plan
@@ -500,7 +484,7 @@ class ReasoningTasks():
                 # --------------------------------------------------------- #
 
             # Querying GPT-3
-            gpt3_response = send_query_gpt3(query, self.engine, self.max_gpt_response_length)
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
 
             # Do text_to_plan procedure
             # gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)

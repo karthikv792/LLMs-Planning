@@ -5,6 +5,7 @@ import numpy as np
 import hashlib
 from tarski.io import PDDLReader
 from tarski.syntax.formulas import *
+from transformers import StoppingCriteriaList, StoppingCriteria
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 random.seed(10)
@@ -120,25 +121,46 @@ class Callbacks():
             with open(self.instances_template.format(c), "w+") as fd:
                 fd.write(instance)
 
+def generate_from_bloom(model, tokenizer, query, max_tokens):
+    encoded_input = tokenizer(query, return_tensors='pt')
+    stop = tokenizer("[PLAN END]", return_tensors='pt')
+    stoplist = StoppingCriteriaList([stop])
+    output_sequences = model.generate(input_ids=encoded_input['input_ids'].cuda(), max_new_tokens=max_tokens, temperature=0,top_p=1)
+    return tokenizer.decode(output_sequences[0], skip_special_tokes=True)
 
-def send_query_gpt3(query, engine, max_tokens, stop="[STATEMENT]"):
+def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
     max_token_err_flag = False
-    try:
-        response = openai.Completion.create(
-            model=engine,
-            prompt=query,
-            temperature=0,
-            max_tokens=max_tokens,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=stop)
-    except Exception as e:
-        max_token_err_flag = True
-        print("[-]: Failed GPT3 query execution: {}".format(e))
+    if engine=='bloom':
 
-    text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
-    return text_response.strip()
+        if model:
+            response = generate_from_bloom(model['model'], model['tokenizer'], query, max_tokens)
+            response = response.replace(query, '')
+            resp_string = ""
+            for line in response.split('\n'):
+                if '[PLAN END]' in line:
+                    break
+                else:
+                    resp_string+=f'{line}\n'
+            return resp_string
+        else:
+            assert model is not None
+    else:
+        try:
+            response = openai.Completion.create(
+                model=engine,
+                prompt=query,
+                temperature=0,
+                max_tokens=max_tokens,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0,
+                stop=stop)
+        except Exception as e:
+            max_token_err_flag = True
+            print("[-]: Failed GPT3 query execution: {}".format(e))
+
+        text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
+        return text_response.strip()
 
 
 def treat_on(letters_dict, atom):
@@ -201,12 +223,10 @@ def get_ordered_objects(object_names, line):
 
 def validate_plan(domain, instance, plan_file):
     val_path = os.getenv("VAL")
-    val_bin = f"validate" if os.path.exists(f"{val_path}/validate") else "Validate"
-
-    assert os.path.exists(f"{val_path}/{val_bin}")
-
-    cmd = f"{val_path}/{val_bin} {domain} {instance} {plan_file}"
+    cmd = f"{val_path}/validate {domain} {instance} {plan_file}"
     response = os.popen(cmd).read()
+    if 'Problem in domain' in response:
+        raise Exception('Problem in domain: Check PDDL Writer')
     return True if "Plan valid" in response else False
 
 
