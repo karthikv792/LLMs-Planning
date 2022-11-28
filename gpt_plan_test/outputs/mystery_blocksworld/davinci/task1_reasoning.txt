@@ -1,0 +1,131 @@
+
+ Instance ./instances/generated_basic/instance-1.pddl
+
+ Instance ./instances/generated_basic/instance-2.pddl
+=================================== 1_reasoning FAILURE ===================================
+I am playing with a set of objects. Here are the actions I can do
+
+   Attack object
+   Feast object from another object
+   Succumb object
+   Overcome object from another object
+
+I have the following restrictions on my actions:
+    To perform Attack action, the following facts need to be true: Province object, Planet object, Harmony.
+    Once Attack action is performed the following facts will be true: Pain object.
+    Once Attack action is performed the following facts will be false: Province object, Planet object, Harmony.
+    To perform Succumb action, the following facts need to be true: Pain object.
+    Once Succumb action is performed the following facts will be true: Province object, Planet object, Harmony.    
+    Once Succumb action is performed the following facts will be false: Pain object.
+    To perform Overcome action, the following needs to be true: Province other object, Pain object.
+    Once Overcome action is performed the following will be true: Harmony, Pain object, Object Craves other object.
+    Once Overcome action is performed the following will be false: Province other object, Pain object.
+    To perform Feast action, the following needs to be true: Object Craves other object, Province object, Harmony.
+    Once Feast action is performed the following will be true: Pain object, Province other object.
+    Once Feast action is performed the following will be false:, Object Craves other object, Province object, Harmony.
+
+[STATEMENT]
+As initial conditions I have that, province object a, province object b, province object d, harmony, object b craves object c, planet object a, planet object c and planet object d.
+My goal is to have that object c craves object b.
+
+My plan is as follows:
+
+[PLAN]
+feast object b from object c
+succumb object b
+attack object c
+overcome object c from object b
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, province object a, province object d, harmony, object a craves object b, object d craves object c, planet object b and planet object c.
+My goal is to have that object c craves object a.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+attack object a
+succumb object a
+feast object c from object a
+overcome object a from object c
+[PLAN END]
+--------- Extracted plan ---------
+(pick-up object a)
+(put-down object a)
+(unstack object c object a)
+(stack object a object c)
+
+-------- Ground truth plan ---------
+(unstack object d object c)
+(put-down object d)
+(pick-up object c)
+(stack object c object a)
+
+=============================================================================
+
+ Instance ./instances/generated_basic/instance-1.pddl
+
+ Instance ./instances/generated_basic/instance-2.pddl
+=================================== 1_reasoning FAILURE ===================================
+I am playing with a set of objects. Here are the actions I can do
+
+   Attack object
+   Feast object from another object
+   Succumb object
+   Overcome object from another object
+
+I have the following restrictions on my actions:
+    To perform Attack action, the following facts need to be true: Province object, Planet object, Harmony.
+    Once Attack action is performed the following facts will be true: Pain object.
+    Once Attack action is performed the following facts will be false: Province object, Planet object, Harmony.
+    To perform Succumb action, the following facts need to be true: Pain object.
+    Once Succumb action is performed the following facts will be true: Province object, Planet object, Harmony.    
+    Once Succumb action is performed the following facts will be false: Pain object.
+    To perform Overcome action, the following needs to be true: Province other object, Pain object.
+    Once Overcome action is performed the following will be true: Harmony, Pain object, Object Craves other object.
+    Once Overcome action is performed the following will be false: Province other object, Pain object.
+    To perform Feast action, the following needs to be true: Object Craves other object, Province object, Harmony.
+    Once Feast action is performed the following will be true: Pain object, Province other object.
+    Once Feast action is performed the following will be false:, Object Craves other object, Province object, Harmony.
+
+[STATEMENT]
+As initial conditions I have that, province object a, province object b, province object d, harmony, object b craves object c, planet object a, planet object c and planet object d.
+My goal is to have that object c craves object b.
+
+My plan is as follows:
+
+[PLAN]
+feast object b from object c
+succumb object b
+attack object c
+overcome object c from object b
+[PLAN END]
+
+[STATEMENT]
+As initial conditions I have that, province object a, province object d, harmony, object a craves object b, object d craves object c, planet object b and planet object c.
+My goal is to have that object c craves object a.
+
+My plan is as follows:
+
+[PLAN]
+--------- GPT3 response ---------
+attack object a
+succumb object a
+feast object c from object a
+overcome object a from object c
+[PLAN END]
+--------- Extracted plan ---------
+(pick-up object a)
+(put-down object a)
+(unstack object c object a)
+(stack object a object c)
+
+-------- Ground truth plan ---------
+(unstack object d object c)
+(put-down object d)
+(pick-up object c)
+(stack object c object a)
+
+=============================================================================
+[+]: The number of correct plans is 0/1=0.0%

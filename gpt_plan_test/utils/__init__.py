@@ -144,6 +144,25 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             return resp_string
         else:
             assert model is not None
+    elif engine=='finetunedgpt3':
+        if model:
+            try:
+                response = openai.Completion.create(
+                    model=model['model'],
+                    prompt=query,
+                    temperature=0,
+                    max_tokens=max_tokens,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                    stop=["[PLAN END]"])
+            except Exception as e:
+                max_token_err_flag = True
+                print("[-]: Failed GPT3 query execution: {}".format(e))
+            text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
+            return text_response.strip()
+        else:
+            assert model is not None
     else:
         try:
             response = openai.Completion.create(
@@ -316,11 +335,19 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
     # ----------- GET DICTIONARIES ----------- #
     LD = data['encoded_objects']  # Letters Dictionary
     BD = {v: k for k, v in LD.items()}  # Blocks Dictionary
+    AD = {} #Action Dictionary
+    for k,v in data['actions'].items():
+        word = v.split(' ')[0]
+        if word in k:
+           AD[k] = k.replace("-", " ")
+        else:
+            AD[k] = word
+
 
     # ----------- GET RAW AND TEXT-FORMATTED ACTIONS AND OBJECTS ----------- #
     actions_params_dict = dict(action_set.items())
     raw_actions = list(action_set.keys())
-    text_actions = [x.replace("-", " ") for x in raw_actions]
+    text_actions = [AD[x] for x in raw_actions]
 
     text = text.lower().strip()
     for raw_action, text_action in zip(raw_actions, text_actions):
@@ -356,7 +383,6 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
 
         plan += f"{action}\n"
         readable_plan += f"{readable_action}\n"
-
     print(f"[+]: Saving plan in {plan_file}")
     file = open(plan_file, "wt")
     file.write(plan)

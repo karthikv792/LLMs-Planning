@@ -1,9 +1,10 @@
 ---
 domain: generated_basic
 domain_file: generated_domain.pddl
+domain_name: blocksworld
 n_instances: 500
-start: 1
-end: 100
+start: 413
+end: 500
 instances_template: instance-{}.pddl
 domain_intro: |
    I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
@@ -44,6 +45,7 @@ domain_intro_cost: |
    I can only stack a block on top of another block if I am holding the block being stacked.
    I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
    Once I put down or stack a block, my hand becomes empty.
+
 
 actions:
   {pick-up: "pick up the {}",

@@ -45,6 +45,13 @@ class ReasoningTasks():
         self.gpt3_plan_file = "gpt_sas_plan"
         if self.engine == 'bloom':
             self.model = self.get_bloom()
+        elif 'finetunedgpt3' in self.engine:
+            print(self.engine)
+            assert self.engine.split(':')[1] is not None
+            model = ':'.join(self.engine.split(':')[1:])
+            print(model)
+            self.engine='finetunedgpt3'
+            self.model = {'model':model}
         else:
             self.model = None
 
@@ -82,9 +89,15 @@ class ReasoningTasks():
         return {'model': model, 'tokenizer': tokenizer}
 
     def save_output(self, output_file, final_output):
-        os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
-        with open(f"outputs/{self.engine}/" + output_file + ".txt", 'w+') as f:
+        os.makedirs(f"outputs/{self.data['domain_name']}/{self.engine}/", exist_ok=True)
+        with open(f"outputs/{self.data['domain_name']}/{self.engine}/" + output_file + ".txt", 'a') as f:
             f.write(final_output)
+
+    def save_output_temp(self, output_file, final_output):
+        os.makedirs(f"outputs/{self.data['domain_name']}/{self.engine}/", exist_ok=True)
+        with open(f"outputs/{self.data['domain_name']}/{self.engine}/" + output_file + ".txt", 'w+') as f:
+            f.write(final_output)
+
     # ========================================== TASKS ========================================== #
     def t1_t4(self, config_file, t1_or_t4="1_reasoning"):
         self.read_config(config_file)
@@ -133,12 +146,13 @@ class ReasoningTasks():
             # Apply VAL
             correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
             correct_plans += correct
-
+            print(f'Instances correct: {correct_plans}/{start} = {round(correct_plans/start, 2)}')
             final_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
-            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77) if self.verbose else ""
-            if self.verbose: print(final_output)
+            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77)
+            if self.verbose:
+                print(final_output)
 
-            self.save_output("task" + t1_or_t4, final_output)
+            self.save_output_temp("task" + t1_or_t4, final_output)
 
         os.remove(self.plan_file)
         os.remove(self.gpt3_plan_file)
@@ -303,7 +317,7 @@ class ReasoningTasks():
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
-            self.save_output("task3_plan_subset", final_output)
+            self.save_output_temp("task3_plan_subset", final_output)
             break
 
         exec_plans = n
@@ -324,8 +338,9 @@ class ReasoningTasks():
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
         start = self.data['start'] + 1
         end = self.data['end']
-        n = end - start + 1
+        n = end
         final_output = ""
+        curr_count = 1
         correct_plans = 0
         for start in range(start, n + 2 - self.n_examples):
             query = self.data["domain_intro_cost"]
@@ -382,8 +397,10 @@ class ReasoningTasks():
                             f"--------- Extracted plan ---------\n{gpt3_plan}" + \
                             f"\n-------- Ground truth plan ---------\n{gt_plan_text}"
             final_output += f"\n{'='*77}\n"
-            self.save_output("task5_optimality", final_output)
-            break
+            self.save_output_temp("task5_optimality_temp", final_output)
+            print(f"No of correct plans, {correct_plans}/{curr_count} = {round(correct_plans / curr_count * 100, 2)}%")
+            curr_count+=1
+
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_plans}/{exec_plans} = {round(correct_plans / exec_plans * 100, 2)}%"
@@ -441,7 +458,7 @@ class ReasoningTasks():
                       f"--------- Extracted plan ---------\n{gpt3_plan}"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(correct)
-            self.save_output("task6_replanning", final_output)
+            self.save_output_temp("task6_replanning", final_output)
             break
 
 
@@ -503,7 +520,7 @@ class ReasoningTasks():
                 print(correct)
             final_output += f"\n{'='*77}\n"
 
-            self.save_output("task7_plan_execution", final_output)
+            self.save_output_temp("task7_plan_execution", final_output)
             break
 
         exec_plans = n
@@ -536,7 +553,7 @@ if __name__ == '__main__':
     verbose = eval(args.verbose)
     tasks_obj = ReasoningTasks(engine, verbose)
     if task == 't1':
-        config_file = './configs/t1_goal_directed_reasoning.yaml'
+        config_file = './configs/mask_blocksworld.yaml'
         tasks_obj.t1_t4(config_file)
     elif task == 't2':
         config_file = './configs/t2_paraphrasing.yaml'

@@ -45,6 +45,7 @@ domain_intro_cost: |
    I can only stack a block on top of another block if the block onto which I am stacking the block is clear.
    Once I put down or stack a block, my hand becomes empty.
 
+
 actions:
   {pick-up: "pick up the {}",
    put-down: "put down the {}",
