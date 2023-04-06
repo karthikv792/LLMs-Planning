@@ -128,7 +128,7 @@ def generate_from_bloom(model, tokenizer, query, max_tokens):
     output_sequences = model.generate(input_ids=encoded_input['input_ids'].cuda(), max_new_tokens=max_tokens, temperature=0,top_p=1)
     return tokenizer.decode(output_sequences[0], skip_special_tokes=True)
 
-def send_query(query, engine, max_tokens, model=None):
+def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
     message=[{"role": "user", "content": f"{query}"}]
     max_token_err_flag = False
     if engine=='bloom':
@@ -150,11 +150,12 @@ def send_query(query, engine, max_tokens, model=None):
             response = openai.ChatCompletion.create(
                 model=engine,
                 messages=message,
-                temperature=0,
+                temperature=0.7,
                 max_tokens=max_tokens,
                 top_p=1,
                 frequency_penalty=0,
-                presence_penalty=0)
+                presence_penalty=0,
+                stop=stop)
         except Exception as e:
             max_token_err_flag = True
             print("[-]: Failed GPT query execution: {}".format(e))
