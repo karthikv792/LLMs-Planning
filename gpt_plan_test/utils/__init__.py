@@ -128,7 +128,8 @@ def generate_from_bloom(model, tokenizer, query, max_tokens):
     output_sequences = model.generate(input_ids=encoded_input['input_ids'].cuda(), max_new_tokens=max_tokens, temperature=0,top_p=1)
     return tokenizer.decode(output_sequences[0], skip_special_tokes=True)
 
-def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
+def send_query(query, engine, max_tokens, model=None):
+    message=[{"role": "user", "content": f"{query}"}]
     max_token_err_flag = False
     if engine=='bloom':
 
@@ -146,20 +147,19 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             assert model is not None
     else:
         try:
-            response = openai.Completion.create(
+            response = openai.ChatCompletion.create(
                 model=engine,
-                prompt=query,
+                messages=message,
                 temperature=0,
                 max_tokens=max_tokens,
                 top_p=1,
                 frequency_penalty=0,
-                presence_penalty=0,
-                stop=stop)
+                presence_penalty=0)
         except Exception as e:
             max_token_err_flag = True
-            print("[-]: Failed GPT3 query execution: {}".format(e))
+            print("[-]: Failed GPT query execution: {}".format(e))
 
-        text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
+        text_response = response['choices'][0]['message']['content'] if not max_token_err_flag else ""
         return text_response.strip()
 
 
