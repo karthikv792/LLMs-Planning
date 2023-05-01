@@ -13,6 +13,7 @@
 - PR2Plan
     1. Download and compile obs-compiler from [here](https://sites.google.com/site/prasplanning/file-cabinet)
     2. Assign path of the folder to the environment variable PR2 `PR2=/path/to/pr2plan`
+    3. Incase there are any issues in compiling the above, this executable can be used: https://github.com/karthikv792/RADAR-X/blob/master/planner/PR2/pr2plan
 - LLM access - (currently GPT-3)
 
 ## Running the experiments on GPT-3
