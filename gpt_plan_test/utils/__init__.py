@@ -129,6 +129,9 @@ def generate_from_bloom(model, tokenizer, query, max_tokens):
     return tokenizer.decode(output_sequences[0], skip_special_tokes=True)
 
 def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
+    message=[{"role": "user", "content": f"{query}"}]
+    chat_model_list = ["gpt-3.5-turbo","gpt-4","gpt-4-32k"]
+    
     max_token_err_flag = False
     if engine=='bloom':
 
@@ -144,6 +147,25 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             return resp_string
         else:
             assert model is not None
+            
+    elif engine in chat_model_list:
+        try:
+            response = openai.ChatCompletion.create(
+                model=engine,
+                messages=message,
+                temperature=0.7,
+                max_tokens=max_tokens,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0,
+                stop=stop)
+        except Exception as e:
+            max_token_err_flag = True
+            print("[-]: Failed GPT query execution: {}".format(e))
+
+        text_response = response['choices'][0]['message']['content'] if not max_token_err_flag else ""
+        return text_response.strip()
+        
     else:
         try:
             response = openai.Completion.create(
@@ -161,7 +183,6 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
 
         text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
         return text_response.strip()
-
 
 def treat_on(letters_dict, atom):
     terms = atom.subterms
