@@ -1,4 +1,5 @@
 import os
+import random
 
 import yaml
 from Executor import Executor
@@ -88,14 +89,18 @@ class ReasoningTasks():
                                                      max_memory=max_memory_mapping)
         return {'model': model, 'tokenizer': tokenizer}
 
-    def save_output(self, output_file, final_output):
+    def save_output(self, output_file, final_output, append=False):
         os.makedirs(f"outputs/{self.data['domain_name']}/{self.engine}/", exist_ok=True)
-        with open(f"outputs/{self.data['domain_name']}/{self.engine}/" + output_file + ".txt", 'a') as f:
+        if append:
+            a = 'a'
+        else:
+            a = 'w'
+        with open(f"outputs/{self.data['domain_name']}/{self.engine}/" + output_file + ".txt", a) as f:
             f.write(final_output)
 
     def save_output_temp(self, output_file, final_output):
         os.makedirs(f"outputs/{self.data['domain_name']}/{self.engine}/", exist_ok=True)
-        with open(f"outputs/{self.data['domain_name']}/{self.engine}/" + output_file + ".txt", 'w+') as f:
+        with open(f"outputs/{self.data['domain_name']}/{self.engine}/" + output_file + ".txt", 'a') as f:
             f.write(final_output)
 
     # ========================================== TASKS ========================================== #
@@ -135,24 +140,36 @@ class ReasoningTasks():
                 # ------------ Put plan and instance into text ------------ #
                 gt_plan = self.compute_plan(domain_pddl, cur_instance)
                 gt_plan_text = get_plan_as_text(self.data)
-                query += fill_template(*instance_to_text_blocksworld(problem, get_plan, self.data))
+                query += fill_template(*instance_to_text(problem, get_plan, self.data))
                 # --------------------------------------------------------- #
 
+            stop_statement = '[STATEMENT]'
             # Querying LLM
-            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model)
+            if 'caesar' in self.data['domain_name']:
+                query = caesar_encode(query)
+                stop_statement = caesar_encode(stop_statement)
+
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model, stop=stop_statement)
+            
+            raw_gpt3 = gpt3_response
+            if 'caesar' in self.data['domain_name']:
+                gpt3_response = caesar_decode(gpt3_response)
 
             # Do text_to_plan procedure
-            _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            _, gpt3_plan = text_to_plan(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
             # Apply VAL
             correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
             correct_plans += correct
             print(f'Instances correct: {correct_plans}/{start} = {round(correct_plans/start, 2)}')
-            final_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
-            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77)
+            instance_output = f"\n Instance {cur_instance}\n"
+            instance_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
+            instance_output += verbose_template.format(query, raw_gpt3, gpt3_plan, gt_plan_text, '='*77)
             if self.verbose:
                 print(final_output)
 
-            self.save_output_temp("task" + t1_or_t4, final_output)
+            self.save_output_temp("temp_task" + t1_or_t4, instance_output)
+            final_output+=instance_output
+            
 
         os.remove(self.plan_file)
         os.remove(self.gpt3_plan_file)
@@ -161,6 +178,239 @@ class ReasoningTasks():
         final_output += f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
         print(f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
         self.save_output("task" + t1_or_t4, final_output)
+
+    def t1_random(self, config_file, t1_or_t4="1_reasoning"):
+        self.read_config(config_file)
+
+        # ---- Uncomment the below lines to generate problem instances ---- #
+        # for f_name in self.data['callbacks']:
+        #     callback_obj = Callbacks(self.data)
+        #     getattr(callback_obj, f_name)()
+        # ---- Uncomment the above lines to generate problem instances ---- #
+
+        domain_name = self.data['domain']
+        domain_pddl = f'./instances/{self.data["domain_file"]}'
+        instance_folder = f'./instances/{domain_name}/'
+        instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
+        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
+
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n_files = i_end - i_start + 1  # min(self.data['n_instances'], len(os.listdir(instance_folder)))
+        final_output = ""
+        correct_plans = 0
+        for start in [1, 9, 62, 106, 120, 163, 174, 190, 196, 202, 207, 235, 272, 294, 302, 316, 326, 349, 361, 364, 365, 395, 400, 412, 499]:
+            query = self.data["domain_intro"]
+            for i in range(start, start + self.n_examples + 1):
+                last_plan = True if i == start + self.n_examples else False
+                get_plan = not last_plan
+                if last_plan:
+                    cur_instance = instance.format(i+1)
+                else:
+                    #select a random instance
+                    new_i = random.choice([ln for ln in range(0,502) if ln != i])
+                    cur_instance = instance.format(new_i)
+                # --------------- Add to final output --------------- #
+                final_output += f"\n Instance {cur_instance}\n"
+                if self.verbose:
+                    print(f"Instance {cur_instance}")
+                # --------------- Read Instance --------------- #
+                problem = self.get_problem(cur_instance, domain_pddl)
+                # --------------------------------------------- #
+                # ------------ Put plan and instance into text ------------ #
+                gt_plan = self.compute_plan(domain_pddl, cur_instance)
+                gt_plan_text = get_plan_as_text(self.data)
+                query += fill_template(*instance_to_text_blocksworld(problem, get_plan, self.data))
+                # --------------------------------------------------------- #
+
+            stop_statement = '[STATEMENT]'
+            # Querying LLM
+            if 'caesar' in self.data['domain_name']:
+                query = caesar_encode(query)
+                stop_statement = caesar_encode(stop_statement)
+
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model, stop=stop_statement)
+            raw_gpt3 = gpt3_response
+            if 'caesar' in self.data['domain_name']:
+                gpt3_response = caesar_decode(gpt3_response)
+
+            # Do text_to_plan procedure
+            _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            # Apply VAL
+            correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
+            correct_plans += correct
+            print(f'Instances correct: {correct_plans}/{start} = {round(correct_plans/start, 2)}')
+            instance_output = ''
+            instance_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
+            instance_output += verbose_template.format(query, raw_gpt3, gpt3_plan, gt_plan_text, '='*77)
+            if self.verbose:
+                print(final_output)
+
+            self.save_output_temp("temp_task" + t1_or_t4, instance_output)
+            final_output+=instance_output
+
+        os.remove(self.plan_file)
+        os.remove(self.gpt3_plan_file)
+
+        # --------------- Add to final output --------------- #
+        final_output += f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
+        print(f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
+        self.save_output("task" + t1_or_t4, final_output)
+    
+    def t1_custom(self, config_file, t1_or_t4="1_reasoning", to_redo=[1, 9, 62, 106, 120, 163, 174, 190, 196, 202, 207, 235, 272, 294, 302, 316, 326, 349, 361, 364, 365, 395, 400, 412, 499]):
+        self.read_config(config_file)
+
+        # ---- Uncomment the below lines to generate problem instances ---- #
+        # for f_name in self.data['callbacks']:
+        #     callback_obj = Callbacks(self.data)
+        #     getattr(callback_obj, f_name)()
+        # ---- Uncomment the above lines to generate problem instances ---- #
+
+        domain_name = self.data['domain']
+        domain_pddl = f'./instances/{self.data["domain_file"]}'
+        instance_folder = f'./instances/{domain_name}/'
+        instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
+        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
+
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n_files = i_end - i_start + 1  # min(self.data['n_instances'], len(os.listdir(instance_folder)))
+        final_output = ""
+        correct_plans = 0
+        for start in to_redo:
+            query = self.data["domain_intro"]
+            for i in range(start, start + self.n_examples + 1):
+                last_plan = True if i == start + self.n_examples else False
+                get_plan = not last_plan
+                cur_instance = instance.format(i)
+                # --------------- Add to final output --------------- #
+                final_output += f"\n Instance {cur_instance}\n"
+                if self.verbose:
+                    print(f"Instance {cur_instance}")
+                # --------------- Read Instance --------------- #
+                problem = self.get_problem(cur_instance, domain_pddl)
+                # --------------------------------------------- #
+                # ------------ Put plan and instance into text ------------ #
+                gt_plan = self.compute_plan(domain_pddl, cur_instance)
+                gt_plan_text = get_plan_as_text(self.data)
+                query += fill_template(*instance_to_text_blocksworld(problem, get_plan, self.data))
+                # --------------------------------------------------------- #
+
+            stop_statement = '[STATEMENT]'
+            # Querying LLM
+            if 'caesar' in self.data['domain_name']:
+                query = caesar_encode(query)
+                stop_statement = caesar_encode(stop_statement)
+
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model, stop=stop_statement)
+            raw_gpt3 = gpt3_response
+            if 'caesar' in self.data['domain_name']:
+                gpt3_response = caesar_decode(gpt3_response)
+
+            # Do text_to_plan procedure
+            _, gpt3_plan = text_to_plan_blocksworld(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            # Apply VAL
+            correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
+            correct_plans += correct
+            print(f'Instances correct: {correct_plans}/{start} = {round(correct_plans/start, 2)}')
+            instance_output = ''
+            instance_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
+            instance_output += verbose_template.format(query, raw_gpt3, gpt3_plan, gt_plan_text, '='*77)
+            if self.verbose:
+                print(final_output)
+
+            self.save_output_temp("temp_task_custom_" + t1_or_t4, instance_output)
+            final_output+=instance_output
+
+        os.remove(self.plan_file)
+        os.remove(self.gpt3_plan_file)
+
+        # --------------- Add to final output --------------- #
+        final_output += f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
+        print(f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
+        self.save_output("task" + t1_or_t4 + '_custom' , final_output)
+
+    def t1_zeroshot_instruction(self, config_file, t1_or_t4="1_reasoning", to_redo=[]):
+        self.read_config(config_file)
+
+        # ---- Uncomment the below lines to generate problem instances ---- #
+        # for f_name in self.data['callbacks']:
+        #     callback_obj = Callbacks(self.data)
+        #     getattr(callback_obj, f_name)()
+        # ---- Uncomment the above lines to generate problem instances ---- #
+
+        domain_name = self.data['domain']
+        domain_pddl = f'./instances/{self.data["domain_file"]}'
+        instance_folder = f'./instances/{domain_name}/'
+        instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
+        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
+
+        i_start = self.data['start']
+        i_end = self.data['end']
+        n_files = i_end - i_start + 1  # min(self.data['n_instances'], len(os.listdir(instance_folder)))
+        final_output = ""
+        correct_plans = 0
+        if len(to_redo):
+            i_start = 0
+            i_end = len(to_redo) - 1
+        for start in range(i_start, i_end+1):
+            query = self.data["domain_intro"]
+            get_plan = False            
+
+            cur_instance = instance.format(start)
+            if len(to_redo):
+                cur_instance = instance.format(to_redo[start])
+            # --------------- Add to final output --------------- #
+            final_output += f"\n Instance {cur_instance}\n"
+            if self.verbose:
+                print(f"Instance {cur_instance}")
+            # --------------- Read Instance --------------- #
+            problem = self.get_problem(cur_instance, domain_pddl)
+            # --------------------------------------------- #
+            # ------------ Put plan and instance into text ------------ #
+            gt_plan = self.compute_plan(domain_pddl, cur_instance)
+            gt_plan_text = get_plan_as_text(self.data)
+            query += fill_template(*instance_to_text(problem, get_plan, self.data),instruction=True)
+            # --------------------------------------------------------- #
+
+            stop_statement = '[STATEMENT]'
+            # Querying LLM
+            if 'caesar' in self.data['domain_name']:
+                query = caesar_encode(query)
+                stop_statement = caesar_encode(stop_statement)
+
+            gpt3_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model, stop=stop_statement)
+           
+            raw_gpt3 = gpt3_response
+            if 'caesar' in self.data['domain_name']:
+                gpt3_response = caesar_decode(gpt3_response)
+
+            # Do text_to_plan procedure
+            _, gpt3_plan = text_to_plan(gpt3_response, problem.actions, self.gpt3_plan_file, self.data)
+            # Apply VAL
+            correct = int(validate_plan(domain_pddl, cur_instance, self.gpt3_plan_file))
+            correct_plans += correct
+            print(f'Instances correct: {correct_plans}/{start+1} = {round(correct_plans/(start+1), 2)}')
+            instance_output = f"\n Instance {cur_instance}\n"
+            instance_output += success_template.format('='*35, t1_or_t4, "SUCCESS" if correct else "FAILURE", '='*35)
+            instance_output += verbose_template.format(query, raw_gpt3, gpt3_plan, gt_plan_text, '='*77)
+            if self.verbose:
+                print(final_output)
+
+            self.save_output_temp("temp_task" + t1_or_t4, instance_output)
+            final_output+=instance_output
+
+        os.remove(self.plan_file)
+        os.remove(self.gpt3_plan_file)
+
+        # --------------- Add to final output --------------- #
+        final_output += f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
+        print(f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
+        if len(to_redo):
+            self.save_output("task" + t1_or_t4 + '_custom', final_output, append=True)
+        else:
+            self.save_output("task" + t1_or_t4, final_output)
+
 
     def t2_paraphrasing(self, config_file):
         def convert_state_to_text(state):
@@ -236,7 +486,7 @@ class ReasoningTasks():
 
             task_name = "(GOAL ORDERING CHANGE)"
             final_output += success_template.format('='*35, task_name, "SUCCESS" if correct else "FAILURE", '='*35)
-            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77) if self.verbose else ""
+            final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77)
             if self.verbose: print(final_output)
 
             # =============== Full->Specific and Specific->Full =============== #
@@ -252,7 +502,7 @@ class ReasoningTasks():
                 corrects[descr] += correct
 
                 final_output += success_template.format('='*35, descr, "SUCCESS" if correct else "FAILURE", '='*35)
-                final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77) if self.verbose else ""
+                final_output += verbose_template.format(query, gpt3_response, gpt3_plan, gt_plan_text, '='*77)
                 if self.verbose: print(final_output)
 
             os.remove(self.plan_file)
@@ -270,6 +520,7 @@ class ReasoningTasks():
             os.makedirs(f"outputs/{self.engine}/", exist_ok=True)
             with open(f"outputs/{self.engine}/task2_paraphrase.txt", 'w+') as f:
                 f.write(final_output)
+            self.save_output("task2_paraphrase", final_output)
 
 
         print(single_goal_instances)
@@ -317,8 +568,8 @@ class ReasoningTasks():
             if self.verbose:
                 print(f"{query}\n--------- GPT3 response ---------\n{gpt3_response}\n"
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
-            self.save_output_temp("task3_plan_subset", final_output)
-            break
+            self.save_output_temp("temp_task3_plan_subset", final_output)
+
 
         exec_plans = n
         final_output += "\nResults:\n"
@@ -336,7 +587,7 @@ class ReasoningTasks():
         domain_name = self.data['domain']
         domain = f'./instances/{self.data["domain_file"]}'
         instance = f'./instances/{domain_name}/{self.data["instances_template"]}'
-        start = self.data['start'] + 1
+        start = self.data['start'] 
         end = self.data['end']
         n = end
         final_output = ""
@@ -409,7 +660,10 @@ class ReasoningTasks():
             os.remove(self.plan_file)
         except:
             pass
-        os.remove(self.gpt3_plan_file)
+        try:
+            os.remove(self.gpt3_plan_file)
+        except:
+            pass
         self.save_output("task5_optimality", final_output)
 
     def t6_replanning(self, config_file, harder):
@@ -459,7 +713,7 @@ class ReasoningTasks():
                       f"\n-------- Ground truth plan ---------\n{gt_plan_text}")
                 print(correct)
             self.save_output_temp("task6_replanning", final_output)
-            break
+
 
 
         exec_plans = n - no_possible_plans
@@ -519,9 +773,9 @@ class ReasoningTasks():
                       f"\n-------- Ground truth answer ---------{answer}")
                 print(correct)
             final_output += f"\n{'='*77}\n"
-
+            print(correct_answers)
             self.save_output_temp("task7_plan_execution", final_output)
-            break
+            
 
         exec_plans = n
         final_output += f"No of correct plans, {correct_answers}/{exec_plans} = {round(correct_answers / exec_plans * 100, 2)}%"
@@ -547,30 +801,54 @@ if __name__ == '__main__':
     ')
     parser.add_argument('--engine', type=str, default='davinci', help='Engine to use')
     parser.add_argument('--verbose', type=str, default="False", help='Verbose')
+    #config
+    parser.add_argument('--config', type=str, default='no_config', help='Config file name')
+
     args = parser.parse_args()
     task = args.task
     engine = args.engine
+    config = args.config
     verbose = eval(args.verbose)
     tasks_obj = ReasoningTasks(engine, verbose)
+    if config == 'no_config':
+        raise Exception("Please provide a config file")
+    else:
+        config_file = f'./configs/{config}.yaml'
+        if not os.path.exists(config_file):
+            raise Exception(f"Config file {config_file} does not exist")
     if task == 't1':
-        config_file = './configs/mask_blocksworld.yaml'
+        # config_file = './configs/random_blocksworld_3.yaml'
         tasks_obj.t1_t4(config_file)
     elif task == 't2':
-        config_file = './configs/t2_paraphrasing.yaml'
+        # config_file = './configs/t1_goal_directed_reasoning.yaml'
         tasks_obj.t2_paraphrasing(config_file)
     elif task == 't3':
-        config_file = './configs/t3_plan_subset.yaml'
+        # config_file = './configs/t1_goal_directed_reasoning.yaml'
         tasks_obj.t3_plan_subset(config_file)
     elif task == 't4':
-        config_file = './configs/t4_plan_generalization.yaml'
+        # config_file = './configs/t4_plan_generalization.yaml'
         tasks_obj.t1_t4(config_file, "4_generalization")
     elif task == 't5':
-        config_file = './configs/t3_plan_subset.yaml'
+        # config_file = './configs/mask_blocksworld_3.yaml'
         tasks_obj.t5_optimality(config_file)
     elif task == 't6':
-        config_file = './configs/t3_plan_subset.yaml'
+        # config_file = './configs/t1_goal_directed_reasoning.yaml'
         tasks_obj.t6_replanning(config_file, harder=0)
     # tasks_obj.t6_replanning(config_file, harder=0)
     elif task == 't7':
-        config_file = './configs/t3_plan_subset.yaml'
+        # config_file = './configs/t1_goal_directed_reasoning.yaml'
         tasks_obj.t7_plan_execution(config_file)
+    elif task =='t1_1':
+        # config_file = './configs/t1_random_prompt.yaml'
+        tasks_obj.t1_random(config_file)
+    elif task =='t1_2':
+        # config_file = './configs/mask_blocksworld_3.yaml'
+        to_redo = [58, 119, 196, 200]
+        # 155
+        tasks_obj.t1_zeroshot_instruction(config_file, to_redo=to_redo)
+    elif task == 't1_custom':
+        # config_file  = './configs/random_blocksworld_3.yaml'
+        # to_redo = [2, 34, 41, 48, 52, 91,135,149, 168, 203, 211,247,265,271, 370, 383]
+
+        tasks_obj.t1_custom(config_file, to_redo=[21])
+

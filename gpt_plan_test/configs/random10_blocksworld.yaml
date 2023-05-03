@@ -1,0 +1,88 @@
+---
+domain: generated_basic
+domain_file: generated_domain.pddl
+domain_name: random10_blocksworld
+n_instances: 500
+start: 1
+end: 500
+instances_template: instance-{}.pddl
+domain_intro: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+      eqeso34rh7 object
+      f9n2q7faf0 object from another object
+      duwwydgnkq object
+      mh2cggv1q7 object from another object
+   
+   I have the following restrictions on my actions:
+       To perform eqeso34rh7 action, the following facts need to be true: l8uqrlmy22 object, tentue3asp object, pagz5hm5q9.
+       Once eqeso34rh7 action is performed the following facts will be true: uzuq33htdh object.
+       Once eqeso34rh7 action is performed the following facts will be false: l8uqrlmy22 object, tentue3asp object, pagz5hm5q9.
+       To perform duwwydgnkq action, the following facts need to be true: uzuq33htdh object.
+       Once duwwydgnkq action is performed the following facts will be true: l8uqrlmy22 object, tentue3asp object, pagz5hm5q9.    
+       Once duwwydgnkq action is performed the following facts will be false: uzuq33htdh object.
+       To perform mh2cggv1q7 action, the following needs to be true: l8uqrlmy22 other object, uzuq33htdh object.
+       Once mh2cggv1q7 action is performed the following will be true: pagz5hm5q9, uzuq33htdh object, Object j8akcvr0wh other object.
+       Once mh2cggv1q7 action is performed the following will be false: l8uqrlmy22 other object, uzuq33htdh object.
+       To perform f9n2q7faf0 action, the following needs to be true: Object j8akcvr0wh other object, l8uqrlmy22 object, pagz5hm5q9.
+       Once f9n2q7faf0 action is performed the following will be true: uzuq33htdh object, l8uqrlmy22 other object.
+       Once f9n2q7faf0 action is performed the following will be false:, Object j8akcvr0wh other object, l8uqrlmy22 object, pagz5hm5q9.
+
+
+domain_intro_cost: |
+   I am playing with a set of objects. Here are the actions I can do
+   
+   eqeso34rh7 object. It takes 1 minute to do the eqeso34rh7 action.
+   f9n2q7faf0 object from another object. It takes 1 minute to do the f9n2q7faf0 action.
+   duwwydgnkq object. It takes 1 minute to do the duwwydgnkq action.
+   mh2cggv1q7 object from another object. It takes 1 minute to do the mh2cggv1q7 action.
+   
+   I have the following restrictions on my actions:
+   To perform eqeso34rh7 action, the following facts need to be true: l8uqrlmy22 object, tentue3asp object, pagz5hm5q9.
+   Once eqeso34rh7 action is performed the following facts will be true: uzuq33htdh object.
+   Once eqeso34rh7 action is performed the following facts will be false: l8uqrlmy22 object, tentue3asp object, pagz5hm5q9.
+   To perform duwwydgnkq action, the following facts need to be true: uzuq33htdh object.
+   Once duwwydgnkq action is performed the following facts will be true: l8uqrlmy22 object, tentue3asp object, pagz5hm5q9.    
+   Once duwwydgnkq action is performed the following facts will be false: uzuq33htdh object.
+   To perform mh2cggv1q7 action, the following needs to be true: l8uqrlmy22 other object, uzuq33htdh object.
+   Once mh2cggv1q7 action is performed the following will be true: pagz5hm5q9, uzuq33htdh object, Object j8akcvr0wh other object.
+   Once mh2cggv1q7 action is performed the following will be false: l8uqrlmy22 other object, uzuq33htdh object.
+   To perform f9n2q7faf0 action, the following needs to be true: Object j8akcvr0wh other object, l8uqrlmy22 object, pagz5hm5q9.
+   Once f9n2q7faf0 action is performed the following will be true: uzuq33htdh object, l8uqrlmy22 other object.
+   Once f9n2q7faf0 action is performed the following will be false:, Object j8akcvr0wh other object, l8uqrlmy22 object, pagz5hm5q9.
+
+actions:
+  {pick-up: "eqeso34rh7 {}",
+   put-down: "duwwydgnkq {}",
+   stack: "mh2cggv1q7 {} from {}",
+   unstack: "f9n2q7faf0 {} from {}"}
+
+objects:
+- object a
+- object b
+- object c
+- object d
+- object e
+- object f
+- object g
+- object h
+- object i
+- object j
+- object k
+- object l
+
+predicates:
+  {ontable: "tentue3asp {}",
+   clear: "l8uqrlmy22 {}",
+   handempty: "pagz5hm5q9",
+   "on": "{} j8akcvr0wh {}",
+  "holding": "uzuq33htdh {}"}
+
+# encoded_objects: dictionary of object names, have to be alphabetical
+encoded_objects:
+  {"a": "object a", "b": "object b", "c": "object c", "d": "object d",
+   "e": "object e", "f": "object f", "g": "object g", "h": "object h",
+   "i": "object i", "j": "object j", "k": "object k", "l": "object l" }
+
+callbacks:
+   - t1_gen_goal_directed_instances

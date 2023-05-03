@@ -1,10 +1,10 @@
 ---
-domain: generated_basic
+domain: generated_basic_3
 domain_file: generated_domain.pddl
-domain_name: blocksworld
-n_instances: 500
-start: 413
-end: 500
+domain_name: blocksworld_3
+n_instances: 132
+start: 1
+end: 100
 instances_template: instance-{}.pddl
 domain_intro: |
    I am playing with a set of blocks where I need to arrange the blocks into stacks. Here are the actions I can do
@@ -63,6 +63,7 @@ predicates:
   {ontable: "the {} is on the table",
    clear: "the {} is clear",
    handempty: "the hand is empty",
+   holding: "the hand is currently holding {}",
    "on": "the {} is on top of the {}"}
 
 # encoded_objects: dictionary of object names, have to be alphabetical

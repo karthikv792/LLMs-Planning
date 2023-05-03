@@ -121,16 +121,19 @@ class Callbacks():
             with open(self.instances_template.format(c), "w+") as fd:
                 fd.write(instance)
 
+
 def generate_from_bloom(model, tokenizer, query, max_tokens):
     encoded_input = tokenizer(query, return_tensors='pt')
     stop = tokenizer("[PLAN END]", return_tensors='pt')
     stoplist = StoppingCriteriaList([stop])
-    output_sequences = model.generate(input_ids=encoded_input['input_ids'].cuda(), max_new_tokens=max_tokens, temperature=0,top_p=1)
+    output_sequences = model.generate(input_ids=encoded_input['input_ids'].cuda(), max_new_tokens=max_tokens,
+                                      temperature=0, top_p=1)
     return tokenizer.decode(output_sequences[0], skip_special_tokes=True)
+
 
 def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
     max_token_err_flag = False
-    if engine=='bloom':
+    if engine == 'bloom':
 
         if model:
             response = generate_from_bloom(model['model'], model['tokenizer'], query, max_tokens)
@@ -140,11 +143,11 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
                 if '[PLAN END]' in line:
                     break
                 else:
-                    resp_string+=f'{line}\n'
+                    resp_string += f'{line}\n'
             return resp_string
         else:
             assert model is not None
-    elif engine=='finetunedgpt3':
+    elif engine == 'finetunedgpt3':
         if model:
             try:
                 response = openai.Completion.create(
@@ -163,6 +166,21 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             return text_response.strip()
         else:
             assert model is not None
+    elif '_chat' in engine:
+        
+        eng = engine.split('_')[0]
+        print('chatmodels', eng)
+        messages=[
+        {"role": "system", "content": "You are the planner assistant who comes up with correct plans."},
+        {"role": "user", "content": query}
+        ]
+        try:
+            response = openai.ChatCompletion.create(model=eng, messages=messages)
+        except Exception as e:
+                    max_token_err_flag = True
+                    print("[-]: Failed GPT3 query execution: {}".format(e))
+        text_response = response['choices'][0]['message']['content'] if not max_token_err_flag else ""
+        return text_response.strip()        
     else:
         try:
             response = openai.Completion.create(
@@ -186,8 +204,10 @@ def treat_on(letters_dict, atom):
     terms = atom.subterms
     return f"the {letters_dict[terms[0].name]} block on top of the {letters_dict[terms[1].name]} block"
 
+
 def get_sorted(init_atoms):
-    return sorted(init_atoms, key=lambda x: x.symbol.name+" "+" ".join([subterm.name for subterm in x.subterms]))
+    return sorted(init_atoms, key=lambda x: x.symbol.name + " " + " ".join([subterm.name for subterm in x.subterms]))
+
 
 def parse_problem(problem, data, shuffle):
     def parse(init_goal_preds, OBJS):
@@ -198,16 +218,23 @@ def parse_problem(problem, data, shuffle):
         for atom in init_goal_preds:
             objs = []
             for subterm in atom.subterms:
-                objs.append(OBJS[subterm.name])
-            predicates.append(data['predicates'][atom.symbol.name].format(*objs))
+                if 'blocksworld' in data['domain_name']:
+                    objs.append(OBJS[subterm.name])
+                elif 'logistics' in data['domain_name']:
+                    obj = subterm.name
+                    objs.append(f"{OBJS[obj[0]].format(*[chr for chr in obj if chr.isdigit()])}")
+            try:
+                pred_string = data['predicates'][atom.symbol.name].format(*objs)
+                predicates.append(pred_string)
+            except:
+                # print("[-]: Predicate not found in predicates dict: {}".format(atom.symbol.name))
+                pass
+            
         if len(predicates) > 1:
             TEXT += ", ".join(predicates[:-1]) + f" and {predicates[-1]}"
         else:
             TEXT += predicates[0]
         return TEXT
-
-
-
 
     OBJS = data['encoded_objects']
 
@@ -249,18 +276,53 @@ def validate_plan(domain, instance, plan_file):
     return True if "Plan valid" in response else False
 
 
-def fill_template(INIT, GOAL, PLAN):
+def fill_template(INIT, GOAL, PLAN, data, instruction=False):
     text = ""
     if INIT != "":
         text += "\n[STATEMENT]\n"
         text += f"As initial conditions I have that, {INIT.strip()}."
     if GOAL != "":
         text += f"\nMy goal is to have that {GOAL}."
-    text += f"\n\nMy plan is as follows:\n\n[PLAN]{PLAN}"
+    if not instruction:
+        text += f"\n\nMy plan is as follows:\n\n[PLAN]{PLAN}"
+    else:
+        text += f"\n\nWhat is the plan to achieve my goal? Just give the actions in the plan."
 
     # TODO: Add this replacement to the yml file -- Use "Translations" dict in yml
-    text = text.replace("-", " ").replace("ontable", "on the table")
+    if 'blocksworld' in data['domain_name']:
+        text = text.replace("-", " ").replace("ontable", "on the table")
     return text
+
+def instance_to_text(problem, get_plan, data, shuffle=False):
+    """
+    Function to make a logistics instance into human-readable format
+    :param get_plan: Flag to return the plan as text as well
+    """
+
+    OBJS = data['encoded_objects']
+
+    # ----------- PARSE THE PROBLEM ----------- #
+    INIT, GOAL = parse_problem(problem, data, shuffle)
+
+    # ----------- PLAN TO TEXT ----------- #
+    PLAN = ""
+    plan_file = "sas_plan"
+    if get_plan:
+        PLAN = "\n"
+        with open(plan_file) as f:
+            plan = [line.rstrip() for line in f][:-1]
+
+        for action in plan:
+            action = action.strip("(").strip(")")
+            act_name, objs = action.split(" ")[0], action.split(" ")[1:]
+            if 'blocksworld' in data['domain_name']:
+                objs = [OBJS[obj] for obj in objs]
+            elif 'logistics' in data['domain_name']:
+                objs = [f"{OBJS[obj[0]].format(*[chr for chr in obj if chr.isdigit()])}" for obj in objs] #Just to make it explicit
+            PLAN += data['actions'][act_name].format(*objs) + "\n"
+        PLAN += "[PLAN END]\n"
+
+    return INIT, GOAL, PLAN, data
 
 
 def instance_to_text_blocksworld(problem, get_plan, data, shuffle=False):
@@ -289,7 +351,7 @@ def instance_to_text_blocksworld(problem, get_plan, data, shuffle=False):
             PLAN += data['actions'][act_name].format(*objs) + "\n"
         PLAN += "[PLAN END]\n"
 
-    return INIT, GOAL, PLAN
+    return INIT, GOAL, PLAN, data
 
 
 def get_plan_as_text(data, given_plan=None):
@@ -312,12 +374,77 @@ def get_plan_as_text(data, given_plan=None):
     for action in plan:
         action = action.strip("(").strip(")")
         act_name, objs = action.split(" ")[0], action.split(" ")[1:]
-        objs = [OBJS[obj].replace(" block", "") for obj in objs]
+        if 'blocksworld' in data['domain_name']:
+            objs = [OBJS[obj].replace(" block", "") for obj in objs]
         PLAN += "(" + act_name + " " + " ".join(objs) + ")\n"
         # PLAN += data['actions'][act_name].format(*objs) + "\n"
     return PLAN
 
+def text_to_plan(text, action_set, plan_file, data, ground_flag=False):
+    if 'logistics'in data['domain_name']:
+        return text_to_plan_logistics(text, action_set, plan_file, data, ground_flag)
+    elif 'blocksworld' in data['domain_name']:
+        return text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag)
 
+def has_digit(string):
+    return any(char.isdigit() for char in string)
+def text_to_plan_logistics(text, action_set, plan_file, data, ground_flag=False):
+    raw_actions = [i.split('-')[0].lower() for i in list(action_set.keys())]
+    # ----------- GET PLAN FROM TEXT ----------- #
+#     load package_0 into airplane_0 at location_0_0
+# load package_1 into airplane_1 at location_1_0
+# fly airplane_0 from location_0_0 to location_1_0
+# fly airplane_1 from location_1_0 to location_0_0
+# unload package_0 from airplane_0 at location_1_0
+# unload package_1 from airplane_1 at location_0_0
+    plan = ""
+    readable_plan = ""
+    lines = [line.strip().lower() for line in text.split("\n")]
+    for line in lines:
+        if not line:
+            continue
+        if '[COST]' in line:
+            break
+        
+        if line[0].isdigit() and line[1]=='.':
+            line = line[2:]
+            line = line.replace(".", "")
+        elif line[0].isdigit() and line[1].isdigit() and line[2]=='.':
+            line = line[3:]
+            line = line.replace(".", "")
+
+        objs = [i[0]+'-'.join(i.split('_')[1:]) for i in line.split() if has_digit(i)]
+        
+        
+        if line.split()[0] in raw_actions:
+            action = line.split()[0]
+            if 'load' in action or 'unload' in action:  
+                to_check = objs[1]
+            else:
+                to_check = objs[0]
+            if 'a' in to_check:
+                action+='-airplane'
+            elif 't' in to_check:
+                action+='-truck'
+            else:
+                print(line, objs)
+                raise ValueError
+            if action=='drive-truck' and len(objs)==3:
+                objs.append("c"+[i for i in objs[1] if i.isdigit()][0])
+
+
+            readable_action = "({} {})".format(action, " ".join(objs))
+            if not ground_flag:
+                action = "({} {})".format(action, " ".join(objs))
+            else:
+                action = "({}_{})".format(action, "_".join(objs))
+            plan += f"{action}\n"
+            readable_plan += f"{readable_action}\n"
+    print(f"[+]: Saving plan in {plan_file}")
+    file = open(plan_file, "wt")
+    file.write(plan)
+    file.close()
+    return plan, readable_plan
 
 def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=False):
     """
@@ -335,24 +462,22 @@ def text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag=Fals
     # ----------- GET DICTIONARIES ----------- #
     LD = data['encoded_objects']  # Letters Dictionary
     BD = {v: k for k, v in LD.items()}  # Blocks Dictionary
-    AD = {} #Action Dictionary
-    for k,v in data['actions'].items():
+    AD = {}  # Action Dictionary
+    for k, v in data['actions'].items():
         word = v.split(' ')[0]
         if word in k:
-           AD[k] = k.replace("-", " ")
+            AD[k] = k.replace("-", " ")
         else:
             AD[k] = word
 
-
     # ----------- GET RAW AND TEXT-FORMATTED ACTIONS AND OBJECTS ----------- #
     actions_params_dict = dict(action_set.items())
-    raw_actions = list(action_set.keys())
+    raw_actions = [i.lower() for i in list(action_set.keys())]
     text_actions = [AD[x] for x in raw_actions]
 
     text = text.lower().strip()
     for raw_action, text_action in zip(raw_actions, text_actions):
         text = text.replace(text_action, raw_action)
-
     object_names = [x.lower() for x in LD.values()]
 
     # ----------- GET PLAN FROM TEXT ----------- #
@@ -466,23 +591,28 @@ def get_cost_gpt_3(gpt3_response):
             return res[0]
     return 0
 
+
 def get_action_text(action, data):
     pred = action.split('_')
     objs = [data["encoded_objects"][j] for j in pred[1:]]
     return data['actions'][pred[0]].format(*objs)
+
+
 def get_facts_text(facts, data):
     FACTS = "\n"
     print(facts, sorted(facts))
     for ind, i in enumerate(sorted(facts)):
         pred = i.split('_')
         objs = [data["encoded_objects"][j] for j in pred[1:]]
-        FACTS+=data['predicates'][pred[0]].format(*objs)
+        FACTS += data['predicates'][pred[0]].format(*objs)
         if ind != len(facts) - 1:
             FACTS += ","
         else:
             FACTS += "."
-        FACTS+="\n"
+        FACTS += "\n"
     return FACTS
+
+
 def generate_plan_subset(planexecutor, data, give_response):
     """
     We need
@@ -505,8 +635,8 @@ def generate_plan_subset(planexecutor, data, give_response):
         return text, PLAN
     else:
         INIT, _, GOAL = parsed_instance_to_text_blocksworld(initial_state,
-                                                                      planexecutor.plan[:planexecutor.prefix],
-                                                                      resulting_state, data)
+                                                            planexecutor.plan[:planexecutor.prefix],
+                                                            resulting_state, data)
         PLAN_PREFIX = planexecutor.plan[:planexecutor.prefix]
         text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]"
         return text, PLAN_PREFIX
@@ -561,9 +691,9 @@ def replanning(planexecutor, data, give_response, is_harder=random.choice(([0, 1
     plan, cost = planexecutor.get_plan('pr-new-domain.pddl', 'pr-new-problem.pddl')
     replanning_state = planexecutor.replanning_init
     if is_harder:
-        execution_text = f"During execution, an unexpected event has occurred.\nAfter executing the action \"{get_action_text(final_action,data)}\" in the plan, The following facts unexpectedly became false: {get_facts_text(to_add_or_remove,data)}"
+        execution_text = f"During execution, an unexpected event has occurred.\nAfter executing the action \"{get_action_text(final_action, data)}\" in the plan, The following facts unexpectedly became false: {get_facts_text(to_add_or_remove, data)}"
     else:
-        execution_text = f"During execution, an unexpected event has occurred.\nAfter executing the action \"{get_action_text(final_action, data)}\" at step {planexecutor.prefix} in the plan, the following facts unexpectedly became true: {get_facts_text(to_add_or_remove['to_add'],data)}\nThe following facts became unexpectedly false: {get_facts_text(to_add_or_remove['to_remove'],data)}"
+        execution_text = f"During execution, an unexpected event has occurred.\nAfter executing the action \"{get_action_text(final_action, data)}\" at step {planexecutor.prefix} in the plan, the following facts unexpectedly became true: {get_facts_text(to_add_or_remove['to_add'], data)}\nThe following facts became unexpectedly false: {get_facts_text(to_add_or_remove['to_remove'], data)}"
     INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, planexecutor.plan, goal_state, data)
     text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n[PLAN]{PLAN}\n"
     text += execution_text
@@ -630,6 +760,8 @@ def get_state_translation(state, data):
     else:
         INIT += init_text[0]
     return INIT
+
+
 def generate_plan_subset_cot(planexecutor, data, give_response):
     """
     We need
@@ -706,3 +838,35 @@ def generate_plan_subset_cot(planexecutor, data, give_response):
 
     text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}\nMy goal is to have that {GOAL}.\nMy plan is as follows:\n\n{PLAN}"
     return text, plan_text
+
+
+def caesar_encode(query):
+    key = 5
+    alpha = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz']
+    new_query = ''
+    for i in query:
+        if i in alpha[0]:
+            new_letter = (alpha[0].find(i) + key) % 26
+            new_query += alpha[0][new_letter]
+        elif i in alpha[1]:
+            new_letter = (alpha[1].find(i) + key) % 26
+            new_query += alpha[1][new_letter]
+        else:
+            new_query += i
+    return new_query
+
+
+def caesar_decode(gpt3_resp):
+    key = 5
+    alpha = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz']
+    new_query = ''
+    for i in gpt3_resp:
+        if i in alpha[0]:
+            new_letter = (alpha[0].find(i) - key) % 26
+            new_query += alpha[0][new_letter]
+        elif i in alpha[1]:
+            new_letter = (alpha[1].find(i) - key) % 26
+            new_query += alpha[1][new_letter]
+        else:
+            new_query += i
+    return new_query
