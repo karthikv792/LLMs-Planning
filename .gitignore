@@ -1,1 +1,11 @@
-gpt_plan_test/outputs/*
+*/pr-*.pddl
+*/sas_plan
+*/*.stats
+*/*.tmp
+*/*.sh
+*/*.out
+*/*.sas
+*/llm_plan
+*/rough.py
+*/sas_plan_ver
+utils/__pycache__/*
