@@ -122,7 +122,7 @@ class ModelWriter(object):
         self.fstrips_problem.goal = self.get_goals(goal)
 
     # ACTIONS
-    def get_conjunctions(self, fluent_list, flag):
+    def get_conjunctions(self, act, fluent_list, flag):
         if len(fluent_list) == 0:
             if flag == POS_PREC:
                 return top
@@ -131,7 +131,7 @@ class ModelWriter(object):
         elif len(fluent_list) <= 1:
             fluent = fluent_list[0]
             variables = fluent[1]
-            var = [self.variable_map[variable.replace('?', '')] for variable in variables]
+            var = [self.variable_map[act][variable.replace('?', '')] for variable in variables]
             if flag == POS_PREC:
                 return self.predicate_map[fluent[0]](*var)
             elif flag == ADDS:
@@ -143,25 +143,26 @@ class ModelWriter(object):
             if flag == POS_PREC:
                 for fluent in fluent_list:
                     variables = fluent[1]
-                    var = [self.variable_map[variable.replace('?', '')] for variable in variables]
+                    var = [self.variable_map[act][variable.replace('?', '')] for variable in variables]
                     and_fluent_list.append(self.predicate_map[fluent[0]](*var))
                 return land(*and_fluent_list, flat=True)
             elif flag == ADDS:
                 for fluent in fluent_list:
                     variables = fluent[1]
-                    var = [self.variable_map[variable.replace('?', '')] for variable in variables]
+                    var = [self.variable_map[act][variable.replace('?', '')] for variable in variables]
                     and_fluent_list.append(fs.AddEffect(self.predicate_map[fluent[0]](*var)))
                 return and_fluent_list
             elif flag == DELS:
                 for fluent in fluent_list:
                     variables = fluent[1]
-                    var = [self.variable_map[variable.replace('?', '')] for variable in variables]
+                    var = [self.variable_map[act][variable.replace('?', '')] for variable in variables]
                     and_fluent_list.append(fs.DelEffect(self.predicate_map[fluent[0]](*var)))
                 return and_fluent_list
 
     def write_actions(self):
         for act in self.model_dict[DOMAIN]:
             cost = self.model_dict[DOMAIN][act][COST]
+            self.variable_map[act] = {}
             if PARARMETERS in self.model_dict[DOMAIN][act]:
                 pars = []
                 for p, s in self.model_dict[DOMAIN][act][PARARMETERS]:
@@ -170,15 +171,16 @@ class ModelWriter(object):
                     except UndefinedSort:
                         sort = self.fstrips_problem.language.sort(s)
                     new_var = self.fstrips_problem.language.variable(p, sort)
+                    
                     # ADDING VARIABLE TO VARIABLE MAP
-                    if new_var.symbol in self.variable_map.keys():
+                    if new_var.symbol in self.variable_map[act].keys():
                         pars.append(new_var)
                     else:
-                        self.variable_map[new_var.symbol] = new_var
+                        self.variable_map[act][new_var.symbol] = new_var
                         pars.append(new_var)
-                precond = self.get_conjunctions(self.model_dict[DOMAIN][act][POS_PREC], POS_PREC)
-                add_effects = self.get_conjunctions(self.model_dict[DOMAIN][act].get(ADDS, set()), ADDS)
-                delete_effects = self.get_conjunctions(self.model_dict[DOMAIN][act].get(DELS, set()), DELS)
+                precond = self.get_conjunctions(act, self.model_dict[DOMAIN][act][POS_PREC], POS_PREC)
+                add_effects = self.get_conjunctions(act, self.model_dict[DOMAIN][act].get(ADDS, set()), ADDS)
+                delete_effects = self.get_conjunctions(act, self.model_dict[DOMAIN][act].get(DELS, set()), DELS)
             else:
                 pars = []
             self.fstrips_problem.action(act, pars, precond, add_effects + delete_effects, cost)
