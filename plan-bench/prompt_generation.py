@@ -11,10 +11,7 @@ import time
 import json
 
 from tqdm import tqdm
-"""
-TODO: Mystery Generalized Instances
-TODO: plan 
-"""
+
 
 class PromptGenerator:
     def __init__(self,config_file, verbose, ignore_existing, seed) -> None:
@@ -117,6 +114,8 @@ class PromptGenerator:
             range_list = range(self.i_start, self.i_end + 2 - self.n_examples)
         
         for start in tqdm(range_list):
+            if start + self.n_examples in completed_instances: 
+                continue
             query = self.data["domain_intro"]
             instance_structured_output = {}
             examples = []
@@ -125,10 +124,7 @@ class PromptGenerator:
                 get_plan = not last_plan                
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
-
                 else:
                     if random_example:
                         new_i = random.choice([ln for ln in range(1,self.n_files) if ln != i])
@@ -137,7 +133,6 @@ class PromptGenerator:
                     else:
                         cur_instance = self.instance.format(i)
                         examples.append(i)
-                
                 if self.verbose:
                     print(f"Instance {cur_instance}")
                 # --------------- Read Instance --------------- #
@@ -557,6 +552,8 @@ class PromptGenerator:
             range_list = range(self.i_start, self.i_end + 2 - self.n_examples)
         
         for start in tqdm(range_list):
+            if start + self.n_examples in completed_instances:
+                continue
             query = self.data["domain_intro"]
             instance_structured_output = {}
             examples = []
@@ -566,8 +563,6 @@ class PromptGenerator:
                 
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
                 else:
                     
@@ -580,7 +575,10 @@ class PromptGenerator:
                         examples.append(i)
                 plan_executor = self.get_executor(cur_instance, self.domain_pddl)
                 if self.verbose:
-                    print(f"Instance {cur_instance}")                
+                    print(f"Instance {cur_instance}")
+                if(len(plan_executor.plan) < 1):
+                     print("Skipping instance "+str(i)+" becauce it requires an empty plan.")
+                     continue
                 instance_query, answer = plan_execution(plan_executor, self.data, get_plan)
                 query += instance_query
                 # --------------------------------------------------------- #

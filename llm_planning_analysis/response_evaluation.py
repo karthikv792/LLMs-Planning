@@ -96,11 +96,14 @@ class ResponseEvaluator:
                 cur_instance = self.instance.format(id)
                 problem = self.get_problem(cur_instance, self.domain_pddl)
                 plan_executor = self.get_executor(cur_instance, self.domain_pddl)
-                llm_plan, _ = text_to_plan(llm_response, problem.actions, self.llm_plan_file, self.data)
-                instance_dict["extracted_llm_plan"] = llm_plan
-                
-                correct = int(validate_plan(self.domain_pddl, cur_instance, self.llm_plan_file))
-                
+                try:
+                    llm_plan, _ = text_to_plan(llm_response, problem.actions, self.llm_plan_file, self.data)
+                    instance_dict["extracted_llm_plan"] = llm_plan
+                    
+                    correct = int(validate_plan(self.domain_pddl, cur_instance, self.llm_plan_file))
+                except:
+                    correct = int(False)
+                    print(f"Warning: Plan extraction failed for instance {id}")    
                 if self.verbose:
                     print(f"Correct: {bool(correct)}")
                 instance_dict["llm_correct"] = bool(correct)

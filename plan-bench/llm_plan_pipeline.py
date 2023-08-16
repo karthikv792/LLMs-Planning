@@ -5,13 +5,7 @@ from prompt_generation import PromptGenerator
 from response_evaluation import ResponseEvaluator
 from response_generation import ResponseGenerator
 
-"""
-TODO: 
-1. logistics text_to_state
-2. obfuscations deceptive and random
-3. logistics plan generalization instances ========= DONE
-4. problem generators with filters
-"""
+
 if __name__=="__main__":
     random.seed(10)
     parser = argparse.ArgumentParser()

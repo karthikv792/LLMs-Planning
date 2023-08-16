@@ -11,6 +11,8 @@ def get_action_text(action, data):
     elif 'logistics' in data['domain_name']:
         # print(pred)
         objs = [data["encoded_objects"][obj[0]].format(*[chr for chr in obj if chr.isdigit()]) for obj in pred[1:]]
+    elif 'depots' in data['domain_name']:
+        objs = pred[1:]
     # ADD SPECIFIC TRANSLATION FOR EACH DOMAIN HERE
     return data['actions'][pred[0]].format(*objs)
 
@@ -31,6 +33,8 @@ def get_state_translation(state, data):
             objs = [DATA["encoded_objects"][j] for j in pred[1:]]
         elif 'logistics' in DATA["domain_name"]:
             objs = [DATA["encoded_objects"][obj[0]].format(*[chr for chr in obj if chr.isdigit()]) for obj in pred[1:]]
+        elif 'depots' in data['domain_name']:
+            objs = pred[1:]
         # ADD SPECIFIC TRANSLATION FOR EACH DOMAIN HERE
         try:
             state_text.append(DATA['predicates'][pred[0]].format(*objs))

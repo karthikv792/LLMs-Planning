@@ -1,5 +1,9 @@
 # PlanBench: An Extensible Benchmark for Evaluating Large Language Models on Planning and Reasoning about Change
 
+## Updates to the benchmark
+We have added a new domain (depots) to the benchmark. Currently, this domain can be used for all test cases except the Plan Generalization test case.
+
+
 ## Requirements
 - Linux
 - Python 3.6+ 

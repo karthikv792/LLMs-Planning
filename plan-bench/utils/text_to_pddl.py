@@ -25,7 +25,8 @@ def text_to_plan(text, action_set, plan_file, data, cot=False, ground_flag=False
         return text_to_plan_logistics(text, action_set, plan_file, data, ground_flag)
     elif 'blocksworld' in data['domain_name']:
         return text_to_plan_blocksworld(text, action_set, plan_file, data, ground_flag)
-
+    elif 'depots' in data['domain_name']:
+        return text_to_plan_depots(text, action_set, plan_file, data, ground_flag)
     # ADD SPECIFIC TRANSLATION FOR EACH DOMAIN HERE
 
 
@@ -90,6 +91,50 @@ def text_to_plan_logistics(text, action_set, plan_file, data, ground_flag=False)
     file.write(plan)
     file.close()
     return plan, readable_plan
+
+
+
+def text_to_plan_depots(text, action_set, plan_file, data, ground_flag=False):
+    raw_actions = [i.lower() for i in list(action_set.keys())]
+    plan = ""
+    readable_plan = ""
+    lines = [line.strip().lower() for line in text.split("\n")]
+    for line in lines:
+        if not line:
+            continue
+        if '[COST]' in line:
+            break
+        
+        line = line.lstrip("0123456789").replace(".","")
+        print(line)
+        #line = re.sub("^[0-9]+.","",line)
+        #KAYQ must the stripping of periods only happen when it's part of a list?
+
+        objs = [i for i in line.split() if has_digit(i)]
+        
+        found_flag = False
+        for x in raw_actions:
+            if x in line:
+                action = x
+                found_flag = True
+                continue
+        if not found_flag:
+            continue
+
+        readable_action = "({} {})".format(action, " ".join(objs))
+        if not ground_flag:
+            action = "({} {})".format(action, " ".join(objs))
+        else:
+            action = "({}_{})".format(action, "_".join(objs))
+        plan += f"{action}\n"
+        readable_plan += f"{readable_action}\n"
+    # print(f"[+]: Saving plan in {plan_file}")
+    file = open(plan_file, "wt")
+    file.write(plan)
+    file.close()
+    return plan, readable_plan
+
+
 
 def text_to_plan_obfuscated(text, action_set, plan_file, data, ground_flag=False):
     """
@@ -225,6 +270,8 @@ def text_to_state(text, data):
         return text_to_state_logistics(text_preds, data)
     elif 'blocksworld' in data['domain_name']:
         return text_to_state_blocksworld(text_preds, data)
+    elif 'depots' in data['domain_name']:
+        return text_to_state_depots(text_preds, data)
     # ADD SPECIFIC TRANSLATION FOR EACH DOMAIN HERE
 
 def text_to_state_obfuscated(preds, data):
@@ -331,3 +378,29 @@ def text_to_state_logistics(preds, data):
             continue
         pddl_state.append(pddl_pred)
     return pddl_state
+
+
+
+
+def text_to_state_depots(preds, data):
+    pddl_state = []
+    for pred in preds:
+        pred = pred.strip()
+        if pred == '':
+            continue
+        if ' not ' in pred:
+            continue
+        if ' is at ' in pred:
+            objs = [i for i in pred.split(' is at ') if len(i)>0]
+            pddl_pred = 'at_' + '_'.join(objs)
+        elif ' is in ' in pred:
+            objs = [i for i in pred.split(' is in ') if len(i)>0]
+            pddl_pred = 'in_' + '_'.join(objs)
+        elif ' is on ' in pred:
+            objs = [i for i in pred.split(' is on ') if len(i)>0]
+            pddl_pred = 'on_' + '_'.join(objs)
+        else:
+            continue
+        pddl_state.append(pddl_pred)
+    return pddl_state
+ 

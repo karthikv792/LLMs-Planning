@@ -14,7 +14,6 @@ from copy import deepcopy
 
 
 
-
 class Executor:
     def __init__(self, domain, problem, ground=True, seed=10):
         self.is_pr_grounded = ground
@@ -23,7 +22,15 @@ class Executor:
         else:
             self.pr_domain, self.pr_problem = domain, problem
         self.model = parse_model(self.pr_domain, self.pr_problem)
-        self.is_upper = False if any([i.islower() for i in self.model[DOMAIN]]) else True
+        # why do they all have different capitalizations?
+        self.is_capitalized = False
+        if any([i.islower() for i in self.model[DOMAIN]]):
+            self.is_upper = False
+        elif any([i.isupper() for i in self.model[DOMAIN]]):
+            self.is_upper = True
+        else:
+            self.is_upper = False
+            self.is_capitalized = True
         self.plan, self.cost = self.get_plan(self.pr_domain, self.pr_problem)
         if not self.is_pr_grounded:
             self.plan = [i.replace(" ", "_") for i in self.plan]
@@ -180,6 +187,11 @@ class Executor:
                         act_neg_precs = set([])
                 else:
                     act_pos_precs, act_adds, act_dels = self.ground_strips_action(act)
+                    act_pos_precs, act_adds, act_dels = set(act_pos_precs), set(act_adds), set(act_dels)
+                    try:
+                        act_neg_precs = self.get_sets(self.model[DOMAIN][act][NEG_PREC])
+                    except Exception as e:
+                        act_neg_precs = set([])
                 curr_state = curr_state.difference(act_adds.union(act_dels))
                 curr_state = curr_state.union(act_neg_precs.union(act_pos_precs))
         else:
@@ -197,6 +209,12 @@ class Executor:
                         act_neg_precs = set([])
                 else:
                     act_pos_precs, act_adds, act_dels = self.ground_strips_action(act)
+                    act_pos_precs, act_adds, act_dels = set(act_pos_precs), set(act_adds), set(act_dels)
+                    try:
+                        act_neg_precs = self.get_sets(self.model[DOMAIN][act][NEG_PREC])
+                    except Exception as e:
+                        act_neg_precs = set([])
+
                 curr_state = curr_state.difference(act_adds.union(act_dels))
                 curr_state = curr_state.union(act_neg_precs.union(act_pos_precs))
         regress_state = set()
@@ -211,7 +229,10 @@ class Executor:
 
     def random_prefix_execution(self, replan=False):
         # print("PLAN", self.plan)
-        self.prefix = random.choice(range(1, len(self.plan)))
+        if len(self.plan)<2:
+            self.prefix = 1
+        else:
+            self.prefix = random.choice(range(1, len(self.plan)))
         self.final_state = self.get_final_state(self.init_state, self.plan[0:self.prefix])
         self.new_goal_state = self.final_state.difference(self.init_state)
         # self.all_preds = self.get_sets(self.model[PREDICATES])
@@ -244,6 +265,7 @@ class Executor:
         else:
             for act in plan:
                 act = act.upper() if self.is_upper else act
+                act = act.capitalize() if self.is_capitalized else act
                 try:
                     preconds, act_adds, act_dels = self.ground_strips_action(act)
                 except Exception as e:
@@ -263,6 +285,8 @@ class Executor:
         """
         
         act_name = act.split("_")[0]
+        act_name = act_name.upper() if self.is_upper else act_name
+        act_name = act_name.capitalize() if self.is_capitalized else act_name
         act_params = act.split("_")[1:]
         act_details = self.model[DOMAIN][act_name]
         if len(act_params) != len(act_details['params']):

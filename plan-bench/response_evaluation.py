@@ -96,26 +96,32 @@ class ResponseEvaluator:
                 cur_instance = self.instance.format(id)
                 problem = self.get_problem(cur_instance, self.domain_pddl)
                 plan_executor = self.get_executor(cur_instance, self.domain_pddl)
-                llm_plan, _ = text_to_plan(llm_response, problem.actions, self.llm_plan_file, self.data)
-                instance_dict["extracted_llm_plan"] = llm_plan
-                if 'new_instance' not in instance_dict:
-                    correct = int(validate_plan(self.domain_pddl, cur_instance, self.llm_plan_file))
-                else:
-                    self.write_new_instance(instance_dict['new_instance'])
-                    correct = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.llm_plan_file))
-                    #remove new_instance key from instance_dict
-                    del instance_dict['new_instance']
-                if 'optimality' in task_name:
-                    if correct:
-                        cost = get_cost_gpt_3(llm_response)
-                        plan_list = [len(pl) > 0 for pl in llm_plan.split('\n')]
-                        actual_cost_llm = sum(plan_list)
-                        instance_dict["actual_cost_of_llm_plan"] = actual_cost_llm
-                        instance_dict["cost_by_llm"] = cost
-                        if actual_cost_llm == plan_executor.cost:
-                            correct = True
-                        else:
-                            correct = False
+                
+                try:
+                    llm_plan, _ = text_to_plan(llm_response, problem.actions, self.llm_plan_file, self.data)
+                    instance_dict["extracted_llm_plan"] = llm_plan
+                    if 'new_instance' not in instance_dict:
+                        correct = int(validate_plan(self.domain_pddl, cur_instance, self.llm_plan_file))
+                    else:
+                        self.write_new_instance(instance_dict['new_instance'])
+                        correct = int(validate_plan('pr-new-domain.pddl', 'pr-new-problem.pddl', self.llm_plan_file))
+                        #remove new_instance key from instance_dict
+                        del instance_dict['new_instance']
+                    if 'optimality' in task_name:
+                        if correct:
+                            cost = get_cost_gpt_3(llm_response)
+                            plan_list = [len(pl) > 0 for pl in llm_plan.split('\n')]
+                            actual_cost_llm = sum(plan_list)
+                            instance_dict["actual_cost_of_llm_plan"] = actual_cost_llm
+                            instance_dict["cost_by_llm"] = cost
+                            if actual_cost_llm == plan_executor.cost:
+                                correct = True
+                            else:
+                                correct = False
+                except:
+                    # Plan extraction failed
+                    correct = int(False)
+                    print(f"Warning: Plan extraction failed for plan {id}")
                 if self.verbose:
                     print(f"Correct: {bool(correct)}")
                 instance_dict["llm_correct"] = bool(correct)

@@ -1,4 +1,4 @@
-numpy==1.19.5
+numpy
 openai
 PyYAML==6.0
 tarski==0.7.0

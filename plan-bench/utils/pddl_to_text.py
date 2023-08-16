@@ -21,6 +21,8 @@ def parse_problem(problem, data, shuffle):
                 elif 'logistics' in data['domain_name']:
                     obj = subterm.name
                     objs.append(f"{OBJS[obj[0]].format(*[chr for chr in obj if chr.isdigit()])}")
+                elif 'depots' in data['domain_name']:
+                    objs.append(subterm.name)
                 # ADD SPECIFIC TRANSLATION FOR EACH DOMAIN HERE
             try:
                 pred_string = data['predicates'][atom.symbol.name].format(*objs)
@@ -99,7 +101,8 @@ def instance_to_text(problem, get_plan, data, shuffle=False):
             elif 'blocksworld' in data['domain_name']:
                 objs = [OBJS[obj] for obj in objs]
             elif 'logistics' in data['domain_name']:
-                objs = [f"{OBJS[obj[0]].format(*[chr for chr in obj if chr.isdigit()])}" for obj in objs] 
+                objs = [f"{OBJS[obj[0]].format(*[chr for chr in obj if chr.isdigit()])}" for obj in objs]
+            #elif 'depots' in data['domain_name']:  no formatting necessary
             # ADD SPECIFIC TRANSLATION FOR EACH DOMAIN HERE
         
             PLAN += data['actions'][act_name].format(*objs) + "\n"
