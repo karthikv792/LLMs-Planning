@@ -4,7 +4,7 @@ domain_file: logistics/generated_domain.pddl
 domain_name: logistics
 n_instances: 285
 start: 1
-end: 285
+end: 200
 instances_template: instance-{}.pddl
 
 domain_intro: |

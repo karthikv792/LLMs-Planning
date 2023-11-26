@@ -23,7 +23,7 @@ domain_intro: |
        Once Succumb action is performed the following facts will be true: Province object, Planet object, Harmony.    
        Once Succumb action is performed the following facts will be false: Pain object.
        To perform Overcome action, the following needs to be true: Province other object, Pain object.
-       Once Overcome action is performed the following will be true: Harmony, Pain object, Object Craves other object.
+       Once Overcome action is performed the following will be true: Harmony, Province object, Object Craves other object.
        Once Overcome action is performed the following will be false: Province other object, Pain object.
        To perform Feast action, the following needs to be true: Object Craves other object, Province object, Harmony.
        Once Feast action is performed the following will be true: Pain object, Province other object.
@@ -45,7 +45,7 @@ domain_intro_state_tracking: |
        Once Succumb action is performed the following facts will be true: Province object, Planet object, Harmony.    
        Once Succumb action is performed the following facts will be false: Pain object.
        To perform Overcome action, the following needs to be true: Province other object, Pain object.
-       Once Overcome action is performed the following will be true: Harmony, Pain object, Object Craves other object.
+       Once Overcome action is performed the following will be true: Harmony, Province object, Object Craves other object.
        Once Overcome action is performed the following will be false: Province other object, Pain object.
        To perform Feast action, the following needs to be true: Object Craves other object, Province object, Harmony.
        Once Feast action is performed the following will be true: Pain object, Province other object.

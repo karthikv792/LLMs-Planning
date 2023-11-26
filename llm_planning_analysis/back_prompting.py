@@ -93,11 +93,20 @@ class BackPrompter():
 
     
 
-    def task_1_plan_generation_backprompting(self, config_file, specified_instances=[], random_example=False):
+    def task_1_plan_generation_backprompting(self, config_file, use_llm_feedback, specified_instances=[], random_example=False):
         
         
         self.read_config(config_file)
-        task_name = "task_1_plan_generation_backprompting"
+        if use_llm_feedback['use_llm']:
+            if use_llm_feedback['zero_shot']:
+                task_name = "task_1_plan_generation_backprompting_llm_feedback_zero_shot"
+                if use_llm_feedback['val_form']:
+                    task_name = "task_1_plan_generation_backprompting_llm_feedback_zero_shot_val_form"
+            else:
+                task_name = "task_1_plan_generation_backprompting_llm_feedback"
+        else:
+            task_name = "task_1_plan_generation_backprompting"
+
         instance_dir = self.data['instance_dir']
         domain_pddl = f'./instances/{self.data["domain_file"]}'
         instance_folder = f'./instances/{instance_dir}/'
@@ -109,9 +118,8 @@ class BackPrompter():
         n_files = i_end - i_start + 1  # min(self.data['n_instances'], len(os.listdir(instance_folder)))
         final_output = ""
         instance_structured_outputs = []
-        correct_plans = 0
 
-        failed_instances = []
+        failed_instances = 0
         structured_output = self.load_json(task_name)
         if structured_output is None:
             structured_output = {
@@ -122,12 +130,15 @@ class BackPrompter():
                                 "instances": instance_structured_outputs,
                                 }
         completed_instances =  []
+        prev_success_results = {}
         for inst in structured_output["instances"]:
             if not inst["could_not_extract"]:
                 completed_instances.append(inst["instance_id"])
+                prev_success_results[inst["instance_id"]] = inst["act_correct"]
             else:
                 if [msg["content"] for msg in inst["messages"] if msg["role"] == "assistant"][-1]:
                     completed_instances.append(inst["instance_id"])
+                    prev_success_results[inst["instance_id"]] = inst["act_correct"]
         if len(specified_instances):
             range_list = []
             for specified_instance in specified_instances:
@@ -186,27 +197,26 @@ class BackPrompter():
             # llm_response = ""
             if instance_structured_output["instance_id"] in completed_instances:
                 print(f"Instance {instance_structured_output['instance_id']} already completed")
+                if not prev_success_results[instance_structured_output["instance_id"]]:
+                    failed_instances += 1
                 continue
             # if self.is_already_correct(instance_structured_output["instance_id"]):
             #     print(f"Instance {instance_structured_output['instance_id']} already completed and correct")
             #     continue
             
-            
-
-            # print(f"Sending query to LLM: Instance {instance_structured_output['instance_id']}")
-            # llm_response = send_query(query, self.engine, self.max_gpt_response_length, model=self.model, stop=stop_statement)
-            # if llm_response == "":
-            #     failed_instances.append(instance_structured_output["instance_id"])
-            #     continue
-            # print("Got LLM response")
-            messages, llm_plan, correct, steps, context_window_hit, could_not_extract = \
-                self.get_repeated_verification(self.engine, query, domain_pddl, problem, cur_instance)
+            messages, llm_plan, verifier_states_correct, act_correct, steps, context_window_hit, could_not_extract, feedback_messages = \
+                self.get_repeated_verification(self.engine, query, domain_pddl, problem, cur_instance, use_llm_feedback)
             instance_structured_output["messages"] = messages
             instance_structured_output["steps"] = steps
-            instance_structured_output["correct"] = bool(correct)
+            instance_structured_output["verifier_states_correct"] = bool(verifier_states_correct)
+            instance_structured_output["act_correct"] = bool(act_correct)
             instance_structured_output["extracted_llm_plan"] = llm_plan
             instance_structured_output["context_window_hit"] = bool(context_window_hit)
             instance_structured_output["could_not_extract"] = bool(could_not_extract)
+            instance_structured_output["feedback_messages"] = feedback_messages
+
+            if not bool(act_correct):
+                failed_instances += 1
 
             structured_output["instances"].append(instance_structured_output)
             self.save_json(task_name, structured_output)
@@ -220,10 +230,10 @@ class BackPrompter():
         # --------------- Add to final output --------------- #
 
         
-        if len(failed_instances):
-            structured_output["failed_instances"] = failed_instances
-        final_output += f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%"
-        print(f"[+]: The number of correct plans is {correct_plans}/{n_files}={correct_plans / (n_files) * 100}%")
+        structured_output["failed_instances"] = failed_instances
+        self.save_json(task_name, structured_output)
+        final_output += f"[+]: The number of correct plans is {n_files - failed_instances}/{n_files}={(n_files - failed_instances) / (n_files) * 100}%"
+        print(final_output)
 
         return structured_output
 
@@ -237,9 +247,123 @@ class BackPrompter():
             print(f"Error: {e}")
             return False
         
+    def get_llm_feedback(self, domain_pddl, llm_plan, cur_instance, use_llm_feedback, messages=[]):
+        '''
+        Has an LLM correct the plan. Previous messages with the LLM (generation messages)
+        can optionally be passed as context to the LLM if there's interest
+        in seeing this as a conversation.
+        '''
+        query = self.data["domain_intro"]
+        instance_dir = self.data['instance_dir']
+        instance_format = f'./instances/{instance_dir}/{self.data["instances_template"]}'
+        instance_folder = f'./instances/{instance_dir}/'
+        n_files = min(self.data['n_instances'], len(os.listdir(instance_folder)))
+        instance_structured_output = {}
+        instance_id = int(cur_instance.split('/')[-1].split('.')[0].split('-')[-1])
+        instance_structured_output["instance_id"] = instance_id
+        if not use_llm_feedback['zero_shot']:
+            example_instances = random.choices([ln for ln in range(1, n_files) if ln != instance_id], k=3)        
+            example_type = [-1, 0, 1]
+            random.shuffle(example_type)
+            for example, example_type in zip(example_instances, example_type):
+                example_instance = instance_format.format(example)
+                plan_executor = self.get_executor(example_instance, domain_pddl)
+                text,_ = plan_verification(plan_executor, self.data, True, give_response = True, example_type=example_type)
+                query += text
+            plan_executor = self.get_executor(cur_instance, domain_pddl)
+            text, _ = plan_verification(plan_executor, self.data, False, llm_plan=llm_plan)
+        else:
+            plan_executor = self.get_executor(cur_instance, domain_pddl)
+            if not use_llm_feedback['val_form']:
+                text = plan_verification_zero_shot(plan_executor, self.data, llm_plan=llm_plan)
+            else:
+                text = plan_verification_zero_shot_val_form(plan_executor, self.data, llm_plan=llm_plan)
+        query += text
 
-    def get_repeated_verification(self, engine, original_query, domain_pddl, problem, cur_instance, threshold_feedback_amount=15):
-        
+        response, messages, _, _ = send_query_with_feedback(query, engine, messages, system_message="You are the planner assistant that validates whether a provided plan is correct and provides feedback if not.")
+
+        return response, messages
+
+
+    #TODO: self-critique
+    def self_critique(self, engine, original_query, domain_pddl, problem, cur_instance, use_llm_feedback, threshold_feedback_amount=15):
+        correct = 0
+        steps = 0
+        query = original_query
+        # print(original_query)
+        messages = []
+        could_not_extract = False
+        current_flag = 0
+        print(f"Sending query to LLM: Instance {cur_instance}")
+        while correct==0 and steps < threshold_feedback_amount:      
+
+            pass
+
+
+            llm_response, messages, context_window_hit, rate_limit_hit = send_query_with_feedback(query, engine, messages)
+#             llm_response = """
+# unstack the red block from on top of the blue block
+# put down the red block
+# unstack the blue block from on top of the yellow block
+# put down the blue block
+# unstack the yellow block from on top of the orange block
+# pick up the red block
+# stack the red block on top of the yellow block
+# [PLAN END]
+#             """
+#             context_window_hit, rate_limit_hit = False, False
+            if context_window_hit:
+                break
+            if rate_limit_hit:
+                print("Rate limit hit. Waiting for 60 seconds.")
+                time.sleep(60)
+                continue
+
+            feedback_messages = []
+
+            if use_llm_feedback['use_llm']:
+                try:
+                    llm_plan, readable_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data, ground_flag=True)
+                except:
+                    could_not_extract = True 
+                    break
+                query, feedback_messages = self.get_llm_feedback(domain_pddl, llm_plan.strip().split("\n"), cur_instance, use_llm_feedback)
+                verifier_states_correct = False
+                for line in query.split('\n'):
+                    if 'plan is valid' in line.lower():
+                        correct = True
+                        break
+            else:
+                try: 
+                    _, readable_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data)
+                    feedback_dict = get_val_feedback(domain_pddl, cur_instance, self.gpt3_plan_file)
+                except:
+                    could_not_extract = True 
+                    break
+                verifier_states_correct = int(feedback_dict["validation_info"]["is_valid_plan"])
+                query = get_validation_message(feedback_dict, self.data)
+            steps += 1
+
+        # Determine whether backprompting result is actually correct
+        # Since the LLM is not sound, this may not be true when the LLM says it is correct
+        # This is always true when VAL says it is correct
+        if use_llm_feedback['use_llm']:
+            try: 
+                _, readable_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data)
+                feedback_dict = get_val_feedback(domain_pddl, cur_instance, self.gpt3_plan_file)
+            except:
+                print("WARNING: final plan could not be verified")
+            act_correct = int(feedback_dict["validation_info"]["is_valid_plan"])
+        else:
+            act_correct = verifier_states_correct
+
+        # print(f"Final LLM response after {steps} steps")
+        return messages, readable_plan, verifier_states_correct, act_correct, steps, context_window_hit, could_not_extract, feedback_messages
+    
+
+
+
+    def get_repeated_verification(self, engine, original_query, domain_pddl, problem, cur_instance, use_llm_feedback, threshold_feedback_amount=15):
         correct = 0
         steps = 0
         query = original_query
@@ -266,18 +390,47 @@ class BackPrompter():
                 print("Rate limit hit. Waiting for 60 seconds.")
                 time.sleep(60)
                 continue
-            try: 
-                _, llm_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data)
-                val_feedback_dict = get_val_feedback(domain_pddl, cur_instance, self.gpt3_plan_file)
-            except:
-                could_not_extract = True 
-                break
-            correct = int(val_feedback_dict["validation_info"]["is_valid_plan"])
-            query = get_validation_message(val_feedback_dict, self.data)
+
+            feedback_messages = []
+
+            if use_llm_feedback['use_llm']:
+                try:
+                    llm_plan, readable_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data, ground_flag=True)
+                except:
+                    could_not_extract = True 
+                    break
+                query, feedback_messages = self.get_llm_feedback(domain_pddl, llm_plan.strip().split("\n"), cur_instance, use_llm_feedback)
+                verifier_states_correct = False
+                for line in query.split('\n'):
+                    if 'plan is valid' in line.lower():
+                        correct = True
+                        break
+            else:
+                try: 
+                    _, readable_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data)
+                    feedback_dict = get_val_feedback(domain_pddl, cur_instance, self.gpt3_plan_file)
+                except:
+                    could_not_extract = True 
+                    break
+                verifier_states_correct = int(feedback_dict["validation_info"]["is_valid_plan"])
+                query = get_validation_message(feedback_dict, self.data)
             steps += 1
 
+        # Determine whether backprompting result is actually correct
+        # Since the LLM is not sound, this may not be true when the LLM says it is correct
+        # This is always true when VAL says it is correct
+        if use_llm_feedback['use_llm']:
+            try: 
+                _, readable_plan = text_to_plan(llm_response, problem.actions, self.gpt3_plan_file, self.data)
+                feedback_dict = get_val_feedback(domain_pddl, cur_instance, self.gpt3_plan_file)
+            except:
+                print("WARNING: final plan could not be verified")
+            act_correct = int(feedback_dict["validation_info"]["is_valid_plan"])
+        else:
+            act_correct = verifier_states_correct
+
         # print(f"Final LLM response after {steps} steps")
-        return messages, llm_plan, correct, steps, context_window_hit, could_not_extract
+        return messages, readable_plan, verifier_states_correct, act_correct, steps, context_window_hit, could_not_extract, feedback_messages
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -297,6 +450,8 @@ if __name__ == '__main__':
     parser.add_argument('--random_example', type=str, default="False", help='Random example')
     parser.add_argument('--ignore_existing', action='store_true', help='Ignore existing output')
     parser.add_argument('--seed', type=int, default=42, help='Random seed')
+    parser.add_argument('--llm_validation', action='store_true', help='Use LLM to validate itself instead of VAL')
+    
     args = parser.parse_args()
     config = args.config
     engine = args.engine
@@ -307,8 +462,13 @@ if __name__ == '__main__':
     seed = args.seed
     random.seed(seed)
     # print(task, config, verbose, specified_instances, random_example)
+    use_llm_feedback = {
+        'use_llm': args.llm_validation,
+        'zero_shot': True,
+        'val_form': True
+    }
     config_file = f'./configs/{config}.yaml'
     backprompter = BackPrompter(engine, verbose=verbose, ignore_existing=ignore_existing)
-    backprompter.task_1_plan_generation_backprompting(config_file, specified_instances, random_example)
+    backprompter.task_1_plan_generation_backprompting(config_file, use_llm_feedback, specified_instances=specified_instances, random_example=random_example)
 
 

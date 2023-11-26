@@ -75,10 +75,10 @@ if __name__=="__main__":
     response_generator = ResponseGenerator(config_file, engine, verbose, ignore_existing)
     task_dict = {
         't1': 'task_1_plan_generation',
-        't1_zero': 'task_1_zero_shot_plan_generation',
+        't1_zero': 'task_1_plan_generation_zero_shot',
         't1_cot': 'task_1_plan_generation_state_tracking',
         't1_pddl': 'task_1_plan_generation_pddl',
-        't1_zero_pddl': 'task_1_zero_shot_plan_generation_pddl',
+        't1_zero_pddl': 'task_1_plan_generation_zero_shot_pddl',
     }
     try:
         task_name = task_dict[task]
@@ -91,12 +91,12 @@ if __name__=="__main__":
     response_evaluator = ResponseEvaluator(config_file, engine, specified_instances, verbose, ignore_existing)
     eval_plan_dict = {
         't1': 'task_1_plan_generation',
-        't1_zero': 'task_1_zero_shot_plan_generation',
+        't1_zero': 'task_1_plan_generation_zero_shot',
         't1_cot': 'task_1_plan_generation_state_tracking',
         }
     eval_plan_pddl_dict = {
         't1_pddl': 'task_1_plan_generation_pddl',
-        't1_zero_pddl': 'task_1_zero_shot_plan_generation_pddl',
+        't1_zero_pddl': 'task_1_plan_generation_zero_shot_pddl',
         }
     if task in eval_plan_dict:
         try:

@@ -98,15 +98,6 @@ class ResponseGenerator:
             else:
                 break
         
-            
-        
-        
-        
-            
-
-    
-
-
 if __name__=="__main__":
     random.seed(10)
     parser = argparse.ArgumentParser()
@@ -150,17 +141,17 @@ if __name__=="__main__":
     response_generator = ResponseGenerator(config_file, engine, verbose, ignore_existing)
     task_dict = {
         't1': 'task_1_plan_generation',
-        't1_zero': 'task_1_zero_shot_plan_generation',
+        't1_zero': 'task_1_plan_generation_zero_shot',
         't1_cot': 'task_1_plan_generation_state_tracking',
         't1_pddl': 'task_1_plan_generation_pddl',
-        't1_zero_pddl': 'task_1_zero_shot_plan_generation_pddl',
+        't1_zero_pddl': 'task_1_plan_generation_zero_shot_pddl',
     }
     try:
         task_name = task_dict[task]
     except:
         raise ValueError("Invalid task name")
     response_generator.get_responses(task_name, specified_instances, run_till_completion=run_till_completion)
-
+   
 
 
 

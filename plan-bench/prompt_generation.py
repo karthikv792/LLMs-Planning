@@ -191,8 +191,6 @@ class PromptGenerator:
                 
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
                 else:
                     if random_example:
@@ -218,6 +216,8 @@ class PromptGenerator:
             if 'caesar' in self.data['domain_name']:
                 query = caesar_encode(query)
                 stop_statement = caesar_encode(stop_statement)
+            if i in completed_instances:
+                continue
             instance_structured_output["example_instance_ids"] = examples
             instance_structured_output["query"] = query
             instance_structured_output["ground_truth_plan"] = gt_plan_text
@@ -278,6 +278,68 @@ class PromptGenerator:
     
     def task_3_plan_verification_with_llm_plans(self, specified_instances=[]):
         task_name = "task_3_plan_verification_with_llm_plans"
+        llm_plan_task_name = 'task_1_plan_generation'
+        correct_plans = 0
+        llm_plan_json = self.load_results_json(llm_plan_task_name)
+        
+        instance_structured_outputs = []
+        structured_output = self.load_json(task_name)
+        if structured_output is None:
+            structured_output = {
+                                "task": task_name,
+                                "prompt_type": "oneshot",
+                                "domain": self.data['domain_name'],
+                                "instances": instance_structured_outputs,
+                                }
+        if len(specified_instances):
+            range_list = specified_instances
+        else:
+            range_list = range(self.i_start, self.i_end+1)
+        completed_instances =  []
+        for inst in structured_output["instances"]:
+            if inst["query"]:
+                completed_instances.append(inst["instance_id"])
+
+        for i in tqdm(range_list):
+            query = self.data["domain_intro"]
+            instance_structured_output = {}
+            cur_instance = self.instance.format(i)
+            if i in completed_instances:
+                    continue
+            llm_plan = []
+            for llm_plan_instance in llm_plan_json["instances"]:
+                if llm_plan_instance["instance_id"] == i:
+                    llm_plan = llm_plan_instance["extracted_llm_plan"]
+                    break
+            if len(llm_plan) == 0:
+                continue            
+            if self.verbose:
+                print(f"Instance {cur_instance}")
+            instance_structured_output["instance_id"] = i
+            example_instances = random.choices([ln for ln in range(1,self.n_files) if ln != i], k=3)        
+            example_type = [-1, 0, 1]
+            random.shuffle(example_type)
+            for example, example_type in zip(example_instances, example_type):
+                example_instance = self.instance.format(example)
+                plan_executor = self.get_executor(example_instance, self.domain_pddl)
+                text,_ = plan_verification(plan_executor, example_type, self.data, True)
+                query += text
+            instance_type = random.choice([-1, 0, 1])
+            plan_executor = self.get_executor(cur_instance, self.domain_pddl)
+            text, answer = plan_verification(plan_executor, instance_type, self.data, False, llm_plan=llm_plan)
+            query += text
+            if self.verbose:
+                print(query)
+
+            stop_statement = '[STATEMENT]'
+            
+            instance_structured_output["query"] = query
+            instance_structured_output["ground_truth_plan"] = answer
+            structured_output["instances"].append(instance_structured_output)
+            self.save_json(task_name, structured_output)
+
+    def task_3_zero_shot_plan_verification(self, specified_instances=[]):
+        task_name = "task_3_zero_shot_plan_verification"
         llm_plan_task_name = 'task_1_plan_generation'
         correct_plans = 0
         llm_plan_json = self.load_results_json(llm_plan_task_name)
@@ -493,8 +555,6 @@ class PromptGenerator:
                 
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
                 else:
                     if random_example:
@@ -521,6 +581,8 @@ class PromptGenerator:
             if 'caesar' in self.data['domain_name']:
                 query = caesar_encode(query)
                 stop_statement = caesar_encode(stop_statement)
+            if i in completed_instances:
+                continue
             instance_structured_output["example_instance_ids"] = examples
             instance_structured_output["query"] = query
             instance_structured_output["ground_truth_plan"] = gt_plan_text

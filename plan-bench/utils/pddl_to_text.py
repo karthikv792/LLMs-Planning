@@ -32,6 +32,7 @@ def parse_problem(problem, data, shuffle):
                 pass
             
         if len(predicates) > 1:
+            predicates = [item for item in predicates if item]
             TEXT += ", ".join(predicates[:-1]) + f" and {predicates[-1]}"
         else:
             TEXT += predicates[0]

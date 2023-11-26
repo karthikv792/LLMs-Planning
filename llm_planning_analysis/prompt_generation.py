@@ -125,8 +125,6 @@ class PromptGenerator:
                 get_plan = not last_plan                
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
 
                 else:
@@ -157,6 +155,8 @@ class PromptGenerator:
             if 'caesar' in self.data['domain_name']:
                 query = caesar_encode(query)
                 stop_statement = caesar_encode(stop_statement)
+            if i in completed_instances:
+                continue
             instance_structured_output["example_instance_ids"] = examples
             instance_structured_output["query"] = query
             instance_structured_output["ground_truth_plan"] = gt_plan_text
@@ -246,8 +246,6 @@ class PromptGenerator:
                 get_plan = not last_plan                
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
 
                 else:
@@ -274,6 +272,8 @@ class PromptGenerator:
         
             if self.verbose:
                 print(query)
+            if i in completed_instances:
+                continue
             instance_structured_output["example_instance_ids"] = examples
             instance_structured_output["query"] = query
             instance_structured_output["ground_truth_plan"] = gt_plan_text
@@ -315,8 +315,6 @@ class PromptGenerator:
                 get_plan = not last_plan                
                 if last_plan:
                     cur_instance = self.instance.format(i)
-                    if i in completed_instances:
-                        continue
                     instance_structured_output["instance_id"] = i
 
                 else:
@@ -352,6 +350,8 @@ class PromptGenerator:
             if 'caesar' in self.data['domain_name']:
                 query = caesar_encode(query)
                 stop_statement = caesar_encode(stop_statement)
+            if i in completed_instances:
+                continue
             instance_structured_output["example_instance_ids"] = examples
             instance_structured_output["query"] = query
             instance_structured_output["ground_truth_plan"] = plan

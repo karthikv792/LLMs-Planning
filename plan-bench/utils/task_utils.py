@@ -297,8 +297,8 @@ def plan_verification(planexecutor, example_type, data, give_response, llm_plan=
             plan = plan[:to_del]+plan[to_del+1:]
             random.shuffle(plan)
         elif example_type==0: #Unsatisfied goal
-            
-            plan = plan[:-1]
+            subset = random.choice(range(0, len(plan)-1))
+            plan = plan[:subset]            
         else:
             pass
         if example_type == 1:
@@ -338,7 +338,63 @@ def plan_verification(planexecutor, example_type, data, give_response, llm_plan=
         text = f"\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}.\nMy goal is to have that {GOAL}. \nMy plan is as follows:\n\n[PLAN]{PLAN}\n[VERIFICATION]"
     return text, val_message
         
+def plan_verification_zero_shot(planexecutor, data, llm_plan=None):
+    if llm_plan is None:
+        example_type = random.choice([-1, 0, 1])
+        plan, cost = planexecutor.get_plan(planexecutor.pr_domain, planexecutor.pr_problem)       
 
+        if example_type == -1: #Inexecutable 
+            if len(plan)>2:
+                to_del = random.choice(range(1, len(plan)-1))
+            else:
+                to_del = 1
+            plan = plan[:to_del]+plan[to_del+1:]
+            random.shuffle(plan)
+        elif example_type==0: #Unsatisfied goal
+            #Pick a prefix of the plan
+            prefix= random.choice(range(0, len(plan)-1))
+            plan = plan[:prefix]
+        else:
+            pass
+    else:
+        plan = llm_plan
+        plan = [action.replace('(', '').replace(')', '') for action in plan]
+        plan = ["_".join(action.split(' ')) for action in plan]
+    
+    initial_state = planexecutor.init_state
+    goal_state = planexecutor.goal_state    
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data)
+    text = f'\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}.\nMy goal is to have that {GOAL}. \nMy plan is as follows:\n\n[PLAN]{PLAN}\nVerify whether the above plan is valid. If it is valid, please say "Plan is valid." and nothing else. If it is invalid, please say "Plan is invalid." and then provide feedback on why the plan fails.'
+    return text
+
+def plan_verification_zero_shot_val_form(planexecutor, data, llm_plan=None):
+    if llm_plan is None:
+        example_type = random.choice([-1, 0, 1])
+        plan, cost = planexecutor.get_plan(planexecutor.pr_domain, planexecutor.pr_problem)       
+
+        if example_type == -1: #Inexecutable 
+            if len(plan)>2:
+                to_del = random.choice(range(1, len(plan)-1))
+            else:
+                to_del = 1
+            plan = plan[:to_del]+plan[to_del+1:]
+            random.shuffle(plan)
+        elif example_type==0: #Unsatisfied goal
+            #Pick a prefix of the plan
+            prefix= random.choice(range(0, len(plan)-1))
+            plan = plan[:prefix]
+        else:
+            pass
+    else:
+        plan = llm_plan
+        plan = [action.replace('(', '').replace(')', '') for action in plan]
+        plan = ["_".join(action.split(' ')) for action in plan]
+    
+    initial_state = planexecutor.init_state
+    goal_state = planexecutor.goal_state    
+    INIT, PLAN, GOAL = parsed_instance_to_text_blocksworld(initial_state, plan, goal_state, data)
+    text = f'\n[STATEMENT]\nAs initial conditions I have that, {INIT.strip()}.\nMy goal is to have that {GOAL}. \nMy plan is as follows:\n\n[PLAN]{PLAN}\nVerify whether the above plan is valid. If it is valid, please say "Plan is valid." and nothing else. If it is invalid, please say "Plan is invalid." and then provide feedback on why the plan fails according to the following format. If the plan is inexecutable, provide the first action that is inexecutable and the unmet preconditions in the following format: The following action [action name] has unmet preconditions [list of preconditions]. If the plan is executable but does not satisfy the goal, provide the unmet goal conditions.'
+    return text
 
 
 def reformat_feedback(feedback):

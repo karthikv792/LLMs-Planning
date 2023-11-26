@@ -262,7 +262,10 @@ class Executor:
         """
         act_name = act.split("_")[0]
         act_params = act.split("_")[1:]
-        act_details = self.model[DOMAIN][act_name]
+        try:
+            act_details = self.model[DOMAIN][act_name.upper()]
+        except Exception as KeyError:
+            act_details = self.model[DOMAIN][act_name.lower()]
         if len(act_params) != len(act_details['params']):
             print("ERROR: Wrong number of parameters for action", act_name)
             return None, None, None

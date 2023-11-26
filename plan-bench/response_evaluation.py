@@ -370,7 +370,8 @@ if __name__=="__main__":
         't7': 'task_7_plan_execution'
     }
     eval_verification_dict = {
-        't3': 'task_3_plan_verification'
+        't3': 'task_3_plan_verification',
+        't3_1': 'task_3_plan_verification_with_llm_plans'
     }
     if task in eval_plan_dict:
         try:

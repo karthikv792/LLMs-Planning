@@ -26,10 +26,11 @@ def parse_problem(problem, data, shuffle):
                 pred_string = data['predicates'][atom.symbol.name].format(*objs)
                 predicates.append(pred_string)
             except:
-                # print("[-]: Predicate not found in predicates dict: {}".format(atom.symbol.name))
+                print("[-]: Predicate not found in predicates dict: {}".format(atom.symbol.name))
                 pass
-            
+        
         if len(predicates) > 1:
+            predicates = [item for item in predicates if item]
             TEXT += ", ".join(predicates[:-1]) + f" and {predicates[-1]}"
         else:
             TEXT += predicates[0]

@@ -1,22 +1,27 @@
 from transformers import StoppingCriteriaList, StoppingCriteria
 import openai
 import os
+import vertexai
+from vertexai.language_models import TextGenerationModel
+from google.oauth2 import service_account
+
 openai.api_key = os.environ["OPENAI_API_KEY"]
-def generate_from_bloom(model, tokenizer, query, max_tokens):
+def generate_from_bloom(model, tokenizer, params, query, max_tokens):
     encoded_input = tokenizer(query, return_tensors='pt')
     stop = tokenizer("[PLAN END]", return_tensors='pt')
     stoplist = StoppingCriteriaList([stop])
     output_sequences = model.generate(input_ids=encoded_input['input_ids'].cuda(), max_new_tokens=max_tokens,
-                                      temperature=0, top_p=1)
+                                      temperature=params['temperature'], top_p=1)
     return tokenizer.decode(output_sequences[0], skip_special_tokes=True)
 
 
 def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
     max_token_err_flag = False
+    params = {'temperature': 0.0, 'n': 1}
     if engine == 'bloom':
 
         if model:
-            response = generate_from_bloom(model['model'], model['tokenizer'], query, max_tokens)
+            response = generate_from_bloom(model['model'], model['tokenizer'], params, query, max_tokens)
             response = response.replace(query, '')
             resp_string = ""
             for line in response.split('\n'):
@@ -27,13 +32,27 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             return resp_string
         else:
             assert model is not None
+    elif engine == 'palm':
+        # Change this to your own path or set the environment variable
+        # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/local/ASUAD/kvalmeek/google-cloud-keys/llm-planning-715517cd41ec.json"
+        vertexai.init(project='llm-planning')
+
+        parameters = {
+            'temperature': params['temperature']
+        }
+        
+        model = TextGenerationModel.from_pretrained("text-bison@001")
+        response  = model.predict(query, **parameters)
+        return response.text.strip()
+
+
     elif engine == 'finetuned':
         if model:
             try:
                 response = openai.Completion.create(
                     model=model['model'],
                     prompt=query,
-                    temperature=0,
+                    temperature=params['temperature'],
                     max_tokens=max_tokens,
                     top_p=1,
                     frequency_penalty=0,
@@ -55,7 +74,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
         {"role": "user", "content": query}
         ]
         try:
-            response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=0)
+            response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=params['temperature'])
         except Exception as e:
             max_token_err_flag = True
             print("[-]: Failed GPT3 query execution: {}".format(e))
@@ -66,7 +85,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             response = openai.Completion.create(
                 model=engine,
                 prompt=query,
-                temperature=0,
+                temperature=params['temperature'],
                 max_tokens=max_tokens,
                 top_p=1,
                 frequency_penalty=0,
@@ -78,6 +97,65 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
 
         text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
         return text_response.strip()
+
+def send_query_multiple(query, engine, max_tokens, params, model=None, stop="[STATEMENT]"):
+    max_token_err_flag = False
+    if engine == 'finetuned':
+        if model:
+            try:
+                response = openai.Completion.create(
+                    model=model['model'],
+                    prompt=query,
+                    temperature=params['temperature'],
+                    n = params['n'],
+                    max_tokens=max_tokens,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                    stop=["[PLAN END]"])
+            except Exception as e:
+                max_token_err_flag = True
+                print("[-]: Failed GPT3 query execution: {}".format(e))
+            text_responses = dict([(ind,resp["text"].strip()) for ind, resp in enumerate(response["choices"])]) if not max_token_err_flag else ""
+            
+            # text_response = response["choices"][0]["text"] if not max_token_err_flag else ""
+            return text_responses
+        else:
+            assert model is not None
+    elif '_chat' in engine:
+        
+        eng = engine.split('_')[0]
+        # print('chatmodels', eng)
+        messages=[
+        {"role": "system", "content": "You are the planner assistant who comes up with correct plans."},
+        {"role": "user", "content": query}
+        ]
+        try:
+            response = openai.ChatCompletion.create(model=eng, messages=messages, temperature=params['temperature'], n=params['n'])
+        except Exception as e:
+            max_token_err_flag = True
+            print("[-]: Failed GPT3 query execution: {}".format(e))
+        text_responses = dict([(ind,resp["message"]["content"].strip()) for ind, resp in enumerate(response["choices"])]) if not max_token_err_flag else ""
+        # text_response = response['choices'][0]['message']['content'] if not max_token_err_flag else ""
+        return text_responses
+    else:
+        try:
+            response = openai.Completion.create(
+                model=engine,
+                prompt=query,
+                temperature=params['temperature'],
+                max_tokens=max_tokens,
+                top_p=1,
+                n=params['n'],
+                frequency_penalty=0,
+                presence_penalty=0,
+                stop=stop)
+        except Exception as e:
+            max_token_err_flag = True
+            print("[-]: Failed GPT3 query execution: {}".format(e))
+
+        text_responses = dict([(ind,resp["text"].strip()) for ind, resp in enumerate(response["choices"])]) if not max_token_err_flag else ""
+        return text_responses
     
 
 def send_query_with_feedback(query, engine, messages=[]):
