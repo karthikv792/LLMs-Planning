@@ -5,10 +5,10 @@
 - Python 3.6+ 
   - Install required packages with `pip install -r requirements.txt`
 - Fast Downward 
-    1. Use the version in [planner_tools](../planner_tools/) or download from [here](https://www.fast-downward.org/ObtainingAndRunningFastDownward)
+    1. Use the version in [planner_tools](../planner_tools/) or download from [here](https://github.com/aibasel/downward)
     2. Assign path of the folder to the environment variable FAST_DOWNWARD `FAST_DOWNWARD=/path/to/fast_downward`
 - VAL 
-    1. Use the version in [planner_tools](../planner_tools/) or download from [here](https://www.fast-downward.org/SettingUpVal) 
+    1. Use the version in [planner_tools](../planner_tools/) or download from [here](https://github.com/KCL-Planning/VAL) 
     2. Assign path of the folder to the environment variable VAL `VAL=/path/to/val`
 - PR2Plan
     1. Use the version in [planner_tools](../planner_tools/) or download and compile obs-compiler from [here](https://sites.google.com/site/prasplanning/file-cabinet)
