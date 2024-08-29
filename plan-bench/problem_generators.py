@@ -326,11 +326,11 @@ class GeneralizationInstanceGenerator:
                 return False
         return True
 
-    def t5_gen_generalization_instances(self):
+    def t5_gen_generalization_instances(self,n_instances=10):
         if self.data['domain_name'] == "blocksworld":
-            self.t5_gen_generalization_instances_blocksworld()
+            self.t5_gen_generalization_instances_blocksworld(n_instances)
         elif self.data['domain_name'] == "logistics":
-            self.t5_gen_generalization_instances_logistics()
+            self.t5_gen_generalization_instances_logistics(n_instances)
 
     def t5_gen_generalization_instances_blocksworld(self, n_instances):
         def gen_instance(objs):
@@ -376,7 +376,7 @@ class GeneralizationInstanceGenerator:
             with open(self.instances_template.format(c), "w+") as fd:
                 fd.write(instance)
 
-    def t5_gen_generalization_instances_logistics(self):
+    def t5_gen_generalization_instances_logistics(self,n_instances):
         def gen_instance(init, goal, objs):
             text = "(define (problem LG-generalization)\n(:domain logistics-strips)"
             text += "(:objects " + " ".join(objs) + ")\n"
