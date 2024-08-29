@@ -239,6 +239,7 @@ class Instance_Generator():
             count = 0
             while count<50:
                 with open(instance_file.format(c), "w+") as fd:
+                    print(f"Writing in {instance_file.format(c)}")
                     pddl = os.popen(cmd_exec).read()
                     # print(pddl)
                     hash_of_instance = self.convert_pddl(pddl)
