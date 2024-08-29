@@ -326,7 +326,7 @@ class GeneralizationInstanceGenerator:
                 return False
         return True
 
-    def t5_gen_generalization_instances(self,n_instances=10):
+    def t5_gen_generalization_instances(self,n_instances):
         if self.data['domain_name'] == "blocksworld":
             self.t5_gen_generalization_instances_blocksworld(n_instances)
         elif self.data['domain_name'] == "logistics":
@@ -443,7 +443,7 @@ class GeneralizationInstanceGenerator:
                     goal.append(f"(at p{to_mul+package} l{fly_to}-{airports[fly_to][0]})")
 
             instance = gen_instance(init, goal, objs)
-
+            print(instance)
             if hashlib.md5(instance.encode('utf-8')).hexdigest() in self.hashset:
                 print("[-] INSTANCE ALREADY IN SET, SKIPPING")
                 continue
