@@ -1,0 +1,7 @@
+coffeemaking.pddl,coffeeproblem.pddl,coffeeplan.txt,../samples/domainsWithEventsAndProcesses/Coffee/
+vendingmachine.pddl,vendingmachine-problem.pddl,vendingmachineplan.txt,../samples/domainsWithEventsAndProcesses/VendingMachine/
+drivedomain.pddl,drive-problem.pddl,driveplan.txt,../samples/domainsWithEventsAndProcesses/Drive/
+tank-domain.pddl,tank-problem.pddl,tankplan.txt,../samples/domainsWithEventsAndProcesses/Tanks and a Bucket Toricelli/
+sleepingbeauty.pddl,sleepingbeauty-problem.pddl,sleepingbeautyplan.txt,../samples/domainsWithEventsAndProcesses/Sleeping Beauty with Capacitor/
+sleepingbeauty.pddl,sleepingbeauty-problem2.pddl,sleepingbeautyplan2.txt,../samples/domainsWithEventsAndProcesses/Sleeping Beauty with Capacitor/
+Depots.pddl,pfile1,pfile1.plan,../samples/IPC/Depots/Strips/
