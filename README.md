@@ -24,6 +24,7 @@ The leaderboard below shows the performance of the models on the PlanBench stati
 | GPT-4 | LLM | 34.6% | 0% | - | - |
 | Gemini 1.5 Pro | LLM | 23.8% | - | - | - |
 
+> Note: LLM = Large Language Model, LRM = Language Reasoning Model, NL = Natural Language Prompting, PDDL = Planning Domain Definition Language Prompting
 ## Submitting to the Leaderboard
 
 Kindly submit results of any new models by submitting a pull request with the result file and the leaderboard will be updated.
@@ -67,3 +68,4 @@ Planning in Strawberry Fields - _A version to appear in TMLR_:
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=karthikv792/LLMs-Planning&type=Date)](https://www.star-history.com/#karthikv792/LLMs-Planning&Date)
+
