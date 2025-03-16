@@ -1,0 +1,8 @@
+instance_dir: unsolvable_obfuscated_randomized_blocksworld/generated_basic
+generalized_instance_dir: unsolvable_obfuscated_randomized_blocksworld/generated
+domain_file: unsolvable_obfuscated_randomized_blocksworld/generated_domain.pddl
+domain_name: unsolvable_obfuscated_randomized_blocksworld
+n_instances: 100
+start: 1
+end: 100
+instances_template: instance-{}.pddl

@@ -1,0 +1,888 @@
+{
+    "task": "task_1_plan_generation_zero_shot_pddl",
+    "prompt_type": "oneshot",
+    "domain": "unsolvable_blocksworld",
+    "instances": [
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(on a b)\n(ontable b)\n(on c a)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on b a)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 1,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv60K1mgpxuQ1n8wNkVl6pg3Pz5",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```\n(unstack c a)\n(put-down c)\n(stack c b)\n(unstack a b)\n(put-down a)\n(stack a b)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 31,
+                    "prompt_tokens": 438,
+                    "total_tokens": 469,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6125571727752686,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```\n(unstack c a)\n(put-down c)\n(stack c b)\n(unstack a b)\n(put-down a)\n(stack a b)\n```",
+            "extracted_llm_plan": "(unstack c a)\n(put-down c)\n(stack c b)\n(unstack a b)\n(put-down a)\n(stack a b)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(on a b)\n(on b c)\n(ontable c)\n(ontable d)\n(ontable e)\n(clear a)\n(clear d)\n(clear e)\n)\n(:goal\n\t(and\n\t\t(on a e)\n\t\t(on e b)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 2,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv6F7N7hGJqYFBb7p4NAAZ5M6g8",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack a b)\n(stack a e)\n(unstack e b)\n(stack e b)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 23,
+                    "prompt_tokens": 462,
+                    "total_tokens": 485,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6253647804260254,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack a b)\n(stack a e)\n(unstack e b)\n(stack e b)\n```",
+            "extracted_llm_plan": "(unstack a b)\n(stack a e)\n(unstack e b)\n(stack e b)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(ontable a)\n(on b a)\n(on c b)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on a b)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 3,
+            "ground_truth_plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)\n; cost = 6 (unit cost)\n",
+            "response_object": {
+                "id": "chatcmpl-A7tv6AnMTw2oX6zSHVoHr51kp3lZu",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack c b)\n(stack c a)\n(put-down c)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 19,
+                    "prompt_tokens": 438,
+                    "total_tokens": 457,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5479748249053955,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack c b)\n(stack c a)\n(put-down c)\n```",
+            "extracted_llm_plan": "(unstack c b)\n(stack c a)\n(put-down c)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(ontable a)\n(on b d)\n(on c b)\n(on d e)\n(on e a)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on b e)\n\t\t(on c d)\n\t\t(on e a)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 4,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv610ZQKfJeTHuc2YKCideVPOGX",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```\n(unstack c b)\n(put-down c)\n(stack c d)\n(unstack b d)\n(put-down b)\n(stack b e)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 31,
+                    "prompt_tokens": 460,
+                    "total_tokens": 491,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6646487712860107,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```\n(unstack c b)\n(put-down c)\n(stack c d)\n(unstack b d)\n(put-down b)\n(stack b e)\n```",
+            "extracted_llm_plan": "(unstack c b)\n(put-down c)\n(stack c d)\n(unstack b d)\n(put-down b)\n(stack b e)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(on a b)\n(on b d)\n(on c e)\n(ontable d)\n(ontable e)\n(clear a)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on d e)\n\t\t(on e b)\n\t\t(on b d)\n\t)\n)\n)\n\n",
+            "instance_id": 5,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv6sTP9iuO29EC1CEC1XzZS9qBu",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b a)\n(unstack d e)\n(put-down d)\n(stack d b)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 38,
+                    "prompt_tokens": 458,
+                    "total_tokens": 496,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.7215580940246582,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b a)\n(unstack d e)\n(put-down d)\n(stack d b)\n```",
+            "extracted_llm_plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b a)\n(unstack d e)\n(put-down d)\n(stack d b)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(on a b)\n(ontable b)\n(ontable c)\n(clear a)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on a b)\n\t\t(on c a)\n\t\t(on b c)\n\t)\n)\n)\n\n",
+            "instance_id": 6,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv6Vd2utyaqqFGttDWCfax22HhN",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack a b)\n(stack a b)\n(stack c a)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 18,
+                    "prompt_tokens": 448,
+                    "total_tokens": 466,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5382366180419922,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack a b)\n(stack a b)\n(stack c a)\n```",
+            "extracted_llm_plan": "(unstack a b)\n(stack a b)\n(stack c a)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(ontable a)\n(ontable b)\n(ontable c)\n(on d c)\n(on e a)\n(clear b)\n(clear d)\n(clear e)\n)\n(:goal\n\t(and\n\t\t(on a b)\n\t\t(on c a)\n\t\t(on d e)\n\t\t(on e c)\n\t\t(on b d)\n\t)\n)\n)\n\n",
+            "instance_id": 7,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv6vPCRwJoIvDvM7ZbhdGa4H4jU",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack e a)\n(stack e c)\n(unstack d c)\n(stack d e)\n(unstack c a)\n(stack c b)\n(unstack a b)\n(stack a d)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 41,
+                    "prompt_tokens": 474,
+                    "total_tokens": 515,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 1.853248119354248,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack e a)\n(stack e c)\n(unstack d c)\n(stack d e)\n(unstack c a)\n(stack c b)\n(unstack a b)\n(stack a d)\n```",
+            "extracted_llm_plan": "(unstack e a)\n(stack e c)\n(unstack d c)\n(stack d e)\n(unstack c a)\n(stack c b)\n(unstack a b)\n(stack a d)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(ontable a)\n(on b c)\n(ontable c)\n(clear a)\n(clear b)\n)\n(:goal\n\t(and\n\t\t(on a c)\n\t\t(on b a)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 8,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv6vAelMsSf6GuxPnhSUGPxvKfA",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack b c)\n(stack b a)\n(stack a c)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 18,
+                    "prompt_tokens": 448,
+                    "total_tokens": 466,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5295720100402832,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack b c)\n(stack b a)\n(stack a c)\n```",
+            "extracted_llm_plan": "(unstack b c)\n(stack b a)\n(stack a c)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-4)\n(:domain blocksworld-4ops)\n(:objects a b c d )\n(:init\n(handempty)\n(ontable a)\n(on b a)\n(ontable c)\n(ontable d)\n(clear b)\n(clear c)\n(clear d)\n)\n(:goal\n\t(and\n\t\t(on b a)\n\t\t(on c d)\n\t\t(on d b)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 9,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv6HRwonp9LeIRF1uSAUn5cDcQS",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "Here is the plan in PDDL syntax for the provided problem:\n\n```\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c d)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a b)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 52,
+                    "prompt_tokens": 463,
+                    "total_tokens": 515,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.7626855373382568,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "Here is the plan in PDDL syntax for the provided problem:\n\n```\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c d)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a b)\n```",
+            "extracted_llm_plan": "(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c d)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a b)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(on a b)\n(on b c)\n(ontable c)\n(clear a)\n)\n(:goal\n\t(and\n\t\t(on b a)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 10,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv66AbvAwVp67nJd2RVEn0FS2ud",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "Here is the plan in PDDL syntax for the provided problem:\n\n```\n(unstack a b)\n(stack a b)\n(unstack b c)\n(stack b a)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446616,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 34,
+                    "prompt_tokens": 438,
+                    "total_tokens": 472,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6618657112121582,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "Here is the plan in PDDL syntax for the provided problem:\n\n```\n(unstack a b)\n(stack a b)\n(unstack b c)\n(stack b a)\n```",
+            "extracted_llm_plan": "(unstack a b)\n(stack a b)\n(unstack b c)\n(stack b a)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(ontable a)\n(ontable b)\n(on c a)\n(clear b)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on b c)\n\t\t(on c a)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 11,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv7ZNyqlb7MlRoovNPmgVdyJE5n",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```\n(unstack c a)\n(stack c b)\n(unstack b a)\n(stack b c)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446617,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 21,
+                    "prompt_tokens": 448,
+                    "total_tokens": 469,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5199806690216064,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```\n(unstack c a)\n(stack c b)\n(unstack b a)\n(stack b c)\n```",
+            "extracted_llm_plan": "(unstack c a)\n(stack c b)\n(unstack b a)\n(stack b c)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-4)\n(:domain blocksworld-4ops)\n(:objects a b c d )\n(:init\n(handempty)\n(on a c)\n(ontable b)\n(ontable c)\n(on d b)\n(clear a)\n(clear d)\n)\n(:goal\n\t(and\n\t\t(on b a)\n\t\t(on d c)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 12,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv7SVc9wg9QtZI06jXMUfakQXbO",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack a c)\n(stack a b)\n(unstack d b)\n(stack d c)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446617,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 23,
+                    "prompt_tokens": 453,
+                    "total_tokens": 476,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5667216777801514,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack a c)\n(stack a b)\n(unstack d b)\n(stack d c)\n```",
+            "extracted_llm_plan": "(unstack a c)\n(stack a b)\n(unstack d b)\n(stack d c)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(ontable a)\n(ontable b)\n(on c b)\n(clear a)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on a c)\n\t\t(on c a)\n\t)\n)\n)\n\n",
+            "instance_id": 13,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv7mrbxbtZoBjcDkWMX5BeyFnM3",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```\n(pick-up c)\n(unstack c b)\n(stack c a)\n(pick-up a)\n(stack a c)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446617,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 26,
+                    "prompt_tokens": 442,
+                    "total_tokens": 468,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5726191997528076,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```\n(pick-up c)\n(unstack c b)\n(stack c a)\n(pick-up a)\n(stack a c)\n```",
+            "extracted_llm_plan": "(pick-up c)\n(unstack c b)\n(stack c a)\n(pick-up a)\n(stack a c)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(on a b)\n(on b e)\n(on c d)\n(on d a)\n(ontable e)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on e b)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 14,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv8h5oD9dN7X8vYqtDeB0TDrnPG",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "Here is the plan in PDDL syntax for the given planning problem:\n\n```\n(unstack c d)\n(stack c e)\n```\n\nThis represents the sequence of actions needed to achieve the goal state from the initial state.",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446618,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 44,
+                    "prompt_tokens": 448,
+                    "total_tokens": 492,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.7827725410461426,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "Here is the plan in PDDL syntax for the given planning problem:\n\n```\n(unstack c d)\n(stack c e)\n```\n\nThis represents the sequence of actions needed to achieve the goal state from the initial state.",
+            "extracted_llm_plan": "(unstack c d)\n(stack c e)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(ontable a)\n(on b d)\n(ontable c)\n(on d a)\n(on e c)\n(clear b)\n(clear e)\n)\n(:goal\n\t(and\n\t\t(on d b)\n\t\t(on e d)\n\t\t(on b e)\n\t)\n)\n)\n\n",
+            "instance_id": 15,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv8haNTT8WEKiFt2TqGXEhPKAAW",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack d a)\n(stack d b)\n(unstack e c)\n(stack e d)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446618,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 23,
+                    "prompt_tokens": 458,
+                    "total_tokens": 481,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5629007816314697,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack d a)\n(stack d b)\n(unstack e c)\n(stack e d)\n```",
+            "extracted_llm_plan": "(unstack d a)\n(stack d b)\n(unstack e c)\n(stack e d)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(on a d)\n(ontable b)\n(on c e)\n(on d b)\n(ontable e)\n(clear a)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on a c)\n\t\t(on b a)\n\t\t(on c d)\n\t\t(on d b)\n\t)\n)\n)\n\n",
+            "instance_id": 16,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv7Xth0kR2SiigQj88Fysjmq7JL",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c d)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446617,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 32,
+                    "prompt_tokens": 464,
+                    "total_tokens": 496,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6055185794830322,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c d)\n```",
+            "extracted_llm_plan": "(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c d)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(ontable a)\n(on b a)\n(on c b)\n(on d c)\n(on e d)\n(clear e)\n)\n(:goal\n\t(and\n\t\t(on a c)\n\t\t(on c b)\n\t\t(on d a)\n\t\t(on e d)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 17,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv8wwlkSY8ibZIoCCVAZI4vhBqI",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack c b)\n(unstack b a)\n(stack b c)\n(stack a b)\n(stack d a)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446618,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 27,
+                    "prompt_tokens": 466,
+                    "total_tokens": 493,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6413595676422119,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack c b)\n(unstack b a)\n(stack b c)\n(stack a b)\n(stack d a)\n```",
+            "extracted_llm_plan": "(unstack c b)\n(unstack b a)\n(stack b c)\n(stack a b)\n(stack d a)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-5)\n(:domain blocksworld-4ops)\n(:objects a b c d e )\n(:init\n(handempty)\n(on a d)\n(on b e)\n(ontable c)\n(ontable d)\n(ontable e)\n(clear a)\n(clear b)\n(clear c)\n)\n(:goal\n\t(and\n\t\t(on a d)\n\t\t(on c b)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 18,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv8pnL0rmyk2jaY46o9yokBVnKY",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack c b)\n(stack c b)\n(unstack a d)\n(stack a b)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446618,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 23,
+                    "prompt_tokens": 462,
+                    "total_tokens": 485,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.6284830570220947,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack c b)\n(stack c b)\n(unstack a d)\n(stack a b)\n```",
+            "extracted_llm_plan": "(unstack c b)\n(stack c b)\n(unstack a d)\n(stack a b)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-3)\n(:domain blocksworld-4ops)\n(:objects a b c )\n(:init\n(handempty)\n(on a c)\n(ontable b)\n(ontable c)\n(clear a)\n(clear b)\n)\n(:goal\n\t(and\n\t\t(on c a)\n\t\t(on a b)\n\t)\n)\n)\n\n",
+            "instance_id": 19,
+            "ground_truth_plan": "(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c a)\n; cost = 4 (unit cost)\n",
+            "response_object": {
+                "id": "chatcmpl-A7tv85fgzx2JHAnk3apAOaHsfi20q",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack a c)\n(stack a b)\n(stack c a)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446618,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 18,
+                    "prompt_tokens": 442,
+                    "total_tokens": 460,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.5202407836914062,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack a c)\n(stack a b)\n(stack c a)\n```",
+            "extracted_llm_plan": "(unstack a c)\n(stack a b)\n(stack c a)",
+            "llm_correct": false
+        },
+        {
+            "query": "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n[DOMAIN]\n(define (domain blocksworld-4ops)\n  (:requirements :strips)\n(:predicates (clear ?x)\n             (ontable ?x)\n             (handempty)\n             (holding ?x)\n             (on ?x ?y))\n\n(:action pick-up\n  :parameters (?ob)\n  :precondition (and (clear ?ob) (ontable ?ob) (handempty))\n  :effect (and (holding ?ob) (not (clear ?ob)) (not (ontable ?ob))\n               (not (handempty))))\n\n(:action put-down\n  :parameters  (?ob)\n  :precondition (holding ?ob)\n  :effect (and (clear ?ob) (handempty) (ontable ?ob)\n               (not (holding ?ob))))\n\n(:action stack\n  :parameters  (?ob ?underob)\n  :precondition (and (clear ?underob) (holding ?ob))\n  :effect (and (handempty) (clear ?ob) (on ?ob ?underob)\n               (not (clear ?underob)) (not (holding ?ob))))\n\n(:action unstack\n  :parameters  (?ob ?underob)\n  :precondition (and (on ?ob ?underob) (clear ?ob) (handempty))\n  :effect (and (holding ?ob) (clear ?underob)\n               (not (on ?ob ?underob)) (not (clear ?ob)) (not (handempty)))))\n\n[QUERY PROBLEM]\n(define (problem BW-rand-4)\n(:domain blocksworld-4ops)\n(:objects a b c d )\n(:init\n(handempty)\n(ontable a)\n(ontable b)\n(on c b)\n(on d a)\n(clear c)\n(clear d)\n)\n(:goal\n\t(and\n\t\t(on b a)\n\t\t(on c b)\n\t\t(on a c)\n\t)\n)\n)\n\n",
+            "instance_id": 20,
+            "ground_truth_plan": "",
+            "response_object": {
+                "id": "chatcmpl-A7tv8AxJkuLEvwZwxUM25Wh0puVHN",
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                            "content": "```pddl\n(unstack d a)\n(put-down d)\n(unstack c b)\n(stack c d)\n(stack b a)\n```",
+                            "refusal": null,
+                            "role": "assistant",
+                            "function_call": null,
+                            "tool_calls": null
+                        }
+                    }
+                ],
+                "created": 1726446618,
+                "model": "gpt-4o-mini-2024-07-18",
+                "object": "chat.completion",
+                "service_tier": null,
+                "system_fingerprint": "fp_483d39d857",
+                "usage": {
+                    "completion_tokens": 28,
+                    "prompt_tokens": 453,
+                    "total_tokens": 481,
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0
+                    }
+                },
+                "time_taken": 0.572162389755249,
+                "costs": {
+                    "input": 0,
+                    "output": 0,
+                    "total": 0
+                }
+            },
+            "llm_raw_response": "```pddl\n(unstack d a)\n(put-down d)\n(unstack c b)\n(stack c d)\n(stack b a)\n```",
+            "extracted_llm_plan": "(unstack d a)\n(put-down d)\n(unstack c b)\n(stack c d)\n(stack b a)",
+            "llm_correct": false
+        }
+    ],
+    "engine": "gpt-4o-mini-2024-07-18_chat"
+}

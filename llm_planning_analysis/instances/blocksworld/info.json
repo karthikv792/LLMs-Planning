@@ -1,0 +1,5012 @@
+{
+    "instance-131.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(stack c a)\n(unstack d b)\n(put-down d)\n(unstack c a)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000699757
+        }
+    },
+    "instance-111.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000973419
+        }
+    },
+    "instance-138.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 19,
+            "generated": 26,
+            "search_time (in secs)": 0.000802949
+        }
+    },
+    "instance-354.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d a)\n(unstack c b)\n(put-down c)\n(unstack d a)\n(stack d c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000813973
+        }
+    },
+    "instance-269.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.000935289
+        }
+    },
+    "instance-152.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(unstack c a)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000663159
+        }
+    },
+    "instance-362.pddl": {
+        "plan": "(unstack a c)\n(stack a b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000331757
+        }
+    },
+    "instance-353.pddl": {
+        "plan": "(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000793425
+        }
+    },
+    "instance-247.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000636903
+        }
+    },
+    "instance-466.pddl": {
+        "plan": "(pick-up c)\n(stack c a)\n(unstack e b)\n(put-down e)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d e)\n(unstack b c)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 25,
+            "evaluated": 53,
+            "generated": 78,
+            "search_time (in secs)": 0.00137071
+        }
+    },
+    "instance-377.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.000582249
+        }
+    },
+    "instance-335.pddl": {
+        "plan": "(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000434733
+        }
+    },
+    "instance-277.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000627642
+        }
+    },
+    "instance-348.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 7,
+            "generated": 9,
+            "search_time (in secs)": 0.000566213
+        }
+    },
+    "instance-487.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(stack d a)\n(unstack b e)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000617202
+        }
+    },
+    "instance-342.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a c)\n(stack a d)\n(unstack c b)\n(put-down c)\n(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000802629
+        }
+    },
+    "instance-344.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack b d)\n(stack b c)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000731677
+        }
+    },
+    "instance-193.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000673221
+        }
+    },
+    "instance-347.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(stack a b)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.000756398
+        }
+    },
+    "instance-74.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000408057
+        }
+    },
+    "instance-3.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d b)\n(pick-up a)\n(stack a c)\n(unstack d b)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000725631
+        }
+    },
+    "instance-179.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.000541139
+        }
+    },
+    "instance-429.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(stack c d)\n(unstack b a)\n(put-down b)\n(unstack c d)\n(stack c b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000868739
+        }
+    },
+    "instance-118.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b d)\n(unstack c a)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000510736
+        }
+    },
+    "instance-134.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b d)\n(unstack c a)\n(put-down c)\n(unstack b d)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000587152
+        }
+    },
+    "instance-47.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d c)\n(unstack a b)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.00105704
+        }
+    },
+    "instance-397.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000572918
+        }
+    },
+    "instance-330.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(stack d b)\n(unstack a c)\n(put-down a)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000664424
+        }
+    },
+    "instance-338.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.000572538
+        }
+    },
+    "instance-323.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00120183
+        }
+    },
+    "instance-64.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000435744
+        }
+    },
+    "instance-486.pddl": {
+        "plan": "(unstack d a)\n(stack d c)\n(unstack a e)\n(put-down a)\n(unstack d c)\n(stack d a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b e)",
+        "length": 10,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 21,
+            "generated": 32,
+            "search_time (in secs)": 0.00116677
+        }
+    },
+    "instance-2.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000424356
+        }
+    },
+    "instance-157.pddl": {
+        "plan": "(unstack a d)\n(stack a c)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 11,
+            "generated": 15,
+            "search_time (in secs)": 0.00067342
+        }
+    },
+    "instance-334.pddl": {
+        "plan": "(unstack b c)\n(stack b d)\n(unstack c a)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000430328
+        }
+    },
+    "instance-270.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack d b)\n(stack d c)\n(pick-up a)\n(stack a b)\n(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 20,
+            "generated": 29,
+            "search_time (in secs)": 0.00118929
+        }
+    },
+    "instance-464.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(put-down a)\n(unstack b e)\n(put-down b)\n(unstack e d)\n(put-down e)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up e)\n(stack e b)",
+        "length": 16,
+        "states_info": {
+            "expanded": 43,
+            "evaluated": 86,
+            "generated": 131,
+            "search_time (in secs)": 0.00243033
+        }
+    },
+    "instance-253.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 7,
+            "generated": 9,
+            "search_time (in secs)": 0.000520289
+        }
+    },
+    "instance-454.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(unstack d e)\n(put-down d)\n(unstack e a)\n(stack e d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000831648
+        }
+    },
+    "instance-182.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b d)\n(unstack a c)\n(put-down a)\n(unstack b d)\n(stack b c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000907481
+        }
+    },
+    "instance-298.pddl": {
+        "plan": "(unstack c a)\n(stack c b)\n(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)\n(unstack c b)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 9,
+            "generated": 12,
+            "search_time (in secs)": 0.00086271
+        }
+    },
+    "instance-417.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000670576
+        }
+    },
+    "instance-288.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 14,
+            "generated": 18,
+            "search_time (in secs)": 0.000763995
+        }
+    },
+    "instance-425.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000503961
+        }
+    },
+    "instance-153.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 10,
+            "generated": 13,
+            "search_time (in secs)": 0.000694566
+        }
+    },
+    "instance-383.pddl": {
+        "plan": "(unstack a b)\n(stack a d)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)\n(unstack a d)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 9,
+            "generated": 12,
+            "search_time (in secs)": 0.000673202
+        }
+    },
+    "instance-225.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(stack c d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000392161
+        }
+    },
+    "instance-39.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.00103331
+        }
+    },
+    "instance-155.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b d)\n(pick-up a)\n(stack a c)\n(unstack b d)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000979378
+        }
+    },
+    "instance-259.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000606859
+        }
+    },
+    "instance-430.pddl": {
+        "plan": "(unstack c d)\n(stack c a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00034488
+        }
+    },
+    "instance-460.pddl": {
+        "plan": "(unstack d e)\n(put-down d)\n(unstack a c)\n(stack a d)\n(unstack e b)\n(put-down e)\n(pick-up b)\n(stack b e)\n(pick-up c)\n(stack c b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 15,
+            "generated": 20,
+            "search_time (in secs)": 0.000928746
+        }
+    },
+    "instance-221.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d a)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000937115
+        }
+    },
+    "instance-177.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000747497
+        }
+    },
+    "instance-42.pddl": {
+        "plan": "(unstack b a)\n(stack b c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000764363
+        }
+    },
+    "instance-83.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(stack c d)\n(pick-up a)\n(stack a b)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.00116419
+        }
+    },
+    "instance-373.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.00080045
+        }
+    },
+    "instance-457.pddl": {
+        "plan": "(unstack d e)\n(stack d a)\n(pick-up b)\n(stack b e)\n(unstack d a)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 15,
+            "generated": 17,
+            "search_time (in secs)": 0.000642889
+        }
+    },
+    "instance-324.pddl": {
+        "plan": "(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000447668
+        }
+    },
+    "instance-356.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a c)\n(stack a d)\n(pick-up c)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000546649
+        }
+    },
+    "instance-407.pddl": {
+        "plan": "(unstack d a)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000501853
+        }
+    },
+    "instance-304.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(pick-up b)\n(stack b c)\n(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000636039
+        }
+    },
+    "instance-418.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d c)\n(pick-up b)\n(stack b a)\n(unstack d c)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000738183
+        }
+    },
+    "instance-494.pddl": {
+        "plan": "(pick-up d)\n(stack d c)\n(pick-up e)\n(stack e a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000498461
+        }
+    },
+    "instance-112.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000573122
+        }
+    },
+    "instance-496.pddl": {
+        "plan": "(unstack e d)\n(put-down e)\n(pick-up c)\n(stack c e)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)\n(unstack d a)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 27,
+            "evaluated": 55,
+            "generated": 83,
+            "search_time (in secs)": 0.00166127
+        }
+    },
+    "instance-156.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up b)\n(stack b a)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000657839
+        }
+    },
+    "instance-392.pddl": {
+        "plan": "(unstack d b)\n(stack d c)\n(unstack b a)\n(put-down b)\n(unstack d c)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000888764
+        }
+    },
+    "instance-337.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.000971077
+        }
+    },
+    "instance-325.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.000736587
+        }
+    },
+    "instance-401.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(stack c d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000401839
+        }
+    },
+    "instance-17.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000923927
+        }
+    },
+    "instance-198.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(pick-up d)\n(stack d b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00042741
+        }
+    },
+    "instance-237.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)\n(unstack c d)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00071863
+        }
+    },
+    "instance-468.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack a e)\n(stack a d)\n(pick-up e)\n(stack e b)\n(pick-up c)\n(stack c e)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000893296
+        }
+    },
+    "instance-444.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(pick-up b)\n(stack b d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000589248
+        }
+    },
+    "instance-431.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000630323
+        }
+    },
+    "instance-172.pddl": {
+        "plan": "(unstack a c)\n(stack a b)\n(unstack c d)\n(put-down c)\n(unstack a b)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 9,
+            "generated": 12,
+            "search_time (in secs)": 0.000531546
+        }
+    },
+    "instance-1.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000581658
+        }
+    },
+    "instance-107.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack b c)\n(stack b d)\n(pick-up a)\n(stack a c)\n(unstack b d)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 20,
+            "generated": 28,
+            "search_time (in secs)": 0.000713872
+        }
+    },
+    "instance-375.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b a)\n(unstack d c)\n(put-down d)\n(unstack b a)\n(stack b c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000914599
+        }
+    },
+    "instance-442.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000806512
+        }
+    },
+    "instance-352.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 8,
+            "generated": 9,
+            "search_time (in secs)": 0.000774133
+        }
+    },
+    "instance-63.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000926187
+        }
+    },
+    "instance-311.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)\n(unstack d a)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 9,
+            "generated": 12,
+            "search_time (in secs)": 0.000647246
+        }
+    },
+    "instance-213.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b d)\n(unstack c a)\n(put-down c)\n(unstack b d)\n(stack b a)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000950305
+        }
+    },
+    "instance-305.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 9,
+            "generated": 12,
+            "search_time (in secs)": 0.00076594
+        }
+    },
+    "instance-147.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(pick-up d)\n(stack d a)\n(unstack b c)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 4,
+            "generated": 4,
+            "search_time (in secs)": 0.000592478
+        }
+    },
+    "instance-180.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up c)\n(stack c d)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000663229
+        }
+    },
+    "instance-447.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a c)\n(unstack b e)\n(stack b d)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 15,
+            "evaluated": 30,
+            "generated": 44,
+            "search_time (in secs)": 0.00125252
+        }
+    },
+    "instance-96.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 14,
+            "generated": 19,
+            "search_time (in secs)": 0.000638886
+        }
+    },
+    "instance-69.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b c)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000557213
+        }
+    },
+    "instance-81.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(unstack b a)\n(put-down b)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.00096855
+        }
+    },
+    "instance-396.pddl": {
+        "plan": "(unstack c d)\n(stack c b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000358458
+        }
+    },
+    "instance-130.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack b a)\n(stack b c)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000799888
+        }
+    },
+    "instance-439.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.00108773
+        }
+    },
+    "instance-390.pddl": {
+        "plan": "(unstack b c)\n(stack b d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000598508
+        }
+    },
+    "instance-100.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000752874
+        }
+    },
+    "instance-268.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b a)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000679158
+        }
+    },
+    "instance-440.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a c)\n(pick-up d)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000563123
+        }
+    },
+    "instance-92.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 10,
+            "generated": 13,
+            "search_time (in secs)": 0.000976526
+        }
+    },
+    "instance-126.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up c)\n(stack c a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000434249
+        }
+    },
+    "instance-196.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 10,
+            "generated": 13,
+            "search_time (in secs)": 0.000863065
+        }
+    },
+    "instance-18.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000763276
+        }
+    },
+    "instance-234.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000498623
+        }
+    },
+    "instance-408.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(put-down d)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c d)\n(unstack a b)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.000895032
+        }
+    },
+    "instance-455.pddl": {
+        "plan": "(unstack c e)\n(put-down c)\n(unstack e b)\n(stack e c)\n(unstack b a)\n(put-down b)\n(unstack e c)\n(stack e b)\n(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 15,
+            "evaluated": 27,
+            "generated": 42,
+            "search_time (in secs)": 0.000979648
+        }
+    },
+    "instance-273.pddl": {
+        "plan": "(unstack a c)\n(stack a b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000407957
+        }
+    },
+    "instance-283.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(unstack c d)\n(stack c a)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.000681255
+        }
+    },
+    "instance-257.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 25,
+            "generated": 36,
+            "search_time (in secs)": 0.000969352
+        }
+    },
+    "instance-263.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.00099188
+        }
+    },
+    "instance-296.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.0007209
+        }
+    },
+    "instance-385.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000557243
+        }
+    },
+    "instance-62.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.00148035
+        }
+    },
+    "instance-381.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 19,
+            "generated": 26,
+            "search_time (in secs)": 0.000842896
+        }
+    },
+    "instance-345.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.000562241
+        }
+    },
+    "instance-470.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d e)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000813606
+        }
+    },
+    "instance-482.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack e c)\n(put-down e)\n(pick-up d)\n(stack d e)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 19,
+            "evaluated": 39,
+            "generated": 58,
+            "search_time (in secs)": 0.00111467
+        }
+    },
+    "instance-91.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(stack a b)\n(unstack d c)\n(put-down d)\n(unstack a b)\n(stack a d)\n(pick-up c)\n(stack c b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000710038
+        }
+    },
+    "instance-372.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 9,
+            "generated": 11,
+            "search_time (in secs)": 0.000594474
+        }
+    },
+    "instance-378.pddl": {
+        "plan": "(unstack a c)\n(stack a d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000439871
+        }
+    },
+    "instance-114.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(stack d c)\n(unstack b a)\n(put-down b)\n(unstack d c)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000707092
+        }
+    },
+    "instance-318.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00072863
+        }
+    },
+    "instance-350.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000389591
+        }
+    },
+    "instance-332.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.00106948
+        }
+    },
+    "instance-256.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.00105903
+        }
+    },
+    "instance-306.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000611959
+        }
+    },
+    "instance-98.pddl": {
+        "plan": "(unstack c d)\n(stack c a)\n(pick-up b)\n(stack b d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000632411
+        }
+    },
+    "instance-244.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(stack d c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)\n(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000833659
+        }
+    },
+    "instance-292.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000497256
+        }
+    },
+    "instance-411.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000552602
+        }
+    },
+    "instance-368.pddl": {
+        "plan": "(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000481716
+        }
+    },
+    "instance-479.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack a e)\n(stack a d)\n(pick-up e)\n(stack e c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 7,
+            "generated": 7,
+            "search_time (in secs)": 0.000782008
+        }
+    },
+    "instance-276.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.000905722
+        }
+    },
+    "instance-21.pddl": {
+        "plan": "(pick-up b)\n(stack b d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000344983
+        }
+    },
+    "instance-200.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.000955613
+        }
+    },
+    "instance-465.pddl": {
+        "plan": "(pick-up c)\n(stack c e)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 15,
+            "generated": 18,
+            "search_time (in secs)": 0.00093736
+        }
+    },
+    "instance-423.pddl": {
+        "plan": "(unstack b c)\n(stack b d)\n(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000565167
+        }
+    },
+    "instance-13.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 11,
+            "generated": 14,
+            "search_time (in secs)": 0.000739378
+        }
+    },
+    "instance-87.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(stack a b)\n(unstack c d)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.00106741
+        }
+    },
+    "instance-151.pddl": {
+        "plan": "(unstack d c)\n(stack d a)\n(unstack c b)\n(put-down c)\n(unstack d a)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000919881
+        }
+    },
+    "instance-300.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d b)\n(unstack c a)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000734191
+        }
+    },
+    "instance-469.pddl": {
+        "plan": "(unstack e c)\n(put-down e)\n(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000766867
+        }
+    },
+    "instance-307.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(stack c a)\n(unstack d b)\n(put-down d)\n(unstack c a)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000982558
+        }
+    },
+    "instance-371.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up a)\n(stack a b)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000825948
+        }
+    },
+    "instance-106.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000725149
+        }
+    },
+    "instance-110.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.000761195
+        }
+    },
+    "instance-84.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up a)\n(stack a b)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.000794255
+        }
+    },
+    "instance-85.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c d)\n(unstack a b)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000682452
+        }
+    },
+    "instance-159.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.00060432
+        }
+    },
+    "instance-71.pddl": {
+        "plan": "(pick-up d)\n(stack d a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000359995
+        }
+    },
+    "instance-117.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b d)\n(pick-up c)\n(stack c a)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 20,
+            "generated": 29,
+            "search_time (in secs)": 0.00130895
+        }
+    },
+    "instance-419.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000673086
+        }
+    },
+    "instance-303.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(stack c b)\n(pick-up a)\n(stack a d)\n(unstack c b)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00103414
+        }
+    },
+    "instance-284.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000538735
+        }
+    },
+    "instance-108.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.000940912
+        }
+    },
+    "instance-346.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up d)\n(stack d c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00055685
+        }
+    },
+    "instance-483.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(pick-up d)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 14,
+            "generated": 17,
+            "search_time (in secs)": 0.000653046
+        }
+    },
+    "instance-158.pddl": {
+        "plan": "(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000470795
+        }
+    },
+    "instance-394.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000591791
+        }
+    },
+    "instance-78.pddl": {
+        "plan": "(unstack c d)\n(stack c a)\n(unstack d b)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000564453
+        }
+    },
+    "instance-333.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)\n(unstack d a)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 13,
+            "generated": 17,
+            "search_time (in secs)": 0.000760919
+        }
+    },
+    "instance-52.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack c a)\n(stack c d)\n(pick-up a)\n(stack a b)\n(unstack c d)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 19,
+            "generated": 27,
+            "search_time (in secs)": 0.00076122
+        }
+    },
+    "instance-94.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00093978
+        }
+    },
+    "instance-424.pddl": {
+        "plan": "(unstack d c)\n(stack d a)\n(unstack c b)\n(put-down c)\n(unstack d a)\n(stack d b)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000866862
+        }
+    },
+    "instance-119.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(unstack a d)\n(stack a c)\n(pick-up d)\n(stack d b)\n(unstack a c)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.000910689
+        }
+    },
+    "instance-264.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up a)\n(stack a c)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 20,
+            "generated": 29,
+            "search_time (in secs)": 0.000845508
+        }
+    },
+    "instance-194.pddl": {
+        "plan": "(unstack b a)\n(stack b d)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000532374
+        }
+    },
+    "instance-266.pddl": {
+        "plan": "(unstack a b)\n(stack a d)\n(pick-up b)\n(stack b c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 13,
+            "generated": 17,
+            "search_time (in secs)": 0.000908149
+        }
+    },
+    "instance-28.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c a)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.000801989
+        }
+    },
+    "instance-54.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 14,
+            "generated": 18,
+            "search_time (in secs)": 0.000735317
+        }
+    },
+    "instance-73.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000613486
+        }
+    },
+    "instance-27.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a c)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 14,
+            "generated": 19,
+            "search_time (in secs)": 0.000692046
+        }
+    },
+    "instance-240.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000610505
+        }
+    },
+    "instance-398.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.000867071
+        }
+    },
+    "instance-162.pddl": {
+        "plan": "(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000452618
+        }
+    },
+    "instance-272.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00102665
+        }
+    },
+    "instance-254.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(stack a c)\n(pick-up d)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000574366
+        }
+    },
+    "instance-499.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a e)\n(put-down a)\n(pick-up d)\n(stack d e)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000443438
+        }
+    },
+    "instance-195.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000614133
+        }
+    },
+    "instance-231.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d c)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000700637
+        }
+    },
+    "instance-50.pddl": {
+        "plan": "(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c d)\n(unstack b a)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 13,
+            "generated": 17,
+            "search_time (in secs)": 0.00096941
+        }
+    },
+    "instance-316.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 19,
+            "generated": 26,
+            "search_time (in secs)": 0.000839883
+        }
+    },
+    "instance-89.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack b c)\n(stack b a)\n(pick-up d)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.00063458
+        }
+    },
+    "instance-438.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000552676
+        }
+    },
+    "instance-122.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(unstack c a)\n(put-down c)\n(unstack d b)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000628985
+        }
+    },
+    "instance-355.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.000705479
+        }
+    },
+    "instance-389.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000696767
+        }
+    },
+    "instance-229.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(unstack b c)\n(put-down b)\n(unstack d a)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 9,
+            "generated": 12,
+            "search_time (in secs)": 0.000671931
+        }
+    },
+    "instance-146.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)\n(unstack d a)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 23,
+            "generated": 34,
+            "search_time (in secs)": 0.000977597
+        }
+    },
+    "instance-412.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(unstack d c)\n(put-down d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.0010243
+        }
+    },
+    "instance-349.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000855342
+        }
+    },
+    "instance-212.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up d)\n(stack d c)\n(unstack b a)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 4,
+            "generated": 4,
+            "search_time (in secs)": 0.000988606
+        }
+    },
+    "instance-295.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack c a)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000599143
+        }
+    },
+    "instance-238.pddl": {
+        "plan": "(unstack d a)\n(stack d b)\n(unstack a c)\n(put-down a)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000651262
+        }
+    },
+    "instance-251.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.000956445
+        }
+    },
+    "instance-369.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000902641
+        }
+    },
+    "instance-168.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(stack a d)\n(pick-up c)\n(stack c b)\n(unstack a d)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 20,
+            "generated": 29,
+            "search_time (in secs)": 0.000838196
+        }
+    },
+    "instance-321.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 9,
+            "generated": 11,
+            "search_time (in secs)": 0.000581515
+        }
+    },
+    "instance-170.pddl": {
+        "plan": "(pick-up d)\n(stack d b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000437843
+        }
+    },
+    "instance-230.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(stack d c)\n(unstack b a)\n(put-down b)\n(unstack d c)\n(stack d a)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000926973
+        }
+    },
+    "instance-60.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.00070422
+        }
+    },
+    "instance-281.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(pick-up d)\n(stack d b)\n(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000836634
+        }
+    },
+    "instance-222.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack a c)\n(stack a d)\n(pick-up b)\n(stack b c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 17,
+            "evaluated": 30,
+            "generated": 46,
+            "search_time (in secs)": 0.000904288
+        }
+    },
+    "instance-186.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000498893
+        }
+    },
+    "instance-255.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack c d)\n(stack c b)\n(pick-up d)\n(stack d a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 23,
+            "generated": 34,
+            "search_time (in secs)": 0.000959095
+        }
+    },
+    "instance-102.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00107786
+        }
+    },
+    "instance-278.pddl": {
+        "plan": "(unstack b d)\n(stack b c)\n(pick-up a)\n(stack a d)\n(unstack b c)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 11,
+            "generated": 13,
+            "search_time (in secs)": 0.000596561
+        }
+    },
+    "instance-215.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 11,
+            "generated": 15,
+            "search_time (in secs)": 0.000671056
+        }
+    },
+    "instance-495.pddl": {
+        "plan": "(pick-up a)\n(stack a b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000267176
+        }
+    },
+    "instance-308.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c d)\n(unstack b a)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000649402
+        }
+    },
+    "instance-415.pddl": {
+        "plan": "(unstack c a)\n(stack c d)\n(unstack a b)\n(put-down a)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000624772
+        }
+    },
+    "instance-205.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack d b)\n(stack d c)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000709613
+        }
+    },
+    "instance-262.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000693589
+        }
+    },
+    "instance-361.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(stack d c)\n(unstack b a)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up a)\n(stack a c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000669446
+        }
+    },
+    "instance-77.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.00104654
+        }
+    },
+    "instance-224.pddl": {
+        "plan": "(pick-up d)\n(stack d a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000338036
+        }
+    },
+    "instance-492.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up e)\n(stack e b)\n(pick-up d)\n(stack d e)",
+        "length": 12,
+        "states_info": {
+            "expanded": 29,
+            "evaluated": 68,
+            "generated": 97,
+            "search_time (in secs)": 0.00218185
+        }
+    },
+    "instance-227.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 19,
+            "generated": 26,
+            "search_time (in secs)": 0.000854596
+        }
+    },
+    "instance-467.pddl": {
+        "plan": "(unstack d e)\n(put-down d)\n(unstack e b)\n(stack e a)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 12,
+            "generated": 15,
+            "search_time (in secs)": 0.00105579
+        }
+    },
+    "instance-25.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000441451
+        }
+    },
+    "instance-109.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 10,
+            "generated": 13,
+            "search_time (in secs)": 0.000691262
+        }
+    },
+    "instance-286.pddl": {
+        "plan": "(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000572831
+        }
+    },
+    "instance-491.pddl": {
+        "plan": "(unstack a e)\n(stack a b)\n(unstack e d)\n(put-down e)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c a)\n(pick-up e)\n(stack e c)\n(pick-up d)\n(stack d e)",
+        "length": 12,
+        "states_info": {
+            "expanded": 16,
+            "evaluated": 28,
+            "generated": 42,
+            "search_time (in secs)": 0.00125115
+        }
+    },
+    "instance-185.pddl": {
+        "plan": "(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000563677
+        }
+    },
+    "instance-53.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(stack a d)\n(unstack b c)\n(put-down b)\n(unstack a d)\n(stack a c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000742112
+        }
+    },
+    "instance-15.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up a)\n(stack a c)\n(unstack b d)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 4,
+            "generated": 4,
+            "search_time (in secs)": 0.000547957
+        }
+    },
+    "instance-11.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)\n(unstack b c)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000556945
+        }
+    },
+    "instance-322.pddl": {
+        "plan": "(unstack d b)\n(stack d c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000544987
+        }
+    },
+    "instance-33.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.00092786
+        }
+    },
+    "instance-51.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 25,
+            "generated": 36,
+            "search_time (in secs)": 0.000957587
+        }
+    },
+    "instance-160.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000850758
+        }
+    },
+    "instance-189.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(stack b c)\n(unstack a d)\n(put-down a)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000726146
+        }
+    },
+    "instance-413.pddl": {
+        "plan": "(unstack a d)\n(stack a c)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000590443
+        }
+    },
+    "instance-274.pddl": {
+        "plan": "(unstack d a)\n(stack d c)\n(pick-up b)\n(stack b a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000638949
+        }
+    },
+    "instance-448.pddl": {
+        "plan": "(unstack e d)\n(put-down e)\n(unstack d c)\n(put-down d)\n(pick-up e)\n(stack e c)\n(pick-up d)\n(stack d e)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.000742605
+        }
+    },
+    "instance-46.pddl": {
+        "plan": "(unstack b d)\n(stack b c)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000329535
+        }
+    },
+    "instance-293.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(unstack c a)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000626454
+        }
+    },
+    "instance-451.pddl": {
+        "plan": "(pick-up e)\n(stack e c)\n(unstack b a)\n(stack b e)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000697774
+        }
+    },
+    "instance-34.pddl": {
+        "plan": "(pick-up d)\n(stack d b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000327443
+        }
+    },
+    "instance-405.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up b)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.000736527
+        }
+    },
+    "instance-339.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 19,
+            "generated": 28,
+            "search_time (in secs)": 0.000958005
+        }
+    },
+    "instance-184.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000758555
+        }
+    },
+    "instance-309.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(put-down d)\n(unstack c b)\n(stack c a)\n(pick-up b)\n(stack b d)\n(unstack c a)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.000989756
+        }
+    },
+    "instance-420.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.000777471
+        }
+    },
+    "instance-165.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(stack c d)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.000826218
+        }
+    },
+    "instance-336.pddl": {
+        "plan": "(unstack a d)\n(stack a b)\n(pick-up c)\n(stack c d)\n(unstack a b)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 11,
+            "generated": 13,
+            "search_time (in secs)": 0.000766575
+        }
+    },
+    "instance-471.pddl": {
+        "plan": "(unstack d c)\n(stack d a)\n(unstack c b)\n(stack c e)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000517167
+        }
+    },
+    "instance-132.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000696872
+        }
+    },
+    "instance-319.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.00073611
+        }
+    },
+    "instance-453.pddl": {
+        "plan": "(unstack e a)\n(put-down e)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(stack d a)\n(unstack b c)\n(stack b e)\n(unstack d a)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00109829
+        }
+    },
+    "instance-124.pddl": {
+        "plan": "(pick-up c)\n(stack c a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000339918
+        }
+    },
+    "instance-366.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000609019
+        }
+    },
+    "instance-208.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(put-down c)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000386566
+        }
+    },
+    "instance-434.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000742355
+        }
+    },
+    "instance-192.pddl": {
+        "plan": "(unstack d c)\n(stack d a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000317435
+        }
+    },
+    "instance-436.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000449177
+        }
+    },
+    "instance-386.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b d)\n(pick-up a)\n(stack a c)\n(unstack b d)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000731275
+        }
+    },
+    "instance-271.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 8,
+            "generated": 9,
+            "search_time (in secs)": 0.00132902
+        }
+    },
+    "instance-93.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000548198
+        }
+    },
+    "instance-261.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000544439
+        }
+    },
+    "instance-279.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 25,
+            "generated": 36,
+            "search_time (in secs)": 0.000932731
+        }
+    },
+    "instance-409.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c d)\n(unstack b a)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000682935
+        }
+    },
+    "instance-137.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 13,
+            "generated": 17,
+            "search_time (in secs)": 0.00105422
+        }
+    },
+    "instance-150.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000688389
+        }
+    },
+    "instance-410.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000553891
+        }
+    },
+    "instance-498.pddl": {
+        "plan": "(unstack e b)\n(put-down e)\n(pick-up a)\n(stack a e)\n(unstack c d)\n(stack c b)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000822004
+        }
+    },
+    "instance-6.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a c)\n(stack a d)\n(unstack c b)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000762143
+        }
+    },
+    "instance-187.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 14,
+            "generated": 18,
+            "search_time (in secs)": 0.00083142
+        }
+    },
+    "instance-474.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(stack b a)\n(unstack c e)\n(stack c b)\n(pick-up e)\n(stack e c)\n(pick-up d)\n(stack d e)",
+        "length": 10,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00115436
+        }
+    },
+    "instance-299.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000734118
+        }
+    },
+    "instance-422.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000596349
+        }
+    },
+    "instance-123.pddl": {
+        "plan": "(unstack a d)\n(stack a c)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00036913
+        }
+    },
+    "instance-59.pddl": {
+        "plan": "(unstack b a)\n(stack b c)\n(pick-up d)\n(stack d a)\n(unstack b c)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 11,
+            "generated": 13,
+            "search_time (in secs)": 0.000735445
+        }
+    },
+    "instance-82.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000655162
+        }
+    },
+    "instance-67.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 8,
+            "generated": 9,
+            "search_time (in secs)": 0.000794063
+        }
+    },
+    "instance-203.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00050204
+        }
+    },
+    "instance-70.pddl": {
+        "plan": "(unstack c b)\n(stack c d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000492573
+        }
+    },
+    "instance-351.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(put-down a)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000966055
+        }
+    },
+    "instance-58.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000663858
+        }
+    },
+    "instance-32.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 9,
+            "generated": 11,
+            "search_time (in secs)": 0.000566352
+        }
+    },
+    "instance-163.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(pick-up c)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.00055259
+        }
+    },
+    "instance-358.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.000968457
+        }
+    },
+    "instance-116.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(pick-up d)\n(stack d c)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.000806363
+        }
+    },
+    "instance-275.pddl": {
+        "plan": "(unstack b d)\n(stack b a)\n(pick-up c)\n(stack c d)\n(unstack b a)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 16,
+            "generated": 21,
+            "search_time (in secs)": 0.000781128
+        }
+    },
+    "instance-140.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 7,
+            "generated": 9,
+            "search_time (in secs)": 0.000483693
+        }
+    },
+    "instance-80.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(put-down a)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.000889997
+        }
+    },
+    "instance-250.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(stack c b)\n(unstack d a)\n(put-down d)\n(unstack c b)\n(stack c a)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000697822
+        }
+    },
+    "instance-199.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(stack d b)\n(unstack a c)\n(put-down a)\n(unstack d b)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000524103
+        }
+    },
+    "instance-188.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000563139
+        }
+    },
+    "instance-343.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000735625
+        }
+    },
+    "instance-395.pddl": {
+        "plan": "(unstack a d)\n(stack a c)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000568762
+        }
+    },
+    "instance-40.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.000920352
+        }
+    },
+    "instance-171.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(unstack b c)\n(put-down b)\n(unstack d a)\n(stack d b)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000622659
+        }
+    },
+    "instance-435.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(unstack c d)\n(stack c b)\n(pick-up a)\n(stack a d)\n(unstack c b)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000736617
+        }
+    },
+    "instance-341.pddl": {
+        "plan": "(pick-up a)\n(stack a b)\n(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 15,
+            "generated": 20,
+            "search_time (in secs)": 0.000682245
+        }
+    },
+    "instance-105.pddl": {
+        "plan": "(unstack b a)\n(stack b c)\n(unstack a d)\n(put-down a)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000660539
+        }
+    },
+    "instance-7.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000822663
+        }
+    },
+    "instance-441.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000780455
+        }
+    },
+    "instance-55.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(unstack c a)\n(stack c d)\n(pick-up a)\n(stack a b)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.000912173
+        }
+    },
+    "instance-326.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000650638
+        }
+    },
+    "instance-282.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.00128094
+        }
+    },
+    "instance-31.pddl": {
+        "plan": "(unstack b d)\n(stack b a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000264433
+        }
+    },
+    "instance-24.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000559564
+        }
+    },
+    "instance-22.pddl": {
+        "plan": "(unstack d c)\n(stack d b)\n(unstack c a)\n(put-down c)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000683884
+        }
+    },
+    "instance-380.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(unstack b a)\n(put-down b)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000756852
+        }
+    },
+    "instance-104.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.000796408
+        }
+    },
+    "instance-432.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack b d)\n(stack b a)\n(pick-up c)\n(stack c d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.00059089
+        }
+    },
+    "instance-485.pddl": {
+        "plan": "(unstack b e)\n(put-down b)\n(unstack e c)\n(stack e b)\n(pick-up a)\n(stack a e)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.00116224
+        }
+    },
+    "instance-428.pddl": {
+        "plan": "(pick-up d)\n(stack d b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000313639
+        }
+    },
+    "instance-374.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack d a)\n(stack d b)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 20,
+            "generated": 28,
+            "search_time (in secs)": 0.000706974
+        }
+    },
+    "instance-169.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.000938912
+        }
+    },
+    "instance-291.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000688796
+        }
+    },
+    "instance-360.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack d c)\n(put-down d)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 15,
+            "generated": 20,
+            "search_time (in secs)": 0.000771837
+        }
+    },
+    "instance-331.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack a c)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000598947
+        }
+    },
+    "instance-181.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000869819
+        }
+    },
+    "instance-23.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d a)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000577563
+        }
+    },
+    "instance-176.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000437152
+        }
+    },
+    "instance-115.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 7,
+            "generated": 9,
+            "search_time (in secs)": 0.000565387
+        }
+    },
+    "instance-154.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(stack b c)\n(unstack a d)\n(put-down a)\n(unstack b c)\n(stack b d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.00104449
+        }
+    },
+    "instance-246.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up b)\n(stack b d)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00112238
+        }
+    },
+    "instance-10.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b c)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 17,
+            "generated": 24,
+            "search_time (in secs)": 0.000721647
+        }
+    },
+    "instance-99.pddl": {
+        "plan": "(unstack a d)\n(stack a c)\n(unstack d b)\n(put-down d)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000895672
+        }
+    },
+    "instance-216.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(pick-up c)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000431853
+        }
+    },
+    "instance-139.pddl": {
+        "plan": "(pick-up a)\n(stack a d)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000600377
+        }
+    },
+    "instance-142.pddl": {
+        "plan": "(pick-up a)\n(stack a d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00032265
+        }
+    },
+    "instance-226.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a c)\n(put-down a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.00083079
+        }
+    },
+    "instance-239.pddl": {
+        "plan": "(unstack c a)\n(stack c d)\n(pick-up a)\n(stack a b)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 13,
+            "generated": 17,
+            "search_time (in secs)": 0.000611571
+        }
+    },
+    "instance-472.pddl": {
+        "plan": "(unstack a c)\n(stack a b)\n(unstack c e)\n(stack c a)\n(unstack e d)\n(put-down e)\n(unstack c a)\n(stack c e)\n(pick-up d)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00089084
+        }
+    },
+    "instance-5.pddl": {
+        "plan": "(pick-up d)\n(stack d c)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000434418
+        }
+    },
+    "instance-476.pddl": {
+        "plan": "(unstack b e)\n(put-down b)\n(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d b)\n(pick-up e)\n(stack e d)\n(pick-up a)\n(stack a e)\n(pick-up c)\n(stack c a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 21,
+            "generated": 29,
+            "search_time (in secs)": 0.00138698
+        }
+    },
+    "instance-228.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack c a)\n(stack c d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000564124
+        }
+    },
+    "instance-8.pddl": {
+        "plan": "(unstack b c)\n(stack b a)\n(pick-up d)\n(stack d c)\n(unstack b a)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 16,
+            "generated": 21,
+            "search_time (in secs)": 0.000802212
+        }
+    },
+    "instance-48.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(unstack a d)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000506254
+        }
+    },
+    "instance-125.pddl": {
+        "plan": "(unstack a b)\n(stack a d)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000559598
+        }
+    },
+    "instance-45.pddl": {
+        "plan": "(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000453312
+        }
+    },
+    "instance-90.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000576484
+        }
+    },
+    "instance-402.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b c)\n(pick-up a)\n(stack a d)\n(unstack b c)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000724898
+        }
+    },
+    "instance-75.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c a)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000808684
+        }
+    },
+    "instance-206.pddl": {
+        "plan": "(pick-up a)\n(stack a d)\n(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00058024
+        }
+    },
+    "instance-38.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.000764541
+        }
+    },
+    "instance-37.pddl": {
+        "plan": "(unstack b d)\n(stack b c)\n(unstack d a)\n(put-down d)\n(unstack b c)\n(stack b a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000698394
+        }
+    },
+    "instance-14.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(unstack c d)\n(stack c b)\n(pick-up d)\n(stack d a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00115364
+        }
+    },
+    "instance-252.pddl": {
+        "plan": "(unstack c d)\n(stack c a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000324785
+        }
+    },
+    "instance-232.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(pick-up c)\n(stack c a)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000662942
+        }
+    },
+    "instance-129.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000607282
+        }
+    },
+    "instance-175.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack d b)\n(put-down d)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 11,
+            "generated": 14,
+            "search_time (in secs)": 0.000572222
+        }
+    },
+    "instance-148.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(put-down b)\n(unstack a c)\n(stack a d)\n(pick-up c)\n(stack c b)\n(unstack a d)\n(stack a c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00073991
+        }
+    },
+    "instance-489.pddl": {
+        "plan": "(unstack a e)\n(put-down a)\n(unstack e c)\n(put-down e)\n(unstack b d)\n(stack b e)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 12,
+            "generated": 15,
+            "search_time (in secs)": 0.0014519
+        }
+    },
+    "instance-416.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(unstack c d)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000610875
+        }
+    },
+    "instance-406.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.00075887
+        }
+    },
+    "instance-446.pddl": {
+        "plan": "(unstack a e)\n(put-down a)\n(unstack e c)\n(put-down e)\n(unstack c b)\n(stack c a)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d e)\n(unstack c a)\n(stack c d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 25,
+            "generated": 38,
+            "search_time (in secs)": 0.00148923
+        }
+    },
+    "instance-329.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.00137273
+        }
+    },
+    "instance-310.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a c)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00068728
+        }
+    },
+    "instance-426.pddl": {
+        "plan": "(unstack c b)\n(stack c a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000479384
+        }
+    },
+    "instance-145.pddl": {
+        "plan": "(unstack c a)\n(stack c b)\n(unstack a d)\n(put-down a)\n(unstack c b)\n(stack c d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000769686
+        }
+    },
+    "instance-245.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack d a)\n(stack d c)\n(pick-up b)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000572551
+        }
+    },
+    "instance-120.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000655863
+        }
+    },
+    "instance-164.pddl": {
+        "plan": "(pick-up c)\n(stack c a)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00035208
+        }
+    },
+    "instance-113.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c b)\n(unstack d a)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000880579
+        }
+    },
+    "instance-433.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(stack d b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000415605
+        }
+    },
+    "instance-458.pddl": {
+        "plan": "(pick-up e)\n(stack e d)\n(unstack b c)\n(stack b e)\n(unstack c a)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000759103
+        }
+    },
+    "instance-400.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c a)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00108361
+        }
+    },
+    "instance-370.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(stack d c)\n(unstack a b)\n(put-down a)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000683929
+        }
+    },
+    "instance-101.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a b)\n(put-down a)\n(unstack b d)\n(stack b a)\n(pick-up d)\n(stack d c)\n(unstack b a)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.00072423
+        }
+    },
+    "instance-340.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(stack c d)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.00080332
+        }
+    },
+    "instance-197.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b d)\n(put-down b)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.000777764
+        }
+    },
+    "instance-388.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(stack d c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000498566
+        }
+    },
+    "instance-421.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(stack d b)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00067515
+        }
+    },
+    "instance-393.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c b)\n(unstack d a)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000701853
+        }
+    },
+    "instance-312.pddl": {
+        "plan": "(pick-up d)\n(stack d b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000449717
+        }
+    },
+    "instance-36.pddl": {
+        "plan": "(unstack b d)\n(stack b a)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000724534
+        }
+    },
+    "instance-363.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)\n(unstack d a)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000819121
+        }
+    },
+    "instance-461.pddl": {
+        "plan": "(unstack e d)\n(put-down e)\n(unstack d b)\n(stack d e)\n(pick-up b)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00058385
+        }
+    },
+    "instance-174.pddl": {
+        "plan": "(unstack d a)\n(stack d c)\n(unstack a b)\n(put-down a)\n(unstack d c)\n(stack d a)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000776586
+        }
+    },
+    "instance-301.pddl": {
+        "plan": "(unstack c a)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000483103
+        }
+    },
+    "instance-86.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000560891
+        }
+    },
+    "instance-265.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(stack a b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000310271
+        }
+    },
+    "instance-207.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.00115667
+        }
+    },
+    "instance-459.pddl": {
+        "plan": "(unstack e b)\n(put-down e)\n(unstack b a)\n(stack b e)\n(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack b e)\n(stack b d)\n(pick-up a)\n(stack a b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 19,
+            "evaluated": 37,
+            "generated": 55,
+            "search_time (in secs)": 0.00145434
+        }
+    },
+    "instance-56.pddl": {
+        "plan": "(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b d)\n(unstack a c)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 11,
+            "generated": 13,
+            "search_time (in secs)": 0.000785599
+        }
+    },
+    "instance-218.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 15,
+            "generated": 20,
+            "search_time (in secs)": 0.00074202
+        }
+    },
+    "instance-475.pddl": {
+        "plan": "(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(unstack e b)\n(stack e c)\n(pick-up b)\n(stack b e)",
+        "length": 8,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000768514
+        }
+    },
+    "instance-462.pddl": {
+        "plan": "(unstack e d)\n(put-down e)\n(unstack d a)\n(put-down d)\n(unstack a b)\n(stack a e)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000587351
+        }
+    },
+    "instance-173.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.000487848
+        }
+    },
+    "instance-44.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b c)\n(pick-up a)\n(stack a d)\n(unstack b c)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00103166
+        }
+    },
+    "instance-121.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000636682
+        }
+    },
+    "instance-241.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.00057951
+        }
+    },
+    "instance-490.pddl": {
+        "plan": "(unstack e c)\n(put-down e)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 11,
+            "generated": 12,
+            "search_time (in secs)": 0.00120269
+        }
+    },
+    "instance-249.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack c b)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000582122
+        }
+    },
+    "instance-449.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up e)\n(stack e a)\n(unstack c d)\n(stack c e)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.00083187
+        }
+    },
+    "instance-443.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack d c)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 15,
+            "generated": 20,
+            "search_time (in secs)": 0.000788899
+        }
+    },
+    "instance-220.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(stack b d)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000534853
+        }
+    },
+    "instance-178.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a c)\n(pick-up d)\n(stack d a)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.00111021
+        }
+    },
+    "instance-204.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 23,
+            "generated": 35,
+            "search_time (in secs)": 0.00110156
+        }
+    },
+    "instance-29.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b a)\n(unstack c d)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 23,
+            "generated": 34,
+            "search_time (in secs)": 0.00114002
+        }
+    },
+    "instance-210.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up b)\n(stack b d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000439759
+        }
+    },
+    "instance-481.pddl": {
+        "plan": "(unstack d a)\n(stack d e)\n(unstack a b)\n(stack a d)\n(unstack b c)\n(put-down b)\n(unstack a d)\n(stack a c)\n(unstack d e)\n(stack d a)\n(pick-up e)\n(stack e b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 20,
+            "evaluated": 36,
+            "generated": 56,
+            "search_time (in secs)": 0.00139155
+        }
+    },
+    "instance-26.pddl": {
+        "plan": "(pick-up a)\n(stack a b)\n(unstack c d)\n(stack c a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000445673
+        }
+    },
+    "instance-144.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000611947
+        }
+    },
+    "instance-384.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(pick-up c)\n(stack c b)\n(unstack d a)\n(stack d c)\n(pick-up a)\n(stack a d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 16,
+            "generated": 21,
+            "search_time (in secs)": 0.000787522
+        }
+    },
+    "instance-260.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b c)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000715502
+        }
+    },
+    "instance-16.pddl": {
+        "plan": "(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00059094
+        }
+    },
+    "instance-223.pddl": {
+        "plan": "(pick-up a)\n(stack a d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000451668
+        }
+    },
+    "instance-43.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(stack a d)\n(pick-up c)\n(stack c b)\n(unstack a d)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00068271
+        }
+    },
+    "instance-217.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d b)\n(unstack c a)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.000825339
+        }
+    },
+    "instance-456.pddl": {
+        "plan": "(unstack a e)\n(put-down a)\n(unstack e d)\n(stack e a)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 19,
+            "generated": 26,
+            "search_time (in secs)": 0.00102715
+        }
+    },
+    "instance-267.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(unstack b c)\n(put-down b)\n(pick-up d)\n(stack d c)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.000814879
+        }
+    },
+    "instance-317.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 9,
+            "generated": 11,
+            "search_time (in secs)": 0.000557091
+        }
+    },
+    "instance-404.pddl": {
+        "plan": "(unstack a c)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00046537
+        }
+    },
+    "instance-478.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d e)\n(put-down d)\n(unstack e a)\n(stack e c)\n(unstack a b)\n(stack a d)\n(unstack e c)\n(stack e a)\n(pick-up b)\n(stack b e)",
+        "length": 12,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 16,
+            "generated": 23,
+            "search_time (in secs)": 0.00100149
+        }
+    },
+    "instance-450.pddl": {
+        "plan": "(unstack a c)\n(stack a e)\n(unstack c d)\n(put-down c)\n(unstack a e)\n(stack a c)\n(unstack d b)\n(stack d a)\n(pick-up e)\n(stack e d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.00083682
+        }
+    },
+    "instance-12.pddl": {
+        "plan": "(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000473814
+        }
+    },
+    "instance-493.pddl": {
+        "plan": "(unstack b d)\n(stack b a)\n(unstack e c)\n(put-down e)\n(pick-up d)\n(stack d e)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 11,
+            "generated": 13,
+            "search_time (in secs)": 0.00109106
+        }
+    },
+    "instance-76.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b a)\n(unstack c d)\n(put-down c)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 9,
+            "evaluated": 17,
+            "generated": 24,
+            "search_time (in secs)": 0.000708347
+        }
+    },
+    "instance-97.pddl": {
+        "plan": "(unstack a c)\n(stack a b)\n(unstack c d)\n(put-down c)\n(unstack a b)\n(stack a c)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000509717
+        }
+    },
+    "instance-211.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(stack c a)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 7,
+            "generated": 10,
+            "search_time (in secs)": 0.000608621
+        }
+    },
+    "instance-209.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 5,
+            "evaluated": 8,
+            "generated": 11,
+            "search_time (in secs)": 0.000750342
+        }
+    },
+    "instance-285.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000997483
+        }
+    },
+    "instance-364.pddl": {
+        "plan": "(unstack a b)\n(put-down a)\n(unstack b d)\n(put-down b)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000480432
+        }
+    },
+    "instance-190.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)\n(unstack d c)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000654957
+        }
+    },
+    "instance-367.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000873282
+        }
+    },
+    "instance-452.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a e)\n(stack a d)\n(unstack e c)\n(stack e a)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b c)\n(unstack e a)\n(stack e b)\n(unstack a d)\n(stack a e)",
+        "length": 14,
+        "states_info": {
+            "expanded": 16,
+            "evaluated": 29,
+            "generated": 45,
+            "search_time (in secs)": 0.00126083
+        }
+    },
+    "instance-242.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a d)\n(put-down a)\n(unstack d c)\n(put-down d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.00131118
+        }
+    },
+    "instance-143.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000615513
+        }
+    },
+    "instance-320.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c d)\n(unstack a b)\n(stack a c)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 17,
+            "evaluated": 29,
+            "generated": 45,
+            "search_time (in secs)": 0.000940622
+        }
+    },
+    "instance-243.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack a c)\n(stack a d)\n(pick-up c)\n(stack c b)\n(unstack a d)\n(stack a c)\n(pick-up d)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 18,
+            "generated": 27,
+            "search_time (in secs)": 0.00114765
+        }
+    },
+    "instance-302.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c a)\n(pick-up b)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.00129337
+        }
+    },
+    "instance-280.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.00100489
+        }
+    },
+    "instance-328.pddl": {
+        "plan": "(unstack a b)\n(stack a c)\n(unstack b d)\n(put-down b)\n(unstack a c)\n(stack a d)\n(pick-up b)\n(stack b a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 17,
+            "generated": 25,
+            "search_time (in secs)": 0.000694266
+        }
+    },
+    "instance-127.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(pick-up d)\n(stack d a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 4,
+            "generated": 4,
+            "search_time (in secs)": 0.00057527
+        }
+    },
+    "instance-95.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(stack d b)\n(unstack a c)\n(put-down a)\n(unstack d b)\n(stack d c)\n(pick-up b)\n(stack b a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000891572
+        }
+    },
+    "instance-4.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a c)\n(put-down a)\n(unstack c b)\n(put-down c)\n(pick-up d)\n(stack d b)\n(pick-up a)\n(stack a d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 8,
+            "evaluated": 13,
+            "generated": 19,
+            "search_time (in secs)": 0.00102371
+        }
+    },
+    "instance-313.pddl": {
+        "plan": "(pick-up a)\n(stack a b)\n(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.0005424
+        }
+    },
+    "instance-387.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c a)\n(put-down c)\n(pick-up b)\n(stack b a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000776058
+        }
+    },
+    "instance-297.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000413812
+        }
+    },
+    "instance-9.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 19,
+            "generated": 28,
+            "search_time (in secs)": 0.000942162
+        }
+    },
+    "instance-72.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.00042013
+        }
+    },
+    "instance-201.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000430498
+        }
+    },
+    "instance-445.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.00047573
+        }
+    },
+    "instance-133.pddl": {
+        "plan": "(unstack a b)\n(stack a d)\n(pick-up c)\n(stack c b)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.00047146
+        }
+    },
+    "instance-66.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(stack c a)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000559639
+        }
+    },
+    "instance-463.pddl": {
+        "plan": "(unstack d c)\n(stack d e)\n(unstack c b)\n(put-down c)\n(unstack d e)\n(stack d b)\n(pick-up c)\n(stack c d)\n(unstack e a)\n(put-down e)\n(pick-up a)\n(stack a e)",
+        "length": 12,
+        "states_info": {
+            "expanded": 51,
+            "evaluated": 94,
+            "generated": 155,
+            "search_time (in secs)": 0.00181224
+        }
+    },
+    "instance-287.pddl": {
+        "plan": "(unstack d c)\n(stack d a)\n(unstack c b)\n(put-down c)\n(pick-up b)\n(stack b c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000531382
+        }
+    },
+    "instance-41.pddl": {
+        "plan": "(unstack b c)\n(stack b d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000340685
+        }
+    },
+    "instance-149.pddl": {
+        "plan": "(pick-up b)\n(stack b c)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000341277
+        }
+    },
+    "instance-128.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack a b)\n(stack a d)\n(pick-up c)\n(stack c a)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000693386
+        }
+    },
+    "instance-414.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(stack c a)\n(unstack d b)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000745937
+        }
+    },
+    "instance-19.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000857835
+        }
+    },
+    "instance-497.pddl": {
+        "plan": "(unstack b a)\n(stack b c)\n(unstack a e)\n(put-down a)\n(pick-up d)\n(stack d a)\n(pick-up e)\n(stack e d)\n(unstack b c)\n(stack b e)",
+        "length": 10,
+        "states_info": {
+            "expanded": 11,
+            "evaluated": 25,
+            "generated": 34,
+            "search_time (in secs)": 0.00147789
+        }
+    },
+    "instance-68.pddl": {
+        "plan": "(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(unstack b c)\n(stack b d)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 6,
+            "generated": 8,
+            "search_time (in secs)": 0.000599681
+        }
+    },
+    "instance-35.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(put-down a)\n(unstack d b)\n(stack d c)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000814103
+        }
+    },
+    "instance-391.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.000576807
+        }
+    },
+    "instance-258.pddl": {
+        "plan": "(unstack d a)\n(stack d b)\n(unstack a c)\n(put-down a)\n(unstack d b)\n(stack d a)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 9,
+            "generated": 13,
+            "search_time (in secs)": 0.000743752
+        }
+    },
+    "instance-403.pddl": {
+        "plan": "(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000596272
+        }
+    },
+    "instance-219.pddl": {
+        "plan": "(unstack b a)\n(stack b d)\n(pick-up a)\n(stack a c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000485851
+        }
+    },
+    "instance-290.pddl": {
+        "plan": "(unstack a d)\n(stack a c)\n(pick-up b)\n(stack b d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000494162
+        }
+    },
+    "instance-488.pddl": {
+        "plan": "(unstack c e)\n(stack c a)\n(unstack e d)\n(put-down e)\n(unstack d b)\n(stack d c)\n(pick-up e)\n(stack e d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 11,
+            "generated": 15,
+            "search_time (in secs)": 0.000708177
+        }
+    },
+    "instance-214.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.00102102
+        }
+    },
+    "instance-161.pddl": {
+        "plan": "(pick-up d)\n(stack d b)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000432152
+        }
+    },
+    "instance-167.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(put-down d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 24,
+            "generated": 36,
+            "search_time (in secs)": 0.00110872
+        }
+    },
+    "instance-79.pddl": {
+        "plan": "(pick-up b)\n(stack b d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000452742
+        }
+    },
+    "instance-20.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack b d)\n(stack b a)\n(pick-up d)\n(stack d b)\n(pick-up c)\n(stack c d)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000981765
+        }
+    },
+    "instance-136.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(unstack a b)\n(stack a d)\n(pick-up c)\n(stack c b)\n(unstack a d)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 20,
+            "generated": 28,
+            "search_time (in secs)": 0.00072532
+        }
+    },
+    "instance-500.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.00054273
+        }
+    },
+    "instance-315.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack d b)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000784982
+        }
+    },
+    "instance-49.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c b)\n(stack c a)\n(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000744
+        }
+    },
+    "instance-233.pddl": {
+        "plan": "(pick-up c)\n(stack c d)",
+        "length": 2,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000324805
+        }
+    },
+    "instance-365.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up b)\n(stack b c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 4,
+            "generated": 3,
+            "search_time (in secs)": 0.000613735
+        }
+    },
+    "instance-183.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(put-down c)\n(pick-up a)\n(stack a d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000715636
+        }
+    },
+    "instance-141.pddl": {
+        "plan": "(unstack b a)\n(put-down b)\n(unstack d c)\n(stack d b)\n(pick-up c)\n(stack c a)\n(unstack d b)\n(stack d c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 19,
+            "generated": 27,
+            "search_time (in secs)": 0.000985959
+        }
+    },
+    "instance-103.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d b)\n(put-down d)\n(pick-up c)\n(stack c d)\n(unstack b a)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 4,
+            "generated": 5,
+            "search_time (in secs)": 0.000573914
+        }
+    },
+    "instance-314.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(put-down d)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 12,
+            "evaluated": 20,
+            "generated": 30,
+            "search_time (in secs)": 0.000972388
+        }
+    },
+    "instance-399.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d c)\n(put-down d)\n(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a c)\n(pick-up b)\n(stack b a)\n(pick-up d)\n(stack d b)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.000925974
+        }
+    },
+    "instance-135.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a d)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 6,
+            "generated": 7,
+            "search_time (in secs)": 0.000524211
+        }
+    },
+    "instance-88.pddl": {
+        "plan": "(unstack d b)\n(stack d a)\n(unstack b c)\n(put-down b)\n(unstack d a)\n(stack d c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.00068606
+        }
+    },
+    "instance-477.pddl": {
+        "plan": "(unstack e b)\n(stack e a)\n(pick-up c)\n(stack c e)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000670138
+        }
+    },
+    "instance-57.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b d)\n(put-down b)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)\n(pick-up b)\n(stack b c)",
+        "length": 12,
+        "states_info": {
+            "expanded": 10,
+            "evaluated": 16,
+            "generated": 24,
+            "search_time (in secs)": 0.000912369
+        }
+    },
+    "instance-61.pddl": {
+        "plan": "(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000464165
+        }
+    },
+    "instance-480.pddl": {
+        "plan": "(unstack a e)\n(put-down a)\n(unstack e b)\n(stack e a)\n(unstack b c)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000601364
+        }
+    },
+    "instance-501.pddl": {
+        "plan": "(unstack d c)\n(stack d b)\n(unstack c a)\n(stack c d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000561258
+        }
+    },
+    "instance-437.pddl": {
+        "plan": "(unstack d c)\n(put-down d)\n(pick-up c)\n(stack c d)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 23,
+            "generated": 35,
+            "search_time (in secs)": 0.000801749
+        }
+    },
+    "instance-382.pddl": {
+        "plan": "(unstack c a)\n(stack c b)\n(unstack a d)\n(put-down a)\n(unstack c b)\n(stack c d)\n(pick-up b)\n(stack b c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000695962
+        }
+    },
+    "instance-236.pddl": {
+        "plan": "(pick-up c)\n(stack c b)\n(pick-up d)\n(stack d c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000472508
+        }
+    },
+    "instance-427.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack c d)\n(stack c b)\n(unstack d a)\n(put-down d)\n(unstack c b)\n(stack c a)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 12,
+        "states_info": {
+            "expanded": 13,
+            "evaluated": 22,
+            "generated": 33,
+            "search_time (in secs)": 0.000907746
+        }
+    },
+    "instance-379.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(pick-up d)\n(stack d b)\n(unstack c a)\n(put-down c)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 14,
+            "evaluated": 23,
+            "generated": 35,
+            "search_time (in secs)": 0.000843692
+        }
+    },
+    "instance-473.pddl": {
+        "plan": "(unstack e a)\n(put-down e)\n(unstack a d)\n(stack a e)\n(pick-up b)\n(stack b d)",
+        "length": 6,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 3,
+            "generated": 2,
+            "search_time (in secs)": 0.000617348
+        }
+    },
+    "instance-289.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c b)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 3,
+            "evaluated": 7,
+            "generated": 8,
+            "search_time (in secs)": 0.000692949
+        }
+    },
+    "instance-202.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(stack b c)",
+        "length": 4,
+        "states_info": {
+            "expanded": 1,
+            "evaluated": 2,
+            "generated": 1,
+            "search_time (in secs)": 0.000425673
+        }
+    },
+    "instance-359.pddl": {
+        "plan": "(unstack c b)\n(stack c a)\n(unstack b d)\n(put-down b)\n(unstack c a)\n(stack c d)\n(pick-up a)\n(stack a c)",
+        "length": 8,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000742821
+        }
+    },
+    "instance-484.pddl": {
+        "plan": "(unstack a e)\n(put-down a)\n(unstack d c)\n(stack d a)\n(pick-up e)\n(stack e d)\n(unstack c b)\n(stack c e)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000964298
+        }
+    },
+    "instance-294.pddl": {
+        "plan": "(unstack c d)\n(put-down c)\n(unstack d a)\n(put-down d)\n(unstack a b)\n(put-down a)\n(pick-up c)\n(stack c a)\n(pick-up b)\n(stack b c)",
+        "length": 10,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 10,
+            "generated": 14,
+            "search_time (in secs)": 0.000788916
+        }
+    },
+    "instance-357.pddl": {
+        "plan": "(unstack b c)\n(put-down b)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 8,
+        "states_info": {
+            "expanded": 6,
+            "evaluated": 13,
+            "generated": 17,
+            "search_time (in secs)": 0.000793967
+        }
+    },
+    "instance-166.pddl": {
+        "plan": "(unstack c d)\n(stack c b)\n(pick-up a)\n(stack a d)\n(unstack c b)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 11,
+            "generated": 13,
+            "search_time (in secs)": 0.000770931
+        }
+    },
+    "instance-248.pddl": {
+        "plan": "(pick-up b)\n(stack b d)\n(pick-up a)\n(stack a b)\n(pick-up c)\n(stack c a)",
+        "length": 6,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000602529
+        }
+    },
+    "instance-327.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b a)\n(put-down b)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 4,
+            "evaluated": 8,
+            "generated": 10,
+            "search_time (in secs)": 0.000765306
+        }
+    },
+    "instance-65.pddl": {
+        "plan": "(unstack b d)\n(put-down b)\n(unstack d a)\n(put-down d)\n(pick-up b)\n(stack b d)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c a)",
+        "length": 10,
+        "states_info": {
+            "expanded": 7,
+            "evaluated": 11,
+            "generated": 16,
+            "search_time (in secs)": 0.000690971
+        }
+    },
+    "instance-376.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d b)\n(stack d c)\n(pick-up a)\n(stack a b)",
+        "length": 6,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 5,
+            "generated": 5,
+            "search_time (in secs)": 0.000565358
+        }
+    },
+    "instance-191.pddl": {
+        "plan": "(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000392061
+        }
+    },
+    "instance-30.pddl": {
+        "plan": "(unstack d b)\n(stack d c)\n(unstack b a)\n(stack b d)",
+        "length": 4,
+        "states_info": {
+            "expanded": 0,
+            "evaluated": 1,
+            "generated": 0,
+            "search_time (in secs)": 0.000550772
+        }
+    },
+    "instance-235.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(pick-up c)\n(stack c d)\n(pick-up b)\n(stack b c)\n(pick-up a)\n(stack a b)",
+        "length": 8,
+        "states_info": {
+            "expanded": 2,
+            "evaluated": 6,
+            "generated": 6,
+            "search_time (in secs)": 0.00127503
+        }
+    }
+}

@@ -9,8 +9,10 @@ from tarski.io import PDDLReader
 import argparse
 import time
 import json
-
+import string
+import subprocess
 from tqdm import tqdm
+from rich import print
 """
 TODO: Mystery Generalized Instances
 TODO: plan 
@@ -55,6 +57,47 @@ class PromptGenerator:
         if not os.path.exists(self.plan_file):
             return ""
         return Path(self.plan_file).read_text()
+    
+    def _compute_plan_optimal(self,domain, instance):
+        fast_downward_path = os.getenv("FAST_DOWNWARD")
+        # Remove > /dev/null to see the output of fast-downward
+        assert os.path.exists(f"{fast_downward_path}/fast-downward.py")
+        cmd = f"{fast_downward_path}/fast-downward.py {domain} {instance} --search \"astar(lmcut())\""
+        # cmd = f"{fast_downward_path}/fast-downward.py --alias seq-sat-lama-2011 {domain} {instance}> /dev/null 2>&1"
+        # print(cmd)
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+        # Wait till the process is complete
+        out, err = process.communicate()
+        dict_states ={
+            'expanded': None,
+            'evaluated': None,
+            'generated': None,
+            'search_time (in secs)': None
+        }
+        #[t=0.619228s, 11116 KB] Evaluated 12278 state(s).
+        #[t=0.527384s, 11116 KB] Search time: 0.520411s
+        for out_line in out.decode("utf-8").split('\n'):
+            if "Evaluated" in out_line:
+                dict_states['evaluated'] = int(out_line.split(" ")[-2])
+            elif "Expanded" in out_line:
+                dict_states['expanded'] = int(out_line.split(" ")[-2])
+            elif "Generated" in out_line:
+                dict_states['generated'] = int(out_line.split(" ")[-2])
+            elif "Search time" in out_line:
+                dict_states['search_time (in secs)'] = float(out_line.split(" ")[-1][:-1])
+        try:
+            with open("sas_plan") as f:
+                plan = [line.rstrip() for line in f][:-1]
+                plan_length = len(plan)
+        except FileNotFoundError:
+            plan = []
+            plan_length = 0
+        dict_plan = {
+            "plan": '\n'.join(plan),
+            "length": plan_length,
+            "states_info": dict_states
+        }
+        return dict_plan
 
     def read_config(self, config_file):
         with open(config_file, 'r') as file:
@@ -142,8 +185,9 @@ class PromptGenerator:
                 problem = self.get_problem(cur_instance, self.domain_pddl)
                 # --------------------------------------------- #
                 # ------------ Put plan and instance into text ------------ #
-                gt_plan = self.compute_plan(self.domain_pddl, cur_instance)
+                gt_plan = self._compute_plan_optimal(self.domain_pddl, cur_instance)
                 gt_plan_text = get_plan_as_text(self.data)
+                gt_plan["readable_plan"] = gt_plan_text
                 query += fill_template(*instance_to_text(problem, get_plan, self.data))
                 # --------------------------------------------------------- #
                 
@@ -159,7 +203,7 @@ class PromptGenerator:
                 continue
             instance_structured_output["example_instance_ids"] = examples
             instance_structured_output["query"] = query
-            instance_structured_output["ground_truth_plan"] = gt_plan_text
+            instance_structured_output["ground_truth_plan"] = gt_plan
             structured_output["instances"].append(instance_structured_output)
             self.save_json(task_name, structured_output)
     
@@ -203,7 +247,10 @@ class PromptGenerator:
             # --------------------------------------------- #
             # ------------ Put plan and instance into text ------------ #
             gt_plan = self.compute_plan(self.domain_pddl, cur_instance)
-            gt_plan_text = get_plan_as_text(self.data)
+            if "unsolvable" in self.data["domain_name"]:
+                gt_plan_text = "unsolvable"
+            else:
+                gt_plan_text = get_plan_as_text(self.data)
             query += fill_template(*instance_to_text(problem, get_plan, self.data), instruction=True)
             # --------------------------------------------------------- #
             if self.verbose:
@@ -380,18 +427,29 @@ class PromptGenerator:
             range_list = range(self.i_start, self.i_end + 1)
         
         for start in tqdm(range_list):
+            if start in completed_instances:
+                continue
+            # Create a 6 letter random alphanumeric lowercase string
+            alphanum = ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
             with open(self.domain_pddl, 'r') as file:
                 domain_intro = file.read()
-            query = "Here is a pddl domain, a planning problem. Provide the plan for the query problem. Provide only the pddl syntax for the plan where each action is represented as (ACTION_NAME OBJECTS).\n"
+            query = "The following is a PDDL specification of a planning problem. The first part, under the heading [DOMAIN], is the domain file. The second part, under the heading [QUERY PROBLEM], is the problem file. Using this information, which is correct, and no further assumptions, find a plan which, when run from the specified initial state, satisfies the specified goal. Provide your answer as a sequence of actions in PDDL format. An action ACTION which acts on two objects OBJ1 and OBJ2 would be written (ACTION OBJ1 OBJ2). Do not provide anything else in your answer.\n"
             query += "[DOMAIN]\n" + domain_intro.strip() + "\n\n"
             instance_structured_output = {}
             cur_instance = self.instance.format(start)
             # --------------- Read Instance --------------- #
             with open(cur_instance, 'r') as file:
                 problem = file.read()
+            problem = "(define" + problem.split("(define")[1][:-1].strip() + "\n)"
+            
+
+            
+
             # --------------- Get Plan --------------- #
-            plan = self.compute_plan(self.domain_pddl, cur_instance)
-            query+="[QUERY PROBLEM]\n"+problem.strip()+"\n\n"
+            plan = {}#self._compute_plan_optimal(self.domain_pddl, cur_instance)
+            query+="[QUERY PROBLEM]\n"+problem.strip()+"\n\n[PLAN]"
+            # HACK TO FIX
+            query = query.replace("obfuscated_randomized_blocksworld", alphanum)
             
             if self.verbose:
                 print(query)
@@ -402,6 +460,7 @@ class PromptGenerator:
                 query = caesar_encode(query)
                 stop_statement = caesar_encode(stop_statement)
             instance_structured_output["query"] = query
+            instance_structured_output["instance_id"] = start
             instance_structured_output["ground_truth_plan"] = plan
             structured_output["instances"].append(instance_structured_output)
             self.save_json(task_name, structured_output)

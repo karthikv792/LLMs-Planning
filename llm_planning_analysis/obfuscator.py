@@ -7,9 +7,15 @@ import pddl
 from model_parser.constants import *
 from model_parser.parser_new import parse_model
 from model_parser.writer_new import ModelWriter
-
+from pddl.formatter import domain_to_string, problem_to_string
+from pddl.logic.base import And, Not
+from pddl.logic.effects import AndEffect
+from pddl.logic import Predicate, constants, variables
 from pddl.formatter import domain_to_string
+from pddl import parse_domain, parse_problem
 from tqdm import tqdm
+from rich import print
+import copy
 STATE_TRACKING_TEXT = "The plan correctness is defined in terms of states resulting from executing the\
 actions in the plan. An action is executable in a state when all its preconditions\
   hold in that state. The state resulting from the action execution consists of everything\
@@ -21,26 +27,27 @@ actions in the plan. An action is executable in a state when all its preconditio
   the application of the last action in the last but one state gives rise to the final\
   state where all the goals are satisfied."
 
-def random_mapping(config, new_words):
+ALL_WORDS = []
+def random_mapping(config):
     action_mapping = {}
     for action in config["actions"]:
-        if len(new_words) == 0:
+        if len(ALL_WORDS) == 0:
             print("Not enough words provided")
             return
 
-        mapped_action = random.choice(new_words)
-        new_words.remove(mapped_action)
+        mapped_action = random.choice(ALL_WORDS)
+        ALL_WORDS.remove(mapped_action)
         action_mapping[action] = mapped_action
 
     predicate_mapping = {}
     for predicate in config["predicates"]:
-        if len(new_words) == 0:
+        if len(ALL_WORDS) == 0:
             print("Not enough words provided")
             return
         
 
-        mapped_predicate = random.choice(new_words)
-        new_words.remove(mapped_predicate)
+        mapped_predicate = random.choice(ALL_WORDS)
+        ALL_WORDS.remove(mapped_predicate)
         predicate_mapping[predicate] = mapped_predicate
 
     return action_mapping, predicate_mapping
@@ -200,6 +207,11 @@ def translate_domain_pddl(original_domain_file,
                           translated_domain_dir,
                           translated_domain):
     domain = pddl.parse_domain(original_domain_file)
+    for act in list(domain.actions):
+        i = 1
+        for params in act.parameters:
+            params._name = f"ob_{i}"
+            i += 1
 
     new_predicates = []
 
@@ -309,7 +321,68 @@ def replace_instance(domain,instance, action_mapping, predicate_mapping):
         new_model[key] = model[key]
     return new_model
 
-def _create_instances(config_original, config_obfuscated, action_mapping, predicate_mapping, n_instances, generalization_instances=False):
+def convert_instances(original_domain_file, original_instance, action_obfuscation, predicate_obfuscation, obf_type, domain_name):
+    domain = parse_domain(original_domain_file)
+    problem = parse_problem(original_instance)
+    all_new_words = copy.deepcopy(ALL_WORDS)
+
+    domain._name = domain_name
+    for act in domain.actions:
+        # print(type(act.precondition), act._effect, act.terms)
+        act._name = action_obfuscation[act._name.lower()]
+        i = 1
+        for params in act.parameters:
+            params._name = f"ob_{i}"
+            i += 1
+        if isinstance(act.precondition, Predicate):
+            act.precondition._name = predicate_obfuscation[act.precondition._name.lower()]
+        elif isinstance(act.precondition, And):
+            for pred in act.precondition.operands:
+                pred._name = predicate_obfuscation[pred._name.lower()]
+        # print(act.effect, type(act.effect), dir(act.effect))
+        if isinstance(act.effect, Predicate):
+            act.effect._name = predicate_obfuscation[act.effect._name.lower()]
+        elif isinstance(act.effect, AndEffect):
+            for pred in act.effect.operands:
+                if isinstance(pred, Predicate):
+                    pred._name = predicate_obfuscation[pred._name.lower()]
+                elif isinstance(pred, Not):
+                    pred.argument._name = predicate_obfuscation[pred.argument._name.lower()]
+                
+    for pred in domain.predicates:
+        pred._name = predicate_obfuscation[pred._name.lower()]
+        # print(pred.terms, pred.arity)
+    
+    # print(domain_to_string(domain))
+
+    
+    # print(dir(problem))
+    problem._domain_name = domain._name
+    problem._name = random.choice(all_new_words)
+    all_new_words.remove(problem._name)
+    i=1
+    
+    if obf_type == "deceptive":
+        for o in problem.objects:
+            o._name = f"o{i}"
+            i += 1
+    else:
+        for o in problem.objects:
+            o._name = random.choice(all_new_words)
+            all_new_words.remove(o._name)
+    if isinstance(problem.goal, And):
+        for pred in problem.goal.operands:
+            pred._name = predicate_obfuscation[pred._name.lower()]
+    else:
+        problem.goal._name = predicate_obfuscation[problem.goal._name.lower()]
+    if isinstance(problem.init, frozenset):
+        for pred in problem.init:
+            pred._name = predicate_obfuscation[pred._name.lower()]
+    else:
+        problem.init._name = predicate_obfuscation[problem.init._name.lower()]
+
+    return domain_to_string(domain), problem_to_string(problem)
+def _create_instances(config_original, config_obfuscated, action_mapping, predicate_mapping, n_instances, generalization_instances=False, obf_type=""):
     if generalization_instances:
         original_instance_dir = config_original["generalized_instance_dir"]
         obfuscated_instance_dir = config_obfuscated["generalized_instance_dir"]
@@ -322,28 +395,60 @@ def _create_instances(config_original, config_obfuscated, action_mapping, predic
     os.makedirs(f'./instances/{obfuscated_instance_dir}', exist_ok=True)
     obfuscated_instance_template = f'./instances/{obfuscated_instance_dir}/{config_obfuscated["instances_template"]}'
     obfuscated_domain_file = f'./instances/{config_obfuscated["domain_file"]}'
-
-    for i in tqdm(range(1, n_instances+2)):
+    domain_name = ALL_WORDS[0]
+    ALL_WORDS.remove(domain_name)
+    
+    for i in tqdm(range(1, n_instances+1)):
         original_instance = original_instance_template.format(i)
-        obfuscated_model = replace_instance(original_domain_file, original_instance, action_mapping, predicate_mapping)
+        # obfuscated_model = replace_instance(original_domain_file, original_instance, action_mapping, predicate_mapping)
 
         #Write obfuscated instance
-        writer = ModelWriter(obfuscated_model, domain_name=config_obfuscated["domain_name"], problem_name=f"instance-{i}")
-        writer.write_files(obfuscated_domain_file, obfuscated_instance_template.format(i))
+        # writer = ModelWriter(obfuscated_model, domain_name=config_obfuscated["domain_name"], problem_name=f"instance-{i}")
+        # writer.write_files(obfuscated_domain_file, obfuscated_instance_template.format(i))
+        obfuscated_domain, obfuscated_instance = convert_instances(original_domain_file, original_instance, action_mapping, predicate_mapping, obf_type, domain_name)
+        with open(obfuscated_domain_file, "w") as f:
+            f.write(obfuscated_domain)
+        with open(obfuscated_instance_template.format(i), "w") as f:
+            f.write(obfuscated_instance)
 
-def create_obfuscated_instances(config_original, output_filename):
+def create_obfuscated_instances(config_original, output_filename, generalization_instances=False, obf_type=""):
     assert os.path.exists(output_filename), f"Cannot find {output_filename}"
     with open(output_filename, "r") as f:
         config_obfuscated = yaml.safe_load(f)
     action_mapping = config_obfuscated["action_obfuscation"]
     predicate_mapping = config_obfuscated["predicate_obfuscation"]
     n_instances = config_original["n_instances"]
-    _create_instances(config_original, config_obfuscated, action_mapping, predicate_mapping, n_instances, generalization_instances=False)
-    _create_instances(config_original, config_obfuscated, action_mapping, predicate_mapping, n_instances, generalization_instances=True)
+    _create_instances(config_original, config_obfuscated, action_mapping, predicate_mapping, n_instances, generalization_instances=False,  obf_type=obf_type)
+    if generalization_instances:
+        _create_instances(config_original, config_obfuscated, action_mapping, predicate_mapping, n_instances, generalization_instances=True,  obf_type=obf_type)
 
     
 
+def random_as_mapping(config):
+    total_actions = len(config["actions"])
+    total_predicates = len(config["predicates"])
+    all_new_words = []
+    action_mapping = {}
+    for action in config["actions"]:
+        while True:
+            number_of_as = random.randint(3, total_actions+total_predicates+5)
+            new_action = "a"*number_of_as
+            if new_action not in all_new_words:
+                all_new_words.append(new_action)
+                break
+        action_mapping[action] = new_action
 
+    predicate_mapping = {}
+    for predicate in config["predicates"]:
+        while True:
+            number_of_as = random.randint(3, total_actions+total_predicates+5)
+            new_predicate = "a"*number_of_as
+            if new_predicate not in all_new_words:
+                all_new_words.append(new_predicate)
+                break
+        predicate_mapping[predicate] = new_predicate
+
+    return action_mapping, predicate_mapping
 
 
     
@@ -355,29 +460,46 @@ if __name__ == "__main__":
     parser.add_argument("--config", type=str, required=True)
     parser.add_argument("--update_extra", action="store_true")
     parser.add_argument("--randomized_obfuscation", action="store_true")
+    parser.add_argument("--all_as_mapping", action="store_true")
     parser.add_argument("--output_filename", type=str, default="")
     parser.add_argument("--words_filename", type=str, default="obfuscate/random_words_1.txt")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--instances_pddl_subpath", type=str, default="obfuscated_[DOMAIN]")
+    parser.add_argument("--generalization", action="store_true")
+    parser.add_argument("--not_random_as", action="store_true")
     args = parser.parse_args()
 
     random.seed(args.seed)
-
+    input_filename = f"configs/{args.config}.yaml"
+    assert os.path.exists(input_filename), f"Cannot find {input_filename}"
+    with open(input_filename, "r") as f:
+        config = yaml.safe_load(f)
+    print("Creating vocabulary...")
     if args.randomized_obfuscation:
         obf_type = "randomized"
-        words = []
-        while len(words) < 100:
+        while len(ALL_WORDS) < 100:
             x = ''.join(random.choices(string.ascii_lowercase, k=1)+random.choices(string.ascii_lowercase + string.digits, k=15))
-            if x not in words:
-                words.append(x)
+            if x not in ALL_WORDS:
+                ALL_WORDS.append(x)
+    elif args.all_as_mapping:
+        obf_type = "all_as"
+        if not args.not_random_as:
+            while len(ALL_WORDS) < 100:
+                y = random.randint(3, 105)
+                x = "a"*y
+                if x not in ALL_WORDS:
+                    ALL_WORDS.append(x)
+        else:
+            ALL_WORDS = ["a"*i for i in range(3, 105)]
     else:
         obf_type = "deceptive"
-        words = []
         with open(args.words_filename, "r") as f:
             for line in f.readlines():
                 if line != "":
-                    words.append(line.strip())
-
+                    ALL_WORDS.append(line.strip())
+        if len(ALL_WORDS) < 100:
+            raise ValueError("Not enough words provided")
+    print("Created vocabulary")
     """
     You can create a vocabulary from the WordNet corpus
     from nltk.corpus import wordnet as wn
@@ -386,15 +508,13 @@ if __name__ == "__main__":
         words.append(synset.name().split(".")[0])
     """
 
-    input_filename = f"configs/{args.config}.yaml"
-    assert os.path.exists(input_filename), f"Cannot find {input_filename}"
-    with open(input_filename, "r") as f:
-        config = yaml.safe_load(f)
-
-    action_mapping, predicate_mapping = random_mapping(config, words)
+    action_mapping, predicate_mapping = random_mapping(config)
 
     if "[DOMAIN]" in args.instances_pddl_subpath:
-        pddl_path = args.instances_pddl_subpath.replace("[DOMAIN]", obf_type+'_'+args.config)
+        if args.not_random_as:
+            pddl_path = args.instances_pddl_subpath.replace("[DOMAIN]", obf_type+'_not_random_'+args.config)
+        else:
+            pddl_path = args.instances_pddl_subpath.replace("[DOMAIN]", obf_type+'_'+args.config)
     else:
         pddl_path = args.instances_pddl_subpath
 
@@ -418,7 +538,7 @@ if __name__ == "__main__":
                       new_domain, obf_type)
     with open(input_filename, "r") as f:
         config = yaml.safe_load(f)
-    create_obfuscated_instances(config, output_filename)
+    create_obfuscated_instances(config, output_filename, args.generalization, obf_type)
 
     if args.update_extra:
         input_extra_filename = f"configs/{args.config}_3.yaml"

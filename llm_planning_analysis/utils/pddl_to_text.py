@@ -25,7 +25,8 @@ def parse_problem(problem, data, shuffle):
             try:
                 pred_string = data['predicates'][atom.symbol.name].format(*objs)
                 predicates.append(pred_string)
-            except:
+            except Exception as e:
+                print("[-]: Exception in parsing predicates: {}".format(e))
                 print("[-]: Predicate not found in predicates dict: {}".format(atom.symbol.name))
                 pass
         

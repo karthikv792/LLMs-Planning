@@ -10,11 +10,11 @@ from tarski.syntax.formulas import *
 
 
 class Instance_Generator():
-    def __init__(self, config_file):
+    def __init__(self, config_file, seed=10):
         self.data = None
         self.read_config(config_file)
-        self.instances_template = f"./instances/{self.data['domain_name']}/{self.data['instance_dir']}/{self.data['instances_template']}"
-        self.label_json = f"./instances/{self.data['domain_name']}/{self.data['domain_name']}_all_labels.json"
+        self.instances_template = f"./instances/{self.data['instance_dir']}/{self.data['instances_template']}"
+        self.label_json = f"./instances/{self.data['domain_name']}_all_labels.json"
         self.hashset = set()
         self.plan_hashset = set()
         if os.path.exists(self.label_json):
@@ -22,8 +22,9 @@ class Instance_Generator():
                 self.all_labels = json.load(file)
         else:
             self.all_labels = {}
-        
-        os.makedirs(f"./instances/{self.data['domain_name']}/{self.data['instance_dir']}/", exist_ok=True)
+        random.seed(seed)
+        self.seed = seed
+        os.makedirs(f"./instances/{self.data['instance_dir']}/", exist_ok=True)
 
 
     def read_config(self, config_file):
@@ -47,26 +48,28 @@ class Instance_Generator():
     def add_existing_files_to_hash_set(self):
         em = []
         count = 0
-        for i in os.listdir(f"./dataset/{self.data['domain_name']}/{self.data['domain']}/"):
-            try:
-                f = open(f"./dataset/{self.data['domain_name']}/{self.data['domain']}/instance-{count}.pddl", "r")
-            except:
-                em.append(count)
+        try:
+            for i in os.listdir(f"./dataset/{self.data['domain_name']}/{self.data['domain']}/"):
+                try:
+                    f = open(f"./dataset/{self.data['domain_name']}/{self.data['domain']}/instance-{count}.pddl", "r")
+                except:
+                    em.append(count)
+                    count+=1
+                    continue
+                pddl = f.read()
+                if pddl:
+                    to_add = self.convert_pddl(pddl)
+                    self.hashset.add(to_add)
+                else:
+                    em.append(count)
                 count+=1
-                continue
-            pddl = f.read()
-            if pddl:
-                to_add = self.convert_pddl(pddl)
-                self.hashset.add(to_add)
-            else:
-                em.append(count)
-            count+=1
-
+        except:
+            pass
 
         length = len(self.hashset)
         try:
-            for i in os.listdir(f"./instances/{self.data['domain']}/"):
-                f = open(f"./instances/{self.data['domain']}/{i}", "r")
+            for i in os.listdir(f"./instances/{self.data['instance_dir']}/"):
+                f = open(f"./instances/{self.data['instance_dir']}/{i}", "r")
                 pddl = f.read()
                 to_add = self.convert_pddl(pddl)
                 if to_add in self.hashset:
@@ -122,13 +125,47 @@ class Instance_Generator():
 
 
     def gen_goal_directed_instances(self, n_instances, max_objs):
-        if self.data['domain'] == 'blocksworld':
+        if self.data['domain_name'] == 'blocksworld':
             self.gen_goal_directed_instances_blocksworld(n_instances, max_objs)
             
-        elif self.data['domain'] == 'logistics':
+        elif self.data['domain_name'] == 'logistics':
             self.gen_goal_directed_instances_logistics(n_instances)
+        elif self.data['domain_name'] == 'sokoban':
+            self.gen_goal_directed_instances_sokoban(n_instances)
         else:
             raise NotImplementedError
+    
+    def gen_goal_directed_instances_sokoban(self, n_instances):
+        CMD = "timeout 2s ./pddlgenerators/sokoban/random/sokoban-generator-typed -n {} -b {} -w {} -s"+f" {self.seed}"
+        start, missing = self.add_existing_files_to_hash_set()
+        c = missing.pop() if missing else start
+        all_instances = []
+        if n_instances:
+            n = n_instances
+        else:
+            n = self.data['n_instances'] + 1
+        while True:
+            if c>n:
+                break
+            n_grid = random.randint(4,10)
+            n_boxes = random.randint(1, 4)
+            n_walls = random.randint(1, 4)
+            cmd_exec = CMD.format(n_grid, n_boxes, n_walls)
+            count = 0
+            pddl = os.popen(cmd_exec).read()
+            if '(define' not in pddl:
+                continue
+            pddl = [i for i in pddl.split('\n') if not i.startswith(';')]
+            pddl = '\n'.join(pddl).strip()
+            hash_of_instance = self.convert_pddl(pddl)
+            if hash_of_instance in self.hashset:
+                continue
+            self.hashset.add(hash_of_instance)
+            with open(self.instances_template.format(c), "w+") as fd:
+                fd.write(pddl)
+            c+=1
+            print(f"[+]: Instance created. Total instances: {c}")
+
 
     def gen_goal_directed_instances_blocksworld(self, n_instances, max_objs=5):
         if n_instances:
@@ -460,19 +497,21 @@ if __name__ == '__main__':
     parser.add_argument('--is_generalization', action='store_true', help='generate generalization instances')
     parser.add_argument('--n_instances', type=int, default=0)
     parser.add_argument('--max_blocks', type=int, default=5, help='max number of blocks in blocksworld')
+    parser.add_argument('--seed', type=int, default=10)
+
 
     args = parser.parse_args()
     config_file = args.config
     is_generalization = args.is_generalization
     n_instances = args.n_instances
     max_blocks = args.max_blocks
-    config_file = f'configs/{config_file}.json'
+    config_file = f'configs/{config_file}.yaml'
     assert os.path.exists(config_file), f'[-] Config file {config_file} does not exist'
     if is_generalization:
         ig = GeneralizationInstanceGenerator(config_file)
         ig.t5_gen_generalization_instances(n_instances)
     else:
-        ig = Instance_Generator(config_file)
+        ig = Instance_Generator(config_file, seed=args.seed)
         ig.gen_goal_directed_instances(n_instances, max_blocks)
             
             

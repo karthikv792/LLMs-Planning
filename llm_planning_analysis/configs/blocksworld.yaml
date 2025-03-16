@@ -80,6 +80,10 @@ encoded_objects:
   {"a": "red block", "b": "blue block", "c": "orange block", "d": "yellow block",
    "e": "white block", "f": "magenta block", "g": "black block", "h": "cyan block",
    "i": "green block", "j": "violet block", "k": "silver block", "l": "gold block" }
+encoded_objects_compact:
+  {"a": "red", "b": "blue", "c": "orange", "d": "yellow",
+   "e": "white", "f": "magenta", "g": "black", "h": "cyan",
+   "i": "green", "j": "violet", "k": "silver", "l": "gold" }
 
 callbacks:
    - t1_gen_goal_directed_instances

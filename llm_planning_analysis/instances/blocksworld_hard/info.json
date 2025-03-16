@@ -1,0 +1,1102 @@
+{
+    "instance-1.pddl": {
+        "plan": "(unstack d b)\n(put-down d)\n(unstack b f)\n(stack b d)\n(unstack f e)\n(stack f b)\n(unstack e c)\n(put-down e)\n(unstack f b)\n(stack f e)\n(unstack c a)\n(stack c b)\n(pick-up a)\n(stack a f)\n(unstack c b)\n(stack c a)\n(unstack b d)\n(stack b c)\n(pick-up d)\n(stack d b)",
+        "length": 20,
+        "states_info": {
+            "expanded": 155,
+            "evaluated": 306,
+            "generated": 526,
+            "search_time (in secs)": 0.00583633
+        }
+    },
+    "instance-2.pddl": {
+        "plan": "(unstack b e)\n(stack b a)\n(unstack e f)\n(put-down e)\n(unstack f c)\n(stack f h)\n(unstack b a)\n(stack b f)\n(unstack g d)\n(stack g e)\n(pick-up i)\n(stack i b)\n(pick-up a)\n(stack a i)\n(pick-up d)\n(stack d a)\n(unstack c j)\n(stack c g)\n(pick-up j)\n(stack j d)\n(unstack c g)\n(stack c j)",
+        "length": 22,
+        "states_info": {
+            "expanded": 2406,
+            "evaluated": 7700,
+            "generated": 12632,
+            "search_time (in secs)": 0.420783
+        }
+    },
+    "instance-3.pddl": {
+        "plan": "(unstack g d)\n(put-down g)\n(unstack d f)\n(stack d a)\n(pick-up g)\n(stack g d)\n(unstack f i)\n(stack f g)\n(unstack i h)\n(put-down i)\n(unstack h e)\n(stack h i)\n(unstack e b)\n(stack e f)\n(unstack b c)\n(put-down b)\n(pick-up c)\n(stack c b)\n(unstack e f)\n(stack e c)\n(unstack f g)\n(stack f e)\n(unstack h i)\n(stack h f)",
+        "length": 24,
+        "states_info": {
+            "expanded": 1280,
+            "evaluated": 3188,
+            "generated": 5436,
+            "search_time (in secs)": 0.162773
+        }
+    },
+    "instance-4.pddl": {
+        "plan": "(unstack c f)\n(put-down c)\n(unstack f g)\n(put-down f)\n(unstack g d)\n(stack g c)\n(unstack d h)\n(put-down d)\n(unstack h i)\n(put-down h)\n(unstack i a)\n(put-down i)\n(unstack a e)\n(stack a f)\n(unstack e b)\n(stack e a)\n(pick-up b)\n(stack b h)\n(unstack g c)\n(stack g b)\n(unstack e a)\n(stack e g)\n(pick-up d)\n(stack d e)\n(pick-up i)\n(stack i d)",
+        "length": 26,
+        "states_info": {
+            "expanded": 1607,
+            "evaluated": 4598,
+            "generated": 7351,
+            "search_time (in secs)": 0.232271
+        }
+    },
+    "instance-5.pddl": {
+        "plan": "(unstack i k)\n(put-down i)\n(unstack k b)\n(stack k i)\n(unstack b g)\n(put-down b)\n(unstack g a)\n(stack g j)\n(unstack h f)\n(stack h a)\n(unstack f d)\n(put-down f)\n(unstack d e)\n(stack d g)\n(pick-up b)\n(stack b d)\n(pick-up c)\n(stack c b)\n(unstack e l)\n(stack e f)\n(unstack h a)\n(stack h c)\n(pick-up a)\n(stack a l)\n(unstack k i)\n(stack k a)\n(pick-up i)\n(stack i k)",
+        "length": 28,
+        "states_info": {
+            "expanded": 20662,
+            "evaluated": 61671,
+            "generated": 106379,
+            "search_time (in secs)": 7.55384
+        }
+    },
+    "instance-6.pddl": {
+        "plan": "(unstack g i)\n(stack g k)\n(unstack d l)\n(stack d i)\n(unstack c f)\n(stack c l)\n(unstack f h)\n(stack f c)\n(unstack h a)\n(put-down h)\n(unstack g k)\n(stack g h)\n(unstack f c)\n(stack f g)\n(unstack k e)\n(stack k c)\n(unstack e j)\n(stack e a)\n(pick-up j)\n(stack j f)\n(unstack e a)\n(stack e j)\n(unstack a b)\n(stack a d)\n(pick-up b)\n(stack b e)\n(unstack a d)\n(stack a b)\n(unstack k c)\n(stack k a)",
+        "length": 30,
+        "states_info": {
+            "expanded": 1013036,
+            "evaluated": 2900675,
+            "generated": 5658960,
+            "search_time (in secs)": 255.67
+        }
+    },
+    "instance-7.pddl": {
+        "plan": "(unstack i l)\n(put-down i)\n(unstack l e)\n(stack l i)\n(pick-up g)\n(stack g l)\n(unstack a k)\n(put-down a)\n(unstack e c)\n(stack e g)\n(unstack c m)\n(put-down c)\n(unstack m h)\n(stack m a)\n(unstack k j)\n(stack k c)\n(unstack j b)\n(stack j e)\n(unstack h f)\n(stack h b)\n(unstack j e)\n(stack j h)\n(unstack k c)\n(stack k j)\n(unstack f d)\n(stack f k)\n(pick-up d)\n(stack d c)\n(unstack e g)\n(stack e d)\n(unstack f k)\n(stack f e)",
+        "length": 32,
+        "states_info": {
+            "expanded": 185604,
+            "evaluated": 579542,
+            "generated": 1025931,
+            "search_time (in secs)": 60.021
+        }
+    },
+    "instance-8.pddl": {
+        "plan": "(unstack i g)\n(put-down i)\n(unstack g j)\n(put-down g)\n(unstack f b)\n(stack f g)\n(unstack j n)\n(stack j a)\n(unstack n k)\n(stack n b)\n(unstack k e)\n(put-down k)\n(unstack e o)\n(stack e f)\n(unstack o h)\n(stack o k)\n(unstack j a)\n(stack j o)\n(unstack h c)\n(stack h a)\n(unstack m l)\n(stack m h)\n(unstack n b)\n(stack n j)\n(pick-up b)\n(stack b m)\n(pick-up i)\n(stack i b)\n(unstack e f)\n(stack e i)\n(unstack c d)\n(stack c f)\n(pick-up d)\n(stack d c)",
+        "length": 34,
+        "states_info": {
+            "expanded": 53769,
+            "evaluated": 177541,
+            "generated": 297744,
+            "search_time (in secs)": 38.7128
+        }
+    },
+    "instance-9.pddl": {
+        "plan": "(unstack k e)\n(put-down k)\n(pick-up n)\n(stack n k)\n(unstack m j)\n(stack m n)\n(unstack e h)\n(stack e m)\n(unstack h i)\n(stack h e)\n(unstack i b)\n(put-down i)\n(unstack b c)\n(stack b j)\n(pick-up g)\n(stack g b)\n(unstack c l)\n(put-down c)\n(pick-up i)\n(stack i c)\n(unstack h e)\n(stack h i)\n(unstack l f)\n(stack l e)\n(unstack f d)\n(put-down f)\n(unstack d a)\n(stack d h)\n(pick-up a)\n(stack a g)\n(unstack l e)\n(stack l f)\n(unstack e m)\n(stack e a)\n(unstack m n)\n(stack m d)",
+        "length": 36,
+        "states_info": {
+            "expanded": 1359442,
+            "evaluated": 3952199,
+            "generated": 7682771,
+            "search_time (in secs)": 548.36
+        }
+    },
+    "instance-10.pddl": {
+        "plan": "(unstack b l)\n(stack b a)\n(unstack l k)\n(stack l b)\n(unstack k h)\n(put-down k)\n(unstack d g)\n(stack d c)\n(unstack g j)\n(stack g k)\n(unstack l b)\n(stack l g)\n(unstack h m)\n(stack h l)\n(unstack b a)\n(stack b h)\n(unstack a e)\n(stack a m)\n(unstack e f)\n(put-down e)\n(pick-up f)\n(stack f b)\n(unstack d c)\n(stack d f)\n(pick-up c)\n(stack c d)\n(pick-up j)\n(stack j c)\n(unstack a m)\n(stack a j)\n(unstack m i)\n(put-down m)\n(pick-up i)\n(stack i a)\n(pick-up e)\n(stack e i)\n(pick-up m)\n(stack m e)",
+        "length": 38,
+        "states_info": {
+            "expanded": 2351665,
+            "evaluated": 7243205,
+            "generated": 13228321,
+            "search_time (in secs)": 967.655
+        }
+    },
+    "instance-11.pddl": {
+        "plan": "(unstack n k)\n(put-down n)\n(unstack k d)\n(put-down k)\n(unstack d a)\n(put-down d)\n(unstack l m)\n(put-down l)\n(unstack m i)\n(stack m k)\n(unstack i h)\n(stack i d)\n(unstack a b)\n(stack a l)\n(unstack b f)\n(stack b h)\n(unstack f g)\n(stack f i)\n(unstack m k)\n(stack m f)\n(unstack g c)\n(stack g a)\n(unstack c j)\n(stack c k)\n(unstack j e)\n(stack j m)\n(unstack b h)\n(stack b j)\n(pick-up e)\n(stack e b)\n(unstack g a)\n(stack g e)\n(pick-up h)\n(stack h c)\n(unstack a l)\n(stack a h)\n(pick-up n)\n(stack n g)\n(pick-up l)\n(stack l n)",
+        "length": 40,
+        "states_info": {
+            "expanded": 210464,
+            "evaluated": 627944,
+            "generated": 1113712,
+            "search_time (in secs)": 102.162
+        }
+    },
+    "instance-12.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(pick-up g)\n(stack g a)\n(unstack d c)\n(put-down d)\n(unstack c e)\n(put-down c)\n(unstack e i)\n(stack e g)\n(unstack i h)\n(stack i d)\n(unstack f b)\n(stack f c)\n(pick-up b)\n(stack b e)\n(unstack f c)\n(stack f b)\n(unstack k l)\n(stack k f)",
+        "length": 20,
+        "states_info": {
+            "expanded": 1473,
+            "evaluated": 5184,
+            "generated": 7851,
+            "search_time (in secs)": 0.357576
+        }
+    },
+    "instance-13.pddl": {
+        "plan": "(unstack g e)\n(put-down g)\n(unstack e h)\n(put-down e)\n(unstack h i)\n(stack h g)\n(pick-up f)\n(stack f h)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a f)\n(unstack i c)\n(stack i a)\n(pick-up e)\n(stack e i)\n(unstack c b)\n(stack c e)\n(pick-up d)\n(stack d c)\n(pick-up b)\n(stack b d)",
+        "length": 22,
+        "states_info": {
+            "expanded": 132,
+            "evaluated": 315,
+            "generated": 496,
+            "search_time (in secs)": 0.033271
+        }
+    },
+    "instance-14.pddl": {
+        "plan": "(unstack c g)\n(put-down c)\n(unstack g d)\n(stack g c)\n(unstack d i)\n(put-down d)\n(unstack i f)\n(stack i d)\n(unstack f h)\n(stack f b)\n(unstack h a)\n(put-down h)\n(unstack g c)\n(stack g h)\n(unstack f b)\n(stack f g)\n(unstack b e)\n(stack b f)\n(unstack i d)\n(stack i b)\n(pick-up a)\n(stack a d)\n(pick-up e)\n(stack e a)",
+        "length": 24,
+        "states_info": {
+            "expanded": 1471,
+            "evaluated": 3934,
+            "generated": 6571,
+            "search_time (in secs)": 0.305685
+        }
+    },
+    "instance-15.pddl": {
+        "plan": "(unstack d h)\n(put-down d)\n(unstack h f)\n(put-down h)\n(unstack f a)\n(put-down f)\n(unstack a g)\n(put-down a)\n(unstack g e)\n(stack g d)\n(pick-up h)\n(stack h g)\n(pick-up f)\n(stack f h)\n(unstack e b)\n(put-down e)\n(unstack b c)\n(stack b f)\n(pick-up c)\n(stack c e)\n(pick-up i)\n(stack i c)\n(pick-up a)\n(stack a i)\n(unstack b f)\n(stack b a)",
+        "length": 26,
+        "states_info": {
+            "expanded": 2064,
+            "evaluated": 5485,
+            "generated": 9175,
+            "search_time (in secs)": 0.234792
+        }
+    },
+    "instance-16.pddl": {
+        "plan": "(unstack b j)\n(put-down b)\n(unstack l a)\n(stack l b)\n(unstack j m)\n(put-down j)\n(unstack g k)\n(stack g j)\n(unstack m e)\n(put-down m)\n(unstack e i)\n(stack e k)\n(unstack i c)\n(put-down i)\n(unstack c n)\n(stack c m)\n(unstack a f)\n(stack a c)\n(unstack n h)\n(stack n i)\n(pick-up f)\n(stack f n)\n(unstack h d)\n(stack h l)\n(pick-up d)\n(stack d h)\n(unstack e k)\n(stack e d)",
+        "length": 28,
+        "states_info": {
+            "expanded": 983,
+            "evaluated": 3099,
+            "generated": 4803,
+            "search_time (in secs)": 0.429245
+        }
+    },
+    "instance-17.pddl": {
+        "plan": "(unstack f d)\n(put-down f)\n(unstack d e)\n(put-down d)\n(pick-up e)\n(stack e f)\n(unstack g k)\n(put-down g)\n(unstack k a)\n(put-down k)\n(unstack a c)\n(put-down a)\n(unstack c h)\n(put-down c)\n(unstack h j)\n(put-down h)\n(unstack j i)\n(stack j e)\n(pick-up b)\n(stack b j)\n(pick-up g)\n(stack g b)\n(pick-up k)\n(stack k g)\n(pick-up d)\n(stack d k)\n(pick-up a)\n(stack a d)\n(pick-up c)\n(stack c a)",
+        "length": 30,
+        "states_info": {
+            "expanded": 120034,
+            "evaluated": 340420,
+            "generated": 607079,
+            "search_time (in secs)": 35.2514
+        }
+    },
+    "instance-18.pddl": {
+        "plan": "(unstack g k)\n(stack g c)\n(unstack k j)\n(put-down k)\n(unstack j h)\n(stack j k)\n(unstack h d)\n(put-down h)\n(unstack g c)\n(stack g h)\n(unstack d i)\n(stack d g)\n(unstack e a)\n(put-down e)\n(unstack i l)\n(stack i c)\n(unstack a b)\n(stack a l)\n(unstack j k)\n(stack j a)\n(pick-up f)\n(stack f j)\n(unstack d g)\n(stack d f)\n(pick-up b)\n(stack b g)\n(unstack i c)\n(stack i d)\n(pick-up c)\n(stack c b)\n(pick-up e)\n(stack e c)",
+        "length": 32,
+        "states_info": {
+            "expanded": 446495,
+            "evaluated": 1397005,
+            "generated": 2512015,
+            "search_time (in secs)": 148.446
+        }
+    },
+    "instance-19.pddl": {
+        "plan": "(unstack k h)\n(put-down k)\n(unstack h b)\n(put-down h)\n(unstack d m)\n(stack d h)\n(unstack m i)\n(stack m b)\n(unstack i a)\n(stack i c)\n(unstack e g)\n(stack e d)\n(unstack g f)\n(stack g k)\n(unstack f l)\n(stack f e)\n(unstack l j)\n(stack l i)\n(pick-up a)\n(stack a l)\n(unstack f e)\n(stack f a)\n(unstack m b)\n(stack m f)\n(unstack e d)\n(stack e m)\n(pick-up j)\n(stack j d)\n(unstack g k)\n(stack g j)\n(pick-up k)\n(stack k g)\n(pick-up b)\n(stack b k)",
+        "length": 34,
+        "states_info": {
+            "expanded": 300260,
+            "evaluated": 952310,
+            "generated": 1664798,
+            "search_time (in secs)": 127.656
+        }
+    },
+    "instance-20.pddl": {
+        "plan": "(unstack g f)\n(stack g d)\n(unstack f c)\n(put-down f)\n(unstack c o)\n(put-down c)\n(unstack o n)\n(stack o f)\n(unstack n a)\n(stack n c)\n(unstack o f)\n(stack o n)\n(unstack g d)\n(stack g o)\n(unstack d l)\n(stack d f)\n(unstack l h)\n(stack l d)\n(unstack h e)\n(stack h g)\n(unstack e j)\n(put-down e)\n(unstack j k)\n(stack j h)\n(unstack l d)\n(stack l j)\n(pick-up k)\n(stack k l)\n(unstack d f)\n(stack d k)\n(unstack i m)\n(stack i d)\n(unstack m b)\n(stack m f)\n(pick-up b)\n(stack b m)",
+        "length": 36,
+        "states_info": {
+            "expanded": 295754,
+            "evaluated": 937354,
+            "generated": 1617157,
+            "search_time (in secs)": 161.6
+        }
+    },
+    "instance-21.pddl": {
+        "plan": "(unstack g l)\n(put-down g)\n(unstack l d)\n(put-down l)\n(unstack d e)\n(put-down d)\n(unstack b c)\n(stack b e)\n(unstack c j)\n(put-down c)\n(unstack j a)\n(stack j l)\n(unstack a h)\n(put-down a)\n(unstack h k)\n(put-down h)\n(unstack k f)\n(stack k a)\n(unstack f i)\n(stack f b)\n(unstack j l)\n(stack j f)\n(pick-up l)\n(stack l j)\n(pick-up i)\n(stack i l)\n(pick-up d)\n(stack d i)\n(unstack k a)\n(stack k d)\n(pick-up c)\n(stack c k)\n(pick-up a)\n(stack a c)\n(pick-up g)\n(stack g a)\n(pick-up h)\n(stack h g)",
+        "length": 38,
+        "states_info": {
+            "expanded": 475300,
+            "evaluated": 1326909,
+            "generated": 2436842,
+            "search_time (in secs)": 174.098
+        }
+    },
+    "instance-22.pddl": {
+        "plan": "(unstack l a)\n(put-down l)\n(unstack a e)\n(put-down a)\n(unstack i h)\n(put-down i)\n(unstack h o)\n(put-down h)\n(unstack o k)\n(stack o h)\n(unstack k b)\n(stack k a)\n(unstack b f)\n(put-down b)\n(unstack g n)\n(put-down g)\n(pick-up n)\n(stack n b)\n(unstack e d)\n(stack e n)\n(pick-up i)\n(stack i e)\n(pick-up l)\n(stack l i)\n(unstack o h)\n(stack o l)\n(unstack f j)\n(stack f g)\n(unstack j m)\n(stack j k)\n(unstack d c)\n(stack d j)\n(pick-up m)\n(stack m c)\n(unstack f g)\n(stack f m)\n(pick-up g)\n(stack g d)\n(pick-up h)\n(stack h f)",
+        "length": 40,
+        "states_info": {
+            "expanded": 1703971,
+            "evaluated": 5481638,
+            "generated": 9779817,
+            "search_time (in secs)": 986.264
+        }
+    },
+    "instance-23.pddl": {
+        "plan": "(unstack e j)\n(put-down e)\n(unstack f i)\n(stack f e)\n(unstack i b)\n(stack i j)\n(unstack h c)\n(stack h i)\n(unstack c a)\n(stack c h)\n(unstack a d)\n(stack a c)\n(unstack f e)\n(stack f a)\n(pick-up d)\n(stack d f)\n(unstack b g)\n(stack b d)\n(pick-up g)\n(stack g b)",
+        "length": 20,
+        "states_info": {
+            "expanded": 20,
+            "evaluated": 59,
+            "generated": 77,
+            "search_time (in secs)": 0.006989
+        }
+    },
+    "instance-24.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d c)\n(put-down d)\n(unstack c b)\n(put-down c)\n(unstack b e)\n(stack b a)\n(unstack e f)\n(stack e c)\n(unstack f g)\n(stack f b)\n(unstack g h)\n(stack g d)\n(unstack h j)\n(stack h f)\n(unstack j i)\n(put-down j)\n(unstack e c)\n(stack e i)\n(pick-up c)\n(stack c e)",
+        "length": 22,
+        "states_info": {
+            "expanded": 76,
+            "evaluated": 196,
+            "generated": 292,
+            "search_time (in secs)": 0.00975279
+        }
+    },
+    "instance-25.pddl": {
+        "plan": "(unstack e h)\n(put-down e)\n(unstack a d)\n(stack a e)\n(unstack c b)\n(stack c a)\n(unstack b i)\n(put-down b)\n(unstack c a)\n(stack c b)\n(unstack h f)\n(stack h c)\n(unstack d g)\n(stack d h)\n(unstack g j)\n(stack g a)\n(pick-up i)\n(stack i g)\n(pick-up f)\n(stack f i)\n(pick-up j)\n(stack j f)\n(unstack d h)\n(stack d j)",
+        "length": 24,
+        "states_info": {
+            "expanded": 1472,
+            "evaluated": 4134,
+            "generated": 6660,
+            "search_time (in secs)": 0.404924
+        }
+    },
+    "instance-26.pddl": {
+        "plan": "(unstack c h)\n(stack c i)\n(unstack h b)\n(put-down h)\n(unstack b f)\n(put-down b)\n(unstack j d)\n(put-down j)\n(unstack d e)\n(stack d f)\n(unstack a g)\n(stack a e)\n(pick-up g)\n(stack g d)\n(pick-up h)\n(stack h g)\n(unstack c i)\n(stack c h)\n(pick-up j)\n(stack j c)\n(pick-up b)\n(stack b j)\n(unstack a e)\n(stack a b)\n(pick-up e)\n(stack e a)",
+        "length": 26,
+        "states_info": {
+            "expanded": 45254,
+            "evaluated": 121112,
+            "generated": 221676,
+            "search_time (in secs)": 8.6961
+        }
+    },
+    "instance-27.pddl": {
+        "plan": "(unstack c a)\n(stack c g)\n(unstack a b)\n(stack a c)\n(unstack b h)\n(put-down b)\n(unstack h d)\n(stack h a)\n(unstack d f)\n(stack d b)\n(unstack f e)\n(stack f d)\n(unstack e i)\n(put-down e)\n(unstack h a)\n(stack h e)\n(pick-up i)\n(stack i h)\n(unstack f d)\n(stack f i)\n(unstack d b)\n(stack d f)\n(unstack a c)\n(stack a d)\n(pick-up b)\n(stack b a)\n(unstack c g)\n(stack c b)",
+        "length": 28,
+        "states_info": {
+            "expanded": 7013,
+            "evaluated": 16575,
+            "generated": 30974,
+            "search_time (in secs)": 1.50353
+        }
+    },
+    "instance-28.pddl": {
+        "plan": "(unstack j c)\n(put-down j)\n(unstack e k)\n(stack e c)\n(unstack k d)\n(stack k e)\n(unstack d b)\n(put-down d)\n(pick-up b)\n(stack b j)\n(unstack f h)\n(put-down f)\n(unstack h a)\n(stack h b)\n(pick-up a)\n(stack a h)\n(unstack k e)\n(stack k a)\n(unstack e c)\n(stack e k)\n(pick-up d)\n(stack d e)\n(pick-up g)\n(stack g d)\n(pick-up f)\n(stack f g)\n(unstack c i)\n(put-down c)\n(pick-up i)\n(stack i c)",
+        "length": 30,
+        "states_info": {
+            "expanded": 163326,
+            "evaluated": 459536,
+            "generated": 837381,
+            "search_time (in secs)": 37.0428
+        }
+    },
+    "instance-29.pddl": {
+        "plan": "(unstack a e)\n(put-down a)\n(unstack e i)\n(stack e a)\n(unstack i h)\n(put-down i)\n(unstack h k)\n(put-down h)\n(unstack k f)\n(stack k h)\n(unstack f b)\n(stack f k)\n(unstack b g)\n(stack b f)\n(pick-up g)\n(stack g i)\n(unstack c d)\n(stack c b)\n(unstack d j)\n(put-down d)\n(pick-up j)\n(stack j g)\n(unstack e a)\n(stack e j)\n(unstack c b)\n(stack c e)\n(unstack b f)\n(stack b c)\n(unstack f k)\n(stack f b)\n(pick-up a)\n(stack a f)",
+        "length": 32,
+        "states_info": {
+            "expanded": 135923,
+            "evaluated": 372383,
+            "generated": 691504,
+            "search_time (in secs)": 29.1459
+        }
+    },
+    "instance-30.pddl": {
+        "plan": "(unstack k c)\n(put-down k)\n(unstack c f)\n(stack c k)\n(unstack h d)\n(stack h f)\n(unstack d a)\n(put-down d)\n(unstack a j)\n(stack a d)\n(unstack e m)\n(stack e a)\n(unstack m n)\n(put-down m)\n(unstack n i)\n(put-down n)\n(unstack j b)\n(stack j e)\n(unstack b g)\n(stack b n)\n(unstack g l)\n(stack g c)\n(unstack h f)\n(stack h g)\n(unstack j e)\n(stack j h)\n(pick-up l)\n(stack l f)\n(pick-up i)\n(stack i l)\n(unstack e a)\n(stack e i)\n(pick-up m)\n(stack m e)",
+        "length": 34,
+        "states_info": {
+            "expanded": 209360,
+            "evaluated": 697940,
+            "generated": 1171910,
+            "search_time (in secs)": 108.527
+        }
+    },
+    "instance-31.pddl": {
+        "plan": "(unstack f h)\n(put-down f)\n(unstack j c)\n(stack j f)\n(unstack i a)\n(put-down i)\n(unstack c g)\n(stack c b)\n(unstack g l)\n(stack g i)\n(unstack l k)\n(put-down l)\n(pick-up a)\n(stack a l)\n(unstack k o)\n(put-down k)\n(unstack g i)\n(stack g k)\n(unstack o d)\n(stack o i)\n(unstack d n)\n(stack d a)\n(pick-up n)\n(stack n o)\n(unstack c b)\n(stack c n)\n(unstack h e)\n(stack h b)\n(unstack e m)\n(stack e g)\n(unstack h b)\n(stack h e)\n(pick-up m)\n(stack m c)\n(pick-up b)\n(stack b m)",
+        "length": 36,
+        "states_info": {
+            "expanded": 361000,
+            "evaluated": 1248666,
+            "generated": 2126499,
+            "search_time (in secs)": 211.035
+        }
+    },
+    "instance-32.pddl": {
+        "plan": "(unstack b h)\n(stack b c)\n(unstack h l)\n(put-down h)\n(unstack l j)\n(stack l h)\n(unstack j k)\n(put-down j)\n(unstack k i)\n(put-down k)\n(unstack g d)\n(stack g i)\n(pick-up d)\n(stack d k)\n(unstack b c)\n(stack b d)\n(unstack l h)\n(stack l b)\n(unstack g i)\n(stack g l)\n(pick-up j)\n(stack j g)\n(pick-up h)\n(stack h j)\n(unstack i f)\n(stack i c)\n(unstack f e)\n(stack f i)\n(unstack e a)\n(stack e h)\n(unstack f i)\n(stack f e)\n(unstack i c)\n(stack i f)\n(pick-up c)\n(stack c i)\n(pick-up a)\n(stack a c)",
+        "length": 38,
+        "states_info": {
+            "expanded": 1538535,
+            "evaluated": 3777516,
+            "generated": 7792145,
+            "search_time (in secs)": 395.69
+        }
+    },
+    "instance-33.pddl": {
+        "plan": "(unstack e b)\n(put-down e)\n(unstack b c)\n(stack b e)\n(unstack c f)\n(put-down c)\n(unstack f i)\n(stack f c)\n(unstack i k)\n(put-down i)\n(pick-up n)\n(stack n i)\n(unstack k l)\n(stack k n)\n(unstack l g)\n(stack l b)\n(unstack g d)\n(stack g k)\n(unstack l b)\n(stack l g)\n(unstack d a)\n(stack d b)\n(unstack a j)\n(stack a l)\n(unstack j m)\n(put-down j)\n(unstack d b)\n(stack d j)\n(unstack f c)\n(stack f d)\n(unstack a l)\n(stack a f)\n(pick-up c)\n(stack c a)\n(unstack m h)\n(put-down m)\n(unstack b e)\n(stack b h)\n(pick-up e)\n(stack e m)",
+        "length": 40,
+        "states_info": {
+            "expanded": 371220,
+            "evaluated": 1018707,
+            "generated": 1935261,
+            "search_time (in secs)": 147.571
+        }
+    },
+    "instance-34.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack a g)\n(put-down a)\n(unstack g f)\n(put-down g)\n(unstack f e)\n(stack f a)\n(unstack e d)\n(stack e b)\n(unstack f a)\n(stack f e)\n(pick-up a)\n(stack a f)\n(pick-up d)\n(stack d a)\n(pick-up c)\n(stack c d)\n(pick-up g)\n(stack g c)",
+        "length": 20,
+        "states_info": {
+            "expanded": 170,
+            "evaluated": 352,
+            "generated": 588,
+            "search_time (in secs)": 0.0205697
+        }
+    },
+    "instance-35.pddl": {
+        "plan": "(unstack e b)\n(stack e h)\n(unstack b c)\n(put-down b)\n(unstack c g)\n(put-down c)\n(unstack g f)\n(stack g c)\n(unstack f d)\n(stack f b)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a g)\n(unstack e h)\n(stack e a)\n(unstack f b)\n(stack f e)\n(pick-up b)\n(stack b d)\n(pick-up h)\n(stack h b)",
+        "length": 22,
+        "states_info": {
+            "expanded": 289,
+            "evaluated": 722,
+            "generated": 1145,
+            "search_time (in secs)": 0.0349531
+        }
+    },
+    "instance-36.pddl": {
+        "plan": "(unstack h d)\n(stack h f)\n(unstack d g)\n(stack d h)\n(unstack g a)\n(put-down g)\n(unstack a c)\n(stack a g)\n(unstack c i)\n(put-down c)\n(unstack i b)\n(stack i c)\n(pick-up e)\n(stack e b)\n(unstack d h)\n(stack d e)\n(unstack a g)\n(stack a d)\n(pick-up g)\n(stack g a)\n(unstack h f)\n(stack h i)\n(pick-up f)\n(stack f g)",
+        "length": 24,
+        "states_info": {
+            "expanded": 1632,
+            "evaluated": 4128,
+            "generated": 6998,
+            "search_time (in secs)": 0.366291
+        }
+    },
+    "instance-37.pddl": {
+        "plan": "(unstack d f)\n(put-down d)\n(unstack e a)\n(put-down e)\n(unstack a g)\n(stack a d)\n(unstack g h)\n(stack g e)\n(unstack h c)\n(put-down h)\n(unstack c b)\n(stack c h)\n(unstack b i)\n(put-down b)\n(pick-up i)\n(stack i f)\n(unstack a d)\n(stack a i)\n(unstack c h)\n(stack c a)\n(unstack g e)\n(stack g c)\n(pick-up b)\n(stack b g)\n(pick-up h)\n(stack h b)",
+        "length": 26,
+        "states_info": {
+            "expanded": 14131,
+            "evaluated": 36755,
+            "generated": 66486,
+            "search_time (in secs)": 2.01157
+        }
+    },
+    "instance-38.pddl": {
+        "plan": "(unstack c j)\n(put-down c)\n(unstack d k)\n(stack d c)\n(unstack k i)\n(stack k j)\n(unstack i g)\n(stack i d)\n(unstack k j)\n(stack k i)\n(unstack j m)\n(put-down j)\n(unstack m l)\n(stack m k)\n(unstack e a)\n(stack e f)\n(unstack a b)\n(stack a j)\n(unstack b h)\n(stack b a)\n(pick-up g)\n(stack g h)\n(unstack e f)\n(stack e g)\n(pick-up l)\n(stack l e)\n(pick-up f)\n(stack f l)",
+        "length": 28,
+        "states_info": {
+            "expanded": 7056,
+            "evaluated": 25492,
+            "generated": 39212,
+            "search_time (in secs)": 3.01819
+        }
+    },
+    "instance-39.pddl": {
+        "plan": "(unstack l k)\n(put-down l)\n(unstack d e)\n(stack d a)\n(unstack e i)\n(stack e l)\n(unstack b f)\n(stack b c)\n(unstack f g)\n(stack f b)\n(pick-up g)\n(stack g e)\n(unstack f b)\n(stack f g)\n(unstack d a)\n(stack d f)\n(unstack b c)\n(stack b d)\n(unstack a j)\n(stack a b)\n(pick-up k)\n(stack k a)\n(pick-up h)\n(stack h k)\n(pick-up c)\n(stack c h)\n(pick-up i)\n(stack i c)\n(pick-up j)\n(stack j i)",
+        "length": 30,
+        "states_info": {
+            "expanded": 143951,
+            "evaluated": 495700,
+            "generated": 872771,
+            "search_time (in secs)": 68.9502
+        }
+    },
+    "instance-40.pddl": {
+        "plan": "(unstack j f)\n(put-down j)\n(unstack f a)\n(put-down f)\n(unstack a c)\n(put-down a)\n(unstack i b)\n(stack i a)\n(unstack d e)\n(stack d f)\n(unstack e k)\n(stack e b)\n(pick-up k)\n(stack k i)\n(unstack e b)\n(stack e k)\n(pick-up c)\n(stack c e)\n(pick-up j)\n(stack j c)\n(pick-up b)\n(stack b j)\n(unstack d f)\n(stack d b)\n(unstack g h)\n(stack g f)\n(pick-up h)\n(stack h d)\n(unstack g f)\n(stack g h)\n(pick-up f)\n(stack f g)",
+        "length": 32,
+        "states_info": {
+            "expanded": 721696,
+            "evaluated": 1864288,
+            "generated": 3719791,
+            "search_time (in secs)": 153.991
+        }
+    },
+    "instance-41.pddl": {
+        "plan": "(unstack c b)\n(put-down c)\n(unstack b d)\n(stack b c)\n(unstack d i)\n(stack d b)\n(unstack i a)\n(put-down i)\n(unstack a j)\n(stack a i)\n(unstack j h)\n(stack j a)\n(unstack h e)\n(put-down h)\n(unstack j a)\n(stack j h)\n(unstack a i)\n(stack a j)\n(unstack d b)\n(stack d a)\n(unstack b c)\n(stack b d)\n(pick-up c)\n(stack c b)\n(pick-up i)\n(stack i c)\n(unstack e g)\n(put-down e)\n(unstack g f)\n(stack g e)\n(pick-up f)\n(stack f i)\n(unstack g e)\n(stack g f)",
+        "length": 34,
+        "states_info": {
+            "expanded": 54778,
+            "evaluated": 141460,
+            "generated": 270672,
+            "search_time (in secs)": 8.27529
+        }
+    },
+    "instance-42.pddl": {
+        "plan": "(unstack k f)\n(put-down k)\n(unstack f l)\n(stack f i)\n(unstack l b)\n(put-down l)\n(unstack f i)\n(stack f l)\n(unstack b a)\n(stack b k)\n(unstack a e)\n(stack a f)\n(unstack e j)\n(put-down e)\n(unstack j h)\n(stack j a)\n(unstack h g)\n(stack h i)\n(unstack j a)\n(stack j h)\n(unstack b k)\n(stack b j)\n(unstack a f)\n(stack a b)\n(unstack g m)\n(put-down g)\n(pick-up m)\n(stack m k)\n(unstack c d)\n(stack c a)\n(pick-up d)\n(stack d g)\n(unstack c a)\n(stack c d)\n(pick-up e)\n(stack e c)",
+        "length": 36,
+        "states_info": {
+            "expanded": 2400931,
+            "evaluated": 7245445,
+            "generated": 14042677,
+            "search_time (in secs)": 768.886
+        }
+    },
+    "instance-43.pddl": {
+        "plan": "(unstack f i)\n(put-down f)\n(unstack i b)\n(put-down i)\n(unstack c a)\n(stack c i)\n(unstack b e)\n(put-down b)\n(unstack e h)\n(put-down e)\n(unstack h m)\n(put-down h)\n(unstack m l)\n(put-down m)\n(pick-up a)\n(stack a m)\n(unstack g j)\n(stack g a)\n(pick-up f)\n(stack f g)\n(pick-up j)\n(stack j c)\n(unstack l n)\n(stack l f)\n(unstack n d)\n(stack n j)\n(unstack d k)\n(stack d e)\n(pick-up k)\n(stack k n)\n(pick-up b)\n(stack b k)\n(unstack d e)\n(stack d b)\n(pick-up e)\n(stack e d)\n(unstack l f)\n(stack l e)\n(pick-up h)\n(stack h l)",
+        "length": 40,
+        "states_info": {
+            "expanded": 869909,
+            "evaluated": 2705004,
+            "generated": 4838830,
+            "search_time (in secs)": 422.751
+        }
+    },
+    "instance-44.pddl": {
+        "plan": "(unstack a j)\n(put-down a)\n(unstack j n)\n(stack j m)\n(unstack n k)\n(stack n j)\n(unstack k e)\n(put-down k)\n(unstack e b)\n(put-down e)\n(unstack b f)\n(put-down b)\n(unstack o l)\n(stack o e)\n(unstack l d)\n(stack l o)\n(unstack d i)\n(stack d b)\n(pick-up i)\n(stack i d)\n(unstack l o)\n(stack l i)\n(unstack f h)\n(put-down f)\n(unstack h c)\n(stack h l)\n(unstack c g)\n(stack c k)\n(pick-up g)\n(stack g a)\n(unstack n j)\n(stack n g)\n(unstack j m)\n(stack j h)\n(pick-up m)\n(stack m c)\n(unstack o e)\n(stack o j)\n(pick-up f)\n(stack f o)",
+        "length": 40,
+        "states_info": {
+            "expanded": 1464046,
+            "evaluated": 5129397,
+            "generated": 8813551,
+            "search_time (in secs)": 895.808
+        }
+    },
+    "instance-45.pddl": {
+        "plan": "(unstack b i)\n(put-down b)\n(unstack i g)\n(put-down i)\n(unstack g d)\n(stack g b)\n(unstack j f)\n(stack j g)\n(unstack e c)\n(put-down e)\n(unstack f h)\n(stack f e)\n(pick-up c)\n(stack c f)\n(pick-up i)\n(stack i c)\n(pick-up h)\n(stack h i)\n(unstack d a)\n(stack d h)",
+        "length": 20,
+        "states_info": {
+            "expanded": 111,
+            "evaluated": 356,
+            "generated": 490,
+            "search_time (in secs)": 0.0347432
+        }
+    },
+    "instance-46.pddl": {
+        "plan": "(unstack e k)\n(put-down e)\n(unstack f h)\n(stack f e)\n(unstack k b)\n(put-down k)\n(unstack c i)\n(stack c h)\n(unstack i a)\n(stack i k)\n(unstack a j)\n(put-down a)\n(unstack c h)\n(stack c a)\n(unstack j d)\n(put-down j)\n(pick-up b)\n(stack b j)\n(unstack d g)\n(stack d h)\n(pick-up g)\n(stack g d)",
+        "length": 22,
+        "states_info": {
+            "expanded": 699,
+            "evaluated": 2078,
+            "generated": 3244,
+            "search_time (in secs)": 0.146518
+        }
+    },
+    "instance-47.pddl": {
+        "plan": "(unstack e i)\n(put-down e)\n(unstack i b)\n(put-down i)\n(unstack f g)\n(stack f i)\n(unstack g h)\n(put-down g)\n(pick-up b)\n(stack b g)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c a)\n(unstack f i)\n(stack f c)\n(unstack h d)\n(stack h f)\n(pick-up d)\n(stack d i)\n(pick-up e)\n(stack e d)\n(unstack h f)\n(stack h e)",
+        "length": 24,
+        "states_info": {
+            "expanded": 3629,
+            "evaluated": 10015,
+            "generated": 16675,
+            "search_time (in secs)": 0.452682
+        }
+    },
+    "instance-48.pddl": {
+        "plan": "(unstack f d)\n(put-down f)\n(unstack d j)\n(put-down d)\n(unstack j b)\n(stack j f)\n(unstack b a)\n(stack b d)\n(unstack a h)\n(stack a j)\n(unstack e i)\n(put-down e)\n(pick-up h)\n(stack h e)\n(pick-up i)\n(stack i b)\n(unstack g l)\n(stack g a)\n(unstack l c)\n(stack l h)\n(unstack g a)\n(stack g l)\n(unstack c k)\n(stack c g)\n(pick-up k)\n(stack k i)",
+        "length": 26,
+        "states_info": {
+            "expanded": 848,
+            "evaluated": 2823,
+            "generated": 4188,
+            "search_time (in secs)": 0.247606
+        }
+    },
+    "instance-49.pddl": {
+        "plan": "(unstack a b)\n(stack a e)\n(unstack b c)\n(put-down b)\n(unstack a e)\n(stack a c)\n(pick-up e)\n(stack e a)\n(unstack j k)\n(put-down j)\n(unstack k i)\n(stack k j)\n(unstack i f)\n(stack i b)\n(unstack f g)\n(stack f e)\n(unstack k j)\n(stack k f)\n(unstack g h)\n(put-down g)\n(unstack h d)\n(stack h i)\n(pick-up d)\n(stack d g)\n(unstack h i)\n(stack h d)\n(pick-up j)\n(stack j h)",
+        "length": 28,
+        "states_info": {
+            "expanded": 21039,
+            "evaluated": 55807,
+            "generated": 101291,
+            "search_time (in secs)": 4.12481
+        }
+    },
+    "instance-50.pddl": {
+        "plan": "(unstack b e)\n(stack b g)\n(unstack e k)\n(put-down e)\n(unstack k h)\n(put-down k)\n(unstack h d)\n(stack h e)\n(unstack b g)\n(stack b h)\n(unstack m f)\n(put-down m)\n(unstack f c)\n(stack f b)\n(unstack c i)\n(stack c g)\n(unstack i a)\n(put-down i)\n(pick-up d)\n(stack d i)\n(unstack a j)\n(stack a m)\n(pick-up j)\n(stack j d)\n(pick-up l)\n(stack l j)\n(pick-up k)\n(stack k l)\n(unstack a m)\n(stack a k)",
+        "length": 30,
+        "states_info": {
+            "expanded": 43683,
+            "evaluated": 151614,
+            "generated": 247482,
+            "search_time (in secs)": 16.674
+        }
+    },
+    "instance-51.pddl": {
+        "plan": "(unstack g f)\n(stack g j)\n(unstack f a)\n(stack f e)\n(unstack a b)\n(put-down a)\n(unstack b h)\n(put-down b)\n(unstack h i)\n(stack h b)\n(unstack i k)\n(put-down i)\n(unstack h b)\n(stack h i)\n(unstack f e)\n(stack f h)\n(unstack e c)\n(stack e b)\n(unstack c d)\n(stack c k)\n(unstack d l)\n(stack d f)\n(unstack e b)\n(stack e c)\n(pick-up a)\n(stack a e)\n(unstack g j)\n(stack g a)\n(pick-up l)\n(stack l b)\n(pick-up j)\n(stack j l)",
+        "length": 32,
+        "states_info": {
+            "expanded": 152031,
+            "evaluated": 404019,
+            "generated": 756661,
+            "search_time (in secs)": 39.5585
+        }
+    },
+    "instance-52.pddl": {
+        "plan": "(unstack g e)\n(stack g b)\n(unstack e f)\n(put-down e)\n(unstack f n)\n(stack f i)\n(unstack n c)\n(put-down n)\n(unstack c l)\n(put-down c)\n(unstack l a)\n(put-down l)\n(unstack f i)\n(stack f l)\n(unstack a h)\n(put-down a)\n(unstack i k)\n(stack i h)\n(unstack k j)\n(stack k c)\n(unstack g b)\n(stack g k)\n(unstack b d)\n(stack b i)\n(pick-up e)\n(stack e b)\n(pick-up j)\n(stack j g)\n(unstack o m)\n(stack o e)\n(pick-up d)\n(stack d o)\n(pick-up m)\n(stack m d)",
+        "length": 34,
+        "states_info": {
+            "expanded": 144760,
+            "evaluated": 447079,
+            "generated": 763980,
+            "search_time (in secs)": 83.2809
+        }
+    },
+    "instance-53.pddl": {
+        "plan": "(unstack m l)\n(put-down m)\n(unstack l i)\n(put-down l)\n(unstack i g)\n(stack i l)\n(unstack g k)\n(stack g i)\n(unstack k b)\n(put-down k)\n(unstack b f)\n(put-down b)\n(pick-up e)\n(stack e b)\n(pick-up m)\n(stack m e)\n(unstack f a)\n(put-down f)\n(pick-up a)\n(stack a m)\n(unstack j h)\n(stack j f)\n(unstack g i)\n(stack g j)\n(unstack i l)\n(stack i a)\n(unstack h c)\n(stack h i)\n(unstack c d)\n(put-down c)\n(pick-up l)\n(stack l c)\n(pick-up d)\n(stack d l)\n(pick-up k)\n(stack k d)",
+        "length": 36,
+        "states_info": {
+            "expanded": 224746,
+            "evaluated": 646619,
+            "generated": 1157282,
+            "search_time (in secs)": 81.019
+        }
+    },
+    "instance-54.pddl": {
+        "plan": "(unstack b m)\n(put-down b)\n(unstack m n)\n(put-down m)\n(unstack n h)\n(stack n m)\n(unstack h c)\n(stack h n)\n(unstack c a)\n(put-down c)\n(unstack a e)\n(stack a b)\n(unstack l k)\n(stack l a)\n(unstack e g)\n(stack e l)\n(unstack g f)\n(stack g e)\n(unstack f d)\n(put-down f)\n(unstack d j)\n(stack d c)\n(unstack h n)\n(stack h d)\n(pick-up j)\n(stack j f)\n(unstack g e)\n(stack g j)\n(unstack k i)\n(stack k h)\n(unstack n m)\n(stack n g)\n(pick-up m)\n(stack m k)\n(pick-up i)\n(stack i m)\n(unstack e l)\n(stack e i)",
+        "length": 38,
+        "states_info": {
+            "expanded": 56327,
+            "evaluated": 168461,
+            "generated": 291757,
+            "search_time (in secs)": 29.3552
+        }
+    },
+    "instance-55.pddl": {
+        "plan": "(unstack k m)\n(put-down k)\n(unstack g j)\n(put-down g)\n(unstack j h)\n(put-down j)\n(unstack h l)\n(stack h g)\n(pick-up l)\n(stack l k)\n(unstack m a)\n(stack m h)\n(unstack a e)\n(stack a l)\n(unstack e i)\n(put-down e)\n(unstack i c)\n(put-down i)\n(unstack c f)\n(stack c a)\n(unstack f b)\n(stack f c)\n(unstack b d)\n(stack b e)\n(unstack m h)\n(stack m d)\n(unstack f c)\n(stack f m)\n(unstack h g)\n(stack h f)\n(pick-up g)\n(stack g h)\n(pick-up j)\n(stack j g)\n(unstack b e)\n(stack b j)\n(pick-up e)\n(stack e b)\n(pick-up i)\n(stack i e)",
+        "length": 40,
+        "states_info": {
+            "expanded": 2762496,
+            "evaluated": 8030244,
+            "generated": 14983124,
+            "search_time (in secs)": 1011.68
+        }
+    },
+    "instance-56.pddl": {
+        "plan": "(unstack i b)\n(put-down i)\n(unstack b e)\n(stack b i)\n(unstack e f)\n(put-down e)\n(unstack f c)\n(put-down f)\n(unstack b i)\n(stack b f)\n(unstack c h)\n(put-down c)\n(unstack h d)\n(put-down h)\n(unstack d g)\n(stack d j)\n(unstack g a)\n(stack g b)\n(pick-up a)\n(stack a e)",
+        "length": 20,
+        "states_info": {
+            "expanded": 158,
+            "evaluated": 407,
+            "generated": 650,
+            "search_time (in secs)": 0.0212925
+        }
+    },
+    "instance-57.pddl": {
+        "plan": "(unstack g i)\n(put-down g)\n(unstack a h)\n(put-down a)\n(unstack h d)\n(stack h a)\n(unstack d b)\n(stack d i)\n(unstack b c)\n(stack b g)\n(unstack c f)\n(stack c b)\n(unstack f e)\n(put-down f)\n(pick-up e)\n(stack e d)\n(unstack c b)\n(stack c e)\n(unstack h a)\n(stack h f)\n(pick-up a)\n(stack a c)",
+        "length": 22,
+        "states_info": {
+            "expanded": 347,
+            "evaluated": 857,
+            "generated": 1391,
+            "search_time (in secs)": 0.0522762
+        }
+    },
+    "instance-58.pddl": {
+        "plan": "(unstack j h)\n(stack j e)\n(pick-up a)\n(stack a h)\n(unstack i c)\n(put-down i)\n(unstack c d)\n(stack c b)\n(pick-up d)\n(stack d a)\n(unstack c b)\n(stack c d)\n(unstack b g)\n(stack b c)\n(unstack g f)\n(stack g b)\n(unstack j e)\n(stack j g)\n(pick-up f)\n(stack f j)\n(pick-up i)\n(stack i f)\n(pick-up e)\n(stack e i)",
+        "length": 24,
+        "states_info": {
+            "expanded": 7716,
+            "evaluated": 23133,
+            "generated": 39635,
+            "search_time (in secs)": 1.72449
+        }
+    },
+    "instance-59.pddl": {
+        "plan": "(unstack i h)\n(put-down i)\n(unstack h b)\n(put-down h)\n(unstack b a)\n(put-down b)\n(pick-up i)\n(stack i b)\n(unstack a c)\n(stack a h)\n(unstack c g)\n(put-down c)\n(unstack g f)\n(stack g i)\n(unstack a h)\n(stack a g)\n(unstack f e)\n(stack f h)\n(unstack e d)\n(stack e a)\n(pick-up d)\n(stack d c)\n(unstack f h)\n(stack f d)\n(unstack e a)\n(stack e f)",
+        "length": 26,
+        "states_info": {
+            "expanded": 1381,
+            "evaluated": 3586,
+            "generated": 5952,
+            "search_time (in secs)": 0.134486
+        }
+    },
+    "instance-60.pddl": {
+        "plan": "(unstack j f)\n(put-down j)\n(unstack f b)\n(put-down f)\n(unstack b c)\n(put-down b)\n(pick-up g)\n(stack g b)\n(unstack k a)\n(put-down k)\n(unstack a i)\n(stack a f)\n(pick-up c)\n(stack c a)\n(unstack i h)\n(stack i c)\n(unstack h e)\n(stack h g)\n(unstack i c)\n(stack i h)\n(unstack e d)\n(stack e c)\n(pick-up j)\n(stack j e)\n(pick-up d)\n(stack d j)\n(pick-up k)\n(stack k d)",
+        "length": 28,
+        "states_info": {
+            "expanded": 5030,
+            "evaluated": 13148,
+            "generated": 22936,
+            "search_time (in secs)": 1.01445
+        }
+    },
+    "instance-61.pddl": {
+        "plan": "(unstack l f)\n(put-down l)\n(unstack h c)\n(stack h l)\n(unstack k g)\n(put-down k)\n(unstack c i)\n(stack c k)\n(unstack i m)\n(put-down i)\n(unstack g e)\n(stack g i)\n(unstack m d)\n(stack m g)\n(unstack f a)\n(stack f m)\n(unstack c k)\n(stack c f)\n(unstack a j)\n(stack a k)\n(unstack d b)\n(stack d a)\n(pick-up b)\n(stack b c)\n(unstack d a)\n(stack d b)\n(pick-up j)\n(stack j d)\n(pick-up e)\n(stack e j)",
+        "length": 30,
+        "states_info": {
+            "expanded": 13438,
+            "evaluated": 44576,
+            "generated": 71041,
+            "search_time (in secs)": 4.92825
+        }
+    },
+    "instance-62.pddl": {
+        "plan": "(unstack j i)\n(put-down j)\n(pick-up b)\n(stack b j)\n(unstack c h)\n(stack c f)\n(unstack h m)\n(stack h b)\n(unstack m k)\n(put-down m)\n(unstack k e)\n(stack k h)\n(unstack e l)\n(stack e m)\n(unstack c f)\n(stack c e)\n(unstack f g)\n(put-down f)\n(pick-up l)\n(stack l f)\n(unstack i n)\n(stack i l)\n(unstack n d)\n(stack n c)\n(pick-up g)\n(stack g n)\n(unstack d a)\n(put-down d)\n(pick-up a)\n(stack a g)\n(unstack k h)\n(stack k a)",
+        "length": 32,
+        "states_info": {
+            "expanded": 20946,
+            "evaluated": 68578,
+            "generated": 111784,
+            "search_time (in secs)": 10.2879
+        }
+    },
+    "instance-63.pddl": {
+        "plan": "(unstack j c)\n(stack j f)\n(unstack c i)\n(put-down c)\n(unstack i e)\n(put-down i)\n(unstack e k)\n(stack e i)\n(unstack k b)\n(stack k c)\n(unstack b g)\n(put-down b)\n(unstack j f)\n(stack j b)\n(unstack k c)\n(stack k j)\n(unstack f a)\n(stack f c)\n(unstack a h)\n(put-down a)\n(unstack f c)\n(stack f a)\n(pick-up g)\n(stack g f)\n(pick-up c)\n(stack c g)\n(unstack h d)\n(stack h c)\n(pick-up d)\n(stack d k)\n(unstack e i)\n(stack e d)\n(unstack h c)\n(stack h e)",
+        "length": 34,
+        "states_info": {
+            "expanded": 429266,
+            "evaluated": 1188240,
+            "generated": 2252143,
+            "search_time (in secs)": 87.3757
+        }
+    },
+    "instance-64.pddl": {
+        "plan": "(unstack c n)\n(put-down c)\n(unstack n j)\n(put-down n)\n(unstack j m)\n(put-down j)\n(unstack m b)\n(stack m j)\n(unstack b f)\n(put-down b)\n(unstack f d)\n(put-down f)\n(pick-up c)\n(stack c f)\n(unstack d a)\n(put-down d)\n(unstack l g)\n(stack l d)\n(unstack g i)\n(stack g c)\n(unstack m j)\n(stack m g)\n(unstack a k)\n(stack a m)\n(pick-up j)\n(stack j l)\n(pick-up n)\n(stack n j)\n(unstack k e)\n(stack k a)\n(unstack e h)\n(stack e i)\n(unstack k a)\n(stack k h)\n(pick-up b)\n(stack b k)",
+        "length": 36,
+        "states_info": {
+            "expanded": 59591,
+            "evaluated": 173294,
+            "generated": 302143,
+            "search_time (in secs)": 25.4052
+        }
+    },
+    "instance-65.pddl": {
+        "plan": "(unstack n j)\n(stack n o)\n(unstack j d)\n(stack j n)\n(unstack d e)\n(put-down d)\n(unstack e k)\n(put-down e)\n(unstack k g)\n(put-down k)\n(unstack l c)\n(stack l k)\n(unstack j n)\n(stack j l)\n(unstack g a)\n(stack g j)\n(unstack a b)\n(put-down a)\n(pick-up b)\n(stack b d)\n(pick-up f)\n(stack f b)\n(pick-up e)\n(stack e f)\n(unstack n o)\n(stack n e)\n(pick-up c)\n(stack c n)\n(unstack o m)\n(put-down o)\n(unstack m h)\n(stack m g)\n(unstack h i)\n(stack h c)\n(pick-up a)\n(stack a h)\n(pick-up i)\n(stack i m)",
+        "length": 38,
+        "states_info": {
+            "expanded": 375400,
+            "evaluated": 1259299,
+            "generated": 2150385,
+            "search_time (in secs)": 235.88
+        }
+    },
+    "instance-66.pddl": {
+        "plan": "(unstack l g)\n(put-down l)\n(unstack g k)\n(put-down g)\n(unstack k j)\n(put-down k)\n(unstack j h)\n(stack j e)\n(unstack h n)\n(stack h j)\n(unstack n b)\n(stack n k)\n(unstack b d)\n(put-down b)\n(unstack d i)\n(put-down d)\n(unstack i a)\n(stack i d)\n(unstack h j)\n(stack h i)\n(pick-up l)\n(stack l h)\n(unstack a f)\n(stack a l)\n(unstack n k)\n(stack n a)\n(unstack f c)\n(put-down f)\n(pick-up k)\n(stack k f)\n(pick-up g)\n(stack g k)\n(pick-up b)\n(stack b g)\n(unstack c m)\n(stack c b)\n(pick-up m)\n(stack m j)\n(unstack c b)\n(stack c m)",
+        "length": 40,
+        "states_info": {
+            "expanded": 422360,
+            "evaluated": 1335917,
+            "generated": 2365114,
+            "search_time (in secs)": 188.588
+        }
+    },
+    "instance-67.pddl": {
+        "plan": "(unstack f b)\n(stack f a)\n(unstack b h)\n(stack b f)\n(unstack h d)\n(stack h b)\n(unstack d e)\n(put-down d)\n(unstack e g)\n(put-down e)\n(unstack h b)\n(stack h g)\n(unstack b f)\n(stack b h)\n(unstack f a)\n(stack f e)\n(unstack a c)\n(stack a b)\n(pick-up c)\n(stack c d)",
+        "length": 20,
+        "states_info": {
+            "expanded": 240,
+            "evaluated": 532,
+            "generated": 875,
+            "search_time (in secs)": 0.0374045
+        }
+    },
+    "instance-68.pddl": {
+        "plan": "(unstack g h)\n(put-down g)\n(unstack h e)\n(stack h d)\n(unstack e a)\n(put-down e)\n(unstack a f)\n(put-down a)\n(unstack f b)\n(stack f g)\n(pick-up c)\n(stack c f)\n(unstack h d)\n(stack h c)\n(pick-up e)\n(stack e h)\n(pick-up b)\n(stack b e)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)",
+        "length": 22,
+        "states_info": {
+            "expanded": 527,
+            "evaluated": 1318,
+            "generated": 2112,
+            "search_time (in secs)": 0.093665
+        }
+    },
+    "instance-69.pddl": {
+        "plan": "(unstack l b)\n(put-down l)\n(unstack b d)\n(stack b l)\n(unstack d k)\n(stack d b)\n(unstack k g)\n(put-down k)\n(unstack g h)\n(stack g k)\n(unstack i c)\n(stack i h)\n(unstack c a)\n(stack c i)\n(unstack g k)\n(stack g c)\n(unstack d b)\n(stack d g)\n(unstack b l)\n(stack b d)\n(unstack a e)\n(stack a l)\n(pick-up k)\n(stack k e)",
+        "length": 24,
+        "states_info": {
+            "expanded": 1573,
+            "evaluated": 3960,
+            "generated": 6656,
+            "search_time (in secs)": 0.431837
+        }
+    },
+    "instance-70.pddl": {
+        "plan": "(unstack i d)\n(put-down i)\n(unstack g h)\n(stack g i)\n(unstack h k)\n(put-down h)\n(unstack d j)\n(put-down d)\n(unstack j c)\n(stack j h)\n(pick-up f)\n(stack f j)\n(pick-up c)\n(stack c f)\n(unstack k a)\n(stack k c)\n(unstack g i)\n(stack g a)\n(unstack e b)\n(stack e i)\n(pick-up b)\n(stack b g)\n(pick-up d)\n(stack d b)\n(unstack e i)\n(stack e d)",
+        "length": 26,
+        "states_info": {
+            "expanded": 14266,
+            "evaluated": 45464,
+            "generated": 75062,
+            "search_time (in secs)": 3.38004
+        }
+    },
+    "instance-71.pddl": {
+        "plan": "(unstack c a)\n(put-down c)\n(unstack e i)\n(stack e c)\n(pick-up f)\n(stack f e)\n(unstack a l)\n(stack a f)\n(unstack i k)\n(stack i a)\n(unstack j d)\n(stack j k)\n(unstack g n)\n(stack g b)\n(unstack n m)\n(stack n l)\n(unstack m h)\n(stack m i)\n(unstack n l)\n(stack n m)\n(unstack h o)\n(stack h l)\n(unstack g b)\n(stack g h)\n(pick-up b)\n(stack b n)\n(pick-up d)\n(stack d b)",
+        "length": 28,
+        "states_info": {
+            "expanded": 15145,
+            "evaluated": 61946,
+            "generated": 97622,
+            "search_time (in secs)": 9.86103
+        }
+    },
+    "instance-72.pddl": {
+        "plan": "(unstack a c)\n(put-down a)\n(unstack c d)\n(put-down c)\n(unstack d g)\n(put-down d)\n(unstack g i)\n(put-down g)\n(unstack i b)\n(put-down i)\n(unstack b e)\n(stack b a)\n(unstack e h)\n(put-down e)\n(unstack h f)\n(stack h e)\n(unstack b a)\n(stack b f)\n(pick-up a)\n(stack a b)\n(pick-up d)\n(stack d a)\n(unstack h e)\n(stack h d)\n(pick-up c)\n(stack c h)\n(pick-up g)\n(stack g c)\n(pick-up i)\n(stack i g)",
+        "length": 30,
+        "states_info": {
+            "expanded": 11478,
+            "evaluated": 29722,
+            "generated": 52987,
+            "search_time (in secs)": 2.598
+        }
+    },
+    "instance-73.pddl": {
+        "plan": "(unstack h f)\n(put-down h)\n(unstack b a)\n(stack b h)\n(unstack e i)\n(stack e f)\n(unstack i d)\n(put-down i)\n(unstack d c)\n(stack d e)\n(unstack c g)\n(put-down c)\n(pick-up a)\n(stack a c)\n(unstack d e)\n(stack d a)\n(unstack g l)\n(stack g d)\n(unstack e f)\n(stack e g)\n(unstack m k)\n(put-down m)\n(pick-up f)\n(stack f m)\n(pick-up l)\n(stack l f)\n(unstack k j)\n(stack k i)\n(pick-up j)\n(stack j l)\n(unstack k i)\n(stack k j)",
+        "length": 32,
+        "states_info": {
+            "expanded": 750450,
+            "evaluated": 2573874,
+            "generated": 4494793,
+            "search_time (in secs)": 280.99
+        }
+    },
+    "instance-74.pddl": {
+        "plan": "(unstack d k)\n(put-down d)\n(unstack k a)\n(stack k d)\n(unstack a i)\n(put-down a)\n(unstack i h)\n(stack i k)\n(unstack h l)\n(put-down h)\n(unstack l b)\n(stack l a)\n(unstack b f)\n(stack b h)\n(unstack f c)\n(put-down f)\n(unstack c e)\n(put-down c)\n(unstack e j)\n(stack e b)\n(unstack l a)\n(stack l e)\n(unstack j g)\n(stack j a)\n(unstack i k)\n(stack i g)\n(pick-up f)\n(stack f i)\n(pick-up c)\n(stack c f)\n(unstack k d)\n(stack k c)\n(pick-up d)\n(stack d j)",
+        "length": 34,
+        "states_info": {
+            "expanded": 8488,
+            "evaluated": 26388,
+            "generated": 42916,
+            "search_time (in secs)": 3.08062
+        }
+    },
+    "instance-75.pddl": {
+        "plan": "(unstack k g)\n(stack k b)\n(unstack g a)\n(put-down g)\n(unstack a j)\n(put-down a)\n(unstack j m)\n(put-down j)\n(unstack m n)\n(stack m g)\n(unstack n i)\n(put-down n)\n(unstack f l)\n(stack f i)\n(pick-up a)\n(stack a f)\n(unstack k b)\n(stack k a)\n(unstack b c)\n(stack b k)\n(unstack l h)\n(stack l m)\n(unstack h d)\n(stack h b)\n(unstack d e)\n(stack d h)\n(pick-up n)\n(stack n e)\n(pick-up c)\n(stack c n)\n(pick-up j)\n(stack j c)\n(unstack d h)\n(stack d j)\n(unstack h b)\n(stack h d)",
+        "length": 36,
+        "states_info": {
+            "expanded": 1128279,
+            "evaluated": 3448197,
+            "generated": 6331341,
+            "search_time (in secs)": 482.484
+        }
+    },
+    "instance-76.pddl": {
+        "plan": "(unstack e k)\n(put-down e)\n(unstack h m)\n(stack h e)\n(unstack k l)\n(stack k h)\n(unstack l f)\n(put-down l)\n(unstack f g)\n(put-down f)\n(pick-up m)\n(stack m f)\n(unstack k h)\n(stack k m)\n(unstack b n)\n(stack b h)\n(unstack n i)\n(stack n k)\n(unstack g j)\n(stack g n)\n(pick-up l)\n(stack l g)\n(unstack i d)\n(stack i b)\n(unstack d a)\n(stack d i)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c l)\n(pick-up j)\n(stack j c)\n(unstack d i)\n(stack d j)\n(unstack i b)\n(stack i a)\n(unstack b h)\n(stack b i)",
+        "length": 38,
+        "states_info": {
+            "expanded": 972120,
+            "evaluated": 2873688,
+            "generated": 5361739,
+            "search_time (in secs)": 431.297
+        }
+    },
+    "instance-77.pddl": {
+        "plan": "(unstack l k)\n(put-down l)\n(unstack c h)\n(stack c l)\n(pick-up h)\n(stack h c)\n(unstack m a)\n(stack m k)\n(unstack a b)\n(put-down a)\n(unstack b o)\n(stack b a)\n(unstack o g)\n(stack o h)\n(unstack g d)\n(stack g b)\n(unstack d n)\n(stack d g)\n(unstack n j)\n(stack n o)\n(unstack m k)\n(stack m n)\n(unstack j e)\n(stack j d)\n(pick-up e)\n(stack e m)\n(unstack i f)\n(stack i e)\n(pick-up k)\n(stack k f)\n(unstack j d)\n(stack j k)\n(unstack d g)\n(stack d j)\n(unstack g b)\n(stack g i)\n(unstack b a)\n(stack b g)\n(pick-up a)\n(stack a d)",
+        "length": 40,
+        "states_info": {
+            "expanded": 1535023,
+            "evaluated": 4559063,
+            "generated": 8557664,
+            "search_time (in secs)": 887.612
+        }
+    },
+    "instance-78.pddl": {
+        "plan": "(unstack f g)\n(put-down f)\n(unstack d b)\n(put-down d)\n(unstack b a)\n(stack b f)\n(unstack g e)\n(stack g a)\n(unstack e i)\n(put-down e)\n(unstack i h)\n(stack i e)\n(unstack h c)\n(put-down h)\n(pick-up c)\n(stack c h)\n(pick-up d)\n(stack d c)\n(unstack i e)\n(stack i d)",
+        "length": 20,
+        "states_info": {
+            "expanded": 409,
+            "evaluated": 1111,
+            "generated": 1715,
+            "search_time (in secs)": 0.0456614
+        }
+    },
+    "instance-79.pddl": {
+        "plan": "(unstack d e)\n(put-down d)\n(unstack e a)\n(stack e g)\n(unstack a c)\n(put-down a)\n(pick-up c)\n(stack c d)\n(unstack f i)\n(stack f c)\n(unstack e g)\n(stack e f)\n(unstack g b)\n(put-down g)\n(unstack b h)\n(stack b g)\n(pick-up h)\n(stack h i)\n(pick-up a)\n(stack a h)\n(unstack b g)\n(stack b a)",
+        "length": 22,
+        "states_info": {
+            "expanded": 5078,
+            "evaluated": 13911,
+            "generated": 23779,
+            "search_time (in secs)": 0.606136
+        }
+    },
+    "instance-80.pddl": {
+        "plan": "(unstack e i)\n(put-down e)\n(unstack j a)\n(put-down j)\n(unstack a c)\n(stack a e)\n(unstack c d)\n(put-down c)\n(unstack i h)\n(stack i c)\n(unstack h g)\n(stack h j)\n(unstack g k)\n(stack g a)\n(pick-up k)\n(stack k i)\n(unstack d b)\n(stack d k)\n(unstack b f)\n(stack b g)\n(unstack h j)\n(stack h d)\n(pick-up f)\n(stack f j)",
+        "length": 24,
+        "states_info": {
+            "expanded": 97,
+            "evaluated": 270,
+            "generated": 393,
+            "search_time (in secs)": 0.0225408
+        }
+    },
+    "instance-81.pddl": {
+        "plan": "(unstack e a)\n(put-down e)\n(unstack b c)\n(put-down b)\n(unstack c h)\n(stack c e)\n(unstack a j)\n(stack a b)\n(unstack j d)\n(stack j a)\n(unstack d g)\n(stack d c)\n(unstack h i)\n(put-down h)\n(unstack i f)\n(stack i d)\n(pick-up f)\n(stack f h)\n(pick-up g)\n(stack g f)\n(unstack j a)\n(stack j g)\n(unstack a b)\n(stack a j)\n(pick-up b)\n(stack b a)",
+        "length": 26,
+        "states_info": {
+            "expanded": 1677,
+            "evaluated": 4285,
+            "generated": 7166,
+            "search_time (in secs)": 0.294602
+        }
+    },
+    "instance-82.pddl": {
+        "plan": "(unstack l f)\n(put-down l)\n(unstack i a)\n(put-down i)\n(unstack a k)\n(put-down a)\n(unstack k h)\n(stack k a)\n(pick-up h)\n(stack h l)\n(unstack d m)\n(stack d h)\n(unstack g e)\n(stack g m)\n(unstack e c)\n(stack e d)\n(unstack k a)\n(stack k e)\n(pick-up c)\n(stack c a)\n(pick-up i)\n(stack i k)\n(unstack f b)\n(stack f i)\n(unstack g m)\n(stack g f)\n(pick-up m)\n(stack m g)",
+        "length": 28,
+        "states_info": {
+            "expanded": 22024,
+            "evaluated": 74808,
+            "generated": 121738,
+            "search_time (in secs)": 8.84859
+        }
+    },
+    "instance-83.pddl": {
+        "plan": "(unstack g f)\n(put-down g)\n(unstack l a)\n(stack l g)\n(unstack f b)\n(stack f l)\n(unstack e d)\n(stack e f)\n(unstack d n)\n(stack d b)\n(unstack a k)\n(stack a n)\n(unstack k m)\n(stack k d)\n(unstack e f)\n(stack e k)\n(unstack m j)\n(stack m e)\n(unstack j h)\n(stack j f)\n(pick-up i)\n(stack i j)\n(unstack a n)\n(stack a i)\n(unstack m e)\n(stack m a)\n(unstack h c)\n(stack h e)\n(pick-up n)\n(stack n h)",
+        "length": 30,
+        "states_info": {
+            "expanded": 7630,
+            "evaluated": 25332,
+            "generated": 40238,
+            "search_time (in secs)": 3.73777
+        }
+    },
+    "instance-84.pddl": {
+        "plan": "(unstack k d)\n(put-down k)\n(unstack d a)\n(stack d f)\n(unstack a c)\n(stack a e)\n(unstack c g)\n(put-down c)\n(unstack d f)\n(stack d c)\n(unstack g l)\n(stack g d)\n(unstack l m)\n(stack l a)\n(unstack m b)\n(put-down m)\n(pick-up k)\n(stack k m)\n(unstack h i)\n(stack h k)\n(unstack f j)\n(put-down f)\n(unstack j n)\n(stack j h)\n(unstack l a)\n(stack l j)\n(pick-up i)\n(stack i l)\n(pick-up n)\n(stack n a)\n(pick-up b)\n(stack b n)",
+        "length": 32,
+        "states_info": {
+            "expanded": 34178,
+            "evaluated": 111807,
+            "generated": 185747,
+            "search_time (in secs)": 16.3991
+        }
+    },
+    "instance-85.pddl": {
+        "plan": "(unstack f a)\n(put-down f)\n(pick-up e)\n(stack e f)\n(unstack a d)\n(put-down a)\n(unstack d i)\n(put-down d)\n(unstack i g)\n(stack i l)\n(unstack g b)\n(stack g a)\n(unstack b k)\n(stack b e)\n(unstack g a)\n(stack g b)\n(unstack k m)\n(stack k a)\n(pick-up m)\n(stack m d)\n(unstack j h)\n(stack j k)\n(pick-up h)\n(stack h g)\n(unstack i l)\n(stack i h)\n(unstack j k)\n(stack j i)\n(unstack l n)\n(put-down l)\n(unstack n c)\n(stack n k)\n(pick-up c)\n(stack c l)",
+        "length": 34,
+        "states_info": {
+            "expanded": 486143,
+            "evaluated": 1536480,
+            "generated": 2818030,
+            "search_time (in secs)": 214.551
+        }
+    },
+    "instance-86.pddl": {
+        "plan": "(unstack l g)\n(put-down l)\n(unstack g f)\n(put-down g)\n(unstack f c)\n(stack f g)\n(unstack c i)\n(stack c f)\n(unstack i a)\n(put-down i)\n(pick-up l)\n(stack l i)\n(unstack k j)\n(put-down k)\n(unstack j b)\n(put-down j)\n(unstack b e)\n(stack b l)\n(unstack c f)\n(stack c b)\n(pick-up k)\n(stack k c)\n(unstack e m)\n(stack e k)\n(unstack a h)\n(stack a e)\n(unstack m d)\n(stack m h)\n(unstack a e)\n(stack a d)\n(pick-up j)\n(stack j a)\n(unstack f g)\n(stack f j)\n(pick-up g)\n(stack g f)",
+        "length": 36,
+        "states_info": {
+            "expanded": 302971,
+            "evaluated": 827105,
+            "generated": 1537718,
+            "search_time (in secs)": 100.215
+        }
+    },
+    "instance-87.pddl": {
+        "plan": "(unstack d l)\n(put-down d)\n(unstack l f)\n(stack l k)\n(unstack f e)\n(stack f g)\n(unstack e m)\n(stack e f)\n(unstack m a)\n(put-down m)\n(unstack a j)\n(put-down a)\n(unstack j c)\n(put-down j)\n(unstack c b)\n(stack c a)\n(unstack b n)\n(stack b c)\n(unstack n h)\n(put-down n)\n(unstack h i)\n(stack h m)\n(unstack e f)\n(stack e j)\n(unstack b c)\n(stack b h)\n(unstack c a)\n(stack c n)\n(pick-up a)\n(stack a i)\n(unstack l k)\n(stack l b)\n(unstack f g)\n(stack f l)\n(pick-up g)\n(stack g a)\n(pick-up k)\n(stack k d)",
+        "length": 38,
+        "states_info": {
+            "expanded": 1842885,
+            "evaluated": 5645528,
+            "generated": 10772439,
+            "search_time (in secs)": 766.499
+        }
+    },
+    "instance-88.pddl": {
+        "plan": "(unstack a h)\n(put-down a)\n(unstack h m)\n(put-down h)\n(unstack m g)\n(stack m a)\n(unstack g e)\n(put-down g)\n(unstack e i)\n(put-down e)\n(unstack m a)\n(stack m e)\n(pick-up a)\n(stack a m)\n(unstack b j)\n(put-down b)\n(unstack j l)\n(put-down j)\n(unstack l k)\n(stack l a)\n(pick-up k)\n(stack k j)\n(unstack i f)\n(put-down i)\n(unstack f c)\n(stack f k)\n(unstack l a)\n(stack l f)\n(unstack c d)\n(stack c l)\n(pick-up d)\n(stack d a)\n(pick-up h)\n(stack h d)\n(pick-up g)\n(stack g h)\n(pick-up b)\n(stack b g)\n(pick-up i)\n(stack i b)",
+        "length": 40,
+        "states_info": {
+            "expanded": 973180,
+            "evaluated": 2902368,
+            "generated": 5312265,
+            "search_time (in secs)": 448.096
+        }
+    },
+    "instance-89.pddl": {
+        "plan": "(unstack d e)\n(put-down d)\n(unstack e f)\n(stack e d)\n(unstack f h)\n(put-down f)\n(unstack h c)\n(stack h f)\n(unstack c b)\n(put-down c)\n(unstack a g)\n(stack a c)\n(pick-up g)\n(stack g h)\n(unstack e d)\n(stack e g)\n(pick-up d)\n(stack d e)\n(pick-up b)\n(stack b d)",
+        "length": 20,
+        "states_info": {
+            "expanded": 76,
+            "evaluated": 172,
+            "generated": 268,
+            "search_time (in secs)": 0.0203604
+        }
+    },
+    "instance-90.pddl": {
+        "plan": "(unstack h e)\n(stack h c)\n(unstack e d)\n(put-down e)\n(unstack d f)\n(put-down d)\n(pick-up i)\n(stack i d)\n(unstack h c)\n(stack h i)\n(unstack c b)\n(stack c h)\n(pick-up b)\n(stack b g)\n(pick-up f)\n(stack f b)\n(pick-up a)\n(stack a f)\n(pick-up e)\n(stack e a)\n(unstack c h)\n(stack c e)",
+        "length": 22,
+        "states_info": {
+            "expanded": 5834,
+            "evaluated": 17168,
+            "generated": 29095,
+            "search_time (in secs)": 0.862103
+        }
+    },
+    "instance-91.pddl": {
+        "plan": "(unstack b f)\n(stack b h)\n(unstack f a)\n(put-down f)\n(unstack b h)\n(stack b f)\n(pick-up a)\n(stack a b)\n(unstack h e)\n(put-down h)\n(unstack e g)\n(stack e a)\n(unstack g c)\n(stack g h)\n(unstack c d)\n(stack c g)\n(pick-up d)\n(stack d e)\n(unstack c g)\n(stack c d)\n(unstack g h)\n(stack g c)\n(pick-up h)\n(stack h g)",
+        "length": 24,
+        "states_info": {
+            "expanded": 2552,
+            "evaluated": 5166,
+            "generated": 9794,
+            "search_time (in secs)": 0.169063
+        }
+    },
+    "instance-92.pddl": {
+        "plan": "(unstack f c)\n(put-down f)\n(unstack c i)\n(put-down c)\n(unstack d j)\n(stack d f)\n(pick-up j)\n(stack j c)\n(pick-up h)\n(stack h j)\n(unstack d f)\n(stack d h)\n(unstack i e)\n(put-down i)\n(unstack e g)\n(stack e d)\n(unstack g b)\n(put-down g)\n(unstack b a)\n(stack b g)\n(pick-up f)\n(stack f b)\n(pick-up i)\n(stack i f)\n(pick-up a)\n(stack a i)",
+        "length": 26,
+        "states_info": {
+            "expanded": 1919,
+            "evaluated": 4984,
+            "generated": 8340,
+            "search_time (in secs)": 0.3053
+        }
+    },
+    "instance-93.pddl": {
+        "plan": "(unstack f c)\n(stack f d)\n(unstack c b)\n(put-down c)\n(unstack b a)\n(stack b c)\n(unstack a h)\n(put-down a)\n(unstack h e)\n(stack h a)\n(unstack e i)\n(stack e b)\n(unstack i j)\n(stack i e)\n(unstack j g)\n(put-down j)\n(unstack h a)\n(stack h j)\n(unstack f d)\n(stack f h)\n(unstack i e)\n(stack i f)\n(unstack e b)\n(stack e i)\n(unstack b c)\n(stack b g)\n(pick-up c)\n(stack c e)",
+        "length": 28,
+        "states_info": {
+            "expanded": 20979,
+            "evaluated": 52874,
+            "generated": 100238,
+            "search_time (in secs)": 4.24881
+        }
+    },
+    "instance-94.pddl": {
+        "plan": "(unstack m j)\n(put-down m)\n(unstack j f)\n(stack j m)\n(unstack k b)\n(put-down k)\n(unstack f i)\n(stack f k)\n(unstack i h)\n(stack i f)\n(unstack b e)\n(stack b j)\n(unstack e a)\n(stack e b)\n(unstack a d)\n(stack a i)\n(unstack l g)\n(stack l a)\n(pick-up g)\n(stack g l)\n(unstack d n)\n(put-down d)\n(unstack e b)\n(stack e n)\n(unstack h c)\n(stack h e)\n(unstack b j)\n(stack b h)\n(pick-up c)\n(stack c d)",
+        "length": 30,
+        "states_info": {
+            "expanded": 4837,
+            "evaluated": 15777,
+            "generated": 24392,
+            "search_time (in secs)": 2.25456
+        }
+    },
+    "instance-95.pddl": {
+        "plan": "(unstack g a)\n(put-down g)\n(unstack a c)\n(put-down a)\n(unstack h j)\n(stack h a)\n(unstack c l)\n(stack c g)\n(unstack l i)\n(put-down l)\n(unstack c g)\n(stack c l)\n(unstack i d)\n(stack i h)\n(unstack j b)\n(stack j c)\n(unstack d f)\n(put-down d)\n(unstack f k)\n(put-down f)\n(unstack k e)\n(stack k d)\n(unstack e m)\n(stack e f)\n(pick-up b)\n(stack b e)\n(pick-up g)\n(stack g b)\n(pick-up m)\n(stack m g)\n(unstack k d)\n(stack k m)",
+        "length": 32,
+        "states_info": {
+            "expanded": 5916,
+            "evaluated": 16169,
+            "generated": 27517,
+            "search_time (in secs)": 2.50486
+        }
+    },
+    "instance-96.pddl": {
+        "plan": "(unstack g l)\n(put-down g)\n(unstack l f)\n(put-down l)\n(unstack f e)\n(stack f l)\n(unstack e c)\n(put-down e)\n(unstack c a)\n(stack c f)\n(unstack a j)\n(stack a e)\n(unstack j i)\n(stack j a)\n(pick-up k)\n(stack k j)\n(unstack b h)\n(put-down b)\n(unstack h d)\n(put-down h)\n(pick-up d)\n(stack d k)\n(pick-up i)\n(stack i d)\n(unstack c f)\n(stack c i)\n(unstack f l)\n(stack f c)\n(pick-up g)\n(stack g f)\n(pick-up b)\n(stack b g)\n(pick-up l)\n(stack l b)",
+        "length": 34,
+        "states_info": {
+            "expanded": 91113,
+            "evaluated": 267152,
+            "generated": 475025,
+            "search_time (in secs)": 28.0718
+        }
+    },
+    "instance-97.pddl": {
+        "plan": "(unstack e c)\n(stack e l)\n(unstack c g)\n(put-down c)\n(unstack e l)\n(stack e c)\n(unstack l k)\n(put-down l)\n(unstack g b)\n(stack g e)\n(unstack b m)\n(stack b f)\n(unstack m j)\n(stack m b)\n(unstack j i)\n(put-down j)\n(unstack i a)\n(stack i j)\n(unstack a d)\n(stack a l)\n(unstack d h)\n(put-down d)\n(unstack g e)\n(stack g d)\n(unstack m b)\n(stack m g)\n(unstack h n)\n(put-down h)\n(unstack b f)\n(stack b h)\n(pick-up f)\n(stack f n)\n(pick-up k)\n(stack k b)\n(unstack i j)\n(stack i k)",
+        "length": 36,
+        "states_info": {
+            "expanded": 1396748,
+            "evaluated": 4480873,
+            "generated": 8156474,
+            "search_time (in secs)": 568.677
+        }
+    },
+    "instance-98.pddl": {
+        "plan": "(unstack l b)\n(put-down l)\n(unstack n o)\n(stack n l)\n(unstack b h)\n(stack b n)\n(unstack h f)\n(put-down h)\n(unstack o d)\n(stack o h)\n(unstack f k)\n(stack f b)\n(unstack k j)\n(stack k f)\n(unstack j i)\n(stack j k)\n(unstack i a)\n(put-down i)\n(unstack a c)\n(stack a o)\n(pick-up c)\n(stack c a)\n(pick-up d)\n(stack d c)\n(unstack m g)\n(stack m d)\n(unstack j k)\n(stack j m)\n(unstack g e)\n(put-down g)\n(unstack k f)\n(stack k g)\n(unstack f b)\n(stack f k)\n(pick-up e)\n(stack e f)\n(unstack b n)\n(stack b e)",
+        "length": 38,
+        "states_info": {
+            "expanded": 855293,
+            "evaluated": 2561881,
+            "generated": 4713104,
+            "search_time (in secs)": 434.839
+        }
+    },
+    "instance-99.pddl": {
+        "plan": "(unstack d l)\n(stack d c)\n(unstack l k)\n(put-down l)\n(unstack d c)\n(stack d l)\n(unstack k e)\n(put-down k)\n(unstack e j)\n(put-down e)\n(unstack j i)\n(put-down j)\n(unstack i f)\n(stack i d)\n(unstack f b)\n(stack f i)\n(unstack b g)\n(stack b j)\n(unstack g n)\n(put-down g)\n(unstack f i)\n(stack f g)\n(pick-up k)\n(stack k f)\n(unstack n a)\n(put-down n)\n(unstack i d)\n(stack i n)\n(pick-up c)\n(stack c i)\n(unstack b j)\n(stack b c)\n(unstack a h)\n(stack a b)\n(unstack h m)\n(stack h d)\n(pick-up e)\n(stack e h)\n(pick-up m)\n(stack m a)",
+        "length": 40,
+        "states_info": {
+            "expanded": 226885,
+            "evaluated": 650879,
+            "generated": 1233059,
+            "search_time (in secs)": 96.4585
+        }
+    },
+    "instance-100.pddl": {
+        "plan": "(unstack e h)\n(put-down e)\n(unstack h f)\n(stack h e)\n(unstack f b)\n(stack f d)\n(unstack h e)\n(stack h b)\n(unstack c g)\n(stack c e)\n(unstack g a)\n(stack g h)\n(unstack c e)\n(stack c g)\n(pick-up a)\n(stack a e)\n(unstack f d)\n(stack f c)\n(pick-up d)\n(stack d a)",
+        "length": 20,
+        "states_info": {
+            "expanded": 1038,
+            "evaluated": 2452,
+            "generated": 4215,
+            "search_time (in secs)": 0.0852871
+        }
+    },
+    "instance-101.pddl": {
+        "plan": "(unstack a d)\n(put-down a)\n(unstack d e)\n(put-down d)\n(unstack e c)\n(stack e a)\n(unstack c g)\n(put-down c)\n(unstack g h)\n(stack g d)\n(unstack h f)\n(stack h c)\n(unstack e a)\n(stack e h)\n(unstack f b)\n(stack f a)\n(pick-up b)\n(stack b e)\n(unstack f a)\n(stack f b)\n(unstack g d)\n(stack g f)",
+        "length": 22,
+        "states_info": {
+            "expanded": 824,
+            "evaluated": 1959,
+            "generated": 3417,
+            "search_time (in secs)": 0.0621911
+        }
+    },
+    "instance-102.pddl": {
+        "plan": "(unstack f b)\n(put-down f)\n(unstack b g)\n(put-down b)\n(unstack a d)\n(stack a b)\n(pick-up d)\n(stack d f)\n(unstack g c)\n(stack g d)\n(unstack c j)\n(stack c a)\n(unstack e i)\n(stack e j)\n(unstack i l)\n(stack i c)\n(unstack l k)\n(stack l g)\n(unstack e j)\n(stack e l)\n(pick-up h)\n(stack h e)\n(pick-up k)\n(stack k j)",
+        "length": 24,
+        "states_info": {
+            "expanded": 208,
+            "evaluated": 699,
+            "generated": 994,
+            "search_time (in secs)": 0.0786121
+        }
+    },
+    "instance-103.pddl": {
+        "plan": "(unstack d e)\n(stack d b)\n(unstack e k)\n(put-down e)\n(unstack d b)\n(stack d e)\n(unstack k c)\n(stack k d)\n(unstack c i)\n(put-down c)\n(unstack i g)\n(stack i b)\n(unstack g j)\n(stack g k)\n(unstack j f)\n(stack j c)\n(unstack f a)\n(stack f g)\n(unstack a h)\n(stack a f)\n(pick-up h)\n(stack h j)\n(unstack i b)\n(stack i h)\n(pick-up b)\n(stack b a)",
+        "length": 26,
+        "states_info": {
+            "expanded": 67,
+            "evaluated": 140,
+            "generated": 220,
+            "search_time (in secs)": 0.0275882
+        }
+    },
+    "instance-104.pddl": {
+        "plan": "(unstack d i)\n(put-down d)\n(unstack i k)\n(stack i d)\n(unstack k f)\n(put-down k)\n(unstack h a)\n(stack h k)\n(unstack a e)\n(stack a f)\n(unstack e g)\n(put-down e)\n(unstack g c)\n(put-down g)\n(unstack a f)\n(stack a g)\n(pick-up c)\n(stack c h)\n(unstack f b)\n(stack f a)\n(unstack b j)\n(stack b e)\n(pick-up j)\n(stack j c)\n(unstack i d)\n(stack i j)\n(pick-up d)\n(stack d b)",
+        "length": 28,
+        "states_info": {
+            "expanded": 1511,
+            "evaluated": 3932,
+            "generated": 6506,
+            "search_time (in secs)": 0.351817
+        }
+    },
+    "instance-105.pddl": {
+        "plan": "(unstack l c)\n(stack l d)\n(unstack c i)\n(put-down c)\n(unstack l d)\n(stack l c)\n(unstack d j)\n(stack d l)\n(unstack j g)\n(stack j d)\n(unstack g a)\n(put-down g)\n(unstack a b)\n(put-down a)\n(unstack i e)\n(stack i g)\n(unstack b f)\n(stack b e)\n(unstack f k)\n(stack f a)\n(unstack k h)\n(put-down k)\n(unstack h m)\n(stack h b)\n(unstack j d)\n(stack j h)\n(unstack i g)\n(stack i j)\n(pick-up m)\n(stack m i)",
+        "length": 30,
+        "states_info": {
+            "expanded": 7899,
+            "evaluated": 23849,
+            "generated": 38695,
+            "search_time (in secs)": 2.58557
+        }
+    },
+    "instance-106.pddl": {
+        "plan": "(unstack j n)\n(stack j m)\n(unstack l b)\n(stack l j)\n(unstack b g)\n(stack b n)\n(unstack g e)\n(put-down g)\n(unstack h k)\n(stack h g)\n(unstack i f)\n(stack i h)\n(pick-up k)\n(stack k i)\n(unstack l j)\n(stack l k)\n(unstack b n)\n(stack b l)\n(unstack f d)\n(stack f j)\n(unstack d a)\n(stack d f)\n(pick-up a)\n(stack a d)\n(pick-up e)\n(stack e a)\n(unstack n c)\n(stack n b)\n(pick-up c)\n(stack c e)\n(unstack n b)\n(stack n c)",
+        "length": 32,
+        "states_info": {
+            "expanded": 95154,
+            "evaluated": 345952,
+            "generated": 562869,
+            "search_time (in secs)": 49.5326
+        }
+    },
+    "instance-107.pddl": {
+        "plan": "(unstack h i)\n(put-down h)\n(unstack i b)\n(stack i h)\n(unstack b c)\n(put-down b)\n(unstack g e)\n(stack g b)\n(unstack c k)\n(stack c g)\n(unstack k a)\n(stack k c)\n(unstack a m)\n(stack a d)\n(unstack m j)\n(stack m k)\n(unstack a d)\n(stack a m)\n(unstack e f)\n(stack e i)\n(pick-up f)\n(stack f a)\n(unstack j l)\n(put-down j)\n(pick-up l)\n(stack l f)\n(unstack e i)\n(stack e l)\n(unstack i h)\n(stack i e)\n(pick-up d)\n(stack d i)\n(pick-up j)\n(stack j d)",
+        "length": 34,
+        "states_info": {
+            "expanded": 66621,
+            "evaluated": 190257,
+            "generated": 338811,
+            "search_time (in secs)": 22.3458
+        }
+    },
+    "instance-108.pddl": {
+        "plan": "(unstack e h)\n(put-down e)\n(unstack m a)\n(stack m h)\n(unstack a b)\n(put-down a)\n(unstack b j)\n(stack b e)\n(unstack j k)\n(stack j a)\n(unstack k c)\n(stack k b)\n(unstack n f)\n(stack n k)\n(pick-up c)\n(stack c n)\n(unstack f d)\n(stack f c)\n(unstack d l)\n(stack d f)\n(unstack l g)\n(stack l d)\n(unstack g i)\n(put-down g)\n(unstack j a)\n(stack j g)\n(unstack l d)\n(stack l j)\n(pick-up i)\n(stack i l)\n(unstack d f)\n(stack d i)\n(unstack m h)\n(stack m d)\n(pick-up h)\n(stack h m)",
+        "length": 36,
+        "states_info": {
+            "expanded": 110090,
+            "evaluated": 340130,
+            "generated": 583467,
+            "search_time (in secs)": 51.8389
+        }
+    },
+    "instance-109.pddl": {
+        "plan": "(unstack k l)\n(put-down k)\n(unstack l h)\n(put-down l)\n(unstack h j)\n(put-down h)\n(unstack j i)\n(stack j b)\n(unstack i d)\n(stack i l)\n(unstack j b)\n(stack j i)\n(unstack d f)\n(put-down d)\n(unstack f e)\n(stack f d)\n(unstack e c)\n(stack e j)\n(pick-up c)\n(stack c e)\n(unstack b a)\n(stack b f)\n(pick-up a)\n(stack a c)\n(unstack b f)\n(stack b a)\n(pick-up g)\n(stack g b)\n(unstack f d)\n(stack f g)\n(pick-up m)\n(stack m f)\n(pick-up h)\n(stack h m)\n(pick-up k)\n(stack k h)\n(pick-up d)\n(stack d k)",
+        "length": 38,
+        "states_info": {
+            "expanded": 1299704,
+            "evaluated": 4051299,
+            "generated": 7418746,
+            "search_time (in secs)": 507.388
+        }
+    },
+    "instance-110.pddl": {
+        "plan": "(unstack j m)\n(put-down j)\n(unstack m h)\n(put-down m)\n(unstack h e)\n(put-down h)\n(unstack e k)\n(put-down e)\n(unstack k d)\n(stack k h)\n(unstack d l)\n(stack d m)\n(unstack l c)\n(stack l k)\n(unstack c b)\n(put-down c)\n(unstack b i)\n(stack b d)\n(unstack i g)\n(put-down i)\n(unstack g f)\n(stack g j)\n(unstack l k)\n(stack l g)\n(unstack k h)\n(stack k l)\n(pick-up h)\n(stack h k)\n(pick-up e)\n(stack e h)\n(unstack b d)\n(stack b e)\n(unstack d m)\n(stack d b)\n(unstack f a)\n(stack f m)\n(pick-up a)\n(stack a i)\n(pick-up c)\n(stack c a)",
+        "length": 40,
+        "states_info": {
+            "expanded": 186726,
+            "evaluated": 533561,
+            "generated": 990463,
+            "search_time (in secs)": 94.8488
+        }
+    }
+}

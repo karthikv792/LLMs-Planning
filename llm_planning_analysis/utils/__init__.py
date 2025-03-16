@@ -246,7 +246,10 @@ def treat_on(letters_dict, atom):
 
 
 
-
+def validate_plan_unsolvable(llm_plan):
+    if "no plan possible" in llm_plan:
+        return True
+    return False
 
 
 

@@ -41,6 +41,10 @@ if __name__=="__main__":
     parser.add_argument('--specific_instances', nargs='+', type=int, default=[], help='List of instances to run')
     parser.add_argument('--random_example', type=str, default="False", help='Random example')
     parser.add_argument('--seed', type=int, default=42, help='Random seed')
+    parser.add_argument('--translator_engine', type=str, default="gpt-4o", help='Translator engine')
+    parser.add_argument('--no_llm_based_extraction', action='store_true', help='No LLM extraction')
+    parser.add_argument('--max_workers', type=int, default=1, help='Max workers')
+
     args = parser.parse_args()
     task = args.task
     config = args.config
@@ -51,6 +55,9 @@ if __name__=="__main__":
     ignore_existing = args.ignore_existing
     random_example = eval(args.random_example)
     run_till_completion = eval(args.run_till_completion)
+    translator_engine = args.translator_engine
+    no_llm_based_extraction = args.no_llm_based_extraction
+    max_workers = args.max_workers
     # print(task, config, verbose, specified_instances, random_example)
     config_file = f'./configs/{config}.yaml'
 
@@ -84,7 +91,7 @@ if __name__=="__main__":
         task_name = task_dict[task]
     except:
         raise ValueError("Invalid task name")
-    response_generator.get_responses(task_name, specified_instances, run_till_completion=run_till_completion)
+    response_generator.get_responses(task_name, max_workers, specified_instances, run_till_completion=run_till_completion)
 
 
     # ========================= Response Evaluation =========================
@@ -103,7 +110,10 @@ if __name__=="__main__":
             task_name = eval_plan_dict[task]
         except:
             raise ValueError("Invalid task name")
-        response_evaluator.evaluate_plan(task_name)
+        if no_llm_based_extraction:
+            response_evaluator.evaluate_plan(task_name)
+        else:
+            response_evaluator.evaluate_plan_parallel(task_name)
     elif task in eval_plan_pddl_dict:
         try:
             task_name = eval_plan_pddl_dict[task]
