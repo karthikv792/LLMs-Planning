@@ -5,6 +5,7 @@ from transformers import StoppingCriteriaList, StoppingCriteria
 import os
 import time
 import anthropic
+from groq import Groq
 import vertexai
 from vertexai.language_models import TextGenerationModel
 from google import genai
@@ -18,14 +19,8 @@ from rich import print
 config = Config(read_timeout=1000)
 
 aws_client = boto3.client('bedrock-runtime', region_name='us-west-2', config=config)
-import boto3
-import json
-from botocore.config import Config
-
-config = Config(read_timeout=1000)
-
-aws_client = boto3.client('bedrock-runtime', region_name='us-west-2', config=config)
 client = OpenAI()
+groq_client = Groq()
 def generate_from_bloom(model, tokenizer, query, max_tokens):
     encoded_input = tokenizer(query, return_tensors='pt')
     stop = tokenizer("[PLAN END]", return_tensors='pt')
@@ -523,16 +518,6 @@ def llama_messages_to_single_prompt(messages):
     prompt += "<|start_header_id|>assistant<|end_header_id|>"
     return prompt
 
-def llama_messages_to_single_prompt(messages):
-    #f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n You are the planner assistant who comes up with correct plans.<|eot_id|>\n<|start_header_id|>user<|end_header_id|>\n{query}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
-    prompt = "<|begin_of_text|>"
-    for message in messages:
-        role = message['role']
-        content = message['content']
-        prompt += f"<|start_header_id|>{role}<|end_header_id|>\n{content}<|eot_id|>\n"
-    prompt += "<|start_header_id|>assistant<|end_header_id|>"
-    return prompt
-    
 
 # def save_gpt3_response(planexecutor, response, file):
 #     action_list = list(planexecutor.model["domain"].keys())
