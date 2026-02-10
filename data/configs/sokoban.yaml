@@ -1,0 +1,7 @@
+instance_dir: sokoban/generated_basic
+domain_file: sokoban/generated_domain.pddl
+domain_name: sokoban
+n_instances: 200
+start: 1
+end: 55
+instances_template: instance-{}.pddl

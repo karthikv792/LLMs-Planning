@@ -1,0 +1,41 @@
+
+
+(define (problem BW-rand-13)
+(:domain blocksworld-4ops)
+(:objects a b c d e f g h i j k l m )
+(:init
+(handempty)
+(on a m)
+(on b c)
+(on c k)
+(ontable d)
+(on e f)
+(ontable f)
+(on g e)
+(on h i)
+(on i b)
+(on j l)
+(on k a)
+(ontable l)
+(on m j)
+(clear d)
+(clear g)
+(clear h)
+)
+(:goal
+(and
+(on a m)
+(on c g)
+(on d i)
+(on e l)
+(on f a)
+(on g b)
+(on i e)
+(on j d)
+(on k c)
+(on l f)
+(on m k))
+)
+)
+
+

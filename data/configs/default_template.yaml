@@ -1,0 +1,35 @@
+instance_dir: {domain}/generated_basic_{n}
+generalized_instance_dir: {domain}/generated
+domain_file: {domain}/generated_domain.pddl
+domain_name: {domain}_{n}
+n_instances: {n_instances}
+start: {start}
+end: {end}
+instances_template: instance-{}.pddl
+domain_intro: |
+   {domain_intro}
+
+domain_intro_state_tracking: |
+   {domain_intro}
+
+   {state_tracking_intro}
+
+actions:
+  {actions}
+
+objects:
+  {objects}
+
+predicates:
+  {predicates}
+
+predicate_mapping:
+   {predicate_mapping}
+
+# encoded_objects: dictionary of object names, have to be alphabetical
+encoded_objects:
+  {encoded_objects}
+encoded_objects_compact:
+  {encoded_objects_compact}
+callbacks:
+   - {callback}
