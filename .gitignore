@@ -1,3 +1,4 @@
+# === Planner scratch files ===
 */pr-*.pddl
 */sas_plan
 */*.stats
@@ -8,31 +9,27 @@
 */llm_plan
 */rough.py
 */sas_plan_ver
-utils/__pycache__/*
 
+# === Python ===
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+*.eggs/
 
+# === Experiment output (gitignored going forward) ===
+**/prompts/
+**/responses/
+**/results/
+**/results_backprompting/
+**/graphs/
+**/gpt_sas_plan
+
+# === Legacy-specific ignores (llm_planning_analysis) ===
 llm_planning_analysis/configs/mystery_blocksworld_with_mapping.yaml
 llm_planning_analysis/diversity_evaluation.py
 llm_planning_analysis/multiple_responses.py
-llm_planning_analysis/results/blocksworld/gpt-4_chat/multiple_responses_run_1/
-llm_planning_analysis/results/blocksworld/gpt-4_chat/task_1_plan_generation_multiple_responses_n_15_temp_10.json
-llm_planning_analysis/results/blocksworld/gpt-4_chat/task_1_plan_generation_multiple_responses_n_25_temp_10.json
-llm_planning_analysis/results/blocksworld/gpt-4_chat/task_1_plan_generation_multiple_responses_n_30_temp_10.json
-llm_planning_analysis/results/blocksworld/gpt-4_chat/task_1_plan_generation_multiple_responses_n_5_temp_10.json
-llm_planning_analysis/results/mystery_blocksworld_with_mapping/
-llm_planning_analysis/prompts/
-llm_planning_analysis/responses/
-llm_planning_analysis/gpt_sas_plan
-plan-bench/responses/mystery_blocksworld/gpt-4_chat/task_1_plan_generation.json
-plan-bench/responses/mystery_blocksworld/text-davinci-002/
-plan-bench/responses/mystery_blocksworld_3/gpt-4_chat/task_1_plan_generation.json
-plan-bench/responses/mystery_blocksworld_3/text-davinci-002/
-plan-bench/responses/random_blocksworld/
-plan-bench/responses/random_blocksworld_3/
-plan-bench/results/mystery_blocksworld/gpt-4_chat/task_1_plan_generation.json
-plan-bench/results/mystery_blocksworld/text-davinci-002/
-plan-bench/results/mystery_blocksworld_3/gpt-4_chat/task_1_plan_generation.json
-plan-bench/results/mystery_blocksworld_3/text-davinci-002/
-plan-bench/results/random_blocksworld/
-plan-bench/results/random_blocksworld_3/
+
+# === Legacy-specific ignores (plan-bench) ===
 plan-bench/examples/
