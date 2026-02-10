@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "planbench"
+version = "0.2.0"
+requires-python = ">=3.10"
+description = "Benchmark suite for evaluating LLM planning capabilities"
+license = {text = "MIT"}
+dependencies = [
+    "numpy",
+    "openai",
+    "PyYAML",
+    "tarski",
+    "transformers",
+    "pddl",
+    "tqdm",
+    "rich",
+    "anthropic",
+    "boto3",
+    "google-genai",
+    "groq",
+    "seaborn",
+    "matplotlib",
+    "pandas",
+]
+
+[project.optional-dependencies]
+local = ["vllm"]
+dev = ["pytest", "ruff", "mypy"]
+
+[project.scripts]
+planbench = "planbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
