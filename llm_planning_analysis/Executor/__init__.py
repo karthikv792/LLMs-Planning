@@ -210,7 +210,10 @@ class Executor:
 
     def random_prefix_execution(self, replan=False):
         # print("PLAN", self.plan)
-        self.prefix = random.choice(range(1, len(self.plan)))
+        if len(self.plan) < 2:
+            self.prefix = 1
+        else:
+            self.prefix = random.choice(range(1, len(self.plan)))
         self.final_state = self.get_final_state(self.init_state, self.plan[0:self.prefix])
         self.new_goal_state = self.final_state.difference(self.init_state)
         # self.all_preds = self.get_sets(self.model[PREDICATES])
