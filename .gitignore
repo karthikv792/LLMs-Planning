@@ -18,6 +18,14 @@ dist/
 build/
 *.eggs/
 
+# === Virtual environments & tool caches ===
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.DS_Store
+
 # === Experiment output (gitignored going forward) ===
 **/prompts/
 **/responses/
@@ -25,11 +33,5 @@ build/
 **/results_backprompting/
 **/graphs/
 **/gpt_sas_plan
-
-# === Legacy-specific ignores (llm_planning_analysis) ===
-llm_planning_analysis/configs/mystery_blocksworld_with_mapping.yaml
-llm_planning_analysis/diversity_evaluation.py
-llm_planning_analysis/multiple_responses.py
-
-# === Legacy-specific ignores (plan-bench) ===
-plan-bench/examples/
+**/sas_plan
+**/llm_plan

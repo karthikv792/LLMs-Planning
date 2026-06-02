@@ -13,7 +13,6 @@ dependencies = [
     "openai",
     "PyYAML",
     "tarski",
-    "transformers",
     "pddl",
     "tqdm",
     "rich",
@@ -27,7 +26,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-local = ["vllm"]
+# Local/self-hosted model inference (HuggingFace Transformers + vLLM).
+# These pull in torch/CUDA and are only needed for the `local_client` engines
+# (BLOOM, Qwen, QwQ, DeepSeek-R1 run locally). Cloud API engines do not need them.
+local = ["transformers", "vllm"]
 dev = ["pytest", "ruff", "mypy"]
 
 [project.scripts]
@@ -35,3 +37,27 @@ planbench = "planbench.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "requires_val: needs the VAL plan validator ($VAL or planner_tools/VAL)",
+    "requires_fast_downward: needs Fast Downward ($FAST_DOWNWARD)",
+    "requires_openai_key: needs OPENAI_API_KEY for a live API call",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# CI gate is scoped to bug-catching rules: syntax errors (E9) and the
+# pyflakes logic checks — undefined names (F82*), broken format strings (F50*,
+# F63), and unreachable/misc logic errors (F7*).  This is the standard
+# "critical errors" set; it would have caught the stale ``writer_new`` import.
+# Stylistic noise (unused imports/vars F401/F841) is intentionally excluded
+# from the gate to avoid failing on inherited research code — run
+# ``ruff check --select F src`` locally for the full report.
+select = ["E9", "F63", "F7", "F82"]
+

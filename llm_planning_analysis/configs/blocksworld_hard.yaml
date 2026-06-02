@@ -1,7 +1,0 @@
-instance_dir: blocksworld_hard/generated
-domain_file: blocksworld_hard/generated_domain.pddl
-domain_name: blocksworld_hard
-n_instances: 110
-start: 1
-end: 110
-instances_template: instance-{}.pddl
