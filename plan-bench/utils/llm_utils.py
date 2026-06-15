@@ -1,7 +1,16 @@
-from transformers import StoppingCriteriaList, StoppingCriteria
-import openai
+# Tolerant imports: let this module load when only a subset of backends is
+# installed, and when no OPENAI_API_KEY is set (e.g. when driving a local model).
 import os
-openai.api_key = os.environ["OPENAI_API_KEY"]
+try:
+    from transformers import StoppingCriteriaList, StoppingCriteria  # noqa: F401
+except ImportError:
+    StoppingCriteriaList = StoppingCriteria = None
+try:
+    import openai
+
+    openai.api_key = os.environ.get("OPENAI_API_KEY", "")
+except ImportError:
+    openai = None
 def generate_from_bloom(model, tokenizer, query, max_tokens):
     encoded_input = tokenizer(query, return_tensors='pt')
     stop = tokenizer("[PLAN END]", return_tensors='pt')
@@ -60,7 +69,7 @@ def send_query(query, engine, max_tokens, model=None, stop="[STATEMENT]"):
             max_token_err_flag = True
             print("[-]: Failed GPT3 query execution: {}".format(e))
         text_response = response['choices'][0]['message']['content'] if not max_token_err_flag else ""
-        return text_response.strip()        
+        return text_response.strip()
     else:
         try:
             response = openai.Completion.create(
