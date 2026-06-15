@@ -45,6 +45,11 @@ class ResponseGenerator:
         return {'model': model, 'tokenizer': tokenizer}
 
     def get_responses(self, task_name, specified_instances = [], run_till_completion=False):
+        # Snapshot to a set so the per-instance filter below doesn't mutate
+        # state. The previous `.remove()` pattern emptied the list after the
+        # last match, which flipped `if len(...) > 0` to False and let every
+        # remaining instance fall through to send_query.
+        _specified_instances_set = set(specified_instances or [])
         output_dir = f"responses/{self.data['domain_name']}/{self.engine}/"
         os.makedirs(output_dir, exist_ok=True)
         output_json = output_dir+f"{task_name}.json"
@@ -66,11 +71,9 @@ class ResponseGenerator:
                         if self.verbose:
                             print(f"Instance {instance['instance_id']} already completed")
                         continue
-                if len(specified_instances) > 0:
-                    if instance['instance_id'] not in specified_instances:
-                        continue
-                    else:
-                        specified_instances.remove(instance['instance_id'])                   
+                # Filter against the immutable snapshot (see above).
+                if _specified_instances_set and instance['instance_id'] not in _specified_instances_set:
+                    continue
                 
                 if self.verbose:
                     print(f"Sending query to LLM: Instance {instance['instance_id']}")

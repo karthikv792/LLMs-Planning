@@ -10,6 +10,12 @@
 */sas_plan_ver
 utils/__pycache__/*
 
+# generated eval artifacts + local venv + bytecode
+.venv/
+__pycache__/
+*.pyc
+plan-bench/responses/
+plan-bench/results/
 
 llm_planning_analysis/configs/mystery_blocksworld_with_mapping.yaml
 llm_planning_analysis/diversity_evaluation.py

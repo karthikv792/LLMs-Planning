@@ -57,9 +57,15 @@ class ResponseEvaluator:
         output_dir = f"results/{self.data['domain_name']}/{self.engine}/"
         if not self.ignore_existing and os.path.exists(output_dir+f"{task_name}.json"):
             load_dir = output_dir
-        else:
-            assert os.path.exists(response_dir+f"{task_name}.json")
+        elif os.path.exists(response_dir+f"{task_name}.json"):
             load_dir = response_dir
+        else:
+            # No response file exists for this (domain, engine, task) — e.g. an
+            # engine that produced no responses for the task. Treat it as an
+            # empty, no-data cell instead of aborting the whole evaluation with a
+            # bare assert (AssertionError, rc=1), so the task loop can continue.
+            print(f"[eval] no response file for {task_name} under {response_dir}; treating as empty")
+            return {"instances": []}
         with open(load_dir+f"{task_name}.json", 'r') as file:
             structured_output = json.load(file)
         return structured_output
@@ -224,6 +230,13 @@ class ResponseEvaluator:
                     output_dict['unmet_precondition']['predicate'] = text_to_state(line.strip(), self.data)
                     precond_act_flag = False
 
+        # Guarantee 'valid' is always set. A response that omits the
+        # "plan is (in)valid" verdict would otherwise leave 'valid' unset, and
+        # evaluate_verification would raise KeyError and abort the whole
+        # verification evaluation. With a None default such a response scores
+        # correct_binary=False ("no verdict -> incorrect"); responses that do
+        # emit a verdict keep their True/False value and are graded unchanged.
+        output_dict.setdefault('valid', None)
         return output_dict
     
     def evaluate_verification(self, task_name):
@@ -254,7 +267,14 @@ class ResponseEvaluator:
                 correct_binary = False
                 correct_w_type = False
                 correct_w_expl = False
-                parsed_llm_response = self.parse_output(problem.actions, llm_response)
+                # Tolerate parser crashes on a malformed LLM response so one bad
+                # instance scores no-verdict instead of aborting the whole cell.
+                # (The ground-truth parse below stays unwrapped — a crash there
+                # is a real bug worth surfacing.)
+                try:
+                    parsed_llm_response = self.parse_output(problem.actions, llm_response)
+                except Exception:
+                    parsed_llm_response = {'valid': None}
                 parsed_ground_truth_response = self.parse_output(problem.actions, ground_truth_response)
                 instance_dict["extracted_llm_plan"] = parsed_llm_response
                 instance_dict["parsed_ground_truth_plan"] = parsed_ground_truth_response
